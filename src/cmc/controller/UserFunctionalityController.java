@@ -1,5 +1,7 @@
 package cmc.controller;
 import cmc.entity.*;
+import cmc.interaction.AdminInteraction;
+
 /**
  * @author Lindsay Will, Steffi Tapsoba
  * @version February 21, 2019
@@ -14,30 +16,20 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   private SearchController searchController;
   private SavedSchool savedSchool;
   private DBController dbController;
-  /**
-   * Logs User on
-   * 
-   * @params username and password of the User
-   */
-  public void logOn(String username, String password){
-    super.logOn(username, password);
-  }
   
   /**
-   * Logs User off
+   * Constructor for AdminFunctionalityController
+   * 
+   * @param User user
+   * @return void
+   * @throws ....
    */
-  public void logOff(){
-    super.logOff();
+  public UserFunctionalityController(User user){
+    super();
+    this.user = user;   
   }
   
-  /**
-   * User forgets password
-   * 
-   * @param username is the username of the User
-   */
-  public void forgotPassword(String username){
-    super.forgotPassword(username);
-  }
+  
   
   /**
    * User can view their own account info

@@ -7,7 +7,7 @@
  * 
  * Class that holds the information held by an account holder
  */
-public abstract class Account {
+public class Account {
  // no attributes
 
  //first name of the account holder

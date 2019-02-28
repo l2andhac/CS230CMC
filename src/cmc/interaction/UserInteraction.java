@@ -15,10 +15,20 @@ public class UserInteraction extends AccountInteraction{
   //The current User
   private User user;
   //A UserFunctionalityController to call the proper methods in the controllers
-  private UserFunctionalityController userFunctCont = new UserFunctionalityController();
+  private UserFunctionalityController userFunctCont;
   
   
   //Methods
+  
+  /**
+ * 
+ */
+public UserInteraction(User user) {
+	super();
+	this.user = user;
+	this.userFunctCont = new UserFunctionalityController(user);
+}
+  
   /**
    * Allows the user to search for a friends saved schools
    * 
@@ -199,40 +209,10 @@ public class UserInteraction extends AccountInteraction{
   }
   
   
-  /**
-   * Allows the user to log on
-   * 
-   * @param Strings username and password
-   * @return none
-   * @throws ....
-   */
-  public void logOn(String u, String p){
-    userFunctCont.logOn(u,p);
-  }
+
   
   
-  /**
-   * Allows the user to log off
-   * 
-   * @param none
-   * @return none
-   * @throws ...
-   */
-  public void logOff(){
-    userFunctCont.logOff();
-  }
-  
-  
-  /**
-   * Allows the user to request to get password back if forgotten
-   * 
-   * @param String with the username
-   * @return none
-   * @throws ...
-   */
-  public void forgotPassword(String u){
-    userFunctCont.forgotPassword(u);
-  }
+
   
   
   /**

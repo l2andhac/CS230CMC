@@ -187,7 +187,7 @@ public class University{
    */
   public double getPercentFinancialAid()
   {
-    return this.numberOfStudents;
+    return this.numberOfStudents; 
   }
   
       /*

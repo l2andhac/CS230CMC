@@ -14,7 +14,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   private ForgotPasswordController forgotPasswordController;
   private AccountController accountController;
   private Admin a;
-  private AdminInteraction ai;
+ 
   //Methods
   /**
    * Constructor for AdminFunctionalityController
@@ -26,7 +26,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   public AdminFunctionalityController(Admin a){
     super();
     this.a = a;   
-    this.ai = new AdminInteraction();
+   
   }
   
   

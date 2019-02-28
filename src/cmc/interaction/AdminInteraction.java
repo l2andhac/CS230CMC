@@ -1,6 +1,8 @@
 package cmc.interaction;
 import java.io.*;
 import java.util.*;
+import cmc.entity.*;
+import cmc.controller.*;
 /**
  * AdminInteraction.class
  * This class serves as the interaction class for the admin
@@ -16,7 +18,17 @@ public class AdminInteraction extends AccountInteraction{
   private AdminFunctionalityController adminFunctCont;
   
   
-  //Methods
+  /**
+ * 
+ */
+public AdminInteraction(Admin admin) {
+	super();
+	this.admin = admin;
+	this.adminFunctCont = new AdminFunctionalityController(admin);
+}
+
+
+//Methods
   /**
    * Allows an admin to remove a school from the database
    * 
@@ -137,41 +149,6 @@ public class AdminInteraction extends AccountInteraction{
   
   
   //Inherited methods
-  /**
-   * Allows the admin to log on
-   * 
-   * @param Strings username and password
-   * @return none
-   * @throws ....
-   */
-  public void logOn(String u, String p){
-    adminFunctCont.logOn(u,p);
-  }
-  
-  
-  /**
-   * Allows the admin to log off
-   * 
-   * @param none
-   * @return none
-   * @throws ...
-   */
-  public void logOff(){
-    adminFunctCont.logOff();
-  }
-  
-  
-  /**
-   * Allows the admin to request to get password back if forgotten
-   * 
-   * @param String with the username
-   * @return none
-   * @throws ...
-   */
-  public void forgotPassword(String u){
-    adminFunctCont.forgotPassword(u);
-  }
-  
   
   /**
    * Allows the admin to see their own information

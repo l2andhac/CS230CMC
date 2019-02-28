@@ -24,8 +24,9 @@ public class AccountController{
    */
   public AccountController()
   {
-    this.controller = controller;
-    this. account = account;
+    this.controller = new DBController();
+    this.account = null;
+    this.accountFunctionalityController = new AccountFunctionalityController();
   }
   
   /*
@@ -36,19 +37,19 @@ public class AccountController{
    */
   public void logOn(String username, String password)
   {
-    Account a = controller.findAccount(username);
-    if (a != null)
+    this.account = controller.findAccount(username);
+    if (account != null)
     {
-      String password2 = a.getPassword();
-      if (password.equals(password2) && a.getStatus() != 'n')
+      String password2 = account.getPassword();
+      if (password.equals(password2) && account.getStatus() != 'n')
       {
         this.account.logOn();
-        accountFunctionalityController.setAccount(a);//another instance of afc need in this class??? also add to class diagram
+        accountFunctionalityController.setAccount(account);//another instance of afc need in this class??? also add to class diagram
       }
       else if (!password.equals(password2) )    {
         System.out.print("Incorrect password was given");
       }
-      else if(a.getStatus() == 'n')
+      else if(account.getStatus() == 'n')
       {
         System.out.print("You cannot log in your account is deactivated");
       }
