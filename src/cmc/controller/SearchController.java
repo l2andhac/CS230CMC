@@ -1,4 +1,5 @@
 package cmc.controller;
+import cmc.entity.*;
 /**
  * @author Lindsay Will
  * @version February 21, 2019

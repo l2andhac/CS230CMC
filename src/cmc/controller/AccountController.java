@@ -1,4 +1,5 @@
 package cmc.controller;
+import cmc.entity.*;
 /*
  * This is a controller class for account controller.
  * 

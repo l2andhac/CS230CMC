@@ -1,4 +1,6 @@
 package cmc.controller;
+import cmc.interaction.*;
+import cmc.entity.*;
 /**
  * AccountFinctionalityController.class
  * This class is the Controller for all Accounts and their functionalities

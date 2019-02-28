@@ -1,4 +1,6 @@
 package cmc.controller;
+import cmc.entity.*;
+import cmc.interaction.*;
 /**
  * AdminFunctionalityController.class
  * This class is the Controller for Admins and their functionalities

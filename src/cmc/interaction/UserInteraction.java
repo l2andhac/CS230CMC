@@ -1,6 +1,8 @@
 package cmc.interaction;
 import java.util.*;
 import java.io.*;
+import cmc.controller.*;
+import cmc.entity.*;
 /**
  * UserInteraction.class
  * This class serves as the interaction class for the user
