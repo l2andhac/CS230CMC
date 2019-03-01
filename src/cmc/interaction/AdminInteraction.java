@@ -121,8 +121,8 @@ public AdminInteraction(Admin admin) {
    * @return none
    * @throws ...
    */
-  public void viewAllAccounts(){
-    adminFunctCont.viewAllAccounts();
+  public Set<String> viewAllAccounts(){
+    return adminFunctCont.viewAllAccounts();
   }
   
   

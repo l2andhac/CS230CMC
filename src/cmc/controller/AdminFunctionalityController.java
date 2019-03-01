@@ -1,4 +1,6 @@
 package cmc.controller;
+import java.util.Set;
+
 import cmc.entity.*;
 import cmc.interaction.*;
 /**
@@ -25,7 +27,8 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    */
   public AdminFunctionalityController(Admin a){
     super();
-    this.a = a;   
+    this.a = a; 
+    dbController = new DBController();
    
   }
   
@@ -115,8 +118,8 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * @return void
    * @throws ...
    */
-  public void viewAllAccounts(){
-    dbController.viewAllAccounts();
+  public Set<String> viewAllAccounts(){
+    return dbController.viewAllAccounts();
   }
   
   

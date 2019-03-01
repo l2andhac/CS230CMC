@@ -29,14 +29,17 @@ public class AccountInteraction{
 	   * @throws ....
 	   */
 	  public AccountInteraction logOn(String u, String p){
-	    accountFunctCont.logOn(u,p);
-	    if(userInteraction != null) {
-	    	return userInteraction;
+	    Account a = accountFunctCont.logOn(u,p);
+	    if(a != null) {
+	    if(a.getUserType() == 'u') {
+	    	return new UserInteraction((User) a);
 	    }
-	    else if(adminInteraction != null) {
-	    	return adminInteraction;
+	    else if(a.getUserType() == 'a') {
+	    	return new AdminInteraction((Admin) a);
+	    }
 	    }
 	    return null;
+	    
 	  }
 	  
 	  /**
@@ -63,14 +66,7 @@ public class AccountInteraction{
 	  }
 	
 	
-  public void setAccount(Account a){
-	  if(a.getUserType() == 'a') {
-		 this.adminInteraction = new AdminInteraction((Admin)a);
-		 
-	  }
-	  else if(a.getUserType() == 'u') {
-		this.userInteraction = new UserInteraction((User)a);
-		  
-	  }
-  }
+ /* public void setAccount(Account a){
+	  accountFunctCont(a);
+  }*/
 }

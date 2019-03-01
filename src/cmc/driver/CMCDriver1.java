@@ -1,4 +1,6 @@
 package cmc.driver;
+import java.util.Set;
+
 import cmc.interaction.*;
 /**
  * CMCDriver1.java
@@ -14,6 +16,7 @@ public class CMCDriver1{
 	  private static AdminInteraction aInteraction;
 	  private static UserInteraction uInteraction;
 	  private static AccountInteraction accountInteraction;
+	  private static AccountInteraction logOnInteraction;
 	  
 	    public static void main(String[] args)
 	  {
@@ -24,12 +27,19 @@ public class CMCDriver1{
 	      System.out.println("-------------------------------------------------------");
 	      System.out.println("LogIn for User");
 	      
-	      accountInteraction.logOn("jordre3@gmail.com", "password");
+	      logOnInteraction = accountInteraction.logOn("jordre3@gmail.com", "password");
 	      
 	      System.out.println("-------------------------------------------------------");
 	      System.out.println("LogIn for Admin");
 	      
-	      accountInteraction.logOn("nateTheAdmin","password");
+	      logOnInteraction = accountInteraction.logOn("nateTheAdmin","password");
+	      
+	      aInteraction = (AdminInteraction) logOnInteraction;
+	      Set<String> allAccounts = aInteraction.viewAllAccounts();
+	      for(String a : allAccounts)
+	      {
+	        System.out.println(a);
+	      }
 	      
 	     /* System.out.println("-------------------------------------------------------");
 	      System.out.println("User can View and Edit Profile");

@@ -1,5 +1,6 @@
 package cmc.controller;
 import cmc.entity.*;
+import cmc.interaction.AccountInteraction;
 /*
  * This is a controller class for account controller.
  * 
@@ -15,7 +16,6 @@ public class AccountController{
   //instance variable for account
   private Account account; 
   
-  private AccountFunctionalityController accountFunctionalityController;
   
   /*
    *Constructor for AccountController 
@@ -26,7 +26,6 @@ public class AccountController{
   {
     this.controller = new DBController();
     this.account = null;
-    this.accountFunctionalityController = new AccountFunctionalityController();
   }
   
   /*
@@ -35,7 +34,7 @@ public class AccountController{
    * @param username, a String that is the username
    * @param password, a String that is the password
    */
-  public void logOn(String username, String password)
+  public Account logOn(String username, String password)
   {
     this.account = controller.findAccount(username);
     if (account != null)
@@ -44,10 +43,12 @@ public class AccountController{
       if (password.equals(password2) && account.getStatus() != 'n')
       {
         this.account.logOn();
-        accountFunctionalityController.setAccount(account);//another instance of afc need in this class??? also add to class diagram
+        System.out.println("You have successfully logged on to CMC");
+        return account;
       }
       else if (!password.equals(password2) )    {
         System.out.print("Incorrect password was given");
+        
       }
       else if(account.getStatus() == 'n')
       {
@@ -58,6 +59,7 @@ public class AccountController{
     {
       System.out.print("Incorrect information was given");
     }
+    return null;
     
   }
   

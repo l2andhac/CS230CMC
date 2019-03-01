@@ -68,13 +68,6 @@ public class UserFunctionalityController extends AccountFunctionalityController{
     }
   }
   
-  /**
-   * Sets Account
-   * @param user is the User to set???
-   */
-  public void setAccount(User user){
-    super.setAccount(user);
-  }
   
   /**
    * Allows the User to search a "friend" (another User) for their list of SavedSchools

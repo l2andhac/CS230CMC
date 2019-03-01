@@ -32,7 +32,7 @@ public class AccountFunctionalityController {
 		this.fpc = new ForgotPasswordController();
 		this.a = null;
 		this.dbc = new DBController();
-		this.ai = new AccountInteraction();
+		//this.ai = new AccountInteraction();
 	}
 
 	// Methods
@@ -44,8 +44,9 @@ public class AccountFunctionalityController {
 	 * @return void
 	 * @throws ....
 	 */
-	public void logOn(String u, String p) {
-		ac.logOn(u, p);
+	public Account logOn(String u, String p) {
+		return ac.logOn(u, p);
+		
 	}
 
 	/**
@@ -122,16 +123,5 @@ public class AccountFunctionalityController {
 		dbc.getSchool(schoolName);
 	}
 
-	/**
-	 * Allows the current Account to be set
-	 * 
-	 * @param Account
-	 *            that is the current account to be set
-	 * @return void
-	 * @throw ...
-	 */
-	public void setAccount(Account a) {
-		ai.setAccount(a);
-	}
 
 }
