@@ -21,7 +21,9 @@ public class UserInteraction extends AccountInteraction{
   //Methods
   
   /**
+ * Constructor for a UserInteraction
  * 
+ * @param User
  */
 public UserInteraction(User user) {
 	super();
@@ -34,7 +36,7 @@ public UserInteraction(User user) {
    * 
    * @param a String u which is the username to search by
    * @return a boolean if the search is successful
-   * @throws ...
+   * @throws none
    */
   public void searchForFriends(String u){
     
@@ -47,7 +49,7 @@ public UserInteraction(User user) {
    * 
    * @param none
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void requestDeactivation(){
     userFunctCont.requestDeactivation();
@@ -65,7 +67,7 @@ public UserInteraction(User user) {
                 academicScaleLo, socialScaleUp, socialScaleLo, qualOfLifeScaleUp,
                 qualOfLifeScaleLo, List<String> emphasis
    * @return none
-   * @throws ....
+   * @throws none
    */
   public void searchSchool(String name, String state, String location, String control, int enrollmentUp, 
                 int enrollmentLo, int percentFemaleUp, int percentFemaleLo, int satVerbUp, 
@@ -89,7 +91,7 @@ public UserInteraction(User user) {
    * 
    * @param a list of schools to display
    * @return none
-   * @throws ....
+   * @throws none
    */
   public void viewResults(List<University> list){
     //////////////////////////display results
@@ -101,7 +103,7 @@ public UserInteraction(User user) {
    * 
    * @param a list of University to be sorted and a character denoting what to sort by
    * @return the sorted list
-   * @throws ...
+   * @throws none
    */
   public List<University> sortResults(List<University> list, char c){
     //return userFunctCont.sortResults(list, c);
@@ -115,7 +117,7 @@ public UserInteraction(User user) {
    * 
    * @param A University to add to the saved school list
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void saveSchool(University univ){
     userFunctCont.saveSchool(univ);
@@ -127,7 +129,7 @@ public UserInteraction(User user) {
    * 
    * @param University to view
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void viewSearchedSchool(University univ){
     userFunctCont.viewSearchedSchool(univ);
@@ -139,7 +141,7 @@ public UserInteraction(User user) {
    * 
    * @param University to remove from their saved school list
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void removeSavedSchool(SavedSchool univ){
     userFunctCont.removeSavedSchool(univ);
@@ -151,7 +153,7 @@ public UserInteraction(User user) {
    * 
    * @param none
    * @return none
-   * @throws ....
+   * @throws none
    */
   public void viewSavedSchools(){
     userFunctCont.viewSavedSchools();
@@ -163,7 +165,7 @@ public UserInteraction(User user) {
    * 
    * @param the SavedSchool that the user wishes to compare to
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void compareSavedSchools(SavedSchool s1){
     SavedSchool s2 = requestForSecondSchool();
@@ -176,7 +178,7 @@ public UserInteraction(User user) {
    * 
    * @param a String first name, last name, username, and password
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void requestNewAccount(String fn, String ln, String u, String p){
     User user = new User(fn, ln, u, p, 'p');
@@ -189,7 +191,7 @@ public UserInteraction(User user) {
    * 
    * @param none
    * @return SavedSchool to compare
-   * @throws ...
+   * @throws none
    */
   public SavedSchool requestForSecondSchool(){
     ///////////////////////////////////////////////////
@@ -198,11 +200,11 @@ public UserInteraction(User user) {
   
   
   /**
-   * Shows the recomended schools for a user
+   * Shows the recommended schools for a user
    * 
    * @param none
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void showRecSchools(){
     /////////////////////////////////////////////////algorithm?
@@ -220,7 +222,7 @@ public UserInteraction(User user) {
    * 
    * @param String of the username to view the information for
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void viewAccountInfo(String u){
     userFunctCont.viewAccountInfo(u);
@@ -232,7 +234,7 @@ public UserInteraction(User user) {
    * 
    * @param An Account,String for first name, last name, and password
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void editAccountInfo(User a, String fn, String ln, String p){
     userFunctCont.editUserInfo(fn, ln, p, 'u', 'y'); //wrong arguements
@@ -242,9 +244,9 @@ public UserInteraction(User user) {
   /**
    * Allows the current user to be set
    * 
-   * @param the current Account
+   * @param the current User
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void setAccount(User a){
     user = a;
@@ -256,7 +258,7 @@ public UserInteraction(User user) {
    * 
    * @param String of the University's name
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void viewSchoolDetails(String schoolName){
     userFunctCont.viewSchoolDetails(schoolName);

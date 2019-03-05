@@ -19,13 +19,15 @@ public class AdminInteraction extends AccountInteraction{
   
   
   /**
+ * Constructor for an AdminInteraction
  * 
+ * @param Admin
  */
-public AdminInteraction(Admin admin) {
+  public AdminInteraction(Admin admin) {
 	super();
 	this.admin = admin;
 	this.adminFunctCont = new AdminFunctionalityController(admin);
-}
+  }
 
 
 //Methods
@@ -34,7 +36,7 @@ public AdminInteraction(Admin admin) {
    * 
    * @param University to be removed
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void removeSchool(University univ){
     adminFunctCont.removeSchool(univ);
@@ -44,10 +46,14 @@ public AdminInteraction(Admin admin) {
   /**
    * Allows the Admin to add a school to the database
    * 
-   * @param Strings for the name, state location control and number of students
-   *        doubles for 
+   * @param String schoolName, String state, String location,
+                        String control, int numberOfStudents, double percentFemale,
+                         double satVerbal, double satMath,
+                        double expenses, double percentFinancialAid, int numberOfApplicants,
+                        double percentAdmitted, double percentEnrolled, int academicScale,
+                        int socialScale, int qualityScale, List<String> emphases
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void addSchool(String schoolName, String state, String location,
                         String control, int numberOfStudents, double percentFemale,
@@ -71,7 +77,7 @@ public AdminInteraction(Admin admin) {
    * 
    * @param A University to view
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void adminViewSchool(University univ){
     adminFunctCont.adminViewSchool(univ);
@@ -81,9 +87,14 @@ public AdminInteraction(Admin admin) {
   /**
    * Allows the admin to edit a school
    * 
-   * @param ////////////////////all params
+   * @param String schoolName, String state, String location,
+                        String control, int numberOfStudents, double percentFemale,
+                         double satVerbal, double satMath,
+                        double expenses, double percentFinancialAid, int numberOfApplicants,
+                        double percentAdmitted, double percentEnrolled, int academicScale,
+                        int socialScale, int qualityScale, List<String> emphases
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void editSchool(String schoolName, String state, String location,
                         String control, int numberOfStudents, double percentFemale,
@@ -106,10 +117,10 @@ public AdminInteraction(Admin admin) {
    * Allows the admin to view all the schools in the database
    * 
    * @param none
-   * @retun none
-   * @throws ...
+   * @retun Set<String>
+   * @throws none
    */
-  public void viewAllSchools(){
+  public void viewAllSchools(){  ///will have to return a Set<String>
     adminFunctCont.viewAllSchools();
   }
   
@@ -118,8 +129,8 @@ public AdminInteraction(Admin admin) {
    * Allows the admin to view all the accounts in the database
    * 
    * @param none
-   * @return none
-   * @throws ...
+   * @return Set<String>
+   * @throws none
    */
   public Set<String> viewAllAccounts(){
     return adminFunctCont.viewAllAccounts();
@@ -132,7 +143,7 @@ public AdminInteraction(Admin admin) {
    * 
    * @param String for the first name, last name, username, password, and Char for type, and status
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void addAccount(String fn, String ln, String u, String p, char t, char s){
     Account a;
@@ -155,7 +166,7 @@ public AdminInteraction(Admin admin) {
    * 
    * @param String of the username to view the information for
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void viewAccountInfo(String u){
     adminFunctCont.viewAccountInfo(u);
@@ -165,12 +176,11 @@ public AdminInteraction(Admin admin) {
   /**
    * Allows the admin to edit first name, last name, and password/////////////// change to edit everything
    * 
-   * @param An Account,String for first name, last name, and password
+   * @param An Account a
    * @return none
-   * @throws ...
+   * @throws none
    */
-  public void editAccountInfo(Account a, String fn, String ln, String p){
-    //////////////////////////////////// How do i pass along the fn, ln, p
+  public void editAccountInfo(Account a){
     adminFunctCont.editAccountInfo(a); // editAccountInfo takes an account
   }
   
@@ -180,7 +190,7 @@ public AdminInteraction(Admin admin) {
    * 
    * @param the current Account
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void setAccount(Admin a){
     admin = a;
@@ -192,7 +202,7 @@ public AdminInteraction(Admin admin) {
    * 
    * @param String of the University's name
    * @return none
-   * @throws ...
+   * @throws none
    */
   public void viewSchoolDetails(String schoolName){
     adminFunctCont.viewSchoolDetails(schoolName);

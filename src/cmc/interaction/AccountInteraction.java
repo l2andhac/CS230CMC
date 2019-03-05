@@ -9,11 +9,17 @@ import cmc.controller.*;
  * @version 2/23/19
  */
 public class AccountInteraction{
+	  //An accountFunctionalityController to call methods on
       private AccountFunctionalityController accountFunctCont;
+      //an adminInteraction to pass after logging in, if account is an admin
       private AdminInteraction adminInteraction;
+      //a userInteraction to pass after logging in, if account is a user
       private UserInteraction userInteraction;
       
 	  /**
+	 * Constructor for an AccountInteraction
+	 * 
+	 * @param none
 	 * 
 	 */
 	public AccountInteraction() {
@@ -25,8 +31,8 @@ public class AccountInteraction{
 	   * Allows the user to log on
 	   * 
 	   * @param Strings username and password
-	   * @return none
-	   * @throws ....
+	   * @return AccountInteraction
+	   * @throws none
 	   */
 	  public AccountInteraction logOn(String u, String p){
 	    Account a = accountFunctCont.logOn(u,p);
@@ -47,7 +53,7 @@ public class AccountInteraction{
 	   * 
 	   * @param none
 	   * @return none
-	   * @throws ...
+	   * @throws none
 	   */
 	  public void logOff(){
 	    accountFunctCont.logOff();
@@ -59,7 +65,7 @@ public class AccountInteraction{
 	   * 
 	   * @param String with the username
 	   * @return none
-	   * @throws ...
+	   * @throws none
 	   */
 	  public void forgotPassword(String u){
 	    accountFunctCont.forgotPassword(u);
