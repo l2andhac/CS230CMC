@@ -1,14 +1,15 @@
 package cmc.controller;
 
+// currently unnecessary
 import cmc.interaction.*;
 import cmc.entity.*;
 
 /**
- * AccountFinctionalityController.class This class is the Controller for all
+ * AccountFinctionalityController.Java This class is the Controller for all
  * Accounts and their functionalities
  * 
  * @author L2 and the Hackstreet Boyz
- * @version 2/21/19
+ * @version 3/6/19
  */
 public class AccountFunctionalityController {
 	// Attributes
@@ -22,7 +23,7 @@ public class AccountFunctionalityController {
 	private DBController dbc;
 	// instance variable for AccountInteraction ???? I added this, but she discuss
 	// if it is necesary
-	private AccountInteraction ai;
+	//private AccountInteraction ai;
 
 	/**
 	 * constructor that creates an AccountFunctionalityController object
@@ -41,7 +42,7 @@ public class AccountFunctionalityController {
 	 * 
 	 * @param String
 	 *            u as a username and String p as a password
-	 * @return void
+	 * @return Account the Account that has attempted to log on
 	 * @throws ....
 	 */
 	public Account logOn(String u, String p) {
@@ -89,7 +90,7 @@ public class AccountFunctionalityController {
 	 * Allows the Account to view an Account's information
 	 * 
 	 * @param String
-	 *            that is the username of the Account you wish to view
+	 *            that is the username of the Account that the account wishes to view
 	 * @return void
 	 * @throws ....
 	 */
