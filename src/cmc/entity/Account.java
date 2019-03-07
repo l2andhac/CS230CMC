@@ -157,5 +157,14 @@ public class Account {
  public boolean isLoggedOn() {
     return this.loggedOn;
  }
+ 
+/* 
+ * toString method for account
+ */
+@Override
+public String toString() {
+	return "firstName= " + firstName + "\nlastName= " + lastName + "\nusername= " + username + "\npassword= "
+			+ password + "\nuserType= " + userType + "\nstatus= " + status + "\nloggedOn= " + loggedOn;
+}
 
 }

@@ -10,7 +10,7 @@ import cmc.entity.*;
 
 public class ForgotPasswordController{
   
-
+  //instance variable for an AccountFunctionalityController
   private AccountFunctionalityController afController; 
   
   /**

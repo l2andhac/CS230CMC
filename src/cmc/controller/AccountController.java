@@ -20,7 +20,7 @@ public class AccountController{
   /*
    *Constructor for AccountController 
    * 
-   * instaniates the instance variables
+   * Instantiates the instance variables for DBController and sets the account instance variable to null
    */
   public AccountController()
   {
@@ -83,8 +83,8 @@ public class AccountController{
    * @param fn, a String that is the first name
    * @param ln, a String that is the last name
    * @param p, a String that is the password
-   * @param t, a String that is the type (either a or u)
-   * @param s, a String that is the status (either y,n,p or d)
+   * @param t, a char that is the type (either a or u)
+   * @param s, a char that is the status (either y,n,p or d)
    * 
    */
   public void updateAccountInfo(Account a,String fn,String ln,String p,char t,char s)

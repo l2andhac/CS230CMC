@@ -117,11 +117,11 @@ public class AdminInteraction extends AccountInteraction{
    * Allows the admin to view all the schools in the database
    * 
    * @param none
-   * @retun Set<String>
+   * @retun Set<University>
    * @throws none
    */
-  public void viewAllSchools(){  ///will have to return a Set<String>
-    adminFunctCont.viewAllSchools();
+  public Set<University> viewAllSchools(){  
+    return adminFunctCont.viewAllSchools();
   }
   
   
@@ -169,7 +169,7 @@ public class AdminInteraction extends AccountInteraction{
    * @throws none
    */
   public void viewAccountInfo(String u){
-    adminFunctCont.viewAccountInfo(u);
+    adminFunctCont.viewAccountInfo(u); 
   }
   
   

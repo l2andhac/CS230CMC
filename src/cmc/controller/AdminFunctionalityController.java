@@ -103,11 +103,11 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * Allows the Admin to view a list of all of the Universities in the Database
    * 
    * @param none
-   * @return void
+   * @return Set<University>
    * @throws ....
    */
-  public void viewAllSchools(){
-    dbController.getAllSchools();
+  public Set<University> viewAllSchools(){
+    return dbController.getAllSchools();
   }
   
   
@@ -115,7 +115,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * Allows the Admin to view a list of all of the Accounts in the Database
    * 
    * @param none
-   * @return void
+   * @return Set<String>
    * @throws ...
    */
   public Set<String> viewAllAccounts(){

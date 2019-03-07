@@ -96,7 +96,7 @@ public class AccountFunctionalityController {
 	 */
 	public void viewAccountInfo(String u) {
 		this.a = dbc.findAccount(u);
-		System.out.println(a.toString()); // account.toString() method currently does not exist
+		System.out.println(a.toString()); 
 	}
 
 	/**

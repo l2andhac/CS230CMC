@@ -1,6 +1,7 @@
 package cmc.driver;
 import java.util.Set;
 
+import cmc.entity.University;
 import cmc.interaction.*;
 /**
  * CMCDriver1.java
@@ -12,7 +13,7 @@ import cmc.interaction.*;
  */
 
 public class CMCDriver1{
-
+      //instance variables for AdminInteraction, UserInteraction, and AccountInteraction
 	  private static AdminInteraction aInteraction;
 	  private static UserInteraction uInteraction;
 	  private static AccountInteraction accountInteraction;
@@ -24,36 +25,39 @@ public class CMCDriver1{
 	      //uInteraction = new UserInteraction();
 	      accountInteraction = new AccountInteraction();
 	      
+	      
 	      System.out.println("-------------------------------------------------------");
-	      System.out.println("LogIn for User");
+	      System.out.println("LogIn for User\n");
 	      
 	      logOnInteraction = accountInteraction.logOn("jordre3@gmail.com", "password");
 	      
-	      System.out.println("-------------------------------------------------------");
-	      System.out.println("LogIn for Admin");
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("LogIn for Admin\n");
 	      
 	      logOnInteraction = accountInteraction.logOn("nateTheAdmin","password");
 	      
-	      aInteraction = (AdminInteraction) logOnInteraction;
-	      Set<String> allAccounts = aInteraction.viewAllAccounts();
-	      for(String a : allAccounts)
-	      {
-	        System.out.println(a);
-	      }
 	      
-	     /* System.out.println("-------------------------------------------------------");
-	      System.out.println("User can View and Edit Profile");
 	      
-	      uInteraction.viewAccountInfo("jordre3@gmail.com");
+	      //System.out.println("\n-------------------------------------------------------");
+	      //System.out.println("User can View and Edit Profile\n");
 	      
-	      System.out.println("-------------------------------------------------------");
-	      System.out.println("Admin can View and Edit Profile");
+	      //logOnInteraction was created for an admin so we are unable to cast it to a user Interaction
+	      
+	      //uInteraction = (UserInteraction) logOnInteraction; 
+	      
+	      //uInteraction.viewAccountInfo("jordre3@gmail.com");
+	      
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can View and Edit Profile\n");
+	      
+	      aInteraction = (AdminInteraction) logOnInteraction; 
 	      
 	      aInteraction.viewAccountInfo("nateTheAdmin");
-	      */
 	      
-//	      System.out.println("-------------------------------------------------------");
-//	      System.out.println("User can search for schools by combination of state and number of students");
+	      
+//	      System.out.println("\n-------------------------------------------------------");
+//	      System.out.println("User can search for schools by combination of state and number of students\n");
 //	      
 //	      uInteraction.searchSchool("", String state, String location, String control, int enrollmentUp, 
 //	                int enrollmentLo, int percentFemaleUp, int percentFemaleLo, int satVerbUp, 
@@ -62,23 +66,33 @@ public class CMCDriver1{
 //	                int percentAdmittedLo, int percentEnrollUp, int percentEnrollLo, int academicScaleUp, 
 //	                int academicScaleLo, int socialScaleUp, int socialScaleLo, int qualOfLifeScaleUp,
 //	                int qualOfLifeScaleLo, List<String> emphasis);
-//	      
-//	      System.out.println("-------------------------------------------------------");
-//	      System.out.println("User can fine top 5 reccomendnd schools for a given school");
-//	      
-//	      
-//	      
-//	      
-//	      System.out.println("-------------------------------------------------------");
-//	      System.out.println("Admin can view a list of universities");
-//	      
-//	      aInteraction.viewAllSchools();
-//	      
-//	      
-//	      System.out.println("-------------------------------------------------------");
-//	      System.out.println("Admin can view a list of users");
-//	      
-//	      aInteraction.viewAllAccounts();
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User can find top 5 recommended schools for a given school\n");
+	      
+	      System.out.println("XXXXXXXXX");
+	      
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can view a list of universities\n");
+	      
+	      aInteraction = (AdminInteraction) logOnInteraction; 
+	      Set<University> uList = aInteraction.viewAllSchools();
+	      for(University s : uList)
+	      {
+	        System.out.println(s.getSchoolName());
+	      }
+	      
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can view a list of users\n");
+	           
+	      aInteraction = (AdminInteraction) logOnInteraction;    
+	      Set<String> allAccounts = aInteraction.viewAllAccounts();
+	      for(String a : allAccounts)
+	      {
+	        System.out.println(a);
+	      }
 	      
 	   }
 	  

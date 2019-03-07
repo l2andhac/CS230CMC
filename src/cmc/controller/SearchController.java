@@ -9,10 +9,13 @@ import cmc.entity.*;
 
 public class SearchController{
   
+	//instance variable for a DBController
   private DBController controller; 
   
   /**
-   * @param controller
+   * Constructor for SearchController
+   * 
+   * creates a new DBController
    */
   public SearchController() {
   	this.controller = new DBController();
