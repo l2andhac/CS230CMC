@@ -47,17 +47,17 @@ public class AccountController{
         return account;
       }
       else if (!password.equals(password2) )    {
-        System.out.print("Incorrect password was given");
+        System.out.println("Incorrect password was given");
         
       }
       else if(account.getStatus() == 'n')
       {
-        System.out.print("You cannot log in your account is deactivated");
+        System.out.println("You cannot log in your account is deactivated");
       }
     }
     else
     {
-      System.out.print("Incorrect information was given");
+      System.out.println("Incorrect information was given");
     }
     return null;
     

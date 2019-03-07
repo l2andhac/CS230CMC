@@ -32,10 +32,20 @@ public class CMCDriver1{
 	      logOnInteraction = accountInteraction.logOn("jordre3@gmail.com", "password");
 	      
 	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Attempted LogIn for invalid credentials\n");
+	      
+	      logOnInteraction = accountInteraction.logOn("nateTheAdmin","password2");
+	      
+	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("LogIn for Admin\n");
 	      
 	      logOnInteraction = accountInteraction.logOn("nateTheAdmin","password");
 	      
+	      //System.out.println("\n-------------------------------------------------------");
+	      //System.out.println("Attempted LogIn for deactivated Account\n");
+	      
+	      // we need a deactivated user first to test this one
+	      //logOnInteraction = accountInteraction.logOn( , );
 	      
 	      
 	      //System.out.println("\n-------------------------------------------------------");
@@ -49,12 +59,20 @@ public class CMCDriver1{
 	      
 	      
 	      System.out.println("\n-------------------------------------------------------");
-	      System.out.println("Admin can View and Edit Profile\n");
+	      System.out.println("Admin can View Profile\n");
 	      
 	      aInteraction = (AdminInteraction) logOnInteraction; 
 	      
 	      aInteraction.viewAccountInfo("nateTheAdmin");
 	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can Edit Profile\n");
+	      
+          aInteraction = (AdminInteraction) logOnInteraction; 
+          
+          //edit account
+	      
+	      aInteraction.viewAccountInfo("nateTheAdmin");
 	      
 //	      System.out.println("\n-------------------------------------------------------");
 //	      System.out.println("User can search for schools by combination of state and number of students\n");
