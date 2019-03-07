@@ -428,6 +428,26 @@ public class DBController {
   public void requestNewAccount(User u) {
     //
   }
+
+  /**
+   * looks for the 5 most closely related schools
+   * 
+   * @param school
+   */
+public void findRecSchools(String school) {
+	
+	University univ = this.getSchool(school);
+	
+	//loop through all universities comparing it to univ and return the 5 lowest distances IN ORDER
+	
+}
+
+public int findDistance(University univ1, University univ2) {
+	
+	//formula for calc distance
+	
+	return 1;
+}
   
   /**
    * Checks is there is a duplicate of username.

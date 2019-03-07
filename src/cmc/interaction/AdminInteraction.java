@@ -181,7 +181,8 @@ public class AdminInteraction extends AccountInteraction{
    * @throws none
    */
   public void editAccountInfo(Account a){
-    adminFunctCont.editAccountInfo(a); // editAccountInfo takes an account
+    adminFunctCont.editAccountInfo(a); 
+    // editAccountInfo should take all the parameters not an Account in the AdminInteraction class
   }
   
   

@@ -71,6 +71,7 @@ public class CMCDriver1{
           aInteraction = (AdminInteraction) logOnInteraction; 
           
           //edit account
+          //adminInteraction needs to take all the parameters not an Account in the AdminInteraction class....
 	      
 	      aInteraction.viewAccountInfo("nateTheAdmin");
 	      
@@ -90,6 +91,7 @@ public class CMCDriver1{
 	      
 	      System.out.println("XXXXXXXXX");
 	      
+	      //uInteraction.showRecSchools("AUGSBURG");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can view a list of universities\n");

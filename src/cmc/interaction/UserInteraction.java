@@ -202,12 +202,12 @@ public UserInteraction(User user) {
   /**
    * Shows the recommended schools for a user
    * 
-   * @param none
+   * @param String that is a school to find the 5 closest ones to
    * @return none
    * @throws none
    */
-  public void showRecSchools(){
-    /////////////////////////////////////////////////algorithm?
+  public void showRecSchools(String school){
+    userFunctCont.showRecSchools(school);
   }
   
   

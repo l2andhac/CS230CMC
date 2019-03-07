@@ -220,6 +220,13 @@ public class UserFunctionalityController extends AccountFunctionalityController{
     //view results of what? this method seems to only be in the UserInteraction class according to 
     //the communication diagram
   }
+
+
+
+public void showRecSchools(String school) {
+	// TODO Auto-generated method stub
+	dbController.findRecSchools(school);
+}
   
   
 }
