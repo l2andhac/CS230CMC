@@ -200,14 +200,14 @@ public UserInteraction(User user) {
   
   
   /**
-   * Shows the recommended schools for a user
+   * Shows the recommended schools for a user, by calling the method in UserFunctionalityController
    * 
    * @param String that is a school to find the 5 closest ones to
    * @return none
    * @throws none
    */
   public void showRecSchools(String school){
-    userFunctCont.showRecSchools(school);
+    //userFunctCont.showRecSchools(school);
   }
   
   

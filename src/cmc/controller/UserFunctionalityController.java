@@ -222,10 +222,13 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   }
 
 
-
+/**
+ * calls the method of DBCOntroller to find 5 most related schools 
+ * 
+ * @param school
+ */
 public void showRecSchools(String school) {
-	// TODO Auto-generated method stub
-	dbController.findRecSchools(school);
+	//dbController.findRecSchools(school);
 }
   
   

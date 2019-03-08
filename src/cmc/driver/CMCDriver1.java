@@ -90,6 +90,8 @@ public class CMCDriver1{
 	      System.out.println("User can find top 5 recommended schools for a given school\n");
 	      
 	      System.out.println("XXXXXXXXX");
+	      //uInteraction = (UserInteraction) logOnInteraction; 
+	      //logOnInteraction was created for an admin so we are unable to cast it to a user Interaction
 	      
 	      //uInteraction.showRecSchools("AUGSBURG");
 	      

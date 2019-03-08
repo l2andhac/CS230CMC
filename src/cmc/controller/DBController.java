@@ -434,19 +434,52 @@ public class DBController {
    * 
    * @param school
    */
-public void findRecSchools(String school) {
+/*public void findRecSchools(String school) {
 	
 	University univ = this.getSchool(school);
 	
-	//loop through all universities comparing it to univ and return the 5 lowest distances IN ORDER
+	Set<University> allUniversities = this.getAllSchools();
 	
-}
+	double distance = 0;
+	
+	for(University s : allUniversities)
+    {
+		distance = this.findDistance(univ, s);
+		
+		//loop through all universities comparing it to univ and return the 5 lowest distances IN ORDER
+		//i'm thinking a hashmap/treemap <Double, University> or something... and at the end returning the 5 with the smallest distances???
+    }
+	
+}*/
+	
 
-public int findDistance(University univ1, University univ2) {
+/**
+ * finds the distance between two universities
+ * 
+ * @param univ1 the first University to compare
+ * @param univ2 the second University to compare
+ */
+public double findDistance(University univ1, University univ2) {
 	
-	//formula for calc distance
+	double sameState = 1.0; 
+	double sameLocation = 1.0; 
+	double sameControl = 1.0;
+
+	if(univ1.getState().equals(univ2.getState())){
+		sameState = 0.0;
+	}
+
+	if(univ1.getLocation().equals(univ2.getLocation())){
+		sameLocation = 0.0;
+	}
+
+	if(univ1.getControl().equals(univ2.getControl())){
+		sameControl = 0.0;
+	}
+
+	double distance = (sameState + sameLocation + sameControl + (Math.abs(univ1.getNumStudents()-univ2.getNumStudents())/(40000-10000)) + (Math.abs(univ1.getPercentFemales()-univ2.getPercentFemales())/(100-1)) + (Math.abs(univ1.getSATVerbal() -univ2.getSATVerbal())/(750-250)) + (Math.abs(univ1.getSATMath()-univ2.getSATMath())/(780-250)) + (Math.abs(univ1.getExpenses()-univ2.getExpenses())/(62915-10438)) + (Math.abs(univ1.getPercentFinancialAid()-univ2.getPercentFinancialAid())/(100-5)) + (Math.abs(univ1.getNumApplicants()-univ2.getNumApplicants())/(17000-4000)) + (Math.abs(univ1.getPercentAdmitted()-univ2.getPercentAdmitted())/(100-5)) + (Math.abs(univ1.getPercentEnrolled()-univ2.getPercentEnrolled())/(100-10)) + (Math.abs(univ1.getAcademicScale()-univ2.getAcademicScale())/(5-1)) + (Math.abs(univ1.getSocialScale()-univ2.getSocialScale())/(5-1)) + (Math.abs(univ1.getQualityOfLifeScale()-univ2.getQualityOfLifeScale())/(5-1)));
 	
-	return 1;
+	return distance;
 }
   
   /**
