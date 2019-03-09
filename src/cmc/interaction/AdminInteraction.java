@@ -28,6 +28,10 @@ public class AdminInteraction extends AccountInteraction{
 	this.admin = admin;
 	this.adminFunctCont = new AdminFunctionalityController(admin);
   }
+  
+  public String getUsername() {
+	  return this.admin.getUsername();
+  }
 
 
 //Methods

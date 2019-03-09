@@ -157,6 +157,7 @@ public class Account {
  public boolean isLoggedOn() {
     return this.loggedOn;
  }
+
  
 /* 
  * toString method for account

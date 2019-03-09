@@ -25,11 +25,15 @@ public class UserInteraction extends AccountInteraction{
  * 
  * @param User
  */
-public UserInteraction(User user) {
+  public UserInteraction(User user) {
 	super();
 	this.user = user;
 	this.userFunctCont = new UserFunctionalityController(user);
-}
+  }
+  
+  public String getUsername() {
+	  return this.user.getUsername();
+  }
   
   /**
    * Allows the user to search for a friends saved schools

@@ -38,14 +38,26 @@ public class AccountInteraction{
 	    Account a = accountFunctCont.logOn(u,p);
 	    if(a != null) {
 	    if(a.getUserType() == 'u') {
-	    	return new UserInteraction((User) a);
+	    	userInteraction = new UserInteraction((User) a);
+	    	return userInteraction;
 	    }
 	    else if(a.getUserType() == 'a') {
-	    	return new AdminInteraction((Admin) a);
+	    	adminInteraction = new AdminInteraction((Admin) a);
+	    	return adminInteraction;
 	    }
 	    }
 	    return null;
 	    
+	  }
+	  
+	  public char getTypeOfInteraction(String u, String p) {
+		  if(this.logOn(u, p).equals(userInteraction)) {
+			  return 'u';
+		  }
+		  else if(this.logOn(u, p).equals(adminInteraction)) {
+			  return 'a';
+		  }
+		  return 'n';
 	  }
 	  
 	  /**

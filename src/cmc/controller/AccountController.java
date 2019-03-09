@@ -33,11 +33,18 @@ public class AccountController{
    * 
    * @param username, a String that is the username
    * @param password, a String that is the password
+   * @throws NullPointerException
    */
-  public Account logOn(String username, String password)
+  public Account logOn(String username, String password) throws NullPointerException
   {
     this.account = controller.findAccount(username);
-    if (account != null)
+    
+    if(account == null) {
+    	throw new NullPointerException();
+    }
+    
+  
+    else
     {
       String password2 = account.getPassword();
       if (password.equals(password2) && account.getStatus() != 'n')
@@ -46,19 +53,20 @@ public class AccountController{
         System.out.println("You have successfully logged on to CMC");
         return account;
       }
-      else if (!password.equals(password2) )    {
-        System.out.println("Incorrect password was given");
-        
-      }
+//      else if (!password.equals(password2) )    {
+//        System.out.println("Incorrect password was given");
+//        
+//      }
       else if(account.getStatus() == 'n')
       {
         System.out.println("You cannot log in your account is deactivated");
       }
     }
-    else
-    {
-      System.out.println("Incorrect information was given");
-    }
+    
+//    else
+//    {
+//      System.out.println("Incorrect information was given");
+//    }
     return null;
     
   }
