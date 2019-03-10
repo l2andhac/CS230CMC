@@ -81,6 +81,11 @@ public class DBController {
                                         u.getExpenses(), u.getPercentFinancialAid(), u.getNumApplicants(),
                                         u.getPercentAdmitted(), u.getPercentEnrolled(), u.getAcademicScale(),
                                         u.getSocialScale(), u.getQualityOfLifeScale());
+    
+    List<String> list = u.getEmphases();
+    for(int i = 0; i< list.size();i++) {
+    	univDBlib.university_addUniversityEmphasis(u.getSchoolName(),list.get(i));
+    }
     return true;
   }
   
@@ -456,24 +461,49 @@ public class DBController {
    * 
    * @param school
    */
-/*public void findRecSchools(String school) {
+public void findRecSchools(String school) {
 	
 	University univ = this.getSchool(school);
 	
 	Set<University> allUniversities = this.getAllSchools();
 	
 	double distance = 0;
-	
+	double[] distances = new double[179];
+	String[] schools = new String[179];
+	int i = 0;
 	for(University s : allUniversities)
     {
 		distance = this.findDistance(univ, s);
-		
-		//loop through all universities comparing it to univ and return the 5 lowest distances IN ORDER
-		//i'm thinking a hashmap/treemap <Double, University> or something... and at the end returning the 5 with the smallest distances???
+		distances[i] = distance;
+		schools[i] = s.getSchoolName();
+		i++;
     }
-	
-}*/
-	
+	//System.out.println(schools[20] + distances[20]);
+	bubbleSort(distances, schools);
+	//System.out.println(listOfSchools[0] + listOfSchools[1] + listOfSchools[2]+ listOfSchools[3]+ listOfSchools[4]);
+}
+ 
+public static void bubbleSort(double arr[], String arr2[]) 
+{ 
+    int n = arr.length; 
+    for (int i = 0; i < n-1; i++) { 
+        for (int j = 0; j < n-i-1; j++) { 
+            if (arr[j] > arr[j+1]) 
+            { 
+                // swap arr[j+1] and arr[i] 
+                double temp = arr[j]; 
+                arr[j] = arr[j+1]; 
+                arr[j+1] = temp; 
+                
+                String temp2 = arr2[j]; 
+                arr2[j] = arr2[j+1]; 
+                arr2[j+1] = temp2; 
+            } 
+        }
+    }
+    System.out.println(arr2[0] + arr2[1] + arr2[2] + arr2[3] + arr2[140]);
+    System.out.println(arr[0] + " " + arr[1] + " " +arr[2] + " " + arr[3] + " " + arr[140]);
+} 
 
 /**
  * finds the distance between two universities

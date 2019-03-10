@@ -27,6 +27,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   public UserFunctionalityController(User user){
     super();
     this.user = user;   
+    this.dbController = new DBController();
   }
   
   
@@ -228,7 +229,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
  * @param school
  */
 public void showRecSchools(String school) {
-	//dbController.findRecSchools(school);
+	dbController.findRecSchools(school);
 }
   
   

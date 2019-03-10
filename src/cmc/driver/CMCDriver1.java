@@ -34,12 +34,12 @@ public class CMCDriver1{
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Attempted LogIn for invalid credentials\n");
 	      
-	      logOnInteraction = accountInteraction.logOn("nateTheAdmin","password2");
+	      //logOnInteraction = accountInteraction.logOn("nateTheAdmin","password2");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("LogIn for Admin\n");
 	      
-	      logOnInteraction = accountInteraction.logOn("nateTheAdmin","password");
+	      //logOnInteraction = accountInteraction.logOn("nateTheAdmin","password");
 	      
 	      //System.out.println("\n-------------------------------------------------------");
 	      //System.out.println("Attempted LogIn for deactivated Account\n");
@@ -61,19 +61,19 @@ public class CMCDriver1{
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can View Profile\n");
 	      
-	      aInteraction = (AdminInteraction) logOnInteraction; 
+	      //aInteraction = (AdminInteraction) logOnInteraction; 
 	      
-	      aInteraction.viewAccountInfo("nateTheAdmin");
+	      //aInteraction.viewAccountInfo("nateTheAdmin");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can Edit Profile\n");
 	      
-          aInteraction = (AdminInteraction) logOnInteraction; 
+          //aInteraction = (AdminInteraction) logOnInteraction; 
           
           //edit account
           //adminInteraction needs to take all the parameters not an Account in the AdminInteraction class....
 	      
-	      aInteraction.viewAccountInfo("nateTheAdmin");
+	      //aInteraction.viewAccountInfo("nateTheAdmin");
 	      
 //	      System.out.println("\n-------------------------------------------------------");
 //	      System.out.println("User can search for schools by combination of state and number of students\n");
@@ -90,31 +90,31 @@ public class CMCDriver1{
 	      System.out.println("User can find top 5 recommended schools for a given school\n");
 	      
 	      System.out.println("XXXXXXXXX");
-	      //uInteraction = (UserInteraction) logOnInteraction; 
+	      uInteraction = (UserInteraction) logOnInteraction; 
 	      //logOnInteraction was created for an admin so we are unable to cast it to a user Interaction
 	      
-	      //uInteraction.showRecSchools("AUGSBURG");
+	      uInteraction.showRecSchools("NEWYORK IT");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can view a list of universities\n");
 	      
-	      aInteraction = (AdminInteraction) logOnInteraction; 
+	/*      aInteraction = (AdminInteraction) logOnInteraction; 
 	      Set<University> uList = aInteraction.viewAllSchools();
 	      for(University s : uList)
 	      {
 	        System.out.println(s.getSchoolName());
-	      }
+	      }*/
 	      
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can view a list of users\n");
 	           
-	      aInteraction = (AdminInteraction) logOnInteraction;    
+/*	      aInteraction = (AdminInteraction) logOnInteraction;    
 	      Set<String> allAccounts = aInteraction.viewAllAccounts();
 	      for(String a : allAccounts)
 	      {
 	        System.out.println(a);
-	      }
+	      }*/
 	      
 	   }
 	  

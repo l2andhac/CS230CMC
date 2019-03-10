@@ -211,7 +211,7 @@ public class UserInteraction extends AccountInteraction{
    * @throws none
    */
   public void showRecSchools(String school){
-    //userFunctCont.showRecSchools(school);
+    userFunctCont.showRecSchools(school);
   }
   
   
