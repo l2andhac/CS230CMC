@@ -53,9 +53,18 @@ public class DBControllerTestDriver{
       System.out.println("isSchoolSaved works when false");
     }
     
-    User nateTheUser = new User("Nate", "Jordre", "jordre3@gmail.com", "password", 'u'); /////Should be a status?
+    List<String> foci = new ArrayList<String>();
+    foci.add("Computer Science");
+    Search searchObj = new Search("CALIFORNIA", "", "", "", 60000, 5000, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+    Set<University> listOfMatches = t.findSearchedSchool(searchObj);
+    System.out.println("----------------------------------------------------------");
+    System.out.println("Matching Schools:");
+    for(University uni : listOfMatches) {
+    	System.out.println(uni.getSchoolName());
+    }
+/*    User nateTheUser = new User("Nate", "Jordre", "jordre3@gmail.com", "password", 'u'); /////Should be a status?
     
-    t.addAccount(nateTheUser);
+    t.addAccount(nateTheUser);*/
     
   }
 }

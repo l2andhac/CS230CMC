@@ -290,9 +290,31 @@ public class DBController {
    * @return List<University> the list of all the matching universities
    * @throws
    */
-  public List<University> findSearchedSchool(Search s) {
+  public Set<University> findSearchedSchool(Search s) {
     //
-    return null;
+    Set<University> allSchools = getAllSchools();
+    Set<University> matches = new HashSet<University>();
+    for(University school : allSchools) {
+    	boolean match = true;
+    	if(school.getSchoolName().contains(s.getName())) {
+    		//match
+    	}
+    	else {
+    		match = false;
+    		continue;
+    	}
+    	if(school.getNumStudents() < s.getEnrollmentUp() && school.getNumStudents() > s.getEnrollmentLo()) {
+    		//match
+    	}
+    	else {
+    		match = false;
+    		//continue;
+    	}
+    	if (match == true) {
+    		matches.add(school);
+    	}
+    }
+    return matches;
   }
   
   /**
@@ -482,16 +504,5 @@ public double findDistance(University univ1, University univ2) {
 	return distance;
 }
   
-  /**
-   * Checks is there is a duplicate of username.
-   * 
-   * This method seems to be the same as findUsername.
-   * 
-   * @param username the username to check
-   * @return true is there is a duplicate
-   */
-//  public boolean checkDuplicateUsername(String username) {
-//    //
-//  }
   
 }
