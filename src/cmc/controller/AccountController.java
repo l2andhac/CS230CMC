@@ -47,16 +47,16 @@ public class AccountController{
     else
     {
       String password2 = account.getPassword();
-      if (password.equals(password2) && account.getStatus() != 'n')
+      if (password.equals(password2) && account.getStatus() != 'N')
       {
         this.account.logOn();
         System.out.println("You have successfully logged on to CMC");
         return account;
       }
-//      else if (!password.equals(password2) )    {
-//        System.out.println("Incorrect password was given");
-//        
-//      }
+      else if (!password.equals(password2) )    {
+       System.out.println("Incorrect password was given");
+       
+      }
       else if(account.getStatus() == 'N')
       {
         System.out.println("You cannot log in your account is deactivated");
@@ -81,28 +81,6 @@ public class AccountController{
     //take user back to main page??
   }
   
-  /*
-   * updateAccountInfo method to update the Account information of either a user or admin
-   * 
-   * Users can update first name, last name, or password
-   * Admins can update first name, last name, password, type, or status
-   * 
-   * @param a, an Account to be updated
-   * @param fn, a String that is the first name
-   * @param ln, a String that is the last name
-   * @param p, a String that is the password
-   * @param t, a char that is the type (either a or u)
-   * @param s, a char that is the status (either y,n,p or d)
-   * 
-   */
-  public void updateAccountInfo(Account a,String fn,String ln,String p,char t,char s)
-  {
-    a.setFirstName(fn);
-    a.setLastName(ln);
-    a.setPassword(p);
-    a.setUserType('t');
-    a.setStatus('s');
-  }
 
   
 }

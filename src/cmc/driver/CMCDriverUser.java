@@ -1,6 +1,9 @@
 package cmc.driver;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import cmc.entity.Search;
 import cmc.entity.University;
 import cmc.interaction.*;
 
@@ -46,7 +49,7 @@ public class CMCDriverUser {
 	      
 	      uInteraction = (UserInteraction) logOnInteraction; 
 	      
-	      uInteraction.viewAccountInfo("jordre3@gmail.com");
+	      uInteraction.viewAccountInfo("luser");
 	     
 	      
 	      System.out.println("\n-------------------------------------------------------");
@@ -55,22 +58,23 @@ public class CMCDriverUser {
          uInteraction = (UserInteraction) logOnInteraction; 
         
         //edit account
-        //adminInteraction needs to take all the parameters not an Account in the AdminInteraction class....
+         uInteraction.editAccountInfo("jordre3@gmail.com","Nate","Jordrex", "password");
 	      
 	      uInteraction.viewAccountInfo("jordre3@gmail.com");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User can search for schools by combination of state and number of students\n");
-//	      
-//	      uInteraction.searchSchool("", String state, String location, String control, int enrollmentUp, 
-//	                int enrollmentLo, int percentFemaleUp, int percentFemaleLo, int satVerbUp, 
-//	                int satVerbLo, int satMathUp, int satMathLo, int percentFinancialAidUp, 
-//	                int percentFinancialAidLo,  int applicantsUp, int applicantsLo, int percentAdmittedUp,
-//	                int percentAdmittedLo, int percentEnrollUp, int percentEnrollLo, int academicScaleUp, 
-//	                int academicScaleLo, int socialScaleUp, int socialScaleLo, int qualOfLifeScaleUp,
-//	                int qualOfLifeScaleLo, List<String> emphasis);
 	      
-	      
+	      List<String> foci = new ArrayList<String>();
+	      foci.add("Computer Science");
+	      Set<University> listOfMatches = uInteraction.searchSchool("", "CALIFORNIA", "", "", 60000, 5000, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	      if (listOfMatches != null) {
+	      System.out.println("----------------------------------------------------------");
+	      System.out.println("Matching Schools:");
+	      for(University uni : listOfMatches) {
+	      	System.out.println(uni.getSchoolName());
+	      }
+	      }
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User can find top 5 recommended schools for a given school\n");

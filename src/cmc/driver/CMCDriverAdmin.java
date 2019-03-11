@@ -48,17 +48,26 @@ public class CMCDriverAdmin {
 	      
 	      aInteraction.viewAccountInfo("nateTheAdmin");
 	      
+	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can Edit Profile\n");
 	      
         aInteraction = (AdminInteraction) logOnInteraction; 
         
         //edit account
-        //adminInteraction needs to take all the parameters not an Account in the AdminInteraction class....
+        aInteraction.editAccountInfo("nateTheAdmin", "Nathaniel", "Jodre", "password", 'a', 'Y');
 	      
 	      aInteraction.viewAccountInfo("nateTheAdmin");
 	      
-
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can Edit User Profile\n");
+	      
+        aInteraction = (AdminInteraction) logOnInteraction; 
+        
+        //edit account
+        aInteraction.editAccountInfo("juser", "John", "Cena", "user", 'u', 'Y');
+	      
+	      aInteraction.viewAccountInfo("juser");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can view a list of universities\n");

@@ -48,7 +48,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @params fn, ln, p, un are String info
    * @params t, s are char info
    */
-  public void editUserInfo(String fn, String ln, String p, char t, char s){ 
+  public void editUserInfo(String un, String fn, String ln, String p, char t, char s){ 
     this.user.setFirstName(fn);
     this.user.setLastName(ln);
     this.user.setPassword(p);
@@ -102,13 +102,14 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @params all parameters are the criteria
    */
-  public void searchSchool(Search searchObject){ ///////////COME BACK TO ADD PARAMS
+  public Set<University> searchSchool(Search searchObject){ ///////////COME BACK TO ADD PARAMS
     if(searchObject != null) {
-      this.searchController.searchSchool(searchObject);
+      return this.dbController.findSearchedSchool(searchObject);
     }
     
     else {
       System.out.println("All the fields are empty");
+      return null;
     }
     
   }

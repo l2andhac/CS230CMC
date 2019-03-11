@@ -94,8 +94,14 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * @return void
    * @throws ....
    */
-  public void editAccountInfo(Account a){
-    accountController.updateAccountInfo(a, a.getFirstName(), a.getLastName(), a.getPassword(), a.getUserType(), a.getStatus());
+  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
+	  Account account = dbController.findAccount(un);
+	  account.setFirstName(fn);
+	    account.setLastName(ln);
+	    account.setPassword(p);
+	    account.setUserType(t);
+	    account.setStatus(s);
+	    dbController.changeAccount(account);
   }
   
   

@@ -184,8 +184,8 @@ public class AdminInteraction extends AccountInteraction{
    * @return none
    * @throws none
    */
-  public void editAccountInfo(Account a){
-    adminFunctCont.editAccountInfo(a); 
+  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
+    adminFunctCont.editAccountInfo(un, fn, ln, p, t, s); 
     // editAccountInfo should take all the parameters not an Account in the AdminInteraction class
   }
   

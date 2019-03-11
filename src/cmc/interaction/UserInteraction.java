@@ -73,7 +73,7 @@ public class UserInteraction extends AccountInteraction{
    * @return none
    * @throws none
    */
-  public void searchSchool(String name, String state, String location, String control, int enrollmentUp, 
+  public Set<University> searchSchool(String name, String state, String location, String control, int enrollmentUp, 
                 int enrollmentLo, int percentFemaleUp, int percentFemaleLo, int satVerbUp, 
                 int satVerbLo, int satMathUp, int satMathLo, int percentFinancialAidUp, 
                 int percentFinancialAidLo,  int applicantsUp, int applicantsLo, int percentAdmittedUp,
@@ -86,7 +86,7 @@ public class UserInteraction extends AccountInteraction{
                           percentAdmittedLo, percentEnrollUp, percentEnrollLo, academicScaleUp, 
                           academicScaleLo, socialScaleUp, socialScaleLo, qualOfLifeScaleUp,
                           qualOfLifeScaleLo, emphasis);
-    userFunctCont.searchSchool(s);
+    return userFunctCont.searchSchool(s);
   }
   
   
@@ -240,8 +240,8 @@ public class UserInteraction extends AccountInteraction{
    * @return none
    * @throws none
    */
-  public void editAccountInfo(User a, String fn, String ln, String p){
-    userFunctCont.editUserInfo(fn, ln, p, 'u', 'y'); //wrong arguements
+  public void editAccountInfo(String un, String fn, String ln, String p){
+    userFunctCont.editUserInfo(un, fn, ln, p, 'u', this.user.getStatus()); 
   }
   
   

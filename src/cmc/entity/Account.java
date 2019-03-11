@@ -165,7 +165,7 @@ public class Account {
 @Override
 public String toString() {
 	return "firstName= " + firstName + "\nlastName= " + lastName + "\nusername= " + username + "\npassword= "
-			+ password + "\nuserType= " + userType + "\nstatus= " + status + "\nloggedOn= " + loggedOn;
+			+ password + "\nuserType= " + userType + "\nstatus= " + status;
 }
 
 }

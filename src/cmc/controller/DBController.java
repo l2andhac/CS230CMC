@@ -146,11 +146,11 @@ public class DBController {
           // check if admin or user
           if(users[i][4].equals("u"))
           {
-            retAccount = new User(users[i][0], users[i][1], users[i][2], users[i][3], users[i][4].charAt(0));
+            retAccount = new User(users[i][0], users[i][1], users[i][2], users[i][3], users[i][5].charAt(0));
           }
           else
           {
-            retAccount = new Admin(users[i][0], users[i][1], users[i][2], users[i][3], users[i][4].charAt(0));
+            retAccount = new Admin(users[i][0], users[i][1], users[i][2], users[i][3], users[i][5].charAt(0));
           }
       }
     }
@@ -301,7 +301,7 @@ public class DBController {
     Set<University> matches = new HashSet<University>();
     for(University school : allSchools) {
     	boolean match = true;
-    	if(school.getSchoolName().contains(s.getName())) {
+    	if(school.getState().contains(s.getState())) {
     		//match
     	}
     	else {

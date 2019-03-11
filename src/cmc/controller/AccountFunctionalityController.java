@@ -99,18 +99,6 @@ public class AccountFunctionalityController {
 		System.out.println(a.toString()); 
 	}
 
-	/**
-	 * Allows an Account to be edited
-	 * 
-	 * @param An
-	 *            Account to edit, the new first name, the new last name, the new
-	 *            password, the new type, the new status
-	 * @return void
-	 * @throws ...
-	 */
-	public void editAccountInfo(Account a, String fn, String ln, String p, char t, char s) {
-		ac.updateAccountInfo(a, fn, ln, p, t, s);
-	}
 
 	/**
 	 * Allows an Account to view the details of a school
