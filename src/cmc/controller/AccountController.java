@@ -57,7 +57,7 @@ public class AccountController{
 //        System.out.println("Incorrect password was given");
 //        
 //      }
-      else if(account.getStatus() == 'n')
+      else if(account.getStatus() == 'N')
       {
         System.out.println("You cannot log in your account is deactivated");
       }
