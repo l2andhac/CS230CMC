@@ -26,9 +26,15 @@ public class CMCDriverUser {
 	      
 	      
 	      System.out.println("-------------------------------------------------------");
-	      System.out.println("Attempted LogIn for invalid credentials\n");
+	      System.out.println("Attempted LogIn for invalid password credentials\n");
 	      
 	      logOnInteraction = accountInteraction.logOn("jordre3@gmail.com","password2");
+	      
+	      
+	      System.out.println("-------------------------------------------------------");
+	      System.out.println("Attempted LogIn for invalid username credentials\n");
+	      
+	      logOnInteraction = accountInteraction.logOn("jordre@gmail.com","password");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Attempted LogIn for deactivated Account\n");

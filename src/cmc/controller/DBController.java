@@ -487,9 +487,9 @@ public static void bubbleSort(double arr[], String arr2[])
             } 
         }
     }
-    System.out.println(arr2[0] + arr2[1] + arr2[2] + arr2[3] + arr2[140]);
-    System.out.println("The top most related schools are: \n" + arr2[0] + "\n" + arr2[1] + "\n" +arr2[2] + "\n" + arr2[3] + "\n" + arr2[4]);
-    System.out.println("\n\nwith distances of: \n" + arr2[0] + ": " + arr[0] + "\n" + arr2[1] + ": " + arr[1] + "\n" +arr2[2] + ": " +arr[2] + "\n" + arr2[3] + ": " + arr[3] + "\n" + arr2[4] + ": " + arr[4]);
+    //System.out.println(arr2[0] + arr2[1] + arr2[2] + arr2[3] + arr2[140]);
+    System.out.println("The top most related schools are: \n" + arr2[1] + "\n" + arr2[2] + "\n" +arr2[3] + "\n" + arr2[4] + "\n" + arr2[5]);
+    System.out.println("\n\nwith distances of: \n" + arr2[1] + ": " + arr[1] + "\n" + arr2[2] + ": " + arr[2] + "\n" +arr2[3] + ": " +arr[3] + "\n" + arr2[4] + ": " + arr[4] + "\n" + arr2[5] + ": " + arr[5]);
 } 
 
 /**

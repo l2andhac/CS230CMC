@@ -8,6 +8,7 @@ import java.util.*;
  * @version Feb 21, 2019
  */
 public class Search {
+	///////////////// forgot to add expenses into the parameters
 	// name of the school
 	private String name;
 	// name of the state
@@ -32,6 +33,10 @@ public class Search {
 	private int satMathUp;
 	// the lowerbound of sat math scores
 	private int satMathLo;
+	// the upperbound of the expenses
+	private int expensesUp;
+	//the lowerbound of the expenses
+	private int expensesLo;
 	// the upperbound of the percent financial aid
 	private int percentFinancialAidUp;
 	// the lowerbound of the percent financial aid
