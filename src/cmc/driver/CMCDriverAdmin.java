@@ -90,6 +90,16 @@ public class CMCDriverAdmin {
 	        System.out.println(a);
 	      }
 	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can view school details");
+	      aInteraction.viewSchoolDetails("COLLEGE OF NEWROCHELLE");
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin tries to view the details of a school not in the database");
+	      aInteraction.viewSchoolDetails("COLLEGE OF NEWROCHELLEs");
+	      
+	      
+	      
 	   }
 
 }

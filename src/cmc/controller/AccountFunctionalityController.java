@@ -108,8 +108,9 @@ public class AccountFunctionalityController {
 	 * @return void
 	 * @throw ...
 	 */
-	public void viewSchoolDetails(String schoolName) {
-		dbc.getSchool(schoolName);
+	public University viewSchoolDetails(String schoolName) {
+		University univ = dbc.getSchool(schoolName);
+		return univ;
 	}
 
 

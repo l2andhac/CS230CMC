@@ -10,7 +10,9 @@ import java.util.*;
   
 public class University{
   
-  // name of school
+  
+
+// name of school
   private String schoolName;
   //state of school
   private String state;
@@ -288,4 +290,15 @@ public class University{
       return univ1NumStudents-univ2NumStudents;
     }
   };
+  
+  @Override
+	public String toString() {
+		return "University [schoolName=" + schoolName + ", state=" + state + ", location=" + location + ", control="
+				+ control + ", numberOfStudents=" + numberOfStudents + ", percentFemale=" + percentFemale
+				+ ", satVerbal=" + satVerbal + ", satMath=" + satMath + ", expenses=" + expenses
+				+ ", percentFinancialAid=" + percentFinancialAid + ", numberOfApplicants=" + numberOfApplicants
+				+ ", percentAdmitted=" + percentAdmitted + ", percentEnrolled=" + percentEnrolled + ", academicsScale="
+				+ academicsScale + ", socialScale=" + socialScale + ", qualityScale=" + qualityScale + ", emphases="
+				+ emphases + "]";
+	}
 }

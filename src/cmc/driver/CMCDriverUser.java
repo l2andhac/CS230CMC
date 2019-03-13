@@ -71,6 +71,7 @@ public class CMCDriverUser {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User can search for schools by combination of state and number of students\n");
 	      
+	      University univ1 = null;
 	      List<String> foci = new ArrayList<String>();
 	      foci.add("Computer Science");
 	      Set<University> listOfMatches = uInteraction.searchSchool("", "CALIFORNIA", "", "", 60000, 5000, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
@@ -79,6 +80,7 @@ public class CMCDriverUser {
 	      System.out.println("Matching Schools:");
 	      for(University uni : listOfMatches) {
 	      	System.out.println(uni.getSchoolName());
+	      	univ1 = uni;
 	      }
 	      }
 	      
@@ -91,6 +93,23 @@ public class CMCDriverUser {
 	      uInteraction.showRecSchools("NEWYORK IT");
 	      
 	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("The user can view school details");
+	      uInteraction.viewSchoolDetails("AUGSBURG");
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User tries to view the details of a school not in the database");
+	      uInteraction.viewSchoolDetails("AUGSBURGs");
+	      
+	      //System.out.println("\n-------------------------------------------------------");
+	      //System.out.println("User tries to save a school");
+	      //uInteraction.saveSchool(univ1);
+	      
+	      
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User views their list of saved schools");
+	      uInteraction.viewSavedSchools();
 	   }
 
 }

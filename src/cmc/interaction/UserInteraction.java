@@ -265,7 +265,12 @@ public class UserInteraction extends AccountInteraction{
    * @throws none
    */
   public void viewSchoolDetails(String schoolName){
-    userFunctCont.viewSchoolDetails(schoolName);
+    University univ = userFunctCont.viewSchoolDetails(schoolName);
+    if(univ != null) {
+    	System.out.println(univ.toString());
+    }else {
+    	System.out.println("The school was not found");
+    }
   }
   
   

@@ -62,11 +62,13 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param schoolName is the name of the school
    */
-  public void viewSchoolDetails(String schoolName){
+  public University viewSchoolDetails(String schoolName){
     boolean found = dbController.findSchoolName(schoolName);
     if(found == true) {
-      //show school details
+      University univ = dbController.getSchool(schoolName);
+      return univ;
     }
+    return null;
   }
   
   
@@ -146,7 +148,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
     List<SavedSchool> list = this.user.getSavedSchools();
     
     SavedSchool schoolToSave = new SavedSchool(univ, "time");
-    if(!list.contains(schoolToSave)) {
+    if(list == null || !list.contains(schoolToSave)) {
       
       dbController.addSavedSchool(this.user, schoolToSave);
       this.user.addSavedSchool(schoolToSave);
@@ -182,9 +184,13 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * View list of SavedSchools
    */
   public void viewSavedSchools(){
-    List<SavedSchool> savedSchools = user.getSavedSchools();
-    for(SavedSchool school : savedSchools) {
-      System.out.println(""+school);
+    List<SavedSchool> savedSchools = dbController.getSavedSchools(this.user);
+    if(savedSchools != null) {
+    	for(SavedSchool school : savedSchools) {
+    		System.out.println(""+school);
+    	}
+    }else {
+    	System.out.println("No saved schools to display");
     }
   }
   
