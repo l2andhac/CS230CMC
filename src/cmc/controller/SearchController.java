@@ -9,16 +9,15 @@ import cmc.entity.*;
 
 public class SearchController{
   
-	//instance variable for a DBController
-  private DBController controller; 
+private Search searchCriteria;
   
   /**
    * Constructor for SearchController
    * 
    * creates a new DBController
    */
-  public SearchController() {
-  	this.controller = new DBController();
+  public SearchController(Search so) {
+	  this.searchCriteria = so;
   }
   
   
@@ -27,8 +26,16 @@ public class SearchController{
    * 
    * @param so is the Search object
    */
-  public void searchSchool(Search so){
-    controller.findSearchedSchool(so);
+  public boolean testForMatch(University u){
+  	if(!u.getState().contains(searchCriteria.getState())) {
+  		return false;
+  	}
+  	if(u.getNumStudents() > searchCriteria.getEnrollmentUp() && u.getNumStudents() < searchCriteria.getEnrollmentLo()) {
+  		return false;
+  	}
+  	else {
+  		return true;
+  	}
   }
 
 }

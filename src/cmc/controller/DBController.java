@@ -20,7 +20,7 @@ public class DBController {
   //private University university;
   
   private UniversityDBLibrary univDBlib;
-  
+  private SearchController searchController;
   
   public UniversityDBLibrary getUnivDBlib(){
     return univDBlib;
@@ -297,27 +297,13 @@ public class DBController {
    */
   public Set<University> findSearchedSchool(Search s) {
     //
+	this.searchController = new SearchController(s);
     Set<University> allSchools = getAllSchools();
     Set<University> matches = new HashSet<University>();
     for(University school : allSchools) {
-    	boolean match = true;
-    	if(school.getState().contains(s.getState())) {
-    		//match
-    	}
-    	else {
-    		match = false;
-    		continue;
-    	}
-    	if(school.getNumStudents() < s.getEnrollmentUp() && school.getNumStudents() > s.getEnrollmentLo()) {
-    		//match
-    	}
-    	else {
-    		match = false;
-    		//continue;
-    	}
-    	if (match == true) {
+    	if(this.searchController.testForMatch(school)) {
     		matches.add(school);
-    	}
+    	}  	
     }
     return matches;
   }
@@ -502,7 +488,7 @@ public static void bubbleSort(double arr[], String arr2[])
         }
     }
     System.out.println(arr2[0] + arr2[1] + arr2[2] + arr2[3] + arr2[140]);
-    System.out.println("The top most related schools are: \n" + arr2[0] + "\n" + arr2[1] + "\n" +arr2[2] + "\n" + arr2[3] + "\n" + arr2[140]);
+    System.out.println("The top most related schools are: \n" + arr2[0] + "\n" + arr2[1] + "\n" +arr2[2] + "\n" + arr2[3] + "\n" + arr2[4]);
     System.out.println("\n\nwith distances of: \n" + arr2[0] + ": " + arr[0] + "\n" + arr2[1] + ": " + arr[1] + "\n" +arr2[2] + ": " +arr[2] + "\n" + arr2[3] + ": " + arr[3] + "\n" + arr2[4] + ": " + arr[4]);
 } 
 
