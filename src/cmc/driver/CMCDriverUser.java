@@ -55,7 +55,7 @@ public class CMCDriverUser {
 	      
 	      uInteraction = (UserInteraction) logOnInteraction; 
 	      
-	      uInteraction.viewAccountInfo("luser");
+	      uInteraction.viewAccountInfo();
 	     
 	      
 	      System.out.println("\n-------------------------------------------------------");
@@ -64,9 +64,9 @@ public class CMCDriverUser {
          uInteraction = (UserInteraction) logOnInteraction; 
         
         //edit account
-         uInteraction.editAccountInfo("jordre3@gmail.com","Nate","Jordrex", "password");
+         uInteraction.editAccountInfo("jordre3@gmail.com","Nate","Jordre", "password");
 	      
-	      uInteraction.viewAccountInfo("jordre3@gmail.com");
+	      uInteraction.viewAccountInfo();
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User can search for schools by combination of state and number of students\n");
@@ -110,6 +110,21 @@ public class CMCDriverUser {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User views their list of saved schools");
 	      uInteraction.viewSavedSchools();
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User can remove a saved school");
+	      uInteraction.removeSavedSchool("UNIVERSITY OF CALIFORNIA SANTA CRUZ");
+	      uInteraction.viewSavedSchools();
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User searches for friends");
+	      uInteraction.searchForFriends("juser");
+	      
+	      
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User logs off");
+	      uInteraction.logOff();
 	   }
 
 }

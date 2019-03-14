@@ -60,16 +60,7 @@ public class AccountInteraction{
 		  return 'n';
 	  }
 	  
-	  /**
-	   * Allows the user to log off
-	   * 
-	   * @param none
-	   * @return none
-	   * @throws none
-	   */
-	  public void logOff(){
-	    accountFunctCont.logOff();
-	  }
+	
 	  
 	  
 	  /**

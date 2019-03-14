@@ -12,7 +12,6 @@ import java.util.*;
 
 public class UserFunctionalityController extends AccountFunctionalityController{
   //User
-  private User user; //the current user?
   private SearchController searchController;
   private SavedSchool savedSchool;
   private DBController dbController;
@@ -24,9 +23,8 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @return void
    * @throws ....
    */
-  public UserFunctionalityController(User user){
-    super();
-    this.user = user;   
+  public UserFunctionalityController(){
+    super();  
     this.dbController = new DBController();
   }
   
@@ -37,8 +35,8 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param username is the username of the User
    */
-  public void viewUserInfo(String username){
-    super.viewAccountInfo(username);
+  public void viewUserInfo(User u){
+    super.viewAccountInfo(u);
   }
   
   /**
@@ -49,12 +47,13 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @params t, s are char info
    */
   public void editUserInfo(String un, String fn, String ln, String p, char t, char s){ 
-    this.user.setFirstName(fn);
-    this.user.setLastName(ln);
-    this.user.setPassword(p);
-    this.user.setUserType(t);
-    this.user.setStatus(s);
-    dbController.changeAccount(this.user);
+	  Account user = dbController.findAccount(un);
+      user.setFirstName(fn);
+      user.setLastName(ln);
+      user.setPassword(p);
+      user.setUserType(t);
+      user.setStatus(s);
+    dbController.changeAccount(user);
   }
   
   /**
@@ -80,22 +79,23 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    */
   public List<SavedSchool> searchForFriends(String username){
     User friend = (User) dbController.findAccount(username);
-    if(friend.getUserType() == 'a') {
-      System.out.println("The username entered is incorrect");
-    }
-    
-    else if(friend != null && friend.getUserType() == 'u') {
-      List<SavedSchool> list = friend.getSavedSchools(); 
-      return list;                                      
-    }
-    return null;
+    return viewSavedSchools(friend);
+//    if(friend.getUserType() == 'a') {
+//      System.out.println("The username entered is incorrect");
+//    }
+//    
+//    else if(friend != null && friend.getUserType() == 'u') {
+//      List<SavedSchool> list = friend.getSavedSchools(); 
+//      return list;                                      
+//    }
+//    return null;
   }
   
   /**
    * User can request for their status to be set to 'd' for deactivated
    */
-  public void requestDeactivation(){
-    this.user.setStatus('d');
+  public void requestDeactivation(User user){
+    user.setStatus('d');
     dbController.changeStatus(user, 'd');
   }
   
@@ -144,14 +144,14 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * Save school to make a University a SavedSchool
    * @param univ is the University to save
    */
-  public void saveSchool(University univ){
-    List<SavedSchool> list = this.user.getSavedSchools();
+  public void saveSchool(University univ, User user){
+    List<SavedSchool> list = user.getSavedSchools();
     
     SavedSchool schoolToSave = new SavedSchool(univ, "time");
     if(list == null || !list.contains(schoolToSave)) {
       
-      dbController.addSavedSchool(this.user, schoolToSave);
-      this.user.addSavedSchool(schoolToSave);
+      dbController.addSavedSchool(user, schoolToSave);
+      user.addSavedSchool(schoolToSave);
     }
     
     else {
@@ -175,23 +175,17 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param schoolToRemove is the SavedSchool to remove
    */
-  public void removeSavedSchool(SavedSchool schoolToRemove){
-    dbController.removeSavedSchool(this.user, schoolToRemove);
-    this.user.removeSavedSchool(schoolToRemove);
+  public void removeSavedSchool(String schoolToRemove, User user){
+    dbController.removeSavedSchool(user, schoolToRemove);
+    //user.removeSavedSchool(schoolToRemove);
   }
   
   /**
    * View list of SavedSchools
    */
-  public void viewSavedSchools(){
-    List<SavedSchool> savedSchools = dbController.getSavedSchools(this.user);
-    if(savedSchools != null) {
-    	for(SavedSchool school : savedSchools) {
-    		System.out.println(""+school);
-    	}
-    }else {
-    	System.out.println("No saved schools to display");
-    }
+  public List<SavedSchool> viewSavedSchools(User user){
+    List<SavedSchool> savedSchools = dbController.getSavedSchools(user);
+    return savedSchools;
   }
   
   /**

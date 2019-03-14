@@ -28,7 +28,7 @@ public class UserInteraction extends AccountInteraction{
   public UserInteraction(User user) {
 	super();
 	this.user = user;
-	this.userFunctCont = new UserFunctionalityController(user);
+	this.userFunctCont = new UserFunctionalityController();
   }
   
   public String getUsername() {
@@ -44,8 +44,14 @@ public class UserInteraction extends AccountInteraction{
    */
   public void searchForFriends(String u){
     
-    List<SavedSchool> list = userFunctCont.searchForFriends(u);
-    // display list to user
+    List<SavedSchool> savedSchools = userFunctCont.searchForFriends(u);
+    if(savedSchools != null) {
+    	for(SavedSchool school : savedSchools) {
+    		System.out.println(""+school);
+    	}
+    }else {
+    	System.out.println("No saved schools to display");
+    }
   }
   
   /*
@@ -56,7 +62,7 @@ public class UserInteraction extends AccountInteraction{
    * @throws none
    */
   public void requestDeactivation(){
-    userFunctCont.requestDeactivation();
+    userFunctCont.requestDeactivation(this.user);
   }
   
   
@@ -124,7 +130,7 @@ public class UserInteraction extends AccountInteraction{
    * @throws none
    */
   public void saveSchool(University univ){
-    userFunctCont.saveSchool(univ);
+    userFunctCont.saveSchool(univ, this.user);
   }
   
   
@@ -147,8 +153,8 @@ public class UserInteraction extends AccountInteraction{
    * @return none
    * @throws none
    */
-  public void removeSavedSchool(SavedSchool univ){
-    userFunctCont.removeSavedSchool(univ);
+  public void removeSavedSchool(String univ){
+    userFunctCont.removeSavedSchool(univ, this.user);
   }
   
   
@@ -160,7 +166,14 @@ public class UserInteraction extends AccountInteraction{
    * @throws none
    */
   public void viewSavedSchools(){
-    userFunctCont.viewSavedSchools();
+    List<SavedSchool> savedSchools = userFunctCont.viewSavedSchools(this.user);
+    if(savedSchools != null) {
+    	for(SavedSchool school : savedSchools) {
+    		System.out.println(""+school);
+    	}
+    }else {
+    	System.out.println("No saved schools to display");
+    }
   }
   
   
@@ -228,8 +241,8 @@ public class UserInteraction extends AccountInteraction{
    * @return none
    * @throws none
    */
-  public void viewAccountInfo(String u){
-    userFunctCont.viewAccountInfo(u);
+  public void viewAccountInfo(){
+    userFunctCont.viewAccountInfo(this.user);
   }
   
   
@@ -271,6 +284,18 @@ public class UserInteraction extends AccountInteraction{
     }else {
     	System.out.println("The school was not found");
     }
+  }
+  
+  /**
+   * Allows the user to log off
+   * 
+   * @param none
+   * @return none
+   * @throws none
+   */
+  public void logOff(){
+    this.user.logOff();
+    System.out.println(this.user.toString());
   }
   
   

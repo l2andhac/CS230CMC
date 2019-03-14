@@ -172,6 +172,17 @@ public class AdminInteraction extends AccountInteraction{
    * @return none
    * @throws none
    */
+  public void viewAccountInfo(){
+    adminFunctCont.viewAccountInfo(this.admin); 
+  }
+  
+  /**
+   * Allows the admin to see their own information
+   * 
+   * @param String of the username to view the information for
+   * @return none
+   * @throws none
+   */
   public void viewAccountInfo(String u){
     adminFunctCont.viewAccountInfo(u); 
   }
@@ -218,5 +229,16 @@ public class AdminInteraction extends AccountInteraction{
     }
   }
 
+  /**
+   * Allows the admin to log off
+   * 
+   * @param none
+   * @return none
+   * @throws none
+   */
+  public void logOff(){
+    this.admin.logOff();
+    System.out.println(this.admin.toString());
+  }
     
 }

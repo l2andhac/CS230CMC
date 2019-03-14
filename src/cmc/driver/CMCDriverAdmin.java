@@ -46,7 +46,7 @@ public class CMCDriverAdmin {
 	      
 	      aInteraction = (AdminInteraction) logOnInteraction; 
 	      
-	      aInteraction.viewAccountInfo("nateTheAdmin");
+	      aInteraction.viewAccountInfo();
 	      
 	      
 	      System.out.println("\n-------------------------------------------------------");
@@ -55,9 +55,9 @@ public class CMCDriverAdmin {
         aInteraction = (AdminInteraction) logOnInteraction; 
         
         //edit account
-        aInteraction.editAccountInfo("nateTheAdmin", "Nathaniel", "Jodre", "password", 'a', 'Y');
+        aInteraction.editAccountInfo("nateTheAdmin", "Nathaniel", "Jordre", "password", 'a', 'Y');
 	      
-	      aInteraction.viewAccountInfo("nateTheAdmin");
+	      aInteraction.viewAccountInfo();
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can Edit User Profile\n");
@@ -99,7 +99,9 @@ public class CMCDriverAdmin {
 	      aInteraction.viewSchoolDetails("COLLEGE OF NEWROCHELLEs");
 	      
 	      
-	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can log off");
+	      aInteraction.logOff();
 	   }
 
 }

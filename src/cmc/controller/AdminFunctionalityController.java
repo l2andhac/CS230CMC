@@ -15,7 +15,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   private DBController dbController;
   private ForgotPasswordController forgotPasswordController;
   private AccountController accountController;
-  private Admin a;
+
  
   //Methods
   /**
@@ -27,7 +27,6 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    */
   public AdminFunctionalityController(Admin a){
     super();
-    this.a = a; 
     dbController = new DBController();
    
   }
@@ -141,6 +140,20 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     if(duplicate == false){
       dbController.addAccount(newAccount);
     }
+    
+    
+  }
+  
+  /**
+   * Allows the admin to see their own information
+   * 
+   * @param String of the username to view the information for
+   * @return none
+   * @throws none
+   */
+  public void viewAccountInfo(String u){
+    Account a = dbController.findAccount(u); 
+    super.viewAccountInfo(a);
   }
   
 }

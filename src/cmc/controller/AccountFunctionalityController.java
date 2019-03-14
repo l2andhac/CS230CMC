@@ -17,8 +17,6 @@ public class AccountFunctionalityController {
 	private AccountController ac;
 	// instance variable for the ForgotPasswordController
 	private ForgotPasswordController fpc;
-	// instance variable for the Account
-	private Account a;
 	// instance variable for the DBController
 	private DBController dbc;
 	// instance variable for AccountInteraction ???? I added this, but she discuss
@@ -31,7 +29,6 @@ public class AccountFunctionalityController {
 	public AccountFunctionalityController() {
 		this.ac = new AccountController();
 		this.fpc = new ForgotPasswordController();
-		this.a = null;
 		this.dbc = new DBController();
 		//this.ai = new AccountInteraction();
 	}
@@ -50,16 +47,7 @@ public class AccountFunctionalityController {
 		
 	}
 
-	/**
-	 * Allows an Account to Log Off
-	 * 
-	 * @param none
-	 * @return void
-	 * @throws ...
-	 */
-	public void logOff() {
-		ac.logOff();
-	}
+
 
 	/**
 	 * Allows the Account to recover their password if the username is an email
@@ -73,7 +61,7 @@ public class AccountFunctionalityController {
 	public void forgotPassword(String u) {
 		String np = fpc.generateRandomPassword();
 		Boolean email = fpc.checkIfEmail(u);
-		this.a = dbc.findAccount(u);
+		Account a = dbc.findAccount(u);
 		if (a != null) {
 			if (email) {
 				a.setPassword(np);
@@ -94,8 +82,7 @@ public class AccountFunctionalityController {
 	 * @return void
 	 * @throws ....
 	 */
-	public void viewAccountInfo(String u) {
-		this.a = dbc.findAccount(u);
+	public void viewAccountInfo(Account a) {
 		System.out.println(a.toString()); 
 	}
 

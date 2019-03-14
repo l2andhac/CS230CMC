@@ -210,8 +210,8 @@ public class DBController {
    * @param s the saved school to be removed
    * @throws
    */
-  public void removeSavedSchool(User u, SavedSchool s) {
-    univDBlib.user_removeSchool(u.getUsername(), s.getSchoolName());
+  public void removeSavedSchool(User u, String s) {
+    univDBlib.user_removeSchool(u.getUsername(), s);
   }
   
   /**
