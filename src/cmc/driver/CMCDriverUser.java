@@ -119,8 +119,7 @@ public class CMCDriverUser {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User searches for friends");
 	      uInteraction.searchForFriends("juser");
-	      
-	      
+
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User logs off");

@@ -98,6 +98,15 @@ public class CMCDriverAdmin {
 	      System.out.println("Admin tries to view the details of a school not in the database");
 	      aInteraction.viewSchoolDetails("COLLEGE OF NEWROCHELLEs");
 	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can add a new admin account");
+	      aInteraction.addAccount("Andy", "Rothstein", "AndytheAdmin", "password",'a', 'y');
+	      aInteraction.viewAccountInfo("AndytheAdmin");
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can add a new user account");
+	      aInteraction.addAccount("Andy", "Rothstein", "AndytheUser", "password",'u', 'y');
+	      aInteraction.viewAccountInfo("AndytheUser");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can log off");
