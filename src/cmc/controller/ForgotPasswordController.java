@@ -14,7 +14,7 @@ public class ForgotPasswordController{
   /**
    * Generates a random password to be the new password
    * 
-   * @returns newPassword which is a String of the new password for the Account
+   * @return String - new password for the Account
    */
   public String generateRandomPassword(){
     
@@ -34,8 +34,8 @@ public class ForgotPasswordController{
   /**
    * Returns whether or not username is an email
    * 
-   * @param username is a String for the username of the Account
-   * @returns a boolean for whether or not the username is a email
+   * @param username - String for the username of the Account
+   * @return boolean - for whether or not the username is a email
    */
   public boolean checkIfEmail(String username){
     if (username.contains("@")){
@@ -49,7 +49,7 @@ public class ForgotPasswordController{
   /**
    * Emails the Account a new password
    * 
-   * @param account is the Account to email the new password too
+   * @param account - Account to email the new password too
    */
   public void emailNewPassword(Account account){
     //NOT SURE HOW EMAIL THING WORKS :/ 

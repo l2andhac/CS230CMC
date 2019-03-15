@@ -30,9 +30,9 @@ public class AccountInteraction{
 	/**
 	   * Allows the user to log on
 	   * 
-	   * @param Strings username and password
+	   * @param username - String that is the username of the account attempting to login
+	   * @param password - String that is the password of the account attempting to login
 	   * @return AccountInteraction
-	   * @throws none
 	   */
 	  public AccountInteraction logOn(String u, String p){
 	    Account a = accountFunctCont.logOn(u,p);
@@ -66,9 +66,7 @@ public class AccountInteraction{
 	  /**
 	   * Allows the user to request to get password back if forgotten
 	   * 
-	   * @param String with the username
-	   * @return none
-	   * @throws none
+	   * @param u - String with the username
 	   */
 	  public void forgotPassword(String u){
 	    accountFunctCont.forgotPassword(u);

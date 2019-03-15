@@ -68,7 +68,7 @@ public class Search {
 	// the list of emphases that a school has
 	private List<String> emphasis;
 
-	/*
+	/**
 	 * Constructs a search object with the given parameters
 	 * 
 	 * @param name to search

@@ -5,7 +5,7 @@ package cmc.entity;
  * @author: L^2 and the Hackstreet Boyz
  * @version: February 23, 2019
  * 
- * Class that reprsent an admin account
+ * Class that represents an admin account
  */
 
 public class Admin extends Account{

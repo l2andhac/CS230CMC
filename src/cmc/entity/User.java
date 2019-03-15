@@ -12,9 +12,15 @@ import java.util.*;
 public class User extends Account{
   
   private List<SavedSchool> savedSchools;
- /**
-  * User constructor creates an user object
-  */
+ 
+  /**
+   * User constructor creates an user object
+   * @param firstName- String representing the first name of the user
+   * @param lastName - String representing the last name of the user
+   * @param username - String representing the username of the user
+   * @param password - String representing the password of the user
+   * @param status - character representing whether the account is active or not
+   */
  public  User(String firstName, String lastName, String username, String password, char status){
    super(firstName, lastName, username, password, 'u', status);
  }
