@@ -104,7 +104,7 @@ public class CMCDriverAdmin {
 	    		  40001, 45, 490, 557, 13772, 50, 8500, 80, 60, 4, 3, 4);
 	      aInteraction.viewSchoolDetails("UNIVERSITY OF MINNESOTA");
 	      
-	      
+	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can add a new admin account");
 	      aInteraction.addAccount("Andy", "Rothstein", "AndytheAdmin", "password",'a', 'y');
 	      aInteraction.viewAccountInfo("AndytheAdmin");
