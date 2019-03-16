@@ -98,6 +98,13 @@ public class CMCDriverAdmin {
 	      System.out.println("Admin tries to view the details of a school not in the database");
 	      aInteraction.viewSchoolDetails("COLLEGE OF NEWROCHELLEs");
 	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin tries to edit a school");
+	      aInteraction.editSchool("UNIVERSITY OF MINNESOTA", "MINNESOTA", "URBAN", "STATE", 
+	    		  40001, 45, 490, 557, 13772, 50, 8500, 80, 60, 4, 3, 4);
+	      aInteraction.viewSchoolDetails("UNIVERSITY OF MINNESOTA");
+	      
+	      
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can log off");

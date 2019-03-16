@@ -105,13 +105,13 @@ public class AdminInteraction extends AccountInteraction{
                          double satVerbal, double satMath,
                         double expenses, double percentFinancialAid, int numberOfApplicants,
                         double percentAdmitted, double percentEnrolled, int academicScale,
-                        int socialScale, int qualityScale, List<String> emphases
+                        int socialScale, int qualityScale
   ){
     University school = new University(schoolName, state, location, control, numberOfStudents,
                                        percentFemale, satVerbal, satMath, expenses,
                                        percentFinancialAid, numberOfApplicants, percentAdmitted,
-                                       percentEnrolled, academicScale, socialScale, qualityScale,
-                                       emphases
+                                       percentEnrolled, academicScale, socialScale, qualityScale, null
+                                       
                                        );
     adminFunctCont.editSchoolInfo(school);
   }
