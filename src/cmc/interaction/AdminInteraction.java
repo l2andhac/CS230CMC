@@ -21,7 +21,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
  * Constructor for an AdminInteraction
  * 
- * @param Admin
+ * @param admin - Admin of the AdminInteraction
  */
   public AdminInteraction(Admin admin) {
 	super();
@@ -38,26 +38,34 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows an admin to remove a school from the database
    * 
-   * @param University to be removed
-   * @return none
-   * @throws none
+   * @param univ -University to be removed
    */
   public void removeSchool(University univ){
     adminFunctCont.removeSchool(univ);
   }
   
   
+
   /**
    * Allows the Admin to add a school to the database
    * 
-   * @param String schoolName, String state, String location,
-                        String control, int numberOfStudents, double percentFemale,
-                         double satVerbal, double satMath,
-                        double expenses, double percentFinancialAid, int numberOfApplicants,
-                        double percentAdmitted, double percentEnrolled, int academicScale,
-                        int socialScale, int qualityScale, List<String> emphases
-   * @return none
-   * @throws none
+   * @param schoolName - String that is the name of the school to be added
+   * @param state - String that is the state of the school to be added
+   * @param location - String that is the location setting of the school to be added
+   * @param control - String that is the school control type of the school to be added
+   * @param numberOfStudents - int that is the number of Students of the school to be added
+   * @param percentFemale - double that the percent of female students at the school to be added
+   * @param satVerbal - double that is the average score on the SAT verbal of the school to be added
+   * @param satMath - double that is the average score on the SAT math of the school to be added
+   * @param expenses - double that is the cost of the school to be added
+   * @param percentFinancialAid - double that is the percentage of financial aid of the school to be added
+   * @param numberOfApplicants - int that is the number of applicants to the school
+   * @param percentAdmitted - double that is the percent of students who are admitted to the school
+   * @param percentEnrolled - double that is the percent of students who enroll in the school
+   * @param academicScale - 
+   * @param socialScale -
+   * @param qualityScale -
+   * @param emphases - List<String> that are academic emphases of the schools
    */
   public void addSchool(String schoolName, String state, String location,
                         String control, int numberOfStudents, double percentFemale,
@@ -79,9 +87,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Alllows the admin to view a school's details
    * 
-   * @param A University to view
-   * @return none
-   * @throws none
+   * @param univ - University to view
    */
   public void adminViewSchool(University univ){
     adminFunctCont.adminViewSchool(univ);
@@ -97,8 +103,7 @@ public class AdminInteraction extends AccountInteraction{
                         double expenses, double percentFinancialAid, int numberOfApplicants,
                         double percentAdmitted, double percentEnrolled, int academicScale,
                         int socialScale, int qualityScale, List<String> emphases
-   * @return none
-   * @throws none
+
    */
   public void editSchool(String schoolName, String state, String location,
                         String control, int numberOfStudents, double percentFemale,
@@ -120,9 +125,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to view all the schools in the database
    * 
-   * @param none
-   * @retun Set<University>
-   * @throws none
+   * @retun Set<University> - Universities to be viewed
    */
   public Set<University> viewAllSchools(){  
     return adminFunctCont.viewAllSchools();
@@ -132,9 +135,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to view all the accounts in the database
    * 
-   * @param none
-   * @return Set<String>
-   * @throws none
+   * @return Set<String> - Accounts to be viewed
    */
   public Set<String> viewAllAccounts(){
     return adminFunctCont.viewAllAccounts();
@@ -145,9 +146,12 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to add a new account into the database
    * 
-   * @param String for the first name, last name, username, password, and Char for type, and status
-   * @return none
-   * @throws none
+   * @param un - String that is the username of the account to add
+   * @param fn - String that is the last name of the account to add
+   * @param ln - String that is the first name of the account to add
+   * @param p - String that is the password of the account to add
+   * @param t - Character that is the type of the Account
+   * @param s - Character that is the status of the Account
    */
   public void addAccount(String fn, String ln, String u, String p, char t, char s){
     Account a;
@@ -167,10 +171,6 @@ public class AdminInteraction extends AccountInteraction{
   
   /**
    * Allows the admin to see their own information
-   * 
-   * @param String of the username to view the information for
-   * @return none
-   * @throws none
    */
   public void viewAccountInfo(){
     adminFunctCont.viewAccountInfo(this.admin); 
@@ -179,9 +179,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to see their own information
    * 
-   * @param String of the username to view the information for
-   * @return none
-   * @throws none
+   * @param u - String of the username to view the information for
    */
   public void viewAccountInfo(String u){
     adminFunctCont.viewAccountInfo(u); 
@@ -191,9 +189,12 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to edit first name, last name, and password/////////////// change to edit everything
    * 
-   * @param An Account a
-   * @return none
-   * @throws none
+   * @param un - String that is the username of the account to edit
+   * @param fn - String that is the last name of the account to edit
+   * @param ln - String that is the first name of the account to edit
+   * @param p - String that is the password of the account to   edit
+   * @param t - Character that is the type of the Account
+   * @param s - Character that is the status of the Account
    */
   public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
     adminFunctCont.editAccountInfo(un, fn, ln, p, t, s); 
@@ -204,9 +205,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the current admin to be set
    * 
-   * @param the current Account
-   * @return none
-   * @throws none
+   * @param a - Admin to setAccount for
    */
   public void setAccount(Admin a){
     admin = a;
@@ -216,9 +215,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows an admin to view the school details
    * 
-   * @param String of the University's name
-   * @return none
-   * @throws none
+   * @param schoolName - String of the University's name
    */
   public void viewSchoolDetails(String schoolName){
     University univ = adminFunctCont.viewSchoolDetails(schoolName);
@@ -232,9 +229,6 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to log off
    * 
-   * @param none
-   * @return none
-   * @throws none
    */
   public void logOff(){
     this.admin.logOff();

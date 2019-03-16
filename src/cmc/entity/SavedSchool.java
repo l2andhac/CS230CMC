@@ -8,9 +8,14 @@ package cmc.entity;
  * @version 2/21/2019
  */
 public class SavedSchool extends University {
-  //timeStamp
+  //timeStamp that keeps track of when a SavedSchool is added
   private String timeStamp;
   
+  /**
+   * Constructor that creates a Saved School 
+   * @param u - University that the SavedSchool object represents
+   * @param timeStamp - keeps track of when a SavedSchool is added
+   */
   public SavedSchool(University u, String timeStamp) {
     super(u.getSchoolName(), u.getState(), u.getLocation(), u.getControl(),
                                         u.getNumStudents(), u.getPercentFemales(), u.getSATVerbal(), u.getSATMath(),

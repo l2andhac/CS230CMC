@@ -159,8 +159,9 @@ public class Account {
  }
 
  
-/* 
+/**
  * toString method for account
+ * @return - String with the information for the account
  */
 @Override
 public String toString() {

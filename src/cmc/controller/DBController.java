@@ -1,6 +1,5 @@
 package cmc.controller;
 import dblibrary.project.csci230.*;
-import java.io.*;
 import java.util.*;
 import cmc.entity.*;
 
@@ -13,41 +12,16 @@ import cmc.entity.*;
  * @version 2/23/2019
  */
 public class DBController {
-  //account
-  //private Account account;
-  
-  //university
-  //private University university;
-  
+	// instance variable for the database library
   private UniversityDBLibrary univDBlib;
+  // instance variable for a searchController
   private SearchController searchController;
   
-  public UniversityDBLibrary getUnivDBlib(){
-    return univDBlib;
-  }
-  
- ////////////////////////////////////////////////////////////////////////////////
-  /**
-   * Creates a DataBaseController objects.
-   * 
-   * @param account 
-   * @param university 
-   */
-//  public DBController(Account account, University university) {
-//    this.account = account;
-//    this.university = university;
-//    univDBlib = new UniversityDBLibrary("l2andhac","csci230");
-//  }
   
   /**
-   * Creates a DataBaseController objects.
-   * 
-   * @param account 
-   * @param university 
+   * Creates a DataBaseController object
    */
   public DBController() {
-    //this.account = account;
-    //this.university = university;
     univDBlib = new UniversityDBLibrary("l2andhac","csci230");
   }
   
@@ -55,8 +29,7 @@ public class DBController {
   /**
    * Edits a university.
    * 
-   * @param u the university to edit
-   * @throws
+   * @param u - University to edit
    */
   public void editSchool(University u) {
     
@@ -70,9 +43,8 @@ public class DBController {
   /**
    * Adds a university to the database.
    * 
-   * @param u the university to add
-   * @return true if the university has been successfully added
-   * @throws
+   * @param u - University to add
+   * @return boolean - true if the university has been successfully added
    */
   public boolean addSchool(University u) {
     //check if school name exists already
@@ -92,8 +64,7 @@ public class DBController {
   /**
    * Removes a university from the database.
    * 
-   * @param u the university to remove
-   * @throws
+   * @param u - University to remove
    */
   public void removeSchool(University u) {
     //check if school is saved by a user, or has an emphasis
@@ -106,9 +77,8 @@ public class DBController {
   /**
    * Checks if a university is saved.
    * 
-   * @param u the university to check
-   * @return true if the university has been already saved
-   * @throws
+   * @param u - University to check
+   * @return boolean - true if the university has been already saved
    */
   public boolean isSchoolSaved(University u) {
     String[][] savedSchools = univDBlib.user_getUsernamesWithSavedSchools();
@@ -128,9 +98,8 @@ public class DBController {
   /**
    * Finds an account from a username.
    * 
-   * @param u the username of the account to find
-   * @return the account corresponding to the username 
-   * @throws
+   * @param u - String which is the username of the account to find
+   * @return Account - account corresponding to the username 
    */
   public Account findAccount(String u) {
     // the account to be returned
@@ -158,21 +127,21 @@ public class DBController {
   }
   
   /**
-   * Changes the status of an account.
+   * Changes the status of an account. **This doesn't work right now for some reason
+   * so I did it another way. Maybe will fix later. Otherwise delete.**
    * 
-   * @param a the account which status needs to be changed
-   * @param c a character representing the new status
-   * @throws
+   * @param a - Account which status needs to be changed
+   * @param c - Character representing the new status
    */
   public void changeStatus(Account a, char c) {
-    univDBlib.user_editUser(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType(), c);
+	  a.setStatus(c);
+    univDBlib.user_editUser(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType(), a.getStatus());
   }
   
   /**
    * Gets a list of all the universities in the database.
    * 
-   * @return List<University> the list of all the universities in the database
-   * @throws
+   * @return List<University> - the list of all the universities in the database
    */
   public Set<University> getAllSchools() {
     String[][] schools = univDBlib.university_getUniversities();
@@ -207,8 +176,8 @@ public class DBController {
   /**
    * Removes a saved school from the saved school list of a user.
    * 
-   * @param s the saved school to be removed
-   * @throws
+   * @param s- String that is the name of the SavedSchool to be removed
+   * @param u - User who is attempting to remove a SavedSchool
    */
   public void removeSavedSchool(User u, String s) {
     univDBlib.user_removeSchool(u.getUsername(), s);
@@ -217,8 +186,8 @@ public class DBController {
   /**
    * Gets the list of saved school for a user.
    * 
-   * @param u the user to get the list of saved school from
-   * @return List<SavedSchool> a list of the saved schools of a user
+   * @param u - User to get the list of saved school from
+   * @return List<SavedSchool> - a list of the saved schools of a user
    */
   public List<SavedSchool> getSavedSchools(User u) {
     //
@@ -267,9 +236,8 @@ public class DBController {
   /**
    * Finds the name of a school in the database.
    * 
-   * @param schoolName the name of the school to be found
-   * @return true if the school name has been found
-   * @throws
+   * @param schoolName - String which is the name of the school to be found
+   * @return boolean - true if the school name has been found
    */
   public boolean findSchoolName(String schoolName) {
     //
@@ -291,9 +259,8 @@ public class DBController {
    * Finds in the database and returns a list of universities matching the research
    * criteria.
    * 
-   * @param s a search object containing all the wanted criteria
-   * @return List<University> the list of all the matching universities
-   * @throws
+   * @param s - Search object containing all the wanted criteria
+   * @return List<University> - the list of all the matching universities
    */
   public Set<University> findSearchedSchool(Search s) {
     //
@@ -311,8 +278,8 @@ public class DBController {
   /**
    * Adds a saved school to the database.
    * 
-   * @param s the saved school to add
-   * @throws
+   * @param s - SavedSchool to add
+   * @param u - User to add the SavedSchool
    */
   public void addSavedSchool(User u, SavedSchool s) {
     univDBlib.user_saveSchool(u.getUsername(), s.getSchoolName());
@@ -321,9 +288,8 @@ public class DBController {
   /**
    * Gets and returns a school from the database using the school name.
    * 
-   * @param schoolName the name of the school to get
-   * @return University 
-   * @throws
+   * @param schoolName - String which is the name of the school to get
+   * @return University that has the schoolName of the parameter
    */
   public University getSchool(String schoolName) {
     //
@@ -363,8 +329,7 @@ public class DBController {
   /**
    * Returns a list of all the accounts present in the database.
    * 
-   * @return List<String> a list of all the usernames
-   * @throws
+   * @return List<String> - a list of all the usernames
    */
   public Set<String> viewAllAccounts() {
     //
@@ -380,8 +345,7 @@ public class DBController {
   /**
    * Changes an account to a new account with updated information.
    * 
-   * @param a the new account
-   * @throws
+   * @param a - Account that is updated
    */
   public void changeAccount(Account a) {
     //
@@ -391,9 +355,8 @@ public class DBController {
   /**
    * Checks if a university has emphasis.
    * 
-   * @param u the university to be checked
-   * @return true is the university has emphasis
-   * @throws
+   * @param u - University to be checked
+   * @return boolean -true is the university has emphasis
    */
   public boolean hasEmphasis(University u) {
     //
@@ -411,9 +374,8 @@ public class DBController {
   /**
    * Finds a username in the database.
    * 
-   * @param u the username to be foung
-   * @return true if the username is in the database
-   * @throws
+   * @param u - Username to be found
+   * @return boolean - true if the username is in the database
    */
   public boolean findUsername(String u) {
     //
@@ -435,17 +397,16 @@ public class DBController {
   /**
    * A user can request a new account.
    * 
-   * @param u the user who requests the new account
-   * @throws 
+   * @param u - User who requests the new account
    */
   public void requestNewAccount(User u) {
-    //
+	  univDBlib.user_addUser(u.getFirstName(), u.getLastName(), u.getUsername(), u.getPassword(), u.getUserType());
   }
 
   /**
    * looks for the 5 most closely related schools
    * 
-   * @param school
+   * @param school - String that is the schoolname of the University to find recommended schools for
    */
 public void findRecSchools(String school) {
 	
@@ -495,8 +456,8 @@ public static void bubbleSort(double arr[], String arr2[])
 /**
  * finds the distance between two universities
  * 
- * @param univ1 the first University to compare
- * @param univ2 the second University to compare
+ * @param univ1 - first University to compare
+ * @param univ2 - second University to compare
  */
 public double findDistance(University univ1, University univ2) {
 	

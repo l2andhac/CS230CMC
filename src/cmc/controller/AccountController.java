@@ -14,9 +14,7 @@ public class AccountController{
   //instance variable for database controller
   private DBController controller;
 
-  
-  
-  /*
+  /**
    *Constructor for AccountController 
    * 
    * Instantiates the instance variables for DBController and sets the account instance variable to null
@@ -27,11 +25,11 @@ public class AccountController{
     
   }
   
-  /*
+  /**
    * LogOn method for accounts
    * 
-   * @param username, a String that is the username
-   * @param password, a String that is the password
+   * @param username - String that is the username
+   * @param password - String that is the password
    * @throws NullPointerException
    */
   public Account logOn(String username, String password) throws NullPointerException

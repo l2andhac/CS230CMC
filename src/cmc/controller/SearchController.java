@@ -14,7 +14,7 @@ private Search searchCriteria;
   /**
    * Constructor for SearchController
    * 
-   * creates a new DBController
+   * @param so - Search object
    */
   public SearchController(Search so) {
 	  this.searchCriteria = so;
@@ -24,7 +24,7 @@ private Search searchCriteria;
   /**
    * Searches for a University
    * 
-   * @param so is the Search object
+   * @param u - University to be searched for
    */
   public boolean testForMatch(University u){
   	if(!u.getState().contains(searchCriteria.getState())) {

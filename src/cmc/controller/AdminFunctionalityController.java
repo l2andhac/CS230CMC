@@ -19,11 +19,10 @@ public class AdminFunctionalityController extends AccountFunctionalityController
  
   //Methods
   /**
-   * Constructor for AdminFunctionalityController
+   * Constructor for AdminFunctionalityController that creates an AdminFunctionalityController
+   * and instantiates a DBController in the class
    * 
-   * @param Admin admin
-   * @return void
-   * @throws ....
+   * @param admin - Admin that is the current admin
    */
   public AdminFunctionalityController(Admin a){
     super();
@@ -34,9 +33,8 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   
   /**
    * Allows an admin to remove a school from the Database
-   * @param University to be removed from Database
-   * @return void
-   * @throws .......
+   * 
+   * @param univ - University to be removed from Database
    */
   public void removeSchool(University univ){
     boolean saved = dbController.isSchoolSaved(univ);
@@ -50,9 +48,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   /**
    * Allows an Admin to add a school to the Database
    * 
-   * @param University to be added to Database
-   * @return void
-   * @throw .....
+   * @param univ - University to be added to Database
    */
   public void addSchool(University univ){
     boolean found = dbController.findSchoolName(univ.getSchoolName());
@@ -65,9 +61,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   /**
    * Allows an Admin to view a School
    * 
-   * @param University that the Admin wishes to view
-   * @return void
-   * @throws ....
+   * @param univ - University that the Admin wishes to view
    */
   public void adminViewSchool(University univ){
     //is this the same as viewing a school's details? Is an admin not being able to save it a GUI thin?
@@ -77,9 +71,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   /**
    * Allows an Admin to edit the school information
    * 
-   * @param University object with the updated information
-   * @return void
-   * @throws ....
+   * @param univ University object with the updated information
    */
   public void editSchoolInfo(University univ){
     dbController.editSchool(univ);
@@ -89,9 +81,12 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   /**
    * Allows an Admin to edit an Account's information
    * 
-   * @param Account object with the updated information
-   * @return void
-   * @throws ....
+   * @param un - String that is the username of the Account to edit
+   * @param fn - String that is the first name of the Account
+   * @param ln - String that is the last name of the Account
+   * @param p - String that is the password of the Account
+   * @param t - Character that represents the type of the Account
+   * @param s - Character that represents the status of the Account
    */
   public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
 	  Account account = dbController.findAccount(un);
@@ -105,11 +100,9 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   
   
   /**
-   * Allows the Admin to view a list of all of the Universities in the Database
+   * Allows the Admin to view all of the Universities in the Database
    * 
-   * @param none
-   * @return Set<University>
-   * @throws ....
+   * @return Set<University> - A set of all the Schools in the database
    */
   public Set<University> viewAllSchools(){
     return dbController.getAllSchools();
@@ -117,11 +110,9 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   
   
   /**
-   * Allows the Admin to view a list of all of the Accounts in the Database
+   * Allows the Admin to view all of the Accounts in the Database
    * 
-   * @param none
-   * @return Set<String>
-   * @throws ...
+   * @return Set<String> - a set of all of the Accounts in the database
    */
   public Set<String> viewAllAccounts(){
     return dbController.viewAllAccounts();
@@ -131,9 +122,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   /**
    * Allows the Admin to add a new Account into the Database
    * 
-   * @param Account to be added into the Database
-   * @return void
-   * @throws ...
+   * @param newAccount - Account to be added into the Database
    */
   public void addAccount(Account newAccount){
     boolean duplicate = dbController.findUsername(newAccount.getUsername());
@@ -147,9 +136,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   /**
    * Allows the admin to see their own information
    * 
-   * @param String of the username to view the information for
-   * @return none
-   * @throws none
+   * @param u - String of the username to view the information for
    */
   public void viewAccountInfo(String u){
     Account a = dbController.findAccount(u); 

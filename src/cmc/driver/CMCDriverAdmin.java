@@ -65,7 +65,7 @@ public class CMCDriverAdmin {
         aInteraction = (AdminInteraction) logOnInteraction; 
         
         //edit account
-        aInteraction.editAccountInfo("juser", "John", "Cena", "user", 'u', 'Y');
+        aInteraction.editAccountInfo("juser", "John", "Cena", "user", 'u', 'D');
 	      
 	      aInteraction.viewAccountInfo("juser");
 	      
@@ -105,6 +105,14 @@ public class CMCDriverAdmin {
 	      aInteraction.viewSchoolDetails("UNIVERSITY OF MINNESOTA");
 	      
 	      
+	      System.out.println("Admin can add a new admin account");
+	      aInteraction.addAccount("Andy", "Rothstein", "AndytheAdmin", "password",'a', 'y');
+	      aInteraction.viewAccountInfo("AndytheAdmin");
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can add a new user account");
+	      aInteraction.addAccount("Andy", "Rothstein", "AndytheUser", "password",'u', 'y');
+	      aInteraction.viewAccountInfo("AndytheUser");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can log off");

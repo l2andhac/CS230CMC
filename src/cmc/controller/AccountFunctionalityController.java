@@ -19,44 +19,54 @@ public class AccountFunctionalityController {
 	private ForgotPasswordController fpc;
 	// instance variable for the DBController
 	private DBController dbc;
-	// instance variable for AccountInteraction ???? I added this, but she discuss
-	// if it is necesary
-	//private AccountInteraction ai;
 
 	/**
-	 * constructor that creates an AccountFunctionalityController object
+	 * constructor that creates an AccountFunctionalityController object by 
+	 * instantiating an AccountController, ForgotPasswordController, and a DBController
 	 */
 	public AccountFunctionalityController() {
 		this.ac = new AccountController();
 		this.fpc = new ForgotPasswordController();
 		this.dbc = new DBController();
-		//this.ai = new AccountInteraction();
 	}
 
 	// Methods
 	/**
 	 * Allows an Account to Log onto the CMC
 	 * 
-	 * @param String
-	 *            u as a username and String p as a password
-	 * @return Account the Account that has attempted to log on
-	 * @throws ....
+	 * @param u - String that is a username
+	 * @param p - String that is a password
+	 * @return Account - the Account that has attempted to log on
 	 */
 	public Account logOn(String u, String p) {
 		return ac.logOn(u, p);
 		
 	}
 
-
+	 /**
+	   * User can request a new Account of type User
+	   * 
+	   * @param newUser - User to request a new account
+	   */
+	  public void requestNewAccount(User newUser) {
+	    String username = newUser.getUsername();
+	    boolean duplicate = dbc.findUsername(username);
+	    if(duplicate == false) {
+	      dbc.addAccount(newUser);
+	      newUser.setStatus('P');
+	      dbc.changeAccount(newUser);
+	    }
+	    
+	    else {
+	      System.out.println("This username is already taken");
+	    }
+	  }
 
 	/**
 	 * Allows the Account to recover their password if the username is an email
 	 * address
 	 * 
-	 * @param String
-	 *            that is the username of the Account to recover the password for
-	 * @return void
-	 * @throw ...
+	 * @param u - String that is the username of the Account to recover the password for
 	 */
 	public void forgotPassword(String u) {
 		String np = fpc.generateRandomPassword();
@@ -75,12 +85,9 @@ public class AccountFunctionalityController {
 	}
 
 	/**
-	 * Allows the Account to view an Account's information
+	 * Allows the Account to view a different Account's information
 	 * 
-	 * @param String
-	 *            that is the username of the Account that the account wishes to view
-	 * @return void
-	 * @throws ....
+	 * @param a - Account that is the account to be viewed
 	 */
 	public void viewAccountInfo(Account a) {
 		System.out.println(a.toString()); 
@@ -90,10 +97,7 @@ public class AccountFunctionalityController {
 	/**
 	 * Allows an Account to view the details of a school
 	 * 
-	 * @param String
-	 *            that is the name of the school to view the details of
-	 * @return void
-	 * @throw ...
+	 * @param schoolName - String that is the name of the school to view the details of
 	 */
 	public University viewSchoolDetails(String schoolName) {
 		University univ = dbc.getSchool(schoolName);
