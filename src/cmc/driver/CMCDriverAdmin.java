@@ -65,7 +65,7 @@ public class CMCDriverAdmin {
         aInteraction = (AdminInteraction) logOnInteraction; 
         
         //edit account
-        aInteraction.editAccountInfo("juser", "John", "Cena", "user", 'u', 'Y');
+        aInteraction.editAccountInfo("juser", "John", "Cena", "user", 'u', 'D');
 	      
 	      aInteraction.viewAccountInfo("juser");
 	      

@@ -98,8 +98,8 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @param user - User requesting deactivation
    */
   public void requestDeactivation(User user){
-    user.setStatus('d');
-    dbController.changeStatus(user, 'd');
+    user.setStatus('D');
+    dbController.changeAccount(user);
   }
   
   /**
@@ -211,22 +211,6 @@ public class UserFunctionalityController extends AccountFunctionalityController{
     System.out.println("University 2: "+s2);
   }
   
-  /**
-   * User can request a new Account of type User
-   * 
-   * @param newUser - User to request a new account
-   */
-  public void requestNewAccount(User newUser) {
-    String username = newUser.getUsername();
-    boolean duplicate = dbController.findUsername(username);
-    if(duplicate == false) {
-      dbController.requestNewAccount(newUser);
-    }
-    
-    else {
-      System.out.println("This username is already taken");
-    }
-  }
   
   /**
    *???

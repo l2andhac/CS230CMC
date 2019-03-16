@@ -190,18 +190,6 @@ public class UserInteraction extends AccountInteraction{
   }
   
   
-  /**
-   * User can request to make a new account
-   * 
-   * @param a String first name, last name, username, and password
-   * @return none
-   * @throws none
-   */
-  public void requestNewAccount(String fn, String ln, String u, String p){
-    User user = new User(fn, ln, u, p, 'p');
-    userFunctCont.requestNewAccount(user);
-  }
-  
   
   /**
    * Requests for the second school to compare to

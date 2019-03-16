@@ -61,7 +61,18 @@ public class AccountInteraction{
 	  }
 	  
 	
-	  
+	  /**
+	   * User can request to make a new account
+	   * 
+	   * @param a String first name, last name, username, and password
+	   * @return none
+	   * @throws none
+	   */
+	  public void requestNewAccount(String fn, String ln, String u, String p){
+	    User user = new User(fn, ln, u, p, 'p');
+	    AccountFunctionalityController afc = new AccountFunctionalityController();
+	    afc.requestNewAccount(user);
+	  }
 	  
 	  /**
 	   * Allows the user to request to get password back if forgotten

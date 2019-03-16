@@ -24,6 +24,10 @@ public class CMCDriverUser {
 	      //uInteraction = new UserInteraction();
 	      accountInteraction = new AccountInteraction();
 	      
+	      System.out.println("-------------------------------------------------------");
+	      System.out.println("Non user requests a new account\n");
+	      accountInteraction.requestNewAccount("Collin", "Jordre", "cjordre", "password");
+	      
 	      
 	      System.out.println("-------------------------------------------------------");
 	      System.out.println("Attempted LogIn for invalid password credentials\n");
@@ -119,7 +123,11 @@ public class CMCDriverUser {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User searches for friends");
 	      uInteraction.searchForFriends("juser");
-
+	      	
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User requests for deactivation");
+	      uInteraction.requestDeactivation();
+	      uInteraction.viewAccountInfo();
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User logs off");

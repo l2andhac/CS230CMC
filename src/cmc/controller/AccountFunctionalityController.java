@@ -43,7 +43,24 @@ public class AccountFunctionalityController {
 		
 	}
 
-
+	 /**
+	   * User can request a new Account of type User
+	   * 
+	   * @param newUser - User to request a new account
+	   */
+	  public void requestNewAccount(User newUser) {
+	    String username = newUser.getUsername();
+	    boolean duplicate = dbc.findUsername(username);
+	    if(duplicate == false) {
+	      dbc.addAccount(newUser);
+	      newUser.setStatus('P');
+	      dbc.changeAccount(newUser);
+	    }
+	    
+	    else {
+	      System.out.println("This username is already taken");
+	    }
+	  }
 
 	/**
 	 * Allows the Account to recover their password if the username is an email

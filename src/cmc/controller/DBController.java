@@ -1,6 +1,5 @@
 package cmc.controller;
 import dblibrary.project.csci230.*;
-import java.io.*;
 import java.util.*;
 import cmc.entity.*;
 
@@ -13,41 +12,16 @@ import cmc.entity.*;
  * @version 2/23/2019
  */
 public class DBController {
-  //account
-  //private Account account;
-  
-  //university
-  //private University university;
-  
 	// instance variable for the database library
   private UniversityDBLibrary univDBlib;
   // instance variable for a searchController
   private SearchController searchController;
   
-  // ??? Are we supposed to have this
-  public UniversityDBLibrary getUnivDBlib(){
-    return univDBlib;
-  }
-  
- ////////////////////////////////////////////////////////////////////////////////
-  /**
-   * Creates a DataBaseController objects.
-   * 
-   * @param account 
-   * @param university 
-   */
-//  public DBController(Account account, University university) {
-//    this.account = account;
-//    this.university = university;
-//    univDBlib = new UniversityDBLibrary("l2andhac","csci230");
-//  }
   
   /**
    * Creates a DataBaseController object
    */
   public DBController() {
-    //this.account = account;
-    //this.university = university;
     univDBlib = new UniversityDBLibrary("l2andhac","csci230");
   }
   
@@ -153,13 +127,15 @@ public class DBController {
   }
   
   /**
-   * Changes the status of an account.
+   * Changes the status of an account. **This doesn't work right now for some reason
+   * so I did it another way. Maybe will fix later. Otherwise delete.**
    * 
    * @param a - Account which status needs to be changed
    * @param c - Character representing the new status
    */
   public void changeStatus(Account a, char c) {
-    univDBlib.user_editUser(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType(), c);
+	  a.setStatus(c);
+    univDBlib.user_editUser(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType(), a.getStatus());
   }
   
   /**
@@ -424,7 +400,7 @@ public class DBController {
    * @param u - User who requests the new account
    */
   public void requestNewAccount(User u) {
-    //
+	  univDBlib.user_addUser(u.getFirstName(), u.getLastName(), u.getUsername(), u.getPassword(), u.getUserType());
   }
 
   /**
