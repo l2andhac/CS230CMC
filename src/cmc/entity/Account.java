@@ -9,7 +9,6 @@
  * @version 3/17/2019
  */
 public class Account {
-
  //first name of the account holder
  private String firstName;
  // last name of the account holder
@@ -27,6 +26,14 @@ public class Account {
 
  /**
   * Account constructor that creates a new Account object
+  * 
+  * @param - firstName the new account's first name
+  * @param - lastName the new account's last name
+  * @param - username the new account's username
+  * @param - password the new account's password
+  * @param - type the new account's type, either 'u' for User or 'a' for admin
+  * @param - status the new account's status, either 'Y' for active, 'N' for deactivated,
+  * 'P' for pending activation, or 'D' for pending deactivation
   */
  public Account(String firstName, String lastName, String username, String password, char type, char status) {
    this.firstName = firstName;
@@ -61,7 +68,8 @@ public class Account {
     return this.lastName;
  }
     
- /** mutator method that sets the last name of the account holder to the parameter given
+ /** 
+  * mutator method that sets the last name of the account holder to the parameter given
   * 
   * @param - ln the last name of the account holder
   */
@@ -69,7 +77,8 @@ public class Account {
     this.lastName = ln;
  }
     
- /** accessor method that returns the password of the account
+ /** 
+  * accessor method that returns the password of the account
   * 
   * @return - String that is the password of the account
   */
@@ -77,7 +86,8 @@ public class Account {
     return this.password;
  }
     
- /** mutator method that sets the password to the given parameter
+ /** 
+  * mutator method that sets the password to the given parameter
   * 
   * @param - p the password of the account holder
   */
@@ -85,7 +95,8 @@ public class Account {
     this.password = p;
  }
     
- /** accesor method that returns the userType
+ /** 
+  * accesor method that returns the userType
   * 
   * @return - char that represents whether the account is an admin or a user
   */
@@ -93,7 +104,8 @@ public class Account {
     return this.userType;
  }
 
- /** mutator method that sets the userType to the given parameter
+ /** 
+  * mutator method that sets the userType to the given parameter
   * 
   * @param - t the userType of the account
   */
@@ -101,7 +113,8 @@ public class Account {
     this.userType = t;
  }
 
- /** accesor method that returns the status of the account
+ /** 
+  * accesor method that returns the status of the account
   * 
   * @return - char that represents the status of the account
   */

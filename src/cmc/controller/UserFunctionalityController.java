@@ -18,9 +18,7 @@ import java.util.*;
 */
 
 public class UserFunctionalityController extends AccountFunctionalityController{
-  //User
-  private SearchController searchController;
-  private SavedSchool savedSchool;
+  
   private DBController dbController;
   
   /**
@@ -169,7 +167,6 @@ public class UserFunctionalityController extends AccountFunctionalityController{
     if(list == null || !list.contains(schoolToSave)) {
       
       dbController.addSavedSchool(user, schoolToSave);
-      user.addSavedSchool(schoolToSave);
     }
     
     else {
@@ -261,11 +258,3 @@ public void showRecSchools(String school) {
   
   
 }
-
-
-
-
-
-
-
-
