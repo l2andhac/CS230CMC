@@ -34,9 +34,10 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   /**
    * Allows an admin to remove a school from the Database
    * 
-   * @param univ - University to be removed from Database
+   * @param schoolName - String of university to be removed from Database
    */
-  public void removeSchool(University univ){
+  public void removeSchool(String schoolName){
+	University univ = dbController.getSchool(schoolName);
     boolean saved = dbController.isSchoolSaved(univ);
     boolean hasEmphasis = dbController.hasEmphasis(univ);
       if(saved == false && hasEmphasis == false){     

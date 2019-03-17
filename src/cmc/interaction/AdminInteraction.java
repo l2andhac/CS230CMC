@@ -38,10 +38,10 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows an admin to remove a school from the database
    * 
-   * @param univ -University to be removed
+   * @param schoolName - String of university to be removed
    */
-  public void removeSchool(University univ){
-    adminFunctCont.removeSchool(univ);
+  public void removeSchool(String schoolName){
+    adminFunctCont.removeSchool(schoolName);
   }
   
   

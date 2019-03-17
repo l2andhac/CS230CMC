@@ -403,6 +403,17 @@ public class DBController {
 	  univDBlib.user_addUser(u.getFirstName(), u.getLastName(), u.getUsername(), u.getPassword(), u.getUserType());
   }
 
+  
+    /*
+     * @returns the total number of schools currently in the databse
+     */
+  /*public int getTotalNumberOfSchools() {
+	  
+	  String[][] schools = univDBlib.university_getUniversities();
+	  return schools[0].length(); //??????
+  }
+  */
+  
   /**
    * looks for the 5 most closely related schools
    * 
@@ -415,8 +426,8 @@ public void findRecSchools(String school) {
 	Set<University> allUniversities = this.getAllSchools();
 	
 	double distance = 0;
-	double[] distances = new double[179];
-	String[] schools = new String[179];
+	double[] distances = new double[180];
+	String[] schools = new String[180];
 	int i = 0;
 	for(University s : allUniversities)
     {
