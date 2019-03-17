@@ -1,5 +1,4 @@
 package cmc.interaction;
-import java.io.*;
 import java.util.*;
 import cmc.entity.*;
 import cmc.controller.*;
@@ -84,15 +83,6 @@ public class AdminInteraction extends AccountInteraction{
     adminFunctCont.addSchool(school);
   }
   
-  
-  /**
-   * Alllows the admin to view a school's details
-   * 
-   * @param univ - University to view
-   */
-  public void adminViewSchool(University univ){
-    adminFunctCont.adminViewSchool(univ);
-  }
   
   
   /**
@@ -200,16 +190,6 @@ public class AdminInteraction extends AccountInteraction{
   public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
     adminFunctCont.editAccountInfo(un, fn, ln, p, t, s); 
     // editAccountInfo should take all the parameters not an Account in the AdminInteraction class
-  }
-  
-  
-  /**
-   * Allows the current admin to be set
-   * 
-   * @param a - Admin to setAccount for
-   */
-  public void setAccount(Admin a){
-    admin = a;
   }
   
   

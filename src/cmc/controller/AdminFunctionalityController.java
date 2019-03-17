@@ -14,8 +14,6 @@ import cmc.interaction.*;
 public class AdminFunctionalityController extends AccountFunctionalityController{
   //Attributes
   private DBController dbController;
-  private ForgotPasswordController forgotPasswordController;
-  private AccountController accountController;
 
  
   //Methods
@@ -71,15 +69,6 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     }
   }
   
-  
-  /**
-   * Allows an Admin to view a School
-   * 
-   * @param univ - University that the Admin wishes to view
-   */
-  public void adminViewSchool(University univ){
-    //is this the same as viewing a school's details? Is an admin not being able to save it a GUI thin?
-  }
   
   
   /**

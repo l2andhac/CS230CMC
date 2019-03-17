@@ -18,9 +18,6 @@ public class UserInteraction extends AccountInteraction{
   //A UserFunctionalityController to call the proper methods in the controllers
   private UserFunctionalityController userFunctCont;
   
-  
-  //Methods
-  
   /**
  * Constructor for a UserInteraction
  * 
@@ -243,16 +240,7 @@ public class UserInteraction extends AccountInteraction{
   }
   
   
-  /**
-   * Allows the current user to be set
-   * 
-   * @param the current User
-   * @return none
-   * @throws none
-   */
-  public void setAccount(User a){
-    user = a;
-  }
+  
   
   
   /**
