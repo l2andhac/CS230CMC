@@ -30,7 +30,6 @@ public class SavedSchool extends University {
    * Gets the time stamp of a saved university.
    * 
    * @return the time stamp of the university
-   * @throws
    */
   public String getTimeStamp() {
     return this.timeStamp;
@@ -40,9 +39,8 @@ public class SavedSchool extends University {
    * Sets the time stamp of a saved university to time.
    * 
    * @param time the time the university was saved at
-   * @throws
    */
   public void setTimeStamp(String time) {
-    //
+    this.timeStamp = time;
   }
 }

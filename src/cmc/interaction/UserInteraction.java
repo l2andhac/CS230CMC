@@ -79,13 +79,13 @@ public class UserInteraction extends AccountInteraction{
    */
   public Set<University> searchSchool(String name, String state, String location, String control, int enrollmentUp, 
                 int enrollmentLo, int percentFemaleUp, int percentFemaleLo, int satVerbUp, 
-                int satVerbLo, int satMathUp, int satMathLo, int percentFinancialAidUp, 
+                int satVerbLo, int satMathUp, int satMathLo, int expensesUp, int expensesLo, int percentFinancialAidUp, 
                 int percentFinancialAidLo,  int applicantsUp, int applicantsLo, int percentAdmittedUp,
                 int percentAdmittedLo, int percentEnrollUp, int percentEnrollLo, int academicScaleUp, 
                 int academicScaleLo, int socialScaleUp, int socialScaleLo, int qualOfLifeScaleUp,
                 int qualOfLifeScaleLo, List<String> emphasis){
     Search s = new Search( name,state, location, control,enrollmentUp, enrollmentLo, percentFemaleUp, 
-                          percentFemaleLo, satVerbUp, satVerbLo, satMathUp, satMathLo, percentFinancialAidUp, 
+                          percentFemaleLo, satVerbUp, satVerbLo, satMathUp, satMathLo, expensesUp, expensesLo, percentFinancialAidUp, 
                           percentFinancialAidLo, applicantsUp, applicantsLo, percentAdmittedUp,
                           percentAdmittedLo, percentEnrollUp, percentEnrollLo, academicScaleUp, 
                           academicScaleLo, socialScaleUp, socialScaleLo, qualOfLifeScaleUp,
