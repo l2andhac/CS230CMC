@@ -11,6 +11,13 @@ import cmc.interaction.AccountInteraction;
 import cmc.interaction.AdminInteraction;
 import cmc.interaction.UserInteraction;
 
+/**
+ * 
+ * Driver for User Functionalities
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
+ */
 public class CMCDriverUser {
 
 	//instance variables for UserInteraction, and AccountInteraction

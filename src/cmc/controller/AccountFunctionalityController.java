@@ -1,15 +1,14 @@
 package cmc.controller;
 
-// currently unnecessary
-import cmc.interaction.*;
 import cmc.entity.*;
 
 /**
  * AccountFinctionalityController.Java This class is the Controller for all
  * Accounts and their functionalities
  * 
- * @author L2 and the Hackstreet Boyz
- * @version 3/6/19
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 public class AccountFunctionalityController {
 	// Attributes

@@ -2,10 +2,12 @@ package cmc.controller;
 import java.lang.Math;
 import cmc.entity.*;
 /**
- * @author Lindsay Will
- * @version February 21, 2019
  * 
  * A Class that controls all of the functionaliteis of an Account forgetting a password
+ * 
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 
 public class ForgotPasswordController{

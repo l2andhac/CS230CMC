@@ -4,8 +4,9 @@ package cmc.entity;
  * 
  * This class is an entity class for saved schools.
  * 
- * @author L2 and the Hackstreet Boyz
- * @version 2/21/2019
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 public class SavedSchool extends University {
   //timeStamp that keeps track of when a SavedSchool is added

@@ -2,10 +2,12 @@ package cmc.entity;
 
 import java.util.*;
 
-/*
+/**
  * This class is a search object
- * @author l^2AndTheHackstreetBoys
- * @version Feb 21, 2019
+ * 
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 public class Search {
 	///////////////// forgot to add expenses into the parameters

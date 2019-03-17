@@ -10,6 +10,13 @@ import cmc.interaction.AdminInteraction;
  */
 import java.util.*;
 
+/** 
+* Controller for the UserFunctionalityController class
+* 
+* @author L^2 and the Hackstreetboyz
+* @version 3/17/2019
+*/
+
 public class UserFunctionalityController extends AccountFunctionalityController{
   //User
   private SearchController searchController;

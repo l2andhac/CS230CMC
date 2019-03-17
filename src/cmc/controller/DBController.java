@@ -8,8 +8,9 @@ import cmc.entity.*;
  * 
  * This class is the controller for the database.
  * 
- * @author L2 and the Hackstreet Boyz, Nate Jordre
- * @version 2/23/2019
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 public class DBController {
 	// instance variable for the database library
@@ -407,12 +408,12 @@ public class DBController {
     /*
      * @returns the total number of schools currently in the databse
      */
-  /*public int getTotalNumberOfSchools() {
+  public int getTotalNumberOfSchools() {
 	  
 	  String[][] schools = univDBlib.university_getUniversities();
-	  return schools[0].length(); //??????
+	  return schools.length; 
   }
-  */
+  
   
   /**
    * looks for the 5 most closely related schools
@@ -426,8 +427,9 @@ public void findRecSchools(String school) {
 	Set<University> allUniversities = this.getAllSchools();
 	
 	double distance = 0;
-	double[] distances = new double[180];
-	String[] schools = new String[180];
+	int total = getTotalNumberOfSchools();
+	double[] distances = new double[total];
+	String[] schools = new String[total];
 	int i = 0;
 	for(University s : allUniversities)
     {

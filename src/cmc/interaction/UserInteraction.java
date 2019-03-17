@@ -7,8 +7,9 @@ import cmc.entity.*;
  * UserInteraction.class
  * This class serves as the interaction class for the user
  * 
- * @author L2 and the Hackstreet Boyz
- * @version 2/23/19
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 public class UserInteraction extends AccountInteraction{
   //Attributes

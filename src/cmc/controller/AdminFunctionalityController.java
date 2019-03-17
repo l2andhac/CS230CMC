@@ -7,8 +7,9 @@ import cmc.interaction.*;
  * AdminFunctionalityController.class
  * This class is the Controller for Admins and their functionalities
  * 
- * @author L2 and the Hackstreet Boyz
- * @version 2/24/19
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 public class AdminFunctionalityController extends AccountFunctionalityController{
   //Attributes

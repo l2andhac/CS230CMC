@@ -1,11 +1,12 @@
 package cmc.entity;
 import java.io.*;
 import java.util.*;
-/*
+/**
  * This is a base class for university.
  * 
+ * 
  * @author L^2 and the Hackstreetboyz
- * @version 2/21/2019
+ * @version 3/17/2019
  */
   
 public class University{

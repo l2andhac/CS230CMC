@@ -1,12 +1,12 @@
 package cmc.controller;
 import cmc.entity.*;
 import cmc.interaction.AccountInteraction;
-/*
+/**
  * This is a controller class for account controller.
  * 
  * 
  * @author L^2 and the Hackstreetboyz
- * @version 2/21/2019
+ * @version 3/17/2019
  */
 
 public class AccountController{

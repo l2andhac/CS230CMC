@@ -2,10 +2,11 @@
 /**
  * Account.java
  * 
- * @author: L^2 and the Hackstreet Boyz
- * @version: February 21, 2019
- * 
  * Class that holds the information held by an account holder
+ * 
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 public class Account {
  // no attributes

@@ -1,10 +1,12 @@
 package cmc.controller;
 import cmc.entity.*;
 /**
- * @author Lindsay Will
- * @version February 21, 2019
  * 
  * A Class that controls all of the functionalities of searching
+ * 
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 
 public class SearchController{

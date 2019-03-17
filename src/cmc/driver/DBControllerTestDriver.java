@@ -66,5 +66,7 @@ public class DBControllerTestDriver{
     
     t.addAccount(nateTheUser);*/
     
+    System.out.println(t.getTotalNumberOfSchools());
+    
   }
 }

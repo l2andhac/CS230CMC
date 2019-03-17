@@ -10,6 +10,13 @@ import cmc.interaction.AccountInteraction;
 import cmc.interaction.AdminInteraction;
 import cmc.interaction.UserInteraction;
 
+/**
+ * 
+ * Driver for Admin Functionalities
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
+ */
 public class CMCDriverAdmin {
 
 	//instance variables for AdminInteraction, and AccountInteraction
@@ -103,7 +110,7 @@ public class CMCDriverAdmin {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin tries to edit a school");
 	      aInteraction.editSchool("UNIVERSITY OF MINNESOTA", "MINNESOTA", "URBAN", "STATE", 
-	    		  40001, 45, 490, 557, 13772, 50, 8500, 80, 60, 4, 3, 4);
+	    		  40000, 45, 490, 557, 13772, 50, 8500, 80, 60, 4, 3, 4);
 	      aInteraction.viewSchoolDetails("UNIVERSITY OF MINNESOTA");
 	      
 	      System.out.println("\n-------------------------------------------------------");

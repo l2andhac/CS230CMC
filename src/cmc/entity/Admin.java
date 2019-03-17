@@ -2,10 +2,11 @@ package cmc.entity;
 /**
  * Admin.java
  * 
- * @author: L^2 and the Hackstreet Boyz
- * @version: February 23, 2019
- * 
  * Class that represents an admin account
+ * 
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
  */
 
 public class Admin extends Account{

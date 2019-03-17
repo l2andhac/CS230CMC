@@ -3,12 +3,14 @@ import java.io.*;
 import java.util.*;
 /**
  * User.java
- * 
- * @author: L^2 and the Hackstreet Boyz
- * @version: February 21, 2019
+
  * 
  * Class that represents an user account
-*/
+ * 
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
+ */
 public class User extends Account{
   
   private List<SavedSchool> savedSchools;
