@@ -8,7 +8,6 @@ import cmc.entity.*;
  * 
  * This class is the controller for the database.
  * 
- * 
  * @author L^2 and the Hackstreetboyz
  * @version 3/17/2019
  */
@@ -26,7 +25,6 @@ public class DBController {
     univDBlib = new UniversityDBLibrary("l2andhac","csci230");
   }
   
-////////////////////////////////////////////////////////////////////////////////
   /**
    * Edits a university.
    * 
@@ -127,17 +125,6 @@ public class DBController {
     return retAccount;
   }
   
-  /**
-   * Changes the status of an account. **This doesn't work right now for some reason
-   * so I did it another way. Maybe will fix later. Otherwise delete.**
-   * 
-   * @param a - Account which status needs to be changed
-   * @param c - Character representing the new status
-   */
-  public void changeStatus(Account a, char c) {
-	  a.setStatus(c);
-    univDBlib.user_editUser(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType(), a.getStatus());
-  }
   
   /**
    * Gets a list of all the universities in the database.
@@ -177,8 +164,8 @@ public class DBController {
   /**
    * Removes a saved school from the saved school list of a user.
    * 
-   * @param s- String that is the name of the SavedSchool to be removed
    * @param u - User who is attempting to remove a SavedSchool
+   * @param s- String that is the name of the SavedSchool to be removed
    */
   public void removeSavedSchool(User u, String s) {
     univDBlib.user_removeSchool(u.getUsername(), s);
@@ -261,7 +248,7 @@ public class DBController {
    * criteria.
    * 
    * @param s - Search object containing all the wanted criteria
-   * @return List<University> - the list of all the matching universities
+   * @return Set<University> - the set of all the matching universities
    */
   public Set<University> findSearchedSchool(Search s) {
     //
@@ -279,8 +266,8 @@ public class DBController {
   /**
    * Adds a saved school to the database.
    * 
-   * @param s - SavedSchool to add
    * @param u - User to add the SavedSchool
+   * @param s - SavedSchool to add
    */
   public void addSavedSchool(User u, SavedSchool s) {
     univDBlib.user_saveSchool(u.getUsername(), s.getSchoolName());
@@ -330,10 +317,9 @@ public class DBController {
   /**
    * Returns a list of all the accounts present in the database.
    * 
-   * @return List<String> - a list of all the usernames
+   * @return Set<String> - a set of all the usernames
    */
   public Set<String> viewAllAccounts() {
-    //
     String[][] allUsers = univDBlib.user_getUsers();
     Set<String> retList = new HashSet<String>();
     for(int i = 0; i < allUsers.length; i++)
@@ -349,10 +335,10 @@ public class DBController {
    * @param a - Account that is updated
    */
   public void changeAccount(Account a) {
-    //
     univDBlib.user_editUser(a.getUsername(), a.getFirstName(), a.getLastName(), a.getPassword(), a.getUserType(),
                             a.getStatus());
   }
+  
   /**
    * Checks if a university has emphasis.
    * 
@@ -405,8 +391,10 @@ public class DBController {
   }
 
   
-    /*
-     * @returns the total number of schools currently in the databse
+    /**
+     * Gets the total number of schools in the database
+     * 
+     * @returns the total number of schools currently in the database
      */
   public int getTotalNumberOfSchools() {
 	  
@@ -438,9 +426,7 @@ public void findRecSchools(String school) {
 		schools[i] = s.getSchoolName();
 		i++;
     }
-	//System.out.println(schools[20] + distances[20]);
 	bubbleSort(distances, schools);
-	//System.out.println(listOfSchools[0] + listOfSchools[1] + listOfSchools[2]+ listOfSchools[3]+ listOfSchools[4]);
 }
  
 public static void bubbleSort(double arr[], String arr2[]) 
@@ -461,7 +447,6 @@ public static void bubbleSort(double arr[], String arr2[])
             } 
         }
     }
-    //System.out.println(arr2[0] + arr2[1] + arr2[2] + arr2[3] + arr2[140]);
     System.out.println("The top most related schools are: \n" + arr2[1] + "\n" + arr2[2] + "\n" +arr2[3] + "\n" + arr2[4] + "\n" + arr2[5]);
     System.out.println("\n\nwith distances of: \n" + arr2[1] + ": " + arr[1] + "\n" + arr2[2] + ": " + arr[2] + "\n" +arr2[3] + ": " +arr[3] + "\n" + arr2[4] + ": " + arr[4] + "\n" + arr2[5] + ": " + arr[5]);
 } 

@@ -13,10 +13,12 @@ import cmc.interaction.*;
  */
 public class AdminFunctionalityController extends AccountFunctionalityController{
   //Attributes
+	//instance variable for DBController
   private DBController dbController;
+  // instance variable for ForgotPassworController
+  private ForgotPasswordController forgotPasswordController;
 
- 
-  //Methods
+
   /**
    * Constructor for AdminFunctionalityController that creates an AdminFunctionalityController
    * and instantiates a DBController in the class
@@ -68,7 +70,6 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     	System.out.println("The school CANNOT be added, becasue its already in the database");
     }
   }
-  
   
   
   /**

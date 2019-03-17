@@ -10,7 +10,7 @@ import cmc.entity.*;
  */
 
 public class SearchController{
-  
+ //instance variable for Search Object 
 private Search searchCriteria;
   
   /**
@@ -27,6 +27,7 @@ private Search searchCriteria;
    * Searches for a University
    * 
    * @param u - University to be searched for
+   * @return - boolean returns true if the school matches the search criteria
    */
   public boolean testForMatch(University u){
   	if(!u.getState().contains(searchCriteria.getState())) {

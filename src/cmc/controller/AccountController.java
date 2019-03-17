@@ -30,7 +30,6 @@ public class AccountController{
    * 
    * @param username - String that is the username
    * @param password - String that is the password
-   * @throws NullPointerException
    */
   public Account logOn(String username, String password) throws NullPointerException
   {
@@ -58,6 +57,6 @@ public class AccountController{
 	      System.out.println("Incorrect information was given");
 	    }
 	    return null;
-  }
-  
+
+  }  
 }

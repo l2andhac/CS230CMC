@@ -78,7 +78,7 @@ public class Account {
  }
     
  /** 
-  * accesor method that returns the password of the account
+  * accessor method that returns the password of the account
   * 
   * @return - String that is the password of the account
   */
