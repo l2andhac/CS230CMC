@@ -97,6 +97,10 @@ public class Search {
 	 * 
 	 * @param satMathLo lowerbound of the sat math scores
 	 * 
+	 * @param expensesUp upperbound of expenses
+	 * 
+	 * @param expensesLo lowerbound of expenses
+	 * 
 	 * @param percentFinancialAidUp upperbound of the percentage of financial aid
 	 * 
 	 * @param percentFinancialAidLo lowerbound of the percentage of financial aid
@@ -131,7 +135,7 @@ public class Search {
 	 */
 	public Search(String name, String state, String location, String control, int enrollmentUp, int enrollmentLo,
 			int percentFemaleUp, int percentFemaleLo, int satVerbUp, int satVerbLo, int satMathUp, int satMathLo,
-			int percentFinancialAidUp, int percentFinancialAidLo, int applicantsUp, int applicantsLo,
+			int expensesUp, int expensesLo, int percentFinancialAidUp, int percentFinancialAidLo, int applicantsUp, int applicantsLo,
 			int percentAdmittedUp, int percentAdmittedLo, int percentEnrollUp, int percentEnrollLo, int academicScaleUp,
 			int academicScaleLo, int socialScaleUp, int socialScaleLo, int qualOfLifeScaleUp, int qualOfLifeScaleLo,
 			List<String> emphasis) {
@@ -144,6 +148,8 @@ public class Search {
 		this.percentFemaleUp = percentFemaleUp;
 		this.satVerbUp = satVerbUp;
 		this.satVerbLo = satVerbLo;
+		this.setExpensesUp(expensesUp);
+		this.setExpensesLo(expensesLo);
 		this.satMathUp = satMathUp;
 		this.satMathLo = satMathLo;
 		this.percentFinancialAidUp = percentFinancialAidUp;
@@ -164,6 +170,8 @@ public class Search {
 	}
 
 	/**
+	 * accessor method to get the name of the search
+	 * 
 	 * @return the name
 	 */
 	public String getName() {
@@ -171,14 +179,17 @@ public class Search {
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * mutator method to change the name of the search
+	 * 
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
+	 * accessor method to get the state of the search
+	 * 
 	 * @return the state
 	 */
 	public String getState() {
@@ -186,14 +197,17 @@ public class Search {
 	}
 
 	/**
-	 * @param state
-	 *            the state to set
+	 * mutator method to change the state of the search
+	 * 
+	 * @param state the state to set
 	 */
 	public void setState(String state) {
 		this.state = state;
 	}
 
 	/**
+	 * accessor method to get the location of the search
+	 * 
 	 * @return the location
 	 */
 	public String getLocation() {
@@ -201,14 +215,17 @@ public class Search {
 	}
 
 	/**
-	 * @param location
-	 *            the location to set
+	 * mutator method to change the location of the search
+	 * 
+	 * @param location the location to set
 	 */
 	public void setLocation(String location) {
 		this.location = location;
 	}
 
 	/**
+	 * accessor method to get the control of the search
+	 * 
 	 * @return the control
 	 */
 	public String getControl() {
@@ -216,14 +233,17 @@ public class Search {
 	}
 
 	/**
-	 * @param control
-	 *            the control to set
+	 * mutator method to change the control of the search
+	 * 
+	 * @param control the control to set
 	 */
 	public void setControl(String control) {
 		this.control = control;
 	}
 
 	/**
+	 * accessor method to get the enrollment upperbound of the search
+	 * 
 	 * @return the enrollmentUp
 	 */
 	public int getEnrollmentUp() {
@@ -231,14 +251,17 @@ public class Search {
 	}
 
 	/**
-	 * @param enrollmentUp
-	 *            the enrollmentUp to set
+	 * mutator method to change the upperbound for enrollment of the search
+	 * 
+	 * @param enrollmentUp the enrollmentUp to set
 	 */
 	public void setEnrollmentUp(int enrollmentUp) {
 		this.enrollmentUp = enrollmentUp;
 	}
 
 	/**
+	 * accessor method to get the enrollment lowerbound of the search
+	 * 
 	 * @return the enrollmentLo
 	 */
 	public int getEnrollmentLo() {
@@ -246,14 +269,17 @@ public class Search {
 	}
 
 	/**
-	 * @param enrollmentLo
-	 *            the enrollmentLo to set
+	 * mutator method to change the lowerbound for enrollment of the search
+	 * 
+	 * @param enrollmentLo the enrollmentLo to set
 	 */
 	public void setEnrollmentLo(int enrollmentLo) {
 		this.enrollmentLo = enrollmentLo;
 	}
 
 	/**
+	 * accessor method to get the percentFemale lowerbound of the search
+	 * 
 	 * @return the percentFemaleUp
 	 */
 	public int getPercentFemaleUp() {
@@ -261,14 +287,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentFemaleUp
-	 *            the percentFemaleUp to set
+	 * mutator method to change the percentFemale upperbound of the search
+	 * 
+	 * @param percentFemaleUp the percentFemaleUp to set
 	 */
 	public void setPercentFemaleUp(int percentFemaleUp) {
 		this.percentFemaleUp = percentFemaleUp;
 	}
 
 	/**
+	 * accessor method to get the percentFemale lowerbound of the search
+	 * 
 	 * @return the percentFemaleLo
 	 */
 	public int getPercentFemaleLo() {
@@ -276,14 +305,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentFemaleLo
-	 *            the percentFemaleLo to set
+	 * mutator method to change the percentFemale lowerbound of the search
+	 * 
+	 * @param percentFemaleLo the percentFemaleLo to set
 	 */
 	public void setPercentFemaleLo(int percentFemaleLo) {
 		this.percentFemaleLo = percentFemaleLo;
 	}
 
 	/**
+	 * accessor method to get the satVerb upperbound of the search
+	 * 
 	 * @return the satVerbUp
 	 */
 	public int getSatVerbUp() {
@@ -291,14 +323,17 @@ public class Search {
 	}
 
 	/**
-	 * @param satVerbUp
-	 *            the satVerbUp to set
+	 * mutator method to change the satVerb upperbound of the search
+	 * 
+	 * @param satVerbUp the satVerbUp to set
 	 */
 	public void setSatVerbUp(int satVerbUp) {
 		this.satVerbUp = satVerbUp;
 	}
 
 	/**
+	 * accessor method to get the satVerb lowerbound of the search
+	 * 
 	 * @return the satVerbLo
 	 */
 	public int getSatVerbLo() {
@@ -306,14 +341,17 @@ public class Search {
 	}
 
 	/**
-	 * @param satVerbLo
-	 *            the satVerbLo to set
+	 * mutator method to change the satVerbLo of the search
+	 * 
+	 * @param satVerbLo the satVerbLo to set
 	 */
 	public void setSatVerbLo(int satVerbLo) {
 		this.satVerbLo = satVerbLo;
 	}
 
 	/**
+	 * accessor method to get the satMath upperbound of the search
+	 * 
 	 * @return the satMathUp
 	 */
 	public int getSatMathUp() {
@@ -321,14 +359,17 @@ public class Search {
 	}
 
 	/**
-	 * @param satMathUp
-	 *            the satMathUp to set
+	 * mutator method to change the satMath upperbound of the search
+	 * 
+	 * @param satMathUp the satMathUp to set
 	 */
 	public void setSatMathUp(int satMathUp) {
 		this.satMathUp = satMathUp;
 	}
 
 	/**
+	 * accessor method to get the satMath lowerbound of the search
+	 * 
 	 * @return the satMathLo
 	 */
 	public int getSatMathLo() {
@@ -336,14 +377,53 @@ public class Search {
 	}
 
 	/**
-	 * @param satMathLo
-	 *            the satMathLo to set
+	 * mutator method to change the satMath lowerbound of the search
+	 * 
+	 * @param satMathLo the satMathLo to set
 	 */
 	public void setSatMathLo(int satMathLo) {
 		this.satMathLo = satMathLo;
 	}
 
 	/**
+	 * accessor method to get the expenses upperbound of the search
+	 * 
+	 * @return the expensesUp
+	 */
+	public int getExpensesUp() {
+		return expensesUp;
+	}
+
+	/**
+	 * mutator method to change the expenses upperbound of the search
+	 * 
+	 * @param expensesUp the expensesUp to set
+	 */
+	public void setExpensesUp(int expensesUp) {
+		this.expensesUp = expensesUp;
+	}
+
+	/**
+	 * accessor method to get the expenses lowerbound of the search
+	 * 
+	 * @return the expensesLo
+	 */
+	public int getExpensesLo() {
+		return expensesLo;
+	}
+
+	/**
+	 * mutator method to change the expenses lowerbound of the search
+	 * 
+	 * @param expensesLo the expensesLo to set
+	 */
+	public void setExpensesLo(int expensesLo) {
+		this.expensesLo = expensesLo;
+	}
+
+	/**
+	 * accessor method to get the financialAid upperbound of the search
+	 * 
 	 * @return the percentFinancialAidUp
 	 */
 	public int getPercentFinancialAidUp() {
@@ -351,14 +431,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentFinancialAidUp
-	 *            the percentFinancialAidUp to set
+	 * mutator method to change the percentFinancialAid upperbound of the search
+	 * 
+	 * @param percentFinancialAidUp the percentFinancialAidUp to set
 	 */
 	public void setPercentFinancialAidUp(int percentFinancialAidUp) {
 		this.percentFinancialAidUp = percentFinancialAidUp;
 	}
 
 	/**
+	 * accessor method to get the percentFinancialAid lowerbound of the search
+	 * 
 	 * @return the percentFinancialAidLo
 	 */
 	public int getPercentFinancialAidLo() {
@@ -366,14 +449,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentFinancialAidLo
-	 *            the percentFinancialAidLo to set
+	 * mutator method to change the percentFinancialAid lowerbound of the search
+	 * 
+	 * @param percentFinancialAidLo the percentFinancialAidLo to set
 	 */
 	public void setPercentFinancialAidLo(int percentFinancialAidLo) {
 		this.percentFinancialAidLo = percentFinancialAidLo;
 	}
 
 	/**
+	 * accessor method to get the applicants upperbound of the search
+	 * 
 	 * @return the applicantsUp
 	 */
 	public int getApplicantsUp() {
@@ -381,14 +467,17 @@ public class Search {
 	}
 
 	/**
-	 * @param applicantsUp
-	 *            the applicantsUp to set
+	 * mutator method to change the applicants upperbound of the search
+	 * 
+	 * @param applicantsUp the applicantsUp to set
 	 */
 	public void setApplicantsUp(int applicantsUp) {
 		this.applicantsUp = applicantsUp;
 	}
 
 	/**
+	 * accessor method to get the applicants lowerbound of the search
+	 * 
 	 * @return the applicantsLo
 	 */
 	public int getApplicantsLo() {
@@ -396,14 +485,17 @@ public class Search {
 	}
 
 	/**
-	 * @param applicantsLo
-	 *            the applicantsLo to set
+	 * mutator method to change the applicants lowerbound of the search
+	 * 
+	 * @param applicantsLo the applicantsLo to set
 	 */
 	public void setApplicantsLo(int applicantsLo) {
 		this.applicantsLo = applicantsLo;
 	}
 
 	/**
+	 * accessor method to get the percentAdmitted upperbound of the search
+	 * 
 	 * @return the percentAdmittedUp
 	 */
 	public int getPercentAdmittedUp() {
@@ -411,14 +503,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentAdmittedUp
-	 *            the percentAdmittedUp to set
+	 * mutator method to change the percentAdmitted upperbound of the search
+	 * 
+	 * @param percentAdmittedUp the percentAdmittedUp to set
 	 */
 	public void setPercentAdmittedUp(int percentAdmittedUp) {
 		this.percentAdmittedUp = percentAdmittedUp;
 	}
 
 	/**
+	 * accessor method to get the percentAdmitted lowerbound of the search
+	 * 
 	 * @return the percentAdmittedLo
 	 */
 	public int getPercentAdmittedLo() {
@@ -426,14 +521,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentAdmittedLo
-	 *            the percentAdmittedLo to set
+	 * mutator method to change the percentAdmitted lowerbound of the search
+	 * 
+	 * @param percentAdmittedLo the percentAdmittedLo to set
 	 */
 	public void setPercentAdmittedLo(int percentAdmittedLo) {
 		this.percentAdmittedLo = percentAdmittedLo;
 	}
 
 	/**
+	 * accessor method to get the percentEnroll upperbound of the search
+	 * 
 	 * @return the percentEnrollUp
 	 */
 	public int getPercentEnrollUp() {
@@ -441,14 +539,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentEnrollUp
-	 *            the percentEnrollUp to set
+	 * mutator method to change the percentEnroll upperbound of the search
+	 * 
+	 * @param percentEnrollUp the percentEnrollUp to set
 	 */
 	public void setPercentEnrollUp(int percentEnrollUp) {
 		this.percentEnrollUp = percentEnrollUp;
 	}
 
 	/**
+	 * accessor method to get the percentEnroll lowerbound of the search
+	 * 
 	 * @return the percentEnrollLo
 	 */
 	public int getPercentEnrollLo() {
@@ -456,14 +557,17 @@ public class Search {
 	}
 
 	/**
-	 * @param percentEnrollLo
-	 *            the percentEnrollLo to set
+	 * mutator method to change the percentEnroll lowerbound of the search
+	 * 
+	 * @param percentEnrollLo the percentEnrollLo to set
 	 */
 	public void setPercentEnrollLo(int percentEnrollLo) {
 		this.percentEnrollLo = percentEnrollLo;
 	}
 
 	/**
+	 * accessor method to get the academicScale upperbound of the search
+	 * 
 	 * @return the academicScaleUp
 	 */
 	public int getAcademicScaleUp() {
@@ -471,14 +575,17 @@ public class Search {
 	}
 
 	/**
-	 * @param academicScaleUp
-	 *            the academicScaleUp to set
+	 * mutator method to change the academicScale upperbound of the search
+	 * 
+	 * @param academicScaleUp the academicScaleUp to set
 	 */
 	public void setAcademicScaleUp(int academicScaleUp) {
 		this.academicScaleUp = academicScaleUp;
 	}
 
 	/**
+	 * accessor method to get the academicScale lowerbound of the search
+	 * 
 	 * @return the academicScaleLo
 	 */
 	public int getAcademicScaleLo() {
@@ -486,14 +593,17 @@ public class Search {
 	}
 
 	/**
-	 * @param academicScaleLo
-	 *            the academicScaleLo to set
+	 * mutator method to change the academicScale lowerbound of the search
+	 * 
+	 * @param academicScaleLo the academicScaleLo to set
 	 */
 	public void setAcademicScaleLo(int academicScaleLo) {
 		this.academicScaleLo = academicScaleLo;
 	}
 
 	/**
+	 * accessor method to get the socialScale upperbound of the search
+	 * 
 	 * @return the socialScaleUp
 	 */
 	public int getSocialScaleUp() {
@@ -501,14 +611,17 @@ public class Search {
 	}
 
 	/**
-	 * @param socialScaleUp
-	 *            the socialScaleUp to set
+	 * mutator method to change the socialScale upperbound of the search
+	 * 
+	 * @param socialScaleUp the socialScaleUp to set
 	 */
 	public void setSocialScaleUp(int socialScaleUp) {
 		this.socialScaleUp = socialScaleUp;
 	}
 
 	/**
+	 * accessor method to get the socialScale lowerbound of the search
+	 * 
 	 * @return the socialScaleLo
 	 */
 	public int getSocialScaleLo() {
@@ -516,14 +629,17 @@ public class Search {
 	}
 
 	/**
-	 * @param socialScaleLo
-	 *            the socialScaleLo to set
+	 * mutator method to change the socialScale lowerbound of the search
+	 * 
+	 * @param socialScaleLo the socialScaleLo to set
 	 */
 	public void setSocialScaleLo(int socialScaleLo) {
 		this.socialScaleLo = socialScaleLo;
 	}
 
 	/**
+	 * accessor method to get the qualOfLifeScale upperbound of the search
+	 * 
 	 * @return the qualOfLifeScaleUp
 	 */
 	public int getQualOfLifeScaleUp() {
@@ -531,14 +647,17 @@ public class Search {
 	}
 
 	/**
-	 * @param qualOfLifeScaleUp
-	 *            the qualOfLifeScaleUp to set
+	 * mutator method to change the qualOfLifeScale upperbound of the search
+	 * 
+	 * @param qualOfLifeScaleUp the qualOfLifeScaleUp to set
 	 */
 	public void setQualOfLifeScaleUp(int qualOfLifeScaleUp) {
 		this.qualOfLifeScaleUp = qualOfLifeScaleUp;
 	}
 
 	/**
+	 * accessor method to get the qualOfLifeScale lowerbound of the search
+	 * 
 	 * @return the qualOfLifeScaleLo
 	 */
 	public int getQualOfLifeScaleLo() {
@@ -546,14 +665,17 @@ public class Search {
 	}
 
 	/**
-	 * @param qualOfLifeScaleLo
-	 *            the qualOfLifeScaleLo to set
+	 * mutator method to change the qualOfLifeScale lowerbound of the search
+	 * 
+	 * @param qualOfLifeScaleLo the qualOfLifeScaleLo to set
 	 */
 	public void setQualOfLifeScaleLo(int qualOfLifeScaleLo) {
 		this.qualOfLifeScaleLo = qualOfLifeScaleLo;
 	}
 
 	/**
+	 * accessor method to get the emphasis of the search
+	 * 
 	 * @return the emphasis
 	 */
 	public List<String> getEmphasis() {
@@ -561,8 +683,9 @@ public class Search {
 	}
 
 	/**
-	 * @param emphasis
-	 *            the emphasis to set
+	 * mutator method to change the emphases of the search
+	 * 
+	 * @param emphasis the emphasis to set
 	 */
 	public void setEmphasis(List<String> emphasis) {
 		this.emphasis = emphasis;
