@@ -1,4 +1,6 @@
 package cmc.driver;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import cmc.entity.University;
@@ -113,6 +115,32 @@ public class CMCDriverAdmin {
 	      System.out.println("Admin can add a new user account");
 	      aInteraction.addAccount("Andy", "Rothstein", "AndytheUser", "password",'u', 'y');
 	      aInteraction.viewAccountInfo("AndytheUser");
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can add a new school");
+	      
+	      List<String> foci = new ArrayList<String>();
+	      foci.add("Business Administration");
+	      
+	      //aInteraction.addSchool("UNIVERSITY OF ST THOMAS", "MINNESOTA", "URBAN", "PRIVATE", 10000, 46.0, 450, 400, 50000, 15.2, 11001, 89.9, 50.0, 2, 1, 1, foci);
+	      
+	 
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin tries to add a school already in the database");
+	      
+	      aInteraction.addSchool("UNIVERSITY OF ST THOMAS", "MINNESOTA", "URBAN", "PRIVATE", 10000, 46.0, 450, 400, 50000, 15.2, 11001, 89.9, 50.0, 2, 1, 1, foci);
+	      
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin can remove a school");
+	      
+	      //aInteraction.removeSchool(univ);
+	      
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin tries to remove a school that cannot be removed");
+	      
+	      //aInteraction.removeSchool(univ);
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can log off");

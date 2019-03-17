@@ -41,8 +41,16 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     boolean hasEmphasis = dbController.hasEmphasis(univ);
       if(saved == false && hasEmphasis == false){     
       dbController.removeSchool(univ);
+      System.out.println("\nThe school was removed.");
+      }
+      else if(saved == true) {
+    	 System.out.println("\nThe school cannot be removed, because it is saved.");
+      }
+      else if(hasEmphasis == true) {
+    	 System.out.println("\nThe school cannot be removed, because it is has emphasis.");
+      }
     }
-  }
+  
   
   
   /**
@@ -54,6 +62,10 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     boolean found = dbController.findSchoolName(univ.getSchoolName());
     if (!found){
       dbController.addSchool(univ);
+      System.out.println("\nThe school was added to the database");
+    }
+    else {
+    	System.out.println("The school CANNOT be added, becasue its already in the database");
     }
   }
   
