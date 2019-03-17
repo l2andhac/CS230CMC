@@ -109,17 +109,25 @@ public class UserInteraction extends AccountInteraction{
   }
   
   
+
   /**
-   * Allows the user to sort a list of Usiversities by a certain trait
-   * 
-   * @param a list of University to be sorted and a character denoting what to sort by
-   * @return the sorted list
-   * @throws none
-   */
-  public List<University> sortResults(List<University> list, char c){
-    //return userFunctCont.sortResults(list, c);
-    return null;
-  }
+    * Allows the user to sort a list of Universities by a certain trait
+    * 
+    * @param a list of University to be sorted and a character denoting what to sort by
+    * @return the sorted list
+    */
+   public void sortResults(Set<University> list, char c){
+     if(list != null) {
+   List<University> aList = userFunctCont.sortResults(list, c);
+   for(University uni : aList) {
+   System.out.println(uni.getSchoolName());
+   }
+     }
+     else {
+     System.out.println("The list to sort is empty");
+     }
+   }
+
   
   
   
@@ -185,24 +193,12 @@ public class UserInteraction extends AccountInteraction{
    * @return none
    * @throws none
    */
-  public void compareSavedSchools(SavedSchool s1){
-    SavedSchool s2 = requestForSecondSchool();
-    userFunctCont.compareSavedSchools(s1, s2);
+  public void compareSavedSchools(String s1){
+    userFunctCont.compareSavedSchools(s1);
   }
   
   
-  
-  /**
-   * Requests for the second school to compare to
-   * 
-   * @param none
-   * @return SavedSchool to compare
-   * @throws none
-   */
-  public SavedSchool requestForSecondSchool(){
-    ///////////////////////////////////////////////////
-    return null;
-  }
+ 
   
   
   /**

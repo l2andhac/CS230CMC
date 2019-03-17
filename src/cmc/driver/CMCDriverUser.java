@@ -136,6 +136,29 @@ public class CMCDriverUser {
 	      uInteraction.requestDeactivation();
 	      uInteraction.viewAccountInfo();
 	      
+
+	  System.out.println("\n-------------------------------------------------------");
+      System.out.println("User can compare 2 Saved Schools which are Stanford and Auburn.");
+      uInteraction.compareSavedSchools("STANFORD");
+
+      
+      System.out.println("\n-------------------------------------------------------");
+      System.out.println("User can sort list by expenses - from less expensive to more expensive");
+      
+      uInteraction.sortResults(listOfMatches, 'e');
+      
+      System.out.println("\n-------------------------------------------------------");
+      System.out.println("User can sort list by admission - from lowest percentage of admission to highest");
+      
+      uInteraction.sortResults(listOfMatches, 'a');
+      
+      System.out.println("\n-------------------------------------------------------");
+      System.out.println("User can sort list by number of students - from lowest number of students to highest");
+      
+      uInteraction.sortResults(listOfMatches, 'n');
+
+	      
+	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User logs off");
 	      uInteraction.logOff();

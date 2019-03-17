@@ -128,30 +128,33 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   
   /**
    * View results of searched schools
-   * @param univs - List<University> Universities to be sorted
-   * @param howToSort - char 
-   * @return List<University> - The sorted list of the Universities
    */
-  public List<University> sortResults(List<University> univs, char howToSort){
+  public List<University> sortResults(Set<University> univs, char howToSort){
     //I'm probably thinking to much but I found that
     //https://www.javadevjournal.com/java/java-sorting-example-comparable-comparator/
     //https://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/
     //To sort a list according to a specified comparator -> we will have to implement that in the University class
     
     List<University> newList = new ArrayList<University>();
+    
+    for(University uni : univs) {
+    newList.add(uni);
+    }
+    
     if(howToSort =='e') { //expenses
-      Collections.sort(univs, University.compareByExpenses);
+      Collections.sort(newList, University.compareByExpenses);
     }
     
     else if(howToSort == 'a') { //percent admitted
-      Collections.sort(univs, University.compareByAdmission);
+      Collections.sort(newList, University.compareByAdmission);
     }
     
     else if(howToSort == 'n') { //number of students
-      Collections.sort(univs, University.compareByNumberStudents);
+      Collections.sort(newList, University.compareByNumberStudents);
     }
-    return univs; 
+    return newList; 
   }
+
   
   /**
    * Save school to make a University a SavedSchool
@@ -210,14 +213,33 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   /**
    * Compare two SavedSchools in the User's list of SavedSchools
    * 
-   * @param s1 - SavedSchool to compare
-   * @param s2 - SavedSchool to compare
+   * @param s1 and s2 are the two SavedSchools to compare
    */
-  public void compareSavedSchools(SavedSchool s1, SavedSchool s2){
-    System.out.println("University 1: "+s1);
-    System.out.println("University 2: "+s2);
+  public void compareSavedSchools(String s1){
+  University s2 = this.requestForSecondSchool();
+  
+  
+    System.out.println("University 1: "+dbController.getSchool(s1));
+    System.out.println("University 2: "+dbController.getSchool(s2.getSchoolName()).toString());
   }
   
+  /**
+   * Requests for the second school to compare to
+   * 
+   * @param none
+   * @return SavedSchool to compare
+   * @throws none
+   */
+  public University requestForSecondSchool(){
+/*    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter the name of a school to compare to the first one: ");
+    String schoolName = sc.next();*/
+    
+    University school2= this.dbController.getSchool("AUBURN");
+    
+    //sc.close();
+    return school2;
+  }
   
   /**
    *???
