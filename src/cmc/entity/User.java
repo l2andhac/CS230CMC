@@ -35,20 +35,6 @@ public class User extends Account{
    return this.savedSchools;
  }
  
- /**
-  * method that adds a saved school to a user
-  * @param s - the saved school that will be added to a user
-  */
- public void addSavedSchool(SavedSchool s) {
-  
- }
- 
- /**
-  * method that removes a saved school from a user account
-  * @param s - the saved school which is wished to be removed
-  */
- public void removeSavedSchool(SavedSchool s) {
-  
- }
+
 
 }

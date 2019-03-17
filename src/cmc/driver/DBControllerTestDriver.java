@@ -55,7 +55,7 @@ public class DBControllerTestDriver{
     
     List<String> foci = new ArrayList<String>();
     foci.add("Computer Science");
-    Search searchObj = new Search("CALIFORNIA", "", "", "", 60000, 5000, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+    Search searchObj = new Search("CALIFORNIA", "", "", "", 60000, 5000, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
     Set<University> listOfMatches = t.findSearchedSchool(searchObj);
     System.out.println("----------------------------------------------------------");
     System.out.println("Matching Schools:");
