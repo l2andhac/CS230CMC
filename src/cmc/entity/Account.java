@@ -9,7 +9,6 @@
  * @version 3/17/2019
  */
 public class Account {
- // no attributes
 
  //first name of the account holder
  private String firstName;
@@ -70,7 +69,7 @@ public class Account {
     this.lastName = ln;
  }
     
- /** accesor method that returns the password of the account
+ /** accessor method that returns the password of the account
   * 
   * @return - String that is the password of the account
   */

@@ -11,7 +11,7 @@ import cmc.entity.*;
  * @version 3/17/2019
  */
 public class AccountFunctionalityController {
-	// Attributes
+	
 	// instance variable for the AccountController
 	private AccountController ac;
 	// instance variable for the ForgotPasswordController
@@ -29,7 +29,6 @@ public class AccountFunctionalityController {
 		this.dbc = new DBController();
 	}
 
-	// Methods
 	/**
 	 * Allows an Account to Log onto the CMC
 	 * 
