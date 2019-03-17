@@ -1,5 +1,4 @@
 package cmc.interaction;
-import java.io.*;
 import java.util.*;
 import cmc.entity.*;
 import cmc.controller.*;
@@ -12,7 +11,7 @@ import cmc.controller.*;
  * @version 3/17/2019
  */
 public class AdminInteraction extends AccountInteraction{
-  //Attributes
+
   //The current Admin
   private Admin admin;
   //A AdminFunctionalityController to call the proper methods in the controllers
@@ -63,9 +62,9 @@ public class AdminInteraction extends AccountInteraction{
    * @param numberOfApplicants - int that is the number of applicants to the school
    * @param percentAdmitted - double that is the percent of students who are admitted to the school
    * @param percentEnrolled - double that is the percent of students who enroll in the school
-   * @param academicScale - 
-   * @param socialScale -
-   * @param qualityScale -
+   * @param academicScale - int rating the academics of the school
+   * @param socialScale - int rating the social scale of the school
+   * @param qualityScale - int rating the quality of the school
    * @param emphases - List<String> that are academic emphases of the schools
    */
   public void addSchool(String schoolName, String state, String location,
@@ -85,26 +84,27 @@ public class AdminInteraction extends AccountInteraction{
   }
   
   
-  /**
-   * Alllows the admin to view a school's details
-   * 
-   * @param univ - University to view
-   */
-  public void adminViewSchool(University univ){
-    adminFunctCont.adminViewSchool(univ);
-  }
-  
   
   /**
    * Allows the admin to edit a school
    * 
-   * @param String schoolName, String state, String location,
-                        String control, int numberOfStudents, double percentFemale,
-                         double satVerbal, double satMath,
-                        double expenses, double percentFinancialAid, int numberOfApplicants,
-                        double percentAdmitted, double percentEnrolled, int academicScale,
-                        int socialScale, int qualityScale, List<String> emphases
-
+   * @param schoolName - String that is the name of the school
+   * @param state - String that is the state of the school
+   * @param location - String that is the location setting of the school
+   * @param control - String that is the school control type of the school
+   * @param numberOfStudents - int that is the number of Students of the school
+   * @param percentFemale - double that the percent of female students at the school
+   * @param satVerbal - double that is the average score on the SAT verbal of the school
+   * @param satMath - double that is the average score on the SAT math of the school
+   * @param expenses - double that is the cost of the school
+   * @param percentFinancialAid - double that is the percentage of financial aid of the school
+   * @param numberOfApplicants - int that is the number of applicants to the school
+   * @param percentAdmitted - double that is the percent of students who are admitted to the school
+   * @param percentEnrolled - double that is the percent of students who enroll in the school
+   * @param academicScale - int rating the academics of the school
+   * @param socialScale - int rating the social scale of the school
+   * @param qualityScale - int rating the quality of the school
+   * 
    */
   public void editSchool(String schoolName, String state, String location,
                         String control, int numberOfStudents, double percentFemale,
@@ -188,28 +188,18 @@ public class AdminInteraction extends AccountInteraction{
   
   
   /**
-   * Allows the admin to edit first name, last name, and password/////////////// change to edit everything
+   * Allows the admin to edit first name, last name, password, status, and type
    * 
    * @param un - String that is the username of the account to edit
    * @param fn - String that is the last name of the account to edit
    * @param ln - String that is the first name of the account to edit
-   * @param p - String that is the password of the account to   edit
+   * @param p - String that is the password of the account to edit
    * @param t - Character that is the type of the Account
    * @param s - Character that is the status of the Account
    */
   public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
     adminFunctCont.editAccountInfo(un, fn, ln, p, t, s); 
     // editAccountInfo should take all the parameters not an Account in the AdminInteraction class
-  }
-  
-  
-  /**
-   * Allows the current admin to be set
-   * 
-   * @param a - Admin to setAccount for
-   */
-  public void setAccount(Admin a){
-    admin = a;
   }
   
   
