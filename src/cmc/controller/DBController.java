@@ -165,7 +165,7 @@ public class DBController {
    * Removes a saved school from the saved school list of a user.
    * 
    * @param u - User who is attempting to remove a SavedSchool
-   * @param s- String that is the name of the SavedSchool to be removed
+   * @param s - String that is the name of the SavedSchool to be removed
    */
   public void removeSavedSchool(User u, String s) {
     univDBlib.user_removeSchool(u.getUsername(), s);
@@ -376,7 +376,10 @@ public class DBController {
     }
     return false;
   }
-  
+  /**
+   * adds account to the database
+   * @param a - Account to be added
+   */
   public void addAccount(Account a){
     univDBlib.user_addUser(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType());
   }
@@ -394,7 +397,7 @@ public class DBController {
     /**
      * Gets the total number of schools in the database
      * 
-     * @returns the total number of schools currently in the database
+     * @return int - the total number of schools currently in the database
      */
   public int getTotalNumberOfSchools() {
 	  
@@ -428,7 +431,11 @@ public void findRecSchools(String school) {
     }
 	bubbleSort(distances, schools);
 }
- 
+ /**
+  * method to sort the arrays based on distance of the related schools
+  * @param arr - double[] for distances of related schools
+  * @param arr2 - String[] for the schools connected to the distances
+  */
 public static void bubbleSort(double arr[], String arr2[]) 
 { 
     int n = arr.length; 
@@ -456,6 +463,7 @@ public static void bubbleSort(double arr[], String arr2[])
  * 
  * @param univ1 - first University to compare
  * @param univ2 - second University to compare
+ * @return double - the distance between the two Universities
  */
 public double findDistance(University univ1, University univ2) {
 	

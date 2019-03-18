@@ -1,8 +1,8 @@
 package cmc.controller;
-import java.util.Set;
 
+import java.util.*;
 import cmc.entity.*;
-import cmc.interaction.*;
+
 /**
  * AdminFunctionalityController.class
  * This class is the Controller for Admins and their functionalities
@@ -15,15 +15,14 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   //Attributes
 	//instance variable for DBController
   private DBController dbController;
-  // instance variable for ForgotPassworController
-  private ForgotPasswordController forgotPasswordController;
+
 
 
   /**
    * Constructor for AdminFunctionalityController that creates an AdminFunctionalityController
    * and instantiates a DBController in the class
    * 
-   * @param admin - Admin that is the current admin
+   * @param a - Admin that is the current admin
    */
   public AdminFunctionalityController(Admin a){
     super();

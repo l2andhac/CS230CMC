@@ -1,5 +1,5 @@
 package cmc.entity;
-import java.io.*;
+
 import java.util.*;
 /**
  * User.java
@@ -13,7 +13,7 @@ public class User extends Account{
 	private List<SavedSchool> savedSchools;
 	/**
 	 * User constructor creates a User object.
-	 * @param firstName- String representing the first name of the user
+	 * @param firstName - String representing the first name of the user
 	 * @param lastName - String representing the last name of the user
 	 * @param username - String representing the username of the user
 	 * @param password - String representing the password of the user

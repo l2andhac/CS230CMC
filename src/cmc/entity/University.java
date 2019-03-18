@@ -1,5 +1,5 @@
 package cmc.entity;
-import java.io.*;
+
 import java.util.*;
 /**
  * This is a base class for university.
@@ -48,24 +48,24 @@ public class University{
   
   /** Constructor for a University object
    *
-   * @param schoolName, name of school
-   * @param state, state of school
-   * @param location, location of school: suburban, urban, small-city, or -1 if unknown
-   * @param control, control of the school: private, state, city, or -1 if unknown 
-   * @param numberOfStudents, number of students of a school
-   * @param percentFemale, percentage of students that are female
-   * @param percentMale, percentage of students that are male
-   * @param satVerbal, average SAT verbal score for enrolled students (between 0 and 800)
-   * @param satMath, average SAT math score for enrolled students (between 0 and 800)
-   * @param expenses, annual expenses
-   * @param percentFinancialAid, percent of enrolled students recieving financial aid
-   * @param numberOfApplicants, number of applicants for school
-   * @param percentAdmitted, percent of applicants that get admitted
-   * @param percentEnrolled, percent of applicants that decide to enroll
-   * @param academicScale, academic scale of school (1-5)
-   * @param socialScale, social scale of school (1-5)
-   * @param qualityScale, quality scale of school (1-5)
-   * @param emphases, list of up to 5 areas of study in which the school excels
+   * @param schoolName - String that is the name of school
+   * @param state - String that is the state of school
+   * @param location - String that is the location of school: suburban, urban, small-city, or -1 if unknown
+   * @param control - String that is the control of the school: private, state, city, or -1 if unknown 
+   * @param numberOfStudents - int that is the number of students of a school
+   * @param percentFemale - int that is the percentage of students that are female
+   * @param percentMale - double that is the percentage of students that are male
+   * @param satVerbal - double that is the average SAT verbal score for enrolled students (between 0 and 800)
+   * @param satMath - double that is the average SAT math score for enrolled students (between 0 and 800)
+   * @param expenses - double that is the annual expenses
+   * @param percentFinancialAid - double that is the percent of enrolled students recieving financial aid
+   * @param numberOfApplicants  - int that is the number of applicants for school
+   * @param percentAdmitted - double that is the percent of applicants that get admitted
+   * @param percentEnrolled - double that is the percent of applicants that decide to enroll
+   * @param academicsScale - int that is the academic scale of school (1-5)
+   * @param socialScale - int that is the social scale of school (1-5)
+   * @param qualityScale - int that is the quality scale of school (1-5)
+   * @param emphases - List<String> list of up to 5 areas of study in which the school excels
    * 
    */
   public University(String schoolName, String state, String location, String control, int numberOfStudents, double percentFemale, double satVerbal, double satMath, double expenses, double percentFinancialAid, int numberOfApplicants, double percentAdmitted, double percentEnrolled, int academicsScale, int socialScale, int qualityScale, List<String> emphases)
@@ -94,7 +94,7 @@ public class University{
   /**
    * accessor method for school name
    * 
-   * @returns school name, a String
+   * @return String - school name
    */
   public String getSchoolName()
   {
@@ -104,7 +104,7 @@ public class University{
     /**
    * accessor method for state
    * 
-   * @returns state, a String
+   * @return String - state
    */
   public String getState()
   {
@@ -114,7 +114,7 @@ public class University{
     /**
    * accessor method for location
    * 
-   * @returns location, a String
+   * @return String - location
    */
   public String getLocation()
   {
@@ -124,7 +124,7 @@ public class University{
     /**
    * accessor method for control
    * 
-   * @returns control, a String
+   * @return Sting - control
    */
   public String getControl()
   {
@@ -134,7 +134,7 @@ public class University{
     /**
    * accessor method for number of students
    * 
-   * @returns numberOfStudents, an int
+   * @return int - numberOfStudents
    */
   public int getNumStudents()
   {
@@ -144,7 +144,7 @@ public class University{
       /**
    * accessor method for percent female
    * 
-   * @returns percentFemale, a double
+   * @return double percentFemale
    */
   public double getPercentFemales()
   {
@@ -154,7 +154,7 @@ public class University{
       /**
    * accessor method for SATVerbal
    * 
-   * @returns satVerbal, a double
+   * @return double - satVerbal
    */
   public double getSATVerbal()
   {
@@ -164,7 +164,7 @@ public class University{
       /**
    * accessor method for SATMath
    * 
-   * @returns satMath, a double
+   * @return double - satMath
    */
   public double getSATMath()
   {
@@ -174,7 +174,7 @@ public class University{
       /**
    * accessor method for school name
    * 
-   * @returns expenses, a double
+   * @return double - expenses
    */
   public double getExpenses()
   {
@@ -184,7 +184,7 @@ public class University{
       /**
    * accessor method for percentFinancialAid
    * 
-   * @returns percentFinancialAid, a double
+   * @return double - percentFinancialAid
    */
   public double getPercentFinancialAid()
   {
@@ -194,7 +194,7 @@ public class University{
       /**
    * accessor method for number of Apllicants
    * 
-   * @returns numberOfApplicants, a int
+   * @return int - numberOfApplicants
    */
   public int getNumApplicants()
   {
@@ -204,7 +204,7 @@ public class University{
       /**
    * accessor method for percentAdmitted
    * 
-   * @returns percentAdmitted, a double
+   * @return double - percentAdmitted
    */
   public double getPercentAdmitted()
   {
@@ -214,7 +214,7 @@ public class University{
       /**
    * accessor method for percentEnrolled
    * 
-   * @returns percentEnrolled, a double
+   * @return double percentEnrolled
    */
   public double getPercentEnrolled()
   {
@@ -224,7 +224,7 @@ public class University{
       /**
    * accessor method for academic scale
    * 
-   * @returns academicScale, an int
+   * @return int academicScale
    */
   public int getAcademicScale()
   {
@@ -234,7 +234,7 @@ public class University{
       /**
    * accessor method for social scale
    * 
-   * @returns socialScale, an int
+   * @return int - socialScale
    */
   public int getSocialScale()
   {
@@ -244,7 +244,7 @@ public class University{
       /**
    * accessor method for quality of life scale
    * 
-   * @returns qualityScale, an int
+   * @return int - qualityScale
    */
   public int getQualityOfLifeScale()
   {
@@ -254,7 +254,7 @@ public class University{
   /**
    * accessor method for emphases
    * 
-   * @returns emphases, a List of strings
+   * @return List<String> - emphases
    */
   public List<String> getEmphases()
   {
@@ -268,9 +268,9 @@ public class University{
 	/**
 	 * compare method for expenses
 	 * 
-	 *   @param u1, first University to compare
-	 *   @param u2, second school to compare
-	 *   @return an int, if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
+	 *   @param u1 - University the first University to compare
+	 *   @param u2 - Universtiy that is the second school to compare
+	 *   @return int - if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
 	 */
     public int compare(University u1, University u2) {
       double univ1Expenses = u1.getExpenses();
@@ -287,9 +287,9 @@ public class University{
 	  /**
 		 * compare method for percent Admitted
 		 * 
-		 *   @param u1, first University to compare
-		 *   @param u2, second school to compare
-		 *   @return an int, if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
+		 *   @param u1 - University that is the first University to compare
+		 *   @param u2 - University that is thesecond school to compare
+		 *   @return int - if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
 		 */
 	  public int compare(University u1, University u2) {
       double univ1Admission = u1.getPercentAdmitted();
@@ -306,9 +306,9 @@ public class University{
 	  /**
 		 * compare method for number of students
 		 * 
-		 *   @param u1, first University to compare
-		 *   @param u2, second school to compare
-		 *   @return an int, if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
+		 *   @param u1 - University that is the first University to compare
+		 *   @param u2 - University that is the second school to compare
+		 *   @return int - if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
 		 */
 	  public int compare(University u1, University u2) {
       int univ1NumStudents = u1.getNumStudents();
