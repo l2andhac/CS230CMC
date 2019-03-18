@@ -84,8 +84,9 @@ public class CMCDriverUser {
 	      
 	      University univ1 = null;
 	      List<String> foci = new ArrayList<String>();
-	      foci.add("Computer Science");
-	      Set<University> listOfMatches = uInteraction.searchSchool("", "CALIFORNIA", "", "", 60000, 5000, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	      foci.add("ENGINEERING");
+	      foci.add("LIBERAL-ARTS");
+	      Set<University> listOfMatches = uInteraction.searchSchool("", "CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	      if (listOfMatches != null) {
 	      System.out.println("----------------------------------------------------------");
 	      System.out.println("Matching Schools:");

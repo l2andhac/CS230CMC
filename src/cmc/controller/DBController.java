@@ -479,6 +479,21 @@ public double findDistance(University univ1, University univ2) {
 	
 	return distance;
 }
-  
+
+	public List<String> getEmphases(University u) {
+		String schoolName = u.getSchoolName();
+
+		String[][] emphases = univDBlib.university_getNamesWithEmphases();
+		ArrayList<String> emphasesList = new ArrayList<String>();
+		// traverse the array
+		for (int z = 0; z < emphases.length; z++) {
+			// check if school name in emphases array is equal to school name in schools
+			// array
+			if (emphases[z][0].equals(schoolName)) {
+				emphasesList.add(emphases[z][1]);
+			}
+		}
+		return emphasesList;
+	}
   
 }
