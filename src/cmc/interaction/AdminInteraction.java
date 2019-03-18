@@ -29,6 +29,10 @@ public class AdminInteraction extends AccountInteraction{
 	this.adminFunctCont = new AdminFunctionalityController(admin);
   }
   
+  /**
+   * method that returns the username as a String
+   * @return String - the username of the Admin
+   */
   public String getUsername() {
 	  return this.admin.getUsername();
   }
@@ -126,7 +130,7 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to view all the schools in the database
    * 
-   * @retun Set<University> - Universities to be viewed
+   * @return Set<University> - Universities to be viewed
    */
   public Set<University> viewAllSchools(){  
     return adminFunctCont.viewAllSchools();
@@ -147,9 +151,9 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to add a new account into the database
    * 
-   * @param un - String that is the username of the account to add
    * @param fn - String that is the last name of the account to add
    * @param ln - String that is the first name of the account to add
+   * @param u - String that is the username  of the account to add
    * @param p - String that is the password of the account to add
    * @param t - Character that is the type of the Account
    * @param s - Character that is the status of the Account

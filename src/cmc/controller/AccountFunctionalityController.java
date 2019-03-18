@@ -97,6 +97,7 @@ public class AccountFunctionalityController {
 	 * Allows an Account to view the details of a school
 	 * 
 	 * @param schoolName - String that is the name of the school to view the details of
+	 * @return University - University to view the details of
 	 */
 	public University viewSchoolDetails(String schoolName) {
 		University univ = dbc.getSchool(schoolName);

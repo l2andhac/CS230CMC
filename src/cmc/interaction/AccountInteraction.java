@@ -29,8 +29,8 @@ public class AccountInteraction{
 	/**
 	   * Allows the user to log on
 	   * 
-	   * @param username - String that is the username of the account attempting to login
-	   * @param password - String that is the password of the account attempting to login
+	   * @param u - String that is the username of the account attempting to login
+	   * @param p - String that is the password of the account attempting to login
 	   * @return AccountInteraction - to be used to react with a logged on user
 	   */
 	  public AccountInteraction logOn(String u, String p){
@@ -47,16 +47,6 @@ public class AccountInteraction{
 	    }
 	    return null;
 	    
-	  }
-	  
-	  public char getTypeOfInteraction(String u, String p) {
-		  if(this.logOn(u, p).equals(userInteraction)) {
-			  return 'u';
-		  }
-		  else if(this.logOn(u, p).equals(adminInteraction)) {
-			  return 'a';
-		  }
-		  return 'n';
 	  }
 	  
 	

@@ -55,6 +55,7 @@ public class ForgotPasswordController{
    * Emails the Account a new password
    * 
    * @param username is an email to send the password to, account is the Account which the username belongs
+   * @param account - Account that is requesting a new password
    */
 	public void emailNewPassword(String username, Account account) {
 		String to = username;

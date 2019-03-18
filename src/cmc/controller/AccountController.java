@@ -1,6 +1,5 @@
 package cmc.controller;
 import cmc.entity.*;
-import cmc.interaction.AccountInteraction;
 /**
  * This is a controller class for account controller.
  * 
@@ -30,6 +29,8 @@ public class AccountController{
    * 
    * @param username - String that is the username
    * @param password - String that is the password
+   * @return Account - Account to be logged on
+   * @throws NullPointerException
    */
   public Account logOn(String username, String password) throws NullPointerException
   {

@@ -27,12 +27,12 @@ public class Account {
  /**
   * Account constructor that creates a new Account object
   * 
-  * @param - firstName the new account's first name
-  * @param - lastName the new account's last name
-  * @param - username the new account's username
-  * @param - password the new account's password
-  * @param - type the new account's type, either 'u' for User or 'a' for admin
-  * @param - status the new account's status, either 'Y' for active, 'N' for deactivated,
+  * @param firstName - String that is the new account's first name
+  * @param lastName - String that is the new account's last name
+  * @param username - String that is the new account's username
+  * @param password - String that is the new account's password
+  * @param type -Character that is the new account's type, either 'u' for User or 'a' for admin
+  * @param status - Character that is the new account's status, either 'Y' for active, 'N' for deactivated,
   * 'P' for pending activation, or 'D' for pending deactivation
   */
  public Account(String firstName, String lastName, String username, String password, char type, char status) {
@@ -45,7 +45,8 @@ public class Account {
 
  }
     /**
-     *  accesor method that returns the first name of the account holder
+     *  accessor method that returns the first name of the account holder
+     *  
      * @return - String that is the first name of the account holder
      */
  public String getFirstName() {
@@ -54,14 +55,14 @@ public class Account {
     
  /**
   * mutator method that sets the first name of the account holder to the parameter given
-  * @param - fn the first name of the account holder
+  * @param fn - String that is the first name of the account holder
   */
  public void setFirstName(String fn) {
     this.firstName = fn;
  }
 
  /**
-  *  accesor method that returns the last name of the account holder
+  *  accessor method that returns the last name of the account holder
   * @return - String that is the last name of the account holder
   */
  public String getLastName() {
@@ -71,7 +72,7 @@ public class Account {
  /** 
   * mutator method that sets the last name of the account holder to the parameter given
   * 
-  * @param - ln the last name of the account holder
+  * @param ln - String that is the last name of the account holder
   */
  public void setLastName(String ln) {
     this.lastName = ln;
@@ -89,7 +90,7 @@ public class Account {
  /** 
   * mutator method that sets the password to the given parameter
   * 
-  * @param - p the password of the account holder
+  * @param p - String that is the password of the account holder
   */
  public void setPassword(String p) {
     this.password = p;
@@ -107,7 +108,7 @@ public class Account {
  /** 
   * mutator method that sets the userType to the given parameter
   * 
-  * @param - t the userType of the account
+  * @param t - Character that is the userType of the account
   */
  public void setUserType(char t) {
     this.userType = t;
@@ -125,7 +126,7 @@ public class Account {
  /** 
   * mutator method that sets the status of the account to the given parameter
   * 
-  * @param - c the status of the account
+  * @param c - Character that is the status of the account
   */
  public void setStatus(char c) {
     this.status = c;
@@ -143,7 +144,7 @@ public class Account {
  /** 
   * mutator that sets the username to the given parameter
   * 
-  * @param - u the username of the account
+  * @param u - String that is the username of the account
   */
  public void setUsername(String u) {
     this.username = u;

@@ -1,6 +1,5 @@
 package cmc.controller;
 import cmc.entity.*;
-import cmc.interaction.AdminInteraction;
 import java.util.*;
 
 /** 
@@ -13,10 +12,7 @@ import java.util.*;
  */
 
 public class UserFunctionalityController extends AccountFunctionalityController{
-  //Instance variable for SearchController 
-  private SearchController searchController;
-  //Instance variable for a SavedSchool
-  private SavedSchool savedSchool;
+
   //Instance varibla for the DBController
   private DBController dbController;
   

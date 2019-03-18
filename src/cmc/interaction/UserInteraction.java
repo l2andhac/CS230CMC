@@ -21,7 +21,7 @@ public class UserInteraction extends AccountInteraction{
   /**
  * Constructor for a UserInteraction
  * 
- * @param User
+ * @param user - User that is the current user
  */
   public UserInteraction(User user) {
 	super();
@@ -29,6 +29,10 @@ public class UserInteraction extends AccountInteraction{
 	this.userFunctCont = new UserFunctionalityController();
   }
   
+  /**
+   * method that return the username as a String
+   * @return String - username of the User
+   */
   public String getUsername() {
 	  return this.user.getUsername();
   }
@@ -36,8 +40,7 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows the user to search for a friends saved schools
    * 
-   * @param a String u which is the username to search by
-   * @return a boolean if the search is successful
+   * @param u - String which is the username to search by
    */
   public void searchForFriends(String u){
     
@@ -75,6 +78,8 @@ public class UserInteraction extends AccountInteraction{
   * @param satVerbLo - double that is the lowest average score on the SAT verbal of the school
   * @param satMathUp - double that is the highest average score on the SAT math of the school
   * @param satMathLo - double that is the lowest average score on the SAT math of the school
+  * @param expensesUp - int that is the highest expense
+  * @param expensesLo - int that is the lowest expense
   * @param percentFinancialAidUp - double that is the highest percentage of financial aid of the school
   * @param percentFinancialAidLo - double that is the lowest percentage of financial aid of the school
   * @param applicantsUp - int that is the highest number of applicants to the school
@@ -89,7 +94,7 @@ public class UserInteraction extends AccountInteraction{
   * @param socialScaleLo - int lowest rating of the social scale of the school
   * @param qualOfLifeScaleUp - int highest rating of the quality of the school
   * @param qualOfLifeScaleLo - int lowest rating of the quality of the school
-  * @param emphases - List<String> that are academic emphases of the school
+  * @param emphasis - List<String> that are academic emphases of the school
   * 
   * @return Set<University> that hold the Universities that match the search criteria
   */
@@ -140,18 +145,7 @@ public class UserInteraction extends AccountInteraction{
     userFunctCont.saveSchool(univ, this.user);
   }
   
-  
-//  /**
-//   * Allows a user to view a searched school
-//   * 
-//   * @param univ - University to view
-//   */
-//
-//  public void viewSearchedSchool(University univ){
-//    userFunctCont.viewSearchedSchool(univ);
-//  }
 
-  
   
   /**
    * Allows a user to remove a saved school from their saved school list
