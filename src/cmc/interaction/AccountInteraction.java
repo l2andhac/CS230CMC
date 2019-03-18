@@ -3,7 +3,7 @@ import cmc.entity.*;
 import cmc.controller.*;
 /**
  * AccountInteraction.class
- * This class is the abstract class for the account interaction
+ * This is the class for the account interaction
  * 
  * 
  * @author L^2 and the Hackstreetboyz
@@ -18,9 +18,7 @@ public class AccountInteraction{
       private UserInteraction userInteraction;
       
 	  /**
-	 * Constructor for an AccountInteraction
-	 * 
-	 * @param none
+	 * Constructor for an AccountInteraction that creates an AccountFunctionalityController object
 	 * 
 	 */
 	public AccountInteraction() {
@@ -33,7 +31,7 @@ public class AccountInteraction{
 	   * 
 	   * @param username - String that is the username of the account attempting to login
 	   * @param password - String that is the password of the account attempting to login
-	   * @return AccountInteraction
+	   * @return AccountInteraction - to be used to react with a logged on user
 	   */
 	  public AccountInteraction logOn(String u, String p){
 	    Account a = accountFunctCont.logOn(u,p);
@@ -65,9 +63,10 @@ public class AccountInteraction{
 	  /**
 	   * User can request to make a new account
 	   * 
-	   * @param a String first name, last name, username, and password
-	   * @return none
-	   * @throws none
+	   * @param fn - String that is the first name of the account
+	   * @param ln - String that is the last name of the account
+	   * @param u - String that is the username of the account
+	   * @param p - String that is the password for the account
 	   */
 	  public void requestNewAccount(String fn, String ln, String u, String p){
 	    User user = new User(fn, ln, u, p, 'p');
@@ -84,8 +83,4 @@ public class AccountInteraction{
 	    accountFunctCont.forgotPassword(u);
 	  }
 	
-	
- /* public void setAccount(Account a){
-	  accountFunctCont(a);
-  }*/
 }

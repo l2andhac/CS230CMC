@@ -1,32 +1,27 @@
 package cmc.controller;
 import cmc.entity.*;
 import cmc.interaction.AdminInteraction;
-
-/**
- * @author Lindsay Will, Steffi Tapsoba
- * @version February 21, 2019
- * 
- * A Class that controls all of the functionalities of a User
- */
 import java.util.*;
 
 /** 
-* Controller for the UserFunctionalityController class
-* 
-* @author L^2 and the Hackstreetboyz
-* @version 3/17/2019
-*/
+ * UserFunctionalityCOntroller.java
+ * 
+ * Controller for the UserFunctionalityController class
+ * 
+ * @author L^2 and the Hackstreetboyz
+ * @version 3/17/2019
+ */
 
 public class UserFunctionalityController extends AccountFunctionalityController{
-  //User
+  //Instance variable for SearchController 
   private SearchController searchController;
+  //Instance variable for a SavedSchool
   private SavedSchool savedSchool;
+  //Instance varibla for the DBController
   private DBController dbController;
   
   /**
-   * Constructor for AdminFunctionalityController
-   * 
-   * @param User user
+   * Constructor for UserFunctionalityController.
    */
   public UserFunctionalityController(){
     super();  
@@ -36,7 +31,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   
   
   /**
-   * User can view their own account info
+   * User can view their own account info.
    * 
    * @param u - the User to be view information for
    */
@@ -45,7 +40,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   }
   
   /**
-   * User can edit their account
+   * User can edit their account.
    * 
    * @param un - String that is the username of the User
    * @param fn - String that is the first name of the User
@@ -55,217 +50,180 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @param s - Character that is the status of the User
    */
   public void editUserInfo(String un, String fn, String ln, String p, char t, char s){ 
+	  
 	  Account user = dbController.findAccount(un);
       user.setFirstName(fn);
       user.setLastName(ln);
       user.setPassword(p);
       user.setUserType(t);
       user.setStatus(s);
-    dbController.changeAccount(user);
+      dbController.changeAccount(user);
   }
   
   /**
-   * View details of a school
+   * User can view the details of a school if it is found in the database.
    * 
    * @param schoolName - String that is the name of the school
+   * @return univ - University that is the university to view the details of if it is in the database 
+   *         returns null if the university is not found
    */
   public University viewSchoolDetails(String schoolName){
-    boolean found = dbController.findSchoolName(schoolName);
-    if(found == true) {
-      University univ = dbController.getSchool(schoolName);
-      return univ;
-    }
-    return null;
+	  boolean found = dbController.findSchoolName(schoolName);
+	  if(found == true) {
+		  University univ = dbController.getSchool(schoolName);
+		  return univ;
+		  
+      }
+	  return null;
   }
   
   
   /**
-   * Allows the User to search a "friend" (another User) for their list of SavedSchools
+   * Allows the User to search a "friend" (another User) to see their list of SavedSchools.
    * 
    * @param username - String representing the username of the "friend" that the current User is trying to search for
-   * @return boolean - representing if the "friend" has any SavedSchools
+   * @return List<SavedSchool> - the list of schools saved by the "friend"
    */
   public List<SavedSchool> searchForFriends(String username){
-    User friend = (User) dbController.findAccount(username);
-    return viewSavedSchools(friend);
-//    if(friend.getUserType() == 'a') {
-//      System.out.println("The username entered is incorrect");
-//    }
-//    
-//    else if(friend != null && friend.getUserType() == 'u') {
-//      List<SavedSchool> list = friend.getSavedSchools(); 
-//      return list;                                      
-//    }
-//    return null;
+	  User friend = (User) dbController.findAccount(username);
+	  return viewSavedSchools(friend);
   }
   
   /**
-   * User can request for their status to be set to 'd' for deactivated
+   * User can request for their status to be set to 'D' for deactivated.
    * 
    * @param user - User requesting deactivation
    */
   public void requestDeactivation(User user){
-    user.setStatus('D');
-    dbController.changeAccount(user);
+	  user.setStatus('D');
+	  dbController.changeAccount(user);
   }
   
   /**
-   * User can search for schools that match the parameter criteria
+   * User can search for schools that match the parameter criteria.
    * 
    * @param searchObject - Search Object with all the parameters for a University
+   * @return Set<University> - a set of universities matching the search object if the object is not null
+   *         returns null if the searchObject is null
    */
-  public Set<University> searchSchool(Search searchObject){ ///////////COME BACK TO ADD PARAMS
-    if(searchObject != null) {
-      return this.dbController.findSearchedSchool(searchObject);
-    }
-    
-    else {
-      System.out.println("All the fields are empty");
-      return null;
-    }
+  public Set<University> searchSchool(Search searchObject){
+	  if(searchObject != null) {
+		  return this.dbController.findSearchedSchool(searchObject);
+      }
+	  else {
+		  System.out.println("All the fields are empty");
+		  return null;
+      }
     
   }
   
   /**
-   * View results of searched schools
+   * User can sort the results of the search.
+   * 
+   * @param univs - Set<University> a set of universities to sort
+   * @param howToSort - char a charater to determine the type of sorting
+   * 
+   * @return newList - the sorted list of universities
    */
   public List<University> sortResults(Set<University> univs, char howToSort){
-    //I'm probably thinking to much but I found that
-    //https://www.javadevjournal.com/java/java-sorting-example-comparable-comparator/
-    //https://beginnersbook.com/2013/12/java-arraylist-of-object-sort-example-comparable-and-comparator/
-    //To sort a list according to a specified comparator -> we will have to implement that in the University class
-    
-    List<University> newList = new ArrayList<University>();
-    
-    for(University uni : univs) {
-    newList.add(uni);
-    }
-    
-    if(howToSort =='e') { //expenses
-      Collections.sort(newList, University.compareByExpenses);
-    }
-    
-    else if(howToSort == 'a') { //percent admitted
-      Collections.sort(newList, University.compareByAdmission);
-    }
-    
-    else if(howToSort == 'n') { //number of students
-      Collections.sort(newList, University.compareByNumberStudents);
-    }
-    return newList; 
+	  List<University> newList = new ArrayList<University>();
+	  for(University uni : univs) {
+		  newList.add(uni);
+      }
+	  
+	  if(howToSort =='e') { //sort by expenses
+		  Collections.sort(newList, University.compareByExpenses);
+      }
+	  else if(howToSort == 'a') { //sort by percent admitted
+		  Collections.sort(newList, University.compareByAdmission);
+      }
+	  else if(howToSort == 'n') { //sort by number of students
+		  Collections.sort(newList, University.compareByNumberStudents);
+      }
+	  return newList; 
   }
 
   
   /**
-   * Save school to make a University a SavedSchool
+   * User can save a school to make a University a SavedSchool.
    * 
    * @param univ - the University to save
    * @param user - the User to save the school to
    */
   public void saveSchool(University univ, User user){
-    List<SavedSchool> list = user.getSavedSchools();
-    
-    SavedSchool schoolToSave = new SavedSchool(univ, "time");
-    if(list == null || !list.contains(schoolToSave)) {
-      
-      dbController.addSavedSchool(user, schoolToSave);
-      user.addSavedSchool(schoolToSave);
-    }
-    
-    else {
-      System.out.println("This school has already been saved");
-    }
-  }
-  
-  /**
-   * View a particular University from results
-   * 
-   * @param univ - University to view
-   */
-  public void viewSearchedSchool(University univ){
-    //Should we do a System.out.println to display all the school info (name, state, location, SAt,...) ?
-    //System.out.println(""+univ.getName()+", "+univ.getState()+", "+...);
+	  List<SavedSchool> list = user.getSavedSchools();
+	  
+	  SavedSchool schoolToSave = new SavedSchool(univ, "time");
+	  if(list == null || !list.contains(schoolToSave)) {
+		  dbController.addSavedSchool(user, schoolToSave);
+		  user.addSavedSchool(schoolToSave);
+      }
+	  else {
+		  System.out.println("This school has already been saved");
+      }
   }
   
   
   /**
-   * Remove a SavedSchool from User's list of SavedSchools
+   * Removes a SavedSchool from User's list of Saved Schools.
    * 
    * @param schoolToRemove - String that schoolName of the SavedSchool to remove
    * @param user - User to remove the SavedSchool from
    */
   public void removeSavedSchool(String schoolToRemove, User user){
     dbController.removeSavedSchool(user, schoolToRemove);
-    //user.removeSavedSchool(schoolToRemove);
   }
   
   /**
-   * View list of SavedSchools
+   * View list of SavedSchools.
    * 
    * @param user - User that will have SavedSchools viewed
    * @return List<SavedSchool> - SavedSchools of the User
    */
   public List<SavedSchool> viewSavedSchools(User user){
-    List<SavedSchool> savedSchools = dbController.getSavedSchools(user);
-    return savedSchools;
+	  List<SavedSchool> savedSchools = dbController.getSavedSchools(user);
+	  return savedSchools;
   }
   
   /**
-   * Compare two SavedSchools in the User's list of SavedSchools
+   * Compare two SavedSchools in the User's list of SavedSchools askingthe user for 
+   * the second school to compare.
    * 
-   * @param s1 and s2 are the two SavedSchools to compare
+   * @param s1 - String that is the name of the first school to compare
    */
   public void compareSavedSchools(String s1){
-  University s2 = this.requestForSecondSchool();
-  
-  
-    System.out.println("University 1: "+dbController.getSchool(s1));
-    System.out.println("University 2: "+dbController.getSchool(s2.getSchoolName()).toString());
+	  University s2 = this.requestForSecondSchool();
+	  
+	  System.out.println("University 1: "+dbController.getSchool(s1));
+	  System.out.println("University 2: "+dbController.getSchool(s2.getSchoolName()).toString());
   }
   
   /**
-   * Requests for the second school to compare to
-   * 
-   * @param none
+   * Requests for the second school to compare to.
+
    * @return SavedSchool to compare
-   * @throws none
    */
   public University requestForSecondSchool(){
-/*    Scanner sc = new Scanner(System.in);
-    System.out.println("Enter the name of a school to compare to the first one: ");
-    String schoolName = sc.next();*/
+	  /*    Scanner sc = new Scanner(System.in);
+	    System.out.println("Enter the name of a school to compare to the first one: ");
+	    String schoolName = sc.next();*/
+	  University school2= this.dbController.getSchool("AUBURN");
+	  
+	//sc.close();
+	  return school2;
     
-    University school2= this.dbController.getSchool("AUBURN");
     
-    //sc.close();
-    return school2;
   }
   
   /**
-   *???
+   * Calls the method of DBCOntroller to find 5 most related schools.
+   * 
+   * @param school - String that is the schoolName of the University to find related schools
    */
-  public void viewResults() {
-    //view results of what? this method seems to only be in the UserInteraction class according to 
-    //the communication diagram
+  public void showRecSchools(String school) {
+	  dbController.findRecSchools(school);
+	  
   }
 
-
-/**
- * calls the method of DBCOntroller to find 5 most related schools 
- * 
- * @param school - String that is the schoolName of the University to find related schools
- */
-public void showRecSchools(String school) {
-	dbController.findRecSchools(school);
 }
-  
-  
-}
-
-
-
-
-
-
-
 

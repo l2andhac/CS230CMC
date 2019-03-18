@@ -18,9 +18,6 @@ public class UserInteraction extends AccountInteraction{
   //A UserFunctionalityController to call the proper methods in the controllers
   private UserFunctionalityController userFunctCont;
   
-  
-  //Methods
-  
   /**
  * Constructor for a UserInteraction
  * 
@@ -41,7 +38,6 @@ public class UserInteraction extends AccountInteraction{
    * 
    * @param a String u which is the username to search by
    * @return a boolean if the search is successful
-   * @throws none
    */
   public void searchForFriends(String u){
     
@@ -55,31 +51,48 @@ public class UserInteraction extends AccountInteraction{
     }
   }
   
-  /*
+  /**
    * Allows the user to request that their account be deactivated
    * 
-   * @param none
-   * @return none
-   * @throws none
    */
   public void requestDeactivation(){
     userFunctCont.requestDeactivation(this.user);
   }
   
   
-  /**
-   * Allows the user to search for a school
-   * 
-   * @param String name, state, location, control, int enrollmentUp, 
-                enrollmentLo, percentFemaleUp, percentFemaleLo, satVerbUp, 
-                satVerbLo, int satMathUp, satMathLo, percentFinancialAidUp, 
-                percentFinancialAidLo,  applicantsUp,  applicantsLo, percentAdmittedUp,
-                percentAdmittedLo, percentEnrollUp, percentEnrollLo,  academicScaleUp, 
-                academicScaleLo, socialScaleUp, socialScaleLo, qualOfLifeScaleUp,
-                qualOfLifeScaleLo, List<String> emphasis
-   * @return none
-   * @throws none
-   */
+ /**
+  * User searches for a school using the parameters and returns a set of Universities
+  * 
+  * @param name - String that is the name of the school
+  * @param state - String that is the state of the school
+  * @param location - String that is the location setting of the school
+  * @param control - String that is the school control type of the school
+  * @param enrollmentUp - int that is the highest enrollment of a potential school
+  * @param enrollmentLo - int that is the lowest enrollment of a potential school
+  * @param percentFemaleUp -  double that is the highest percent of female students at the school
+  * @param percentFemaleLo -  double that is the lowest percent of female students at the school
+  * @param satVerbUp - double that is the highest average score on the SAT verbal of the school
+  * @param satVerbLo - double that is the lowest average score on the SAT verbal of the school
+  * @param satMathUp - double that is the highest average score on the SAT math of the school
+  * @param satMathLo - double that is the lowest average score on the SAT math of the school
+  * @param percentFinancialAidUp - double that is the highest percentage of financial aid of the school
+  * @param percentFinancialAidLo - double that is the lowest percentage of financial aid of the school
+  * @param applicantsUp - int that is the highest number of applicants to the school
+  * @param applicantsLo - int that is the lowest number of applicants to the school
+  * @param percentAdmittedUp - double that is the highest percent of students who are admitted to the school
+  * @param percentAdmittedLo - double that is the lowest percent of students who are admitted to the school
+  * @param percentEnrollUp - double that is the highest percent of students who enroll in the school
+  * @param percentEnrollLo - double that is the lowest percent of students who enroll in the school
+  * @param academicScaleUp - int highest rating of the academics of the school
+  * @param academicScaleLo - int lowest rating of the academics of the school
+  * @param socialScaleUp - int highest rating of the social scale of the school
+  * @param socialScaleLo - int lowest rating of the social scale of the school
+  * @param qualOfLifeScaleUp - int highest rating of the quality of the school
+  * @param qualOfLifeScaleLo - int lowest rating of the quality of the school
+  * @param emphases - List<String> that are academic emphases of the school
+  * 
+  * @return Set<University> that hold the Universities that match the search criteria
+  */
   public Set<University> searchSchool(String name, String state, String location, String control, int enrollmentUp, 
                 int enrollmentLo, int percentFemaleUp, int percentFemaleLo, int satVerbUp, 
                 int satVerbLo, int satMathUp, int satMathLo, int expensesUp, int expensesLo, int percentFinancialAidUp, 
@@ -95,26 +108,13 @@ public class UserInteraction extends AccountInteraction{
                           qualOfLifeScaleLo, emphasis);
     return userFunctCont.searchSchool(s);
   }
-  
-  
-  /**
-   * Allows the user to view the results of a search
-   * 
-   * @param a list of schools to display
-   * @return none
-   * @throws none
-   */
-  public void viewResults(List<University> list){
-    //////////////////////////display results
-  }
-  
-  
+ 
 
   /**
     * Allows the user to sort a list of Universities by a certain trait
     * 
-    * @param a list of University to be sorted and a character denoting what to sort by
-    * @return the sorted list
+    * @param list - Set<University> Universities to be sorted
+    * @param c -character denoting what to sort by
     */
    public void sortResults(Set<University> list, char c){
      if(list != null) {
@@ -134,9 +134,7 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows a user to add a University to their saved school list
    * 
-   * @param A University to add to the saved school list
-   * @return none
-   * @throws none
+   * @param univ - University to add to the saved school list
    */
   public void saveSchool(University univ){
     userFunctCont.saveSchool(univ, this.user);
@@ -146,9 +144,7 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows a user to view a searched school
    * 
-   * @param University to view
-   * @return none
-   * @throws none
+   * @param univ - University to view
    */
   public void viewSearchedSchool(University univ){
     userFunctCont.viewSearchedSchool(univ);
@@ -158,9 +154,7 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows a user to remove a saved school from their saved school list
    * 
-   * @param University to remove from their saved school list
-   * @return none
-   * @throws none
+   * @param univ - University to remove from their saved school list
    */
   public void removeSavedSchool(String univ){
     userFunctCont.removeSavedSchool(univ, this.user);
@@ -170,9 +164,6 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows a user to view their list of saved schools
    * 
-   * @param none
-   * @return none
-   * @throws none
    */
   public void viewSavedSchools(){
     List<SavedSchool> savedSchools = userFunctCont.viewSavedSchools(this.user);
@@ -189,9 +180,7 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows the user to compare two saved schools
    * 
-   * @param the SavedSchool that the user wishes to compare to
-   * @return none
-   * @throws none
+   * @param s1 - SavedSchool that the user wishes to compare to
    */
   public void compareSavedSchools(String s1){
     userFunctCont.compareSavedSchools(s1);
@@ -204,9 +193,7 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Shows the recommended schools for a user, by calling the method in UserFunctionalityController
    * 
-   * @param String that is a school to find the 5 closest ones to
-   * @return none
-   * @throws none
+   * @param school - String that is a school to find the 5 closest ones to
    */
   public void showRecSchools(String school){
     userFunctCont.showRecSchools(school);
@@ -222,45 +209,29 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows the user to see their own information
    * 
-   * @param String of the username to view the information for
-   * @return none
-   * @throws none
    */
   public void viewAccountInfo(){
     userFunctCont.viewAccountInfo(this.user);
   }
   
   
-  /**
-   * Allows the user to edit first name, last name, and password
-   * 
-   * @param An Account,String for first name, last name, and password
-   * @return none
-   * @throws none
-   */
+ /**
+  * Allows the user to edit first name, last name, and password
+  * 
+  * @param un - String that is the username of the account
+  * @param fn - String that is the first name of the account
+  * @param ln - String that is the last name of the account
+  * @param p - String that is the password of the account
+  */
   public void editAccountInfo(String un, String fn, String ln, String p){
     userFunctCont.editUserInfo(un, fn, ln, p, 'u', this.user.getStatus()); 
   }
-  
-  
-  /**
-   * Allows the current user to be set
-   * 
-   * @param the current User
-   * @return none
-   * @throws none
-   */
-  public void setAccount(User a){
-    user = a;
-  }
-  
+
   
   /**
    * Allows a user to view the school details
    * 
-   * @param String of the University's name
-   * @return none
-   * @throws none
+   * @param schoolName - String of the University's name
    */
   public void viewSchoolDetails(String schoolName){
     University univ = userFunctCont.viewSchoolDetails(schoolName);
@@ -274,9 +245,6 @@ public class UserInteraction extends AccountInteraction{
   /**
    * Allows the user to log off
    * 
-   * @param none
-   * @return none
-   * @throws none
    */
   public void logOff(){
     this.user.logOff();

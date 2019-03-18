@@ -11,9 +11,7 @@ import java.util.*;
   
 public class University{
   
-  
-
-// name of school
+  // name of school
   private String schoolName;
   //state of school
   private String state;
@@ -48,7 +46,7 @@ public class University{
   //list of up to 5 areas of study in which the school excels
   private List<String> emphases;
   
-  /* Consturctor for a University object
+  /** Constructor for a University object
    *
    * @param schoolName, name of school
    * @param state, state of school
@@ -93,7 +91,7 @@ public class University{
     
   }
   
-  /*
+  /**
    * accessor method for school name
    * 
    * @returns school name, a String
@@ -103,156 +101,161 @@ public class University{
     return this.schoolName;
   }
   
-    /*
-   * accessor method for school name
+    /**
+   * accessor method for state
    * 
-   * @returns school name, a String
+   * @returns state, a String
    */
   public String getState()
   {
     return this.state;
   }
   
-    /*
-   * accessor method for school name
+    /**
+   * accessor method for location
    * 
-   * @returns school name, a String
+   * @returns location, a String
    */
   public String getLocation()
   {
     return this.location;
   }
   
-    /*
-   * accessor method for school name
+    /**
+   * accessor method for control
    * 
-   * @returns school name, a String
+   * @returns control, a String
    */
   public String getControl()
   {
     return this.control;
   }
   
-    /*
-   * accessor method for school name
+    /**
+   * accessor method for number of students
    * 
-   * @returns school name, a String
+   * @returns numberOfStudents, an int
    */
   public int getNumStudents()
   {
     return this.numberOfStudents;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for percent female
    * 
-   * @returns school name, a String
+   * @returns percentFemale, a double
    */
   public double getPercentFemales()
   {
     return this.percentFemale;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for SATVerbal
    * 
-   * @returns school name, a String
+   * @returns satVerbal, a double
    */
   public double getSATVerbal()
   {
     return this.satVerbal;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for SATMath
    * 
-   * @returns school name, a String
+   * @returns satMath, a double
    */
   public double getSATMath()
   {
     return this.satMath;
   }
   
-      /*
+      /**
    * accessor method for school name
    * 
-   * @returns school name, a String
+   * @returns expenses, a double
    */
   public double getExpenses()
   {
     return this.expenses;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for percentFinancialAid
    * 
-   * @returns school name, a String
+   * @returns percentFinancialAid, a double
    */
   public double getPercentFinancialAid()
   {
     return this.percentFinancialAid; 
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for number of Apllicants
    * 
-   * @returns school name, a String
+   * @returns numberOfApplicants, a int
    */
   public int getNumApplicants()
   {
     return this.numberOfApplicants;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for percentAdmitted
    * 
-   * @returns school name, a String
+   * @returns percentAdmitted, a double
    */
   public double getPercentAdmitted()
   {
     return this.percentAdmitted;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for percentEnrolled
    * 
-   * @returns school name, a String
+   * @returns percentEnrolled, a double
    */
   public double getPercentEnrolled()
   {
     return this.percentEnrolled;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for academic scale
    * 
-   * @returns school name, a String
+   * @returns academicScale, an int
    */
   public int getAcademicScale()
   {
     return this.academicsScale;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for social scale
    * 
-   * @returns school name, a String
+   * @returns socialScale, an int
    */
   public int getSocialScale()
   {
     return this.socialScale;
   }
   
-      /*
-   * accessor method for school name
+      /**
+   * accessor method for quality of life scale
    * 
-   * @returns school name, a String
+   * @returns qualityScale, an int
    */
   public int getQualityOfLifeScale()
   {
     return this.qualityScale;
   }
   
+  /**
+   * accessor method for emphases
+   * 
+   * @returns emphases, a List of strings
+   */
   public List<String> getEmphases()
   {
     return this.emphases;
@@ -261,6 +264,14 @@ public class University{
   /////   COMPARATORS   /////////////
   /*Comparator for sorting the list by expenses*/
   public static Comparator<University> compareByExpenses = new Comparator<University>() {
+	  
+	/**
+	 * compare method for expenses
+	 * 
+	 *   @param u1, first University to compare
+	 *   @param u2, second school to compare
+	 *   @return an int, if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
+	 */
     public int compare(University u1, University u2) {
       double univ1Expenses = u1.getExpenses();
       double univ2Expenses = u2.getExpenses();
@@ -272,7 +283,15 @@ public class University{
   
   /*Comparator for sorting the list by percent admitted*/
   public static Comparator<University> compareByAdmission = new Comparator<University>() {
-    public int compare(University u1, University u2) {
+    
+	  /**
+		 * compare method for percent Admitted
+		 * 
+		 *   @param u1, first University to compare
+		 *   @param u2, second school to compare
+		 *   @return an int, if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
+		 */
+	  public int compare(University u1, University u2) {
       double univ1Admission = u1.getPercentAdmitted();
       double univ2Admission = u2.getPercentAdmitted();
       
@@ -281,9 +300,17 @@ public class University{
     }
   };
   
-  /*Comparator for sorting the list by percent admitted*/
+  /*Comparator for sorting the list by number of students*/
   public static Comparator<University> compareByNumberStudents = new Comparator<University>() {
-    public int compare(University u1, University u2) {
+    
+	  /**
+		 * compare method for number of students
+		 * 
+		 *   @param u1, first University to compare
+		 *   @param u2, second school to compare
+		 *   @return an int, if its positive u1 is greater than u2, if int is negative u1 is less than u2, if its 0 they are equal
+		 */
+	  public int compare(University u1, University u2) {
       int univ1NumStudents = u1.getNumStudents();
       int univ2NumStudents = u2.getNumStudents();
       
@@ -292,7 +319,12 @@ public class University{
     }
   };
   
-  @Override
+
+  /**
+   * @Override overrides the toString method
+   * 
+   * @returns a string
+   */
 	public String toString() {
 		return "University [schoolName=" + schoolName + ", state=" + state + ", location=" + location + ", control="
 				+ control + ", numberOfStudents=" + numberOfStudents + ", percentFemale=" + percentFemale

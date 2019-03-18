@@ -13,12 +13,12 @@ import cmc.interaction.*;
  */
 public class AdminFunctionalityController extends AccountFunctionalityController{
   //Attributes
+	//instance variable for DBController
   private DBController dbController;
+  // instance variable for ForgotPassworController
   private ForgotPasswordController forgotPasswordController;
-  private AccountController accountController;
 
- 
-  //Methods
+
   /**
    * Constructor for AdminFunctionalityController that creates an AdminFunctionalityController
    * and instantiates a DBController in the class
@@ -69,16 +69,6 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     else {
     	System.out.println("The school CANNOT be added, becasue its already in the database");
     }
-  }
-  
-  
-  /**
-   * Allows an Admin to view a School
-   * 
-   * @param univ - University that the Admin wishes to view
-   */
-  public void adminViewSchool(University univ){
-    //is this the same as viewing a school's details? Is an admin not being able to save it a GUI thin?
   }
   
   
