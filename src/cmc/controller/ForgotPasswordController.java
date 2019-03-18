@@ -28,7 +28,7 @@ public class ForgotPasswordController{
       
     StringBuffer password = new StringBuffer();
     for(int i=0; i<6; i++){
-            double num = Math.random() * 62;
+            double num = Math.random() * 61;
             int number = (int) Math.round(num);
             char ch = CHAR_LIST.charAt(number);
             password.append(ch);
