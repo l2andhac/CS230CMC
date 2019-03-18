@@ -74,8 +74,9 @@ public class AccountFunctionalityController {
 			if (email) {
 				a.setPassword(np);
 				dbc.changeAccount(a);
+				fpc.emailNewPassword(u, a);
 			} else {
-				System.out.println("Your username is not a valid email address");
+				System.out.println("Username is not a valid email address");
 			}
 		} else {
 			System.out.println("Account not found");

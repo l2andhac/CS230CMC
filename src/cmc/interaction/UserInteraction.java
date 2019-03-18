@@ -141,14 +141,14 @@ public class UserInteraction extends AccountInteraction{
   }
   
   
-  /**
+/*  *//**
    * Allows a user to view a searched school
    * 
    * @param univ - University to view
-   */
+   *//*
   public void viewSearchedSchool(University univ){
     userFunctCont.viewSearchedSchool(univ);
-  }
+  }*/
   
   
   /**

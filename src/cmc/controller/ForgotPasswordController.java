@@ -1,6 +1,9 @@
 package cmc.controller;
 import java.lang.Math;
 import cmc.entity.*;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 /**
  * 
  * A Class that controls all of the functionaliteis of an Account forgetting a password
@@ -51,9 +54,27 @@ public class ForgotPasswordController{
   /**
    * Emails the Account a new password
    * 
-   * @param account - Account to email the new password too
+   * @param username is an email to send the password to, account is the Account which the username belongs
    */
-  public void emailNewPassword(Account account){
-    //NOT SURE HOW EMAIL THING WORKS :/ 
-  }
+	public void emailNewPassword(String username, Account account) {
+		String to = username;
+		String from = "l2hackstreet@gmail.com";
+		String host = "LocalHost";
+		Properties systemProperties = System.getProperties();
+		systemProperties.setProperty("mail.smtp.host", host);
+
+		try {
+			MimeMessage message = new MimeMessage(Session.getDefaultInstance(systemProperties));
+			message.setFrom(new InternetAddress(from));
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			message.setSubject("Your new password");
+			message.setText("Your password is " + account.getPassword());
+			Transport.send(message);
+			System.out.println("Message sent");
+		}
+
+		catch (MessagingException mex) {
+			mex.printStackTrace();
+		}
+	}
 }

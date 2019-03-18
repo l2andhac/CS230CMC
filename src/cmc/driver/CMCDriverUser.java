@@ -157,7 +157,19 @@ public class CMCDriverUser {
       
       uInteraction.sortResults(listOfMatches, 'n');
 
-	      
+      System.out.println("\n-------------------------------------------------------");
+      System.out.println("User with a username that is an email forgets password and is sent a new one");
+
+      uInteraction = (UserInteraction) logOnInteraction; 
+      
+      uInteraction.forgotPassword("lwill001@csbsju.edu");
+      
+      System.out.println("\n-------------------------------------------------------");
+      System.out.println("User with a username that is not an email forgets password, but cannot be emailed a new one");
+
+      uInteraction = (UserInteraction) logOnInteraction; 
+      
+      uInteraction.forgotPassword("juser");  
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User logs off");
