@@ -153,6 +153,17 @@ public class CMCDriverAdmin {
 	      aInteraction.removeSchool("AUGSBURG");
 	      
 	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Adminwith a username that is an email forgets password and is sent a new one");
+
+	      
+	      aInteraction.forgotPassword("lindsay12798@gmail.com");
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("Admin with a username that is not an email forgets password, but cannot be emailed a new one");
+	      
+	      aInteraction.forgotPassword("AndytheAdmin");
+	      
+	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can log off");
 	      aInteraction.logOff();
 	   }

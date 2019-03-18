@@ -156,7 +156,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
 	  SavedSchool schoolToSave = new SavedSchool(univ, "time");
 	  if(list == null || !list.contains(schoolToSave)) {
 		  dbController.addSavedSchool(user, schoolToSave);
-		  user.addSavedSchool(schoolToSave);
+		  //user.addSavedSchool(schoolToSave);
       }
 	  else {
 		  System.out.println("This school has already been saved");
