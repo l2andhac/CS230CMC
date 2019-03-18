@@ -1,13 +1,6 @@
 package cmc.controller;
 import cmc.entity.*;
 import cmc.interaction.AdminInteraction;
-
-/**
- * @author Lindsay Will, Steffi Tapsoba
- * @version February 21, 2019
- * 
- * A Class that controls all of the functionalities of a User
- */
 import java.util.*;
 
 /** 
