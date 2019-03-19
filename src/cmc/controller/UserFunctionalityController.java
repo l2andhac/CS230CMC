@@ -82,6 +82,10 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    */
   public List<SavedSchool> searchForFriends(String username){
 	  User friend = (User) dbController.findAccount(username);
+	  if(friend == null) {
+		  System.out.println("Friend was not found");
+		  return null;
+	  }
 	  return viewSavedSchools(friend);
   }
   

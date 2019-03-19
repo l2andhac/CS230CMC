@@ -80,7 +80,7 @@ public class CMCDriverUser {
 	      uInteraction.viewAccountInfo();
 	      
 	      System.out.println("\n-------------------------------------------------------");
-	      System.out.println("User can search for schools by combination of state and number of students\n");
+	      System.out.println("User can search for schools\n");
 	      
 	      University univ1 = null;
 	      List<String> foci = new ArrayList<String>();
@@ -117,8 +117,6 @@ public class CMCDriverUser {
 //	      System.out.println("User tries to save a school");
 //	      uInteraction.saveSchool(univ1);
 	      
-	      
-	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User views their list of saved schools");
 	      uInteraction.viewSavedSchools();
@@ -127,6 +125,10 @@ public class CMCDriverUser {
 	      System.out.println("User can remove a saved school");
 	      uInteraction.removeSavedSchool("UNIVERSITY OF CALIFORNIA DAVIS");
 	      uInteraction.viewSavedSchools();
+	      
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User searches for friend that does not exist");
+	      uInteraction.searchForFriends("juse");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User searches for friends");
