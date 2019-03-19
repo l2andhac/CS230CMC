@@ -133,7 +133,7 @@ public class CMCDriverAdmin {
 	      
 	      
 	      List<String> foci2 = new ArrayList<String>();
-	      aInteraction.addSchool("GUSTAVUS", "MINNESOTA", "URBAN", "SMALL-CITY", 6000, 46.0, 450, 400, 50000, 15.2, 11001, 89.9, 50.0, 2, 1, 1, foci2);
+	      aInteraction.addSchool("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 	 
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin tries to add a school already in the database");
@@ -144,7 +144,7 @@ public class CMCDriverAdmin {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can remove a school");
 	      
-	      aInteraction.removeSchool("GUSTAVUS");
+	      aInteraction.removeSchool("UNIVERSITE DE OUAGADOUGOU");
 	      
 	      
 	      System.out.println("\n-------------------------------------------------------");
