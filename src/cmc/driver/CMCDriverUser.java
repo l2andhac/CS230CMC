@@ -129,6 +129,10 @@ public class CMCDriverUser {
 	      uInteraction.viewSavedSchools();
 	      
 	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User searches for friend that does not exist");
+	      uInteraction.searchForFriends("juse");
+	      
+	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User searches for friends");
 	      uInteraction.searchForFriends("juser");
 	      	
