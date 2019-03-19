@@ -113,9 +113,9 @@ public class CMCDriverUser {
 	      System.out.println("User tries to view the details of a school not in the database");
 	      uInteraction.viewSchoolDetails("AUGSBURGs");
 	      
-	      //System.out.println("\n-------------------------------------------------------");
-	      //System.out.println("User tries to save a school");
-	      //uInteraction.saveSchool(univ1);
+	      System.out.println("\n-------------------------------------------------------");
+	      System.out.println("User tries to save a school");
+	      uInteraction.saveSchool(univ1);
 	      
 	      
 	      
