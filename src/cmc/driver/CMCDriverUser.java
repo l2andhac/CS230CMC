@@ -116,8 +116,8 @@ public class CMCDriverUser {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User tries to save a school");
 	      uInteraction.saveSchool(univ1);
-	      
-	      
+	      uInteraction.viewSavedSchools();
+	      System.out.println("\n" + univ1.toString());
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User views their list of saved schools");
