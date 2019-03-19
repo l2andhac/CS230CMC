@@ -75,7 +75,7 @@ public class CMCDriverUser {
          uInteraction = (UserInteraction) logOnInteraction; 
         
         //edit account
-         uInteraction.editAccountInfo("jordre3@gmail.com","Nate","Jordre", "password");
+         uInteraction.editAccountInfo("Nathan","Jordre", "password");
 	      
 	      uInteraction.viewAccountInfo();
 	      

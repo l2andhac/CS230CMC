@@ -32,29 +32,9 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @param u - the User to be view information for
    */
   public void viewUserInfo(User u){
-    super.viewAccountInfo(u);
+    super.viewAccountInfo(u.getUsername());
   }
-  
-  /**
-   * User can edit their account.
-   * 
-   * @param un - String that is the username of the User
-   * @param fn - String that is the first name of the User
-   * @param ln - String that is the last name of the User
-   * @param p - String that is the password of the User
-   * @param t - Character that is the type of the User
-   * @param s - Character that is the status of the User
-   */
-  public void editUserInfo(String un, String fn, String ln, String p, char t, char s){ 
-	  
-	  Account user = dbController.findAccount(un);
-      user.setFirstName(fn);
-      user.setLastName(ln);
-      user.setPassword(p);
-      user.setUserType(t);
-      user.setStatus(s);
-      dbController.changeAccount(user);
-  }
+
   
   /**
    * User can view the details of a school if it is found in the database.
@@ -224,6 +204,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
 	  dbController.findRecSchools(school);
 	  
   }
+
 
 }
 

@@ -178,7 +178,7 @@ public class AdminInteraction extends AccountInteraction{
    * Allows the admin to see their own information
    */
   public void viewAccountInfo(){
-    adminFunctCont.viewAccountInfo(this.admin); 
+    adminFunctCont.viewAccountInfo(this.admin.getUsername()); 
   }
   
   /**
