@@ -80,7 +80,7 @@ public class CMCDriverUser {
 	      uInteraction.viewAccountInfo();
 	      
 	      System.out.println("\n-------------------------------------------------------");
-	      System.out.println("User can search for schools by combination of state and number of students\n");
+	      System.out.println("User can search for schools\n");
 	      
 	      University univ1 = null;
 	      List<String> foci = new ArrayList<String>();
