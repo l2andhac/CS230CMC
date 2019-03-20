@@ -27,7 +27,6 @@ public class CMCDriverAdmin {
 
 	    public static void main(String[] args)
 	  {
-	      //aInteraction = new AdminInteraction();
 	     
 	      accountInteraction = new AccountInteraction();
 	      
@@ -77,7 +76,6 @@ public class CMCDriverAdmin {
         aInteraction.viewAccountInfo("juser");
                 //edit account
         aInteraction.editAccountInfo("juser", "John", "Miller", "user", 'u', 'D');
-        System.out.println("");
 	      aInteraction.viewAccountInfo("juser");
 	      
 	      System.out.println("\n-------------------------------------------------------");
