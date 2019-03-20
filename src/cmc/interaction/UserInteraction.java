@@ -1,6 +1,5 @@
 package cmc.interaction;
 import java.util.*;
-import java.io.*;
 import cmc.controller.*;
 import cmc.entity.*;
 /**
@@ -219,8 +218,11 @@ public class UserInteraction extends AccountInteraction{
   * @param ln - String that is the last name of the account
   * @param p - String that is the password of the account
   */
-  public void editAccountInfo(String un, String fn, String ln, String p){
-    userFunctCont.editUserInfo(un, fn, ln, p, 'u', this.user.getStatus()); 
+  public void editAccountInfo(String fn, String ln, String p){
+	this.user.setFirstName(fn);
+	this.user.setLastName(ln);
+	this.user.setPassword(p);
+    userFunctCont.editAccountInfo(user.getUsername(), fn, ln, p, 'u', this.user.getStatus()); 
   }
 
   

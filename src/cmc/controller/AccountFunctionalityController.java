@@ -84,13 +84,24 @@ public class AccountFunctionalityController {
 	}
 
 	/**
-	 * Allows the Account to view a different Account's information
+	 * Allows the Account to view the details of an account
 	 * 
 	 * @param a - Account that is the account to be viewed
 	 */
 	public void viewAccountInfo(Account a) {
 		System.out.println(a.toString()); 
 	}
+	
+	  
+	  /**
+	   * Allows an account to view the details of an account
+	   * 
+	   * @param u - String of the username to view the information for
+	   */
+	  public void viewAccountInfo(String u){
+	    Account a = dbc.findAccount(u); 
+	    this.viewAccountInfo(a);
+	  }
 
 
 	/**
@@ -104,5 +115,25 @@ public class AccountFunctionalityController {
 		return univ;
 	}
 
+	
+	  /**
+	   * Allows an Admin to edit an Account's information
+	   * 
+	   * @param un - String that is the username of the Account to edit
+	   * @param fn - String that is the first name of the Account
+	   * @param ln - String that is the last name of the Account
+	   * @param p - String that is the password of the Account
+	   * @param t - Character that represents the type of the Account
+	   * @param s - Character that represents the status of the Account
+	   */
+	  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
+		  Account account = dbc.findAccount(un);
+		  account.setFirstName(fn);
+		    account.setLastName(ln);
+		    account.setPassword(p);
+		    account.setUserType(t);
+		    account.setStatus(s);
+		    dbc.changeAccount(account);
+	  }
 
 }

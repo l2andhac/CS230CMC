@@ -24,9 +24,9 @@ public class CMCDriverAdmin {
 	  private static AccountInteraction accountInteraction;
 	  private static AccountInteraction logOnInteraction;
 	  
+
 	    public static void main(String[] args)
 	  {
-	      //aInteraction = new AdminInteraction();
 	     
 	      accountInteraction = new AccountInteraction();
 	      
@@ -64,18 +64,18 @@ public class CMCDriverAdmin {
         aInteraction = (AdminInteraction) logOnInteraction; 
         
         //edit account
-        aInteraction.editAccountInfo("nateTheAdmin", "Nathaniel", "Jordre", "password", 'a', 'Y');
+        aInteraction.editAccountInfo("nateTheAdmin", "Nathan", "Jordre", "password", 'a', 'Y');
 	      
 	      aInteraction.viewAccountInfo();
-	      
+	     
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can Edit User Profile\n");
 	      
         aInteraction = (AdminInteraction) logOnInteraction; 
         
-        //edit account
-        aInteraction.editAccountInfo("juser", "John", "Cena", "user", 'u', 'D');
-	      
+        aInteraction.viewAccountInfo("juser");
+                //edit account
+        aInteraction.editAccountInfo("juser", "John", "Miller", "user", 'u', 'D');
 	      aInteraction.viewAccountInfo("juser");
 	      
 	      System.out.println("\n-------------------------------------------------------");
@@ -101,7 +101,7 @@ public class CMCDriverAdmin {
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can view school details");
-	      aInteraction.viewSchoolDetails("COLLEGE OF NEWROCHELLE");
+	      aInteraction.viewSchoolDetails("UNIVERSITY OF MINNESOTA");
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin tries to view the details of a school not in the database");
@@ -110,7 +110,7 @@ public class CMCDriverAdmin {
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin tries to edit a school");
 	      aInteraction.editSchool("UNIVERSITY OF MINNESOTA", "MINNESOTA", "URBAN", "STATE", 
-	    		  40000, 45, 490, 557, 13772, 50, 8500, 80, 60, 4, 3, 4);
+	    		  40500, 45, 490, 557, 13772, 50, 8500, 80, 60, 4, 3, 4);
 	      aInteraction.viewSchoolDetails("UNIVERSITY OF MINNESOTA");
 	      
 	      System.out.println("\n-------------------------------------------------------");

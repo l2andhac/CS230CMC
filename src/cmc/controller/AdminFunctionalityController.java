@@ -81,25 +81,25 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   }
   
   
-  /**
-   * Allows an Admin to edit an Account's information
-   * 
-   * @param un - String that is the username of the Account to edit
-   * @param fn - String that is the first name of the Account
-   * @param ln - String that is the last name of the Account
-   * @param p - String that is the password of the Account
-   * @param t - Character that represents the type of the Account
-   * @param s - Character that represents the status of the Account
-   */
-  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
-	  Account account = dbController.findAccount(un);
-	  account.setFirstName(fn);
-	    account.setLastName(ln);
-	    account.setPassword(p);
-	    account.setUserType(t);
-	    account.setStatus(s);
-	    dbController.changeAccount(account);
-  }
+//  /**
+//   * Allows an Admin to edit an Account's information
+//   * 
+//   * @param un - String that is the username of the Account to edit
+//   * @param fn - String that is the first name of the Account
+//   * @param ln - String that is the last name of the Account
+//   * @param p - String that is the password of the Account
+//   * @param t - Character that represents the type of the Account
+//   * @param s - Character that represents the status of the Account
+//   */
+//  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
+//	  Account account = dbController.findAccount(un);
+//	  account.setFirstName(fn);
+//	    account.setLastName(ln);
+//	    account.setPassword(p);
+//	    account.setUserType(t);
+//	    account.setStatus(s);
+//	    dbController.changeAccount(account);
+//  }
   
   
   /**
@@ -135,15 +135,6 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     
     
   }
-  
-  /**
-   * Allows the admin to see their own information
-   * 
-   * @param u - String of the username to view the information for
-   */
-  public void viewAccountInfo(String u){
-    Account a = dbController.findAccount(u); 
-    super.viewAccountInfo(a);
-  }
+
   
 }
