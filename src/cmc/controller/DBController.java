@@ -308,6 +308,7 @@ public class DBController {
                                               Double.parseDouble(allSchools[x][12]), Integer.parseInt(allSchools[x][13]),
                                               Integer.parseInt(allSchools[x][14]), Integer.parseInt(allSchools[x][15]),
                                               emphasesList);
+		return retU;
         }
       }
     }
