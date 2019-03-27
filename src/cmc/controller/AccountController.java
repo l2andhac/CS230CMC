@@ -38,7 +38,7 @@ public class AccountController{
 	    if (account != null)
 	    {
 	      String password2 = account.getPassword();
-	      if (password.equals(password2) && account.getStatus() != 'N')
+	      if (password.equals(password2) && account.getStatus() != 'N' && account.getStatus() != 'P')
 	      {
 	        account.logOn();
 	        System.out.println("You have successfully logged on to CMC");
@@ -51,6 +51,10 @@ public class AccountController{
 	      else if(account.getStatus() == 'N')
 	      {
 	        System.out.println("You cannot log in your account is deactivated");
+	      }
+	      else if(account.getStatus() != 'P')
+	      {
+	    	  System.out.println("You cannot log in your account is pending");  
 	      }
 	    }
 	    else
