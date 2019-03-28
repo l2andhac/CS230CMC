@@ -67,7 +67,7 @@ public class DBController {
    */
   public void removeSchool(University u) {
     //check if school is saved by a user, or has an emphasis
-    if (isSchoolSaved(u) == false)
+    if (isSchoolSaved(u) == false && hasEmphasis(u) == false)
     {
     univDBlib.university_deleteUniversity(u.getSchoolName());
     }
@@ -308,6 +308,7 @@ public class DBController {
                                               Double.parseDouble(allSchools[x][12]), Integer.parseInt(allSchools[x][13]),
                                               Integer.parseInt(allSchools[x][14]), Integer.parseInt(allSchools[x][15]),
                                               emphasesList);
+                return retU;
         }
       }
     }
