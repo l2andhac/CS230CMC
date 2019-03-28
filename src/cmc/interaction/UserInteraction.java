@@ -205,8 +205,8 @@ public class UserInteraction extends AccountInteraction{
    * Allows the user to see their own information
    * 
    */
-  public void viewAccountInfo(){
-    userFunctCont.viewAccountInfo(this.user);
+  public String viewAccountInfo(){
+    return userFunctCont.viewAccountInfo(this.user);
   }
   
   

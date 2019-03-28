@@ -31,8 +31,8 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param u - the User to be view information for
    */
-  public void viewUserInfo(User u){
-    super.viewAccountInfo(u.getUsername());
+  public String viewUserInfo(User u){
+    return super.viewAccountInfo(u.getUsername());
   }
 
   
@@ -63,7 +63,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   public List<SavedSchool> searchForFriends(String username){
 	  User friend = (User) dbController.findAccount(username);
 	  if(friend == null) {
-		  System.out.println("Friend was not found");
+		  //System.out.println("Friend was not found");
 		  return null;
 	  }
 	  return viewSavedSchools(friend);
@@ -91,7 +91,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
 		  return this.dbController.findSearchedSchool(searchObject);
       }
 	  else {
-		  System.out.println("All the fields are empty");
+		  //System.out.println("All the fields are empty");
 		  return null;
       }
     
@@ -129,6 +129,8 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param univ - the University to save
    * @param user - the User to save the school to
+   * 
+   * @throws IllegalArgumentException
    */
   public void saveSchool(University univ, User user){
 	  List<SavedSchool> list = user.getSavedSchools();
@@ -139,7 +141,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
 		  //user.addSavedSchool(schoolToSave);
       }
 	  else {
-		  System.out.println("This school has already been saved");
+		  throw new IllegalArgumentException("This school has already been saved");
       }
   }
   

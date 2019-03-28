@@ -35,6 +35,8 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * Allows an admin to remove a school from the Database
    * 
    * @param schoolName - String of university to be removed from Database
+   * 
+   * @throws IllegalArgumentException
    */
   public void removeSchool(String schoolName){
 	University univ = dbController.getSchool(schoolName);
@@ -42,13 +44,13 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     boolean hasEmphasis = dbController.hasEmphasis(univ);
       if(saved == false && hasEmphasis == false){     
       dbController.removeSchool(univ);
-      System.out.println("\nThe school was removed.");
+      //System.out.println("\nThe school was removed.");
       }
       else if(saved == true) {
-    	 System.out.println("\nThe school cannot be removed, because it is saved.");
+    	  throw new IllegalArgumentException("This school is saved by at least one user, so it cannot be removed from the database");
       }
       else if(hasEmphasis == true) {
-    	 System.out.println("\nThe school cannot be removed, because it is has emphasis.");
+    	  throw new IllegalArgumentException("This school has at least one emphasis, so it cannot be removed");
       }
     }
   
@@ -63,10 +65,10 @@ public class AdminFunctionalityController extends AccountFunctionalityController
     boolean found = dbController.findSchoolName(univ.getSchoolName());
     if (!found){
       dbController.addSchool(univ);
-      System.out.println("\nThe school was added to the database");
+      //System.out.println("\nThe school was added to the database");
     }
     else {
-    	System.out.println("The school CANNOT be added, becasue its already in the database");
+    	throw new IllegalArgumentException("The school cannot be added because it is already in the database");
     }
   }
   
@@ -79,27 +81,6 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   public void editSchoolInfo(University univ){
     dbController.editSchool(univ);
   }
-  
-  
-//  /**
-//   * Allows an Admin to edit an Account's information
-//   * 
-//   * @param un - String that is the username of the Account to edit
-//   * @param fn - String that is the first name of the Account
-//   * @param ln - String that is the last name of the Account
-//   * @param p - String that is the password of the Account
-//   * @param t - Character that represents the type of the Account
-//   * @param s - Character that represents the status of the Account
-//   */
-//  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
-//	  Account account = dbController.findAccount(un);
-//	  account.setFirstName(fn);
-//	    account.setLastName(ln);
-//	    account.setPassword(p);
-//	    account.setUserType(t);
-//	    account.setStatus(s);
-//	    dbController.changeAccount(account);
-//  }
   
   
   /**

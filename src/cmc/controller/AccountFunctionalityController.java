@@ -45,6 +45,7 @@ public class AccountFunctionalityController {
 	   * User can request a new Account of type User
 	   * 
 	   * @param newUser - User to request a new account
+	   * @throws IllegalArgumentException
 	   */
 	  public void requestNewAccount(User newUser) {
 	    String username = newUser.getUsername();
@@ -56,7 +57,7 @@ public class AccountFunctionalityController {
 	    }
 	    
 	    else {
-	      System.out.println("This username is already taken");
+	    	throw new IllegalArgumentException("Username is already taken by another account");
 	    }
 	  }
 
@@ -65,6 +66,7 @@ public class AccountFunctionalityController {
 	 * address
 	 * 
 	 * @param u - String that is the username of the Account to recover the password for
+	 * @throws IllegalArgumentException
 	 */
 	public void forgotPassword(String u) {
 		String np = fpc.generateRandomPassword();
@@ -76,10 +78,10 @@ public class AccountFunctionalityController {
 				dbc.changeAccount(a);
 				fpc.emailNewPassword(u, a);
 			} else {
-				System.out.println("Username is not a valid email address");
+				throw new IllegalArgumentException("Username is not a valid email address");
 			}
 		} else {
-			System.out.println("Account not found");
+			throw new IllegalArgumentException("Account not found");
 		}
 	}
 
@@ -88,8 +90,8 @@ public class AccountFunctionalityController {
 	 * 
 	 * @param a - Account that is the account to be viewed
 	 */
-	public void viewAccountInfo(Account a) {
-		System.out.println(a.toString()); 
+	public String viewAccountInfo(Account a) {
+		return a.toString(); 
 	}
 	
 	  
@@ -98,9 +100,9 @@ public class AccountFunctionalityController {
 	   * 
 	   * @param u - String of the username to view the information for
 	   */
-	  public void viewAccountInfo(String u){
+	  public String viewAccountInfo(String u){
 	    Account a = dbc.findAccount(u); 
-	    this.viewAccountInfo(a);
+	    return this.viewAccountInfo(a);
 	  }
 
 
