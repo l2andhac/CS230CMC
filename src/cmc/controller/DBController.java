@@ -505,5 +505,9 @@ public double findDistance(University univ1, University univ2) {
 		}
 		return emphasesList;
 	}
+	
+	public void removeAccount(String username) {
+		univDBlib.user_deleteUser(username);
+	}
   
 }

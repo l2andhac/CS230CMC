@@ -26,7 +26,7 @@ public class AdminInteraction extends AccountInteraction{
   public AdminInteraction(Admin admin) {
 	super();
 	this.admin = admin;
-	this.adminFunctCont = new AdminFunctionalityController(admin);
+	this.adminFunctCont = new AdminFunctionalityController();
   }
   
   /**

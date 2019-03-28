@@ -4,10 +4,22 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
 
+	private UniversityDBLibrary univDBlib;
+	  // instance variable for a searchController
+	private SearchController searchController;
+	
+	@BeforeClass
+	public void beforeClass() throws Exception {
+		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
+	}
+	
 	@Before
 	public void setUp() throws Exception {
 	}

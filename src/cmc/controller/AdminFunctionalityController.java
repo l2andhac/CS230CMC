@@ -24,7 +24,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * 
    * @param a - Admin that is the current admin
    */
-  public AdminFunctionalityController(Admin a){
+  public AdminFunctionalityController(){
     super();
     dbController = new DBController();
    
