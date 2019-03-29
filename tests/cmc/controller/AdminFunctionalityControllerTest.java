@@ -2,12 +2,15 @@ package cmc.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cmc.entity.Admin;
+import cmc.entity.University;
 import cmc.entity.User;
 
 public class AdminFunctionalityControllerTest {
@@ -58,8 +61,16 @@ public class AdminFunctionalityControllerTest {
 	}
 
 	@Test
+	public void testViewAllSchoolsNumberOfSchools() {
+		Set<University> allSchools = dbc.viewAllSchools();
+		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
+	}
+	
+	@Test
 	public void testViewAllSchools() {
-		fail("Not yet implemented");
+		Set<University> allSchools = dbc.viewAllSchools();
+		University univ = afc.viewSchoolDetails("AUBURN");
+		assertTrue("AUBURN should be one of the Unviersities viewed", allSchools.contains(univ);
 	}
 
 	@Test
