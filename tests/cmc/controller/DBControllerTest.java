@@ -4,21 +4,28 @@ import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
-	private DBController dbController;
-
+	
+	private UniversityDBLibrary univDBlib;
+	  // instance variable for a searchController
+	private SearchController searchController;
+	
+	@BeforeClass
+	public void beforeClass() throws Exception {
+		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
+	}
+	
 	@Before
 	public void setUp() throws Exception {
-		this.dbController = new DBController();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		this.dbController = null;
 	}
 
 	@Test
@@ -121,6 +128,7 @@ public class DBControllerTest {
 		int actualNumOfSchool = 180;
 		int testNumOfSchool = dbController.getTotalNumberOfSchools();
 		AssertTrue("The method should return a total of "+actualNumOfSchool+" schools.", actualNumOfSchool == testNumOfSchool);
+		fail("Not yet implemented");
 	}
 
 	@Test
