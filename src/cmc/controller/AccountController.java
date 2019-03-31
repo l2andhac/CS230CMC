@@ -30,9 +30,9 @@ public class AccountController{
    * @param username - String that is the username
    * @param password - String that is the password
    * @return Account - Account to be logged on
-   * @throws NullPointerException
+   * @throws IllegalArgumentException
    */
-  public Account logOn(String username, String password) throws NullPointerException
+  public Account logOn(String username, String password)
   {
 	  Account account = controller.findAccount(username);
 	    if (account != null)
@@ -41,16 +41,21 @@ public class AccountController{
 	      if (password.equals(password2) && account.getStatus() != 'N' && account.getStatus() != 'P')
 	      {
 	        account.logOn();
-	        System.out.println("You have successfully logged on to CMC");
+	        //System.out.println("You have successfully logged on to CMC");
 	        return account;
 	      }
 	      else if (!password.equals(password2) )    {
-	        System.out.println("Incorrect password was given");
+	        //System.out.println("Incorrect password was given");
+	    	  throw new IllegalArgumentException("Incorrect password was given");
 	        
 	      }
 	      else if(account.getStatus() == 'N')
 	      {
-	        System.out.println("You cannot log in your account is deactivated");
+	    	  throw new IllegalArgumentException("Account status is not valid");
+	      }
+	      else if(account.getStatus() != 'P')
+	      {
+	    	  throw new IllegalArgumentException("You cannot log in your account is pending");  
 	      }
 	      else if(account.getStatus() != 'P')
 	      {
@@ -59,7 +64,7 @@ public class AccountController{
 	    }
 	    else
 	    {
-	      System.out.println("Incorrect information was given");
+	    	throw new IllegalArgumentException("Incorrect information was given");
 	    }
 	    return null;
 

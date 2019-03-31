@@ -186,8 +186,8 @@ public class AdminInteraction extends AccountInteraction{
    * 
    * @param u - String of the username to view the information for
    */
-  public void viewAccountInfo(String u){
-    adminFunctCont.viewAccountInfo(u); 
+  public String viewAccountInfo(String u){
+    return adminFunctCont.viewAccountInfo(u); 
   }
   
   

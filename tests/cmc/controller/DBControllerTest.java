@@ -6,14 +6,19 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import dblibrary.project.csci230.UniversityDBLibrary;
+
 public class DBControllerTest {
+	private DBController dbController;
 
 	@Before
 	public void setUp() throws Exception {
+		this.dbController = new DBController();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		this.dbController = null;
 	}
 
 	@Test
@@ -113,7 +118,9 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetTotalNumberOfSchools() {
-		fail("Not yet implemented");
+		int actualNumOfSchool = 180;
+		int testNumOfSchool = dbController.getTotalNumberOfSchools();
+		AssertTrue("The method should return a total of "+actualNumOfSchool+" schools.", actualNumOfSchool == testNumOfSchool);
 	}
 
 	@Test
