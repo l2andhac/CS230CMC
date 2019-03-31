@@ -56,13 +56,6 @@ public class AccountController{
 	      else if(account.getStatus() != 'P')
 	      {
 	    	  throw new IllegalArgumentException("You cannot log in your account is pending");  
-<<<<<<< HEAD
-	      }
-	      else if(account.getStatus() != 'P')
-	      {
-	    	  System.out.println("You cannot log in your account is pending");  
-=======
->>>>>>> 2453dababa191663d01c853bbbe71162f350c03d
 	      }
 	    }
 	    else
