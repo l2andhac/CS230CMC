@@ -60,17 +60,16 @@ public class AdminFunctionalityControllerTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
 	public void testViewAllSchoolsNumberOfSchools() {
-		Set<University> allSchools = dbc.viewAllSchools();
+		Set<University> allSchools = dbc.getAllSchools();
 		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
 	}
 	
 	@Test
 	public void testViewAllSchools() {
-		Set<University> allSchools = dbc.viewAllSchools();
+		Set<University> allSchools = dbc.getAllSchools();
 		University univ = afc.viewSchoolDetails("AUBURN");
-		assertTrue("AUBURN should be one of the Unviersities viewed", allSchools.contains(univ);
+		assertTrue("AUBURN should be one of the Unviersities viewed", allSchools.contains(univ));
 	}
 
 	@Test

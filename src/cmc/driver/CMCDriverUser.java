@@ -33,7 +33,7 @@ public class CMCDriverUser {
 	      
 	      System.out.println("-------------------------------------------------------");
 	      System.out.println("Non user requests a new account\n");
-	      accountInteraction.requestNewAccount("Collin", "Jordre", "cjordre", "password");
+	      accountInteraction.requestNewAccount("Dolen", "Jordre", "djordre", "password");
 	      
 	      
 	      System.out.println("-------------------------------------------------------");
@@ -126,7 +126,7 @@ public class CMCDriverUser {
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("User can remove a saved school");
-	      uInteraction.removeSavedSchool("UNIVERSITY OF CALIFORNIA SANTA CRUZ");
+	      uInteraction.removeSavedSchool("UNIVERSITY OF CALIFORNIA DAVIS");
 	      uInteraction.viewSavedSchools();
 	      
 	      System.out.println("\n-------------------------------------------------------");

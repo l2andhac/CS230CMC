@@ -2,28 +2,40 @@ package cmc.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.SavedSchool;
+import cmc.entity.University;
 import cmc.entity.User;
 
 public class UserFunctionalityControllerTest {
 
-	private UserFunctionalityController ufc;
-	private DBController dbc;
+	private static UserFunctionalityController ufc;
+	private static DBController dbc;
+	private User u;
+	List<String> foci2;
 	
 	@BeforeClass
-	public void beforeTest() throws Exception{
+	public static void beforeTest() throws Exception{
 		ufc = new UserFunctionalityController();
 		dbc = new DBController();
 	}
 	
 	@Before
 	public void setUp() throws Exception {
-		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		dbc.addAccount(u);
+		foci2 = new ArrayList<String>();
+		foci2.add("BUSINESS-ADMINISTRATION");
+		University univ = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		SavedSchool s = new SavedSchool(univ, "time");
+		dbc.addSavedSchool(u, s);
 		//.......
 	}
 
@@ -79,8 +91,15 @@ public class UserFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testViewSavedSchools() {
-		fail("Not yet implemented");
+	public void testViewSavedSchools() { //this test fails. I do not fully understand why
+		List<SavedSchool> savedSchools = ufc.viewSavedSchools(u);
+		List<SavedSchool> actualSavedSchools = new ArrayList<SavedSchool>();
+		University aUniv = dbc.getSchool("UNIVERSITE DE OUAGADOUGOU");
+		SavedSchool aSavedSchool = new SavedSchool(aUniv, "timeStamp");
+		actualSavedSchools.add(aSavedSchool);
+		
+		assertTrue("The list of school saved by user should match the schools "
+				+ "that are actually saved", actualSavedSchools.equals(savedSchools));
 	}
 
 	@Test
