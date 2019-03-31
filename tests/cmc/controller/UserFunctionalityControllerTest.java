@@ -84,6 +84,11 @@ public class UserFunctionalityControllerTest {
 	@Test
 	public void testSaveSchool() {
 		fail("Not yet implemented");
+		
+		
+		
+		
+		
 	}
 
 	@Test

@@ -51,6 +51,11 @@ public class AccountFunctionalityControllerTest {
 	@Test
 	public void testForgotPassword() {
 		fail("Not yet implemented");
+		
+		
+		
+		
+		
 	}
 
 	@Test
