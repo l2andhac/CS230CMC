@@ -120,7 +120,7 @@ public class CMCDriverAdmin {
 	      
 	      System.out.println("\n-------------------------------------------------------");
 	      System.out.println("Admin can add a new user account");
-	      aInteraction.addAccount("Andy", "Rothstein", "AndytheUser", "password",'u', 'y');
+	      aInteraction.addAccount("Andy", "Rothstein", "AndytheAdmin", "password",'u', 'y');
 	      aInteraction.viewAccountInfo("AndytheUser");
 	      
 	      System.out.println("\n-------------------------------------------------------");
