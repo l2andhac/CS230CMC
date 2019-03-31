@@ -10,7 +10,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.SavedSchool;
 import cmc.entity.University;
+import cmc.entity.User;
+import cmc.controller.DBController;
+import cmc.controller.SearchController;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
@@ -20,7 +24,9 @@ public class DBControllerTest {
 	private SearchController searchController;
 	private static DBController dbc;
 	List<String> foci2;
-	University u;
+	University u, u2;
+	SavedSchool s;
+	User dummy;
 	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
@@ -30,9 +36,25 @@ public class DBControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		
+		//makes University without a focus
 		foci2 = new ArrayList<String>();
 		u = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		boolean added = dbc.addSchool(u);
+		
+		//makes University with a focus
+		foci2.add("ENGINEERING");
+		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		
+		//makes new User
+		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
+		dbc.addAccount(dummy);
+		
+		//makes u2 a SavedSchool
+		SavedSchool s = new SavedSchool(u2, "time");
+		
+		//add u2to dummy's list
+		dbc.addSavedSchool(dummy, s);
 	}
 
 	@After
@@ -88,7 +110,11 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetSavedSchools() {
-		fail("Not yet implemented");
+		//tests user with 1 or more SavedSchool with emphases
+		List<SavedSchool> saved = new ArrayList<SavedSchool>();
+		saved.add(s);
+		assertEquals("The list of dummy's SavedSchools should match list 'saved'", saved, dbc.getSavedSchools(dummy));
+		//fail("Not yet implemented");
 	}
 
 	@Test
