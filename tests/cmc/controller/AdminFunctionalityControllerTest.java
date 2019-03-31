@@ -61,7 +61,7 @@ public class AdminFunctionalityControllerTest {
 	}
 
 	public void testViewAllSchoolsNumberOfSchools() {
-		Set<University> allSchools = dbc.getAllSchools();
+		Set<University> allSchools = afc.viewAllSchools();
 		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
 	}
 	
