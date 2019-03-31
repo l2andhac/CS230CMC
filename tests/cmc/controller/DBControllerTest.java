@@ -13,6 +13,8 @@ import org.junit.Test;
 import cmc.entity.SavedSchool;
 import cmc.entity.University;
 import cmc.entity.User;
+import cmc.entity.Admin;
+import cmc.entity.Account;
 import cmc.controller.DBController;
 import cmc.controller.SearchController;
 import dblibrary.project.csci230.UniversityDBLibrary;
@@ -45,21 +47,20 @@ public class DBControllerTest {
 		//makes University with a focus
 		foci2.add("ENGINEERING");
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		dbc.addSchool(u2);
 		
 		//makes new User
 		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
 		dbc.addAccount(dummy);
 		
-		//makes u2 a SavedSchool
-		SavedSchool s = new SavedSchool(u2, "time");
 		
-		//add u2to dummy's list
-		dbc.addSavedSchool(dummy, s);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeSchool(u);
+		dbc.removeSchool(u2);
+		dbc.removeAccount("dummyUser2");
 	}
 
 	@Test
@@ -110,10 +111,15 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetSavedSchools() {
+
 		//tests user with 1 or more SavedSchool with emphases
+		//makes u2 a SavedSchool
+	    SavedSchool s = new SavedSchool(u2, "time");	
+		//add u2to dummy's list
+		dbc.addSavedSchool(dummy, s);
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
 		saved.add(s);
-		assertEquals("The list of dummy's SavedSchools should match list 'saved'", saved, dbc.getSavedSchools(dummy));
+		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).contains(s));
 		//fail("Not yet implemented");
 	}
 
@@ -159,17 +165,24 @@ public class DBControllerTest {
 
 	@Test
 	public void testAddAccount() {
-		fail("Not yet implemented");
+	    Account account = new Account ("Dummy", "WillAgain", "anotherDummy", "password", 'a','Y');
+	    dbc.addAccount(account);
+	    assertTrue("account is in the database", dbc.viewAllAccounts().contains(account.getUsername()));
+	    dbc.removeAccount("anotherDummy");
 	}
 
 	@Test
 	public void testRequestNewAccount() {
-		fail("Not yet implemented");
+		User user = new User ("Dummy", "WillAgain", "anotherDummy", "password", 'p');
+	    dbc.addAccount(user);
+	    assertTrue("account is in the database", dbc.viewAllAccounts().contains(user.getUsername()));
+	    dbc.removeAccount("anotherDummy");
+
 	}
 
 	@Test
 	public void testGetTotalNumberOfSchools() {
-		int actualNumOfSchool = 181; //actually it is 180 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 181
+		int actualNumOfSchool = 182; //actually it is 180 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 181
 		int testNumOfSchool = dbc.getTotalNumberOfSchools();
 		assertTrue("The method should return a total of "+actualNumOfSchool+" schools.", actualNumOfSchool == testNumOfSchool);
 	}
@@ -191,7 +204,8 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetEmphases() {
-		fail("Not yet implemented");
+		assertTrue("BETHEL UNIVERSITY contains the emphasis ENGINEERING", dbc.getEmphases(u2).contains("ENGINEERING"));
+		//fail("Not yet implemented");
 	}
 
 }
