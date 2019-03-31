@@ -67,7 +67,7 @@ public class AdminFunctionalityControllerTest {
 	
 	@Test
 	public void testViewAllSchools() {
-		Set<University> allSchools = dbc.getAllSchools();
+		Set<University> allSchools = afc.viewAllSchools();
 		University univ = afc.viewSchoolDetails("AUBURN");
 		assertTrue("AUBURN should be one of the Unviersities viewed", allSchools.contains(univ));
 	}

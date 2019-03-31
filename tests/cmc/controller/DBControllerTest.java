@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -101,7 +102,9 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetAllSchools() {
-		fail("Not yet implemented");
+		Set<University> allSchools = dbc.getAllSchools();
+		University univ = dbc.viewSchool("AUBURN");
+		assertTrue("AUBURN should be one of the Unviersities in the set", allSchools.contains(univ));
 	}
 
 	@Test
