@@ -136,12 +136,15 @@ public class UserFunctionalityControllerTest {
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    List<University> list = ufc.sortResults(listOfMatches, 'a');
+	    University univ1 = dbc.getSchool("SAN JOSE STATE");
+	    University univ2 = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+	    University univ3 = dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES");
 	    assertTrue("The first university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
-	    		list.get(0).equals(dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY")));
+	    		list.get(0).getSchoolName().equals(univ2.getSchoolName()));
 	    assertTrue("The second university on the sorted list should be SAN JOSE STATE", 
-	    		list.get(1).equals(dbc.getSchool("SAN JOSE STATE")));
+	    		list.get(1).getSchoolName().equals(univ1.getSchoolName()));
 	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA LOS ANGELES", 
-	    		list.get(3).equals(dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES")));
+	    		list.get(2).getSchoolName().equals(univ3.getSchoolName()));
 	}
 	
 	@Test
@@ -153,12 +156,18 @@ public class UserFunctionalityControllerTest {
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    List<University> list = ufc.sortResults(listOfMatches, 'n');
+	    University univ1 = dbc.getSchool("SAN JOSE STATE");
+	    University univ2 = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+	    University univ3 = dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES");
 	    assertTrue("The first university on the sorted list should be SAN JOSE STATE", 
-	    		list.get(0).equals(dbc.getSchool("SAN JOSE STATE")));
-//	    assertTrue("The second university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
-//	    		list.get(0).equals(dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY")));
-//	    assertTrue("The third university on the sorted list should be SAN JOSE STATE", 
-//	    		list.get(0).equals(dbc.getSchool("SAN JOSE STATE")));
+	    		list.get(0).getSchoolName().equals(univ1.getSchoolName()));
+	    //UNIVERSITY OF CALIFORNIA BERKELEY and UNIVERSITY OF CALIFORNIA LOS ANGELES have the same number of students (40000)
+	    assertTrue("The second university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY "
+	    		+ "or UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(1).getSchoolName().equals(univ2.getSchoolName()) || list.get(1).getSchoolName().equals(univ3.getSchoolName()));
+	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY"
+	    		+ " or UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(2).getSchoolName().equals(univ2.getSchoolName()) || list.get(2).getSchoolName().equals(univ3.getSchoolName()));
 	}
 
 	@Test
