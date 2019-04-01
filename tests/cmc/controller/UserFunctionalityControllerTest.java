@@ -83,17 +83,17 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testSaveSchool() {
-		fail("Not yet implemented");
-		
-		
-		
-		
-		
+		dbc.removeSavedSchool(u, s.getSchoolName());
+		assertFalse("saved school is no longer in the list", dbc.getSavedSchools(u).contains(univ));
+		ufc.saveSchool(univ, u);
+		assertTrue("saved school is in the list", dbc.getSavedSchools(u).contains(univ));
 	}
 
 	@Test
 	public void testRemoveSavedSchool() {
-		fail("Not yet implemented");
+		assertTrue("saved school is in the list", dbc.getSavedSchools(u).contains(univ));
+		ufc.removeSavedSchool(univ.getSchoolName(), u);
+		assertFalse("saved school is no longer in the list", dbc.getSavedSchools(u).contains(dbc.getSchool(univ.getSchoolName())));
 	}
 
 	@Test
