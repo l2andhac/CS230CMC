@@ -16,7 +16,7 @@ public class AccountFunctionalityControllerTest {
 	
 	private static AccountFunctionalityController afc;
 	private static DBController dbc;
-	private User user;
+	private User user, emailUser;
 	private static University u;
 	private static ArrayList<String> foci2;
 	
@@ -34,12 +34,16 @@ public class AccountFunctionalityControllerTest {
 		this.user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		dbc.addAccount(this.user);
 		dbc.addSchool(this.u);
+		
+		this.emailUser = new User("Dummy", "Email", "dummyUser@email.com", "password", 'Y');
+		dbc.addAccount(emailUser);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("dummyUser");
 		dbc.removeSchool(u);
+		dbc.removeAccount("dummyUser@email.com");
 	}
 
 	@Test
@@ -71,8 +75,18 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testForgotPassword() {
-		//fail("Not yet implemented");
+		assertTrue("A new password was correctly emailed", afc.forgotPassword("dummyUser@email.com"));
 			
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testForgotPasswordNoAccount() {
+		afc.forgotPassword("accountNotFound");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testForgotPasswordUsernameNotEmail() {
+		afc.forgotPassword("dummyUser");
 	}
 
 	@Test
@@ -89,7 +103,7 @@ public class AccountFunctionalityControllerTest {
 	public void testViewSchoolDetailsValidInput() {	////?
 		University actual = afc.viewSchoolDetails("UNIVERSITE DE OUAGADOUGOU");
 		assertTrue("The school name input is in the database, and returns a correct University",
-				actual.toString() == u.toString());
+				actual.toString().equals(u.toString()));
 	}
 	
 	@Test

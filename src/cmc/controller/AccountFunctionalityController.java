@@ -68,7 +68,7 @@ public class AccountFunctionalityController {
 	 * @param u - String that is the username of the Account to recover the password for
 	 * @throws IllegalArgumentException
 	 */
-	public void forgotPassword(String u) {
+	public boolean forgotPassword(String u) {
 		String np = fpc.generateRandomPassword();
 		Boolean email = fpc.checkIfEmail(u);
 		Account a = dbc.findAccount(u);
@@ -77,6 +77,7 @@ public class AccountFunctionalityController {
 				a.setPassword(np);
 				dbc.changeAccount(a);
 				fpc.emailNewPassword(u, a);
+				return true;
 			} else {
 				throw new IllegalArgumentException("Username is not a valid email address");
 			}
