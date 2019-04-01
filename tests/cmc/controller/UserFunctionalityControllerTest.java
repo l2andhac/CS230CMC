@@ -44,6 +44,7 @@ public class UserFunctionalityControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("dummyUser");
+		dbc.removeSavedSchool(u, s.getSchoolName());
 		//......
 	}
 
