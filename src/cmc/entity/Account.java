@@ -182,5 +182,26 @@ public String toString() {
 	return "firstName= " + firstName + "\nlastName= " + lastName + "\nusername= " + username + "\npassword= "
 			+ password + "\nuserType= " + userType + "\nstatus= " + status  + "\nisLoggedOn= " + loggedOn;
 }
-
+	
+public boolean equals(Account a) {
+	if(!this.firstName.equals(a.firstName)) {
+		return false;
+	}
+	if(!this.lastName.equals(a.lastName)) {
+		return false;
+	}
+	if(!this.username.equals(a.username)) {
+		return false;
+	}
+	if(!this.password.equals(a.password)) {
+		return false;
+	}
+	if(!(this.userType == (a.userType))) {
+		return false;
+	}
+	if(!(this.status == (a.status))) {
+		return false;
+	}
+	return true;
+}
 }
