@@ -21,12 +21,13 @@ public class DBControllerTest {
 	  // instance variable for a searchController
 	private SearchController searchController;
 	private static DBController dbc;
+	private Search search;
 	List<String> foci2;
-	Admin admin;
-	User user;
-	University u, u2;
-	SavedSchool s;
-	User dummy;
+	private Admin admin;
+	private User user;
+	private University u, u2;
+	private SavedSchool s;
+	private User dummy;
 	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
@@ -200,8 +201,18 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testFindSearchedSchool() {
-		//fail("Not yet implemented");
+	public void testFindSearchedSchoolFound() {
+		search = new Search("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 11, 10, 10500, 10500, 95, 95, 70, 70, 2,2, 1, 1, 1, 1,foci2);
+
+		Set<University> searchedSchools = dbc.findSearchedSchool(search);
+		assertTrue("School matches the search criteria", searchedSchools.contains(u) && searchedSchools.size() == 1);
+	}
+	
+	@Test
+	public void testFindSearchedSchoolNotFound() {
+		search = new Search("NOWHERE UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 11, 10, 10500, 10500, 95, 95, 70, 70, 2,2, 1, 1, 1, 1,foci2);
+		Set<University> searchedSchools = dbc.findSearchedSchool(search);
+		assertTrue("No school matches the search criteria", searchedSchools.size() == 0);
 	}
 
 	@Test
