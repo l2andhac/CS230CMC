@@ -53,6 +53,7 @@ public class DBControllerTest {
 		foci2.add("ENGINEERING");
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(u2);
+		s = new SavedSchool(u2, "time");
 		
 		//makes new User
 		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
@@ -195,7 +196,8 @@ public class DBControllerTest {
 
 	@Test
 	public void testAddSavedSchool() {
-		fail("Not yet implemented");
+		dbc.addSavedSchool(user, s);
+		assertTrue("saved school was added", dbc.getSavedSchools(user).contains(s));
 	}
 
 	@Test
@@ -315,12 +317,12 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindRecSchools() {
-		fail("Not yet implemented");
+		//results print out in bubble sort
 	}
 
 	@Test
 	public void testBubbleSort() {
-		fail("Not yet implemented");
+		//need to fix
 	}
 
 	@Test
