@@ -42,7 +42,7 @@ public class DBControllerTest {
 		
 		//makes University without a focus
 		foci2 = new ArrayList<String>();
-		u = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		boolean added = dbc.addSchool(u);
 		
 		//makes University with a focus
@@ -87,8 +87,14 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testAddSchool() {
-		fail("Not yet implemented");
+	public void testAddSchoolForUniqueName() {
+		University u3 = new University("HAMLINE UNIVERSITY", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		assertTrue("School should be added", dbc.addSchool(u3));
+	}
+	
+	@Test
+	public void testAddSchoolForTakenSchoolName() {
+		assertFalse("School should not be added", dbc.addSchool(u));
 	}
 
 	@Test
@@ -110,8 +116,13 @@ public class DBControllerTest {
 	}
 	
 	@Test
-	public void testIsSchoolSaved() {
-		fail("Not yet implemented");
+	public void testIsSchoolSavedForTrue() {
+		assertTrue("School should be saved", dbc.isSchoolSaved(u2));
+	}
+	
+	@Test
+	public void testIsSchoolSavedForFalse() {
+		assertFalse("School should not be saved", dbc.isSchoolSaved(u));
 	}
 
 	@Test
@@ -182,7 +193,10 @@ public class DBControllerTest {
 
 	@Test
 	public void testViewAllAccounts() {
-		fail("Not yet implemented");
+		Set<String> allAccounts = dbc.viewAllAccounts();
+		int expectedSize = dbc.getTotalNumberOfAccounts();
+		assertTrue("dummyUser should be one of the accounts viewed", allAccounts.contains("dummyUser2"));
+		assertTrue("size of the set should be " + expectedSize, allAccounts.size() == expectedSize);
 	}
 
 	@Test
