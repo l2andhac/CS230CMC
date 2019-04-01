@@ -15,6 +15,7 @@ public class AccountControllerTest {
 
 	private static AccountController ac;
 	private static DBController dbc;
+	User dd;
 	
 	@BeforeClass
 	public static void beforeTest() throws Exception{
@@ -28,7 +29,7 @@ public class AccountControllerTest {
 		dbc.addAccount(ud);
 		User pd = new User("PendingDummy", "Jordre", "pendingDummyUser", "password", 'P');
 		dbc.addAccount(pd);
-		User dd = new User("DeactivatedDummy", "Jordre", "deactivatedDummyUser", "password", 'N');
+		dd = new User("DeactivatedDummy", "Jordre", "deactivatedDummyUser", "password", 'N');
 		dbc.addAccount(dd);
 		Admin ad = new Admin("DummyAdmin", "Jordre", "dummyAdmin", "password", 'Y');
 		dbc.addAccount(ad);		
@@ -41,11 +42,6 @@ public class AccountControllerTest {
 		dbc.removeAccount("deactivatedDummyUser");
 		dbc.removeAccount("dummyAdmin");
 	}
-
-//	@Test
-//	public void testAccountController() {
-//		fail("Not yet implemented");
-//	}
 
 	@Test
 	public void testLogOn() {
@@ -69,7 +65,7 @@ public class AccountControllerTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testLogOnDeactivated() {
-		ac.logOn("deactivatedDummyUser","password");
+		ac.logOn(dd.getUsername(),"password");
 	}
 	
 }
