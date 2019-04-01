@@ -9,19 +9,23 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.Account;
 import cmc.entity.Admin;
 import cmc.entity.University;
 import cmc.entity.User;
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class AdminFunctionalityControllerTest {
 
-	private AdminFunctionalityController afc;
-	private DBController dbc;
+	private static AdminFunctionalityController afc;
+	private static DBController dbc;
+	private static UniversityDBLibrary univDBlib;
 	
 	@BeforeClass
-	public void beforeTest() throws Exception{
+	public static void beforeTest() throws Exception{
 		afc = new AdminFunctionalityController();
 		dbc = new DBController();
+		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
 	}
 	
 	@Before
@@ -29,7 +33,7 @@ public class AdminFunctionalityControllerTest {
 		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		dbc.addAccount(u);
 		Admin a = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
-		dbc.addAccount(u);
+		dbc.addAccount(a);
 		//.......
 	}
 
@@ -60,9 +64,12 @@ public class AdminFunctionalityControllerTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
 	public void testViewAllSchoolsNumberOfSchools() {
 		Set<University> allSchools = afc.viewAllSchools();
-		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
+		String[][] univs = univDBlib.university_getUniversities();
+		int numSchools = univs.length;
+		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
 	}
 	
 	@Test
@@ -74,7 +81,11 @@ public class AdminFunctionalityControllerTest {
 
 	@Test
 	public void testViewAllAccounts() {
-		fail("Not yet implemented");
+		Set<String> allAccounts = afc.viewAllAccounts();
+		int expectedSize = dbc.getTotalNumberOfAccounts();
+		assertTrue("dummyUser should be one of the accounts viewed", allAccounts.contains("dummyUser"));
+		assertTrue("dummyAdmin should be one of the accounts viewed", allAccounts.contains("dummyAdmin"));
+		assertTrue("size of the set should be " + expectedSize, allAccounts.size() == expectedSize);
 	}
 
 	@Test

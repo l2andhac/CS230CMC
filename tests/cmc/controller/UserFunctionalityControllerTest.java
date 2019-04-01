@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -11,8 +12,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import cmc.entity.SavedSchool;
+import cmc.entity.Search;
 import cmc.entity.University;
 import cmc.entity.User;
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class UserFunctionalityControllerTest {
 
@@ -64,8 +67,17 @@ public class UserFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testSearchForFriends() {
-		fail("Not yet implemented");
+	public void testSearchForFriendsUserFound() {
+		List<SavedSchool> s = ufc.searchForFriends("dummyUser");
+		assertTrue("The two lists should contain the same schools", s == dbc.getSavedSchools(u));
+		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSearchForFriendsUserNotFound() {
+		List<SavedSchool> s = ufc.searchForFriends(null);
+		
+		
 	}
 
 	@Test
@@ -76,7 +88,12 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testSearchSchool() {
-		fail("Not yet implemented");
+		Search so = new Search("", "CALI", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
+		Set<University> matches = ufc.searchSchool(so);
+		System.out.println(matches.size());
+		//University expected = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+		//assertTrue("The results should contain Berkeley", matches.contains(expected));
+		assertTrue("There should be 12 schools in matches", matches.size() == 12);
 	}
 
 	@Test
