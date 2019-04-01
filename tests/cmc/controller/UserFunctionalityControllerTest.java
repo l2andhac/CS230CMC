@@ -38,7 +38,7 @@ public class UserFunctionalityControllerTest {
 		dbc.addAccount(u);
 		foci2 = new ArrayList<String>();
 		foci2.add("BUSINESS-ADMINISTRATION");
-		univ = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		univ = new University("A Dummy School", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		s = new SavedSchool(univ, "time");
 		dbc.addSavedSchool(u, s);
 		//.......
@@ -52,8 +52,18 @@ public class UserFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testViewSchoolDetails() {
-		fail("Not yet implemented");
+	public void testViewSchoolDetailsSchoolNotFound() {
+		assertTrue(ufc.viewSchoolDetails("laksdjflaksj") == null);
+	}
+	
+	@Test
+	public void testViewSchoolDetailsSchoolFound() {
+		Boolean t = dbc.addSchool(univ);
+		System.out.println(t);
+		System.out.println(ufc.viewSchoolDetails(univ.getSchoolName()).toString());
+		System.out.println(univ.toString());
+		assertTrue(ufc.viewSchoolDetails(univ.getSchoolName()).toString().equals(univ.toString()));	
+		dbc.removeSchool(univ);
 	}
 
 	@Test
