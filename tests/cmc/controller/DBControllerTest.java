@@ -124,7 +124,7 @@ public class DBControllerTest {
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
 		saved.add(s);
 		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).contains(s));
-		//fail("Not yet implemented");
+		dbc.removeSavedSchool(dummy, "BETHEL UNIVERSITY");
 	}
 
 	@Test
