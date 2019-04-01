@@ -133,12 +133,12 @@ public class DBControllerTest {
 		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
 	}
 
+	@Test
 	public void testFindAccountAdminFound() {
 		dbc.addAccount(admin);
 		Admin actual = (Admin)dbc.findAccount("dummyAdmin");
 		assertTrue("The account found is the correct admin,", 
-				actual.toString().equals(admin.toString()));
-
+				actual.equals(admin));
 	}
 	
 	@Test
