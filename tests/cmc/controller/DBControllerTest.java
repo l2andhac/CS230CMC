@@ -106,7 +106,7 @@ public class DBControllerTest {
 		dbc.addAccount(admin);
 		Admin actual = (Admin)dbc.findAccount("dummyAdmin");
 		assertTrue("The account found is the correct admin,", 
-				actual.equals(admin));
+				actual.toString().equals(admin.toString()));
 	}
 	
 	@Test
@@ -114,7 +114,7 @@ public class DBControllerTest {
 		dbc.addAccount(user);
 		Account actual = dbc.findAccount("dummyUser");
 		assertTrue("The account found is the correct user,", 
-				actual.equals(user));
+				actual.toString().equals(user.toString()));
 	}
 	
 	@Test
@@ -214,18 +214,37 @@ public class DBControllerTest {
 		dbc.addAccount(admin);
 		admin.setStatus('N');
 		dbc.changeAccount(admin);
-		//assertTrue("The status is now changed for the admin",
-				//admin.getSatus().equals('N'));
+		assertTrue("The status is now changed for the admin",
+				admin.getStatus()=='N');
+	}
+	
+	@Test
+	public void testChangeAccountType() {
+		dbc.addAccount(admin);
+		admin.setUserType('u');
+		dbc.changeAccount(admin);
+		assertTrue("The type is now changed for the admin to a user",
+				admin.getUserType()=='u');
 	}
 
 	@Test
-	public void testHasEmphasis() {
-		fail("Not yet implemented");
+	public void testHasEmphasisTrue() {
+		assertTrue("The university entered has an emphasis", dbc.hasEmphasis(u2));
+	}
+	
+	@Test
+	public void testHasEmphasisFalse() {
+		assertFalse("The university entered does not have an emphasis", dbc.hasEmphasis(u));
 	}
 
 	@Test
-	public void testFindUsername() {
-		fail("Not yet implemented");
+	public void testFindUsernameTrue() {
+		assertTrue("The username entered is a part of the database", dbc.findUsername("dummyUser"));
+	}
+	
+	@Test
+	public void testFindUsernameFalse() {
+		assertFalse("The username entered is not a part of the database", dbc.findUsername("kate"));
 	}
 
 	@Test
