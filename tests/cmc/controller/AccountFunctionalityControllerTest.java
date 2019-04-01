@@ -2,35 +2,43 @@ package cmc.controller;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.University;
 import cmc.entity.User;
 
 public class AccountFunctionalityControllerTest {
 	
-	private AccountFunctionalityController afc;
-	private DBController dbc;
+	private static AccountFunctionalityController afc;
+	private static DBController dbc;
+	private static University u;
+	private static ArrayList<String> foci2;
 	
 	@BeforeClass
-	public void beforeTest() throws Exception{
+	public static void beforeTest() throws Exception{
 		afc = new AccountFunctionalityController();
 		dbc = new DBController();
+		//makes a university without emphasis
+		foci2 = new ArrayList<String>();
+		u = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 	}
 	
 	@Before
 	public void setUp() throws Exception {
 		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		dbc.addAccount(u);
-		//.......
+		dbc.addSchool(this.u);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("dummyUser");
-		//......
+		dbc.removeSchool(u);
 	}
 
 	@Test
@@ -69,8 +77,17 @@ public class AccountFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testViewSchoolDetails() {
-		fail("Not yet implemented");
+	public void testViewSchoolDetailsValidInput() {	////?
+		University actual = afc.viewSchoolDetails("UNIVERSITE DE OUAGADOUGOU");
+		assertTrue("The school name input is in the database, and returns a correct University",
+				actual.toString() == u.toString());
+	}
+	
+	@Test
+	public void testViewSchoolDetailsInvalidInput() {	
+		University actual = afc.viewSchoolDetails("U");
+		assertTrue("The school name input is not in the database, and returns a null University",
+				actual == null);
 	}
 
 	@Test
