@@ -90,7 +90,6 @@ public class UserFunctionalityControllerTest {
 	public void testSearchSchool() {
 		Search so = new Search("", "CALI", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
 		Set<University> matches = ufc.searchSchool(so);
-		System.out.println(matches.size());
 		//University expected = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
 		//assertTrue("The results should contain Berkeley", matches.contains(expected));
 		assertTrue("There should be 12 schools in matches", matches.size() == 12);
