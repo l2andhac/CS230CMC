@@ -47,11 +47,6 @@ public class AccountFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testAccountFunctionalityController() {
-		//fail("Not yet implemented");
-	}
-
-	@Test
 	public void testLogOn() {
 		//fail("Not yet implemented");
 	}
@@ -65,7 +60,6 @@ public class AccountFunctionalityControllerTest {
 		assertFalse("The initial status of the user should be different to the "
 				+ "status after request", initStatus == newStatus);
 		dbc.removeAccount("wtapsoba");
-		
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
