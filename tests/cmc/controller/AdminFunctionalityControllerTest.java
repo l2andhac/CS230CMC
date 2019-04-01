@@ -12,16 +12,19 @@ import org.junit.Test;
 import cmc.entity.Admin;
 import cmc.entity.University;
 import cmc.entity.User;
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class AdminFunctionalityControllerTest {
 
-	private AdminFunctionalityController afc;
-	private DBController dbc;
+	private static AdminFunctionalityController afc;
+	private static DBController dbc;
+	private static UniversityDBLibrary univDBlib;
 	
 	@BeforeClass
-	public void beforeTest() throws Exception{
+	public static void beforeTest() throws Exception{
 		afc = new AdminFunctionalityController();
 		dbc = new DBController();
+		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
 	}
 	
 	@Before
@@ -60,9 +63,12 @@ public class AdminFunctionalityControllerTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
 	public void testViewAllSchoolsNumberOfSchools() {
 		Set<University> allSchools = afc.viewAllSchools();
-		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
+		String[][] univs = univDBlib.university_getUniversities();
+		int numSchools = univs.length;
+		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
 	}
 	
 	@Test

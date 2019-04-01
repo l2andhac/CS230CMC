@@ -57,10 +57,6 @@ public class DBControllerTest {
 		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
 		dbc.addAccount(dummy);
 		
-		//adds savedSchool to the new User
-		UserFunctionalityController ufc = new UserFunctionalityController();
-		ufc.saveSchool(s, dummy);
-		
 	}
 
 	@After
@@ -105,8 +101,11 @@ public class DBControllerTest {
 
 	@Test
 	public void testRemoveSchoolWithSavedSchool() {
-		dbc.removeSchool(s);
-		assertTrue("University should not be removed", dbc.findSchoolName("BETHEL UNIVERSITY"));
+		s = new SavedSchool(u, "time");
+		dbc.addSavedSchool(dummy, s);
+		dbc.removeSchool(u);
+		assertTrue("University should not be removed", dbc.findSchoolName("UNIVERSITE DE OUAGADOUGOU"));
+		dbc.removeSavedSchool(dummy, "UNIVERSITE DE OUAGADOUGOU");
 	}
 	
 	@Test
@@ -122,7 +121,9 @@ public class DBControllerTest {
 	@Test
 	public void testGetAllSchoolsNumberOfSchools() {
 		Set<University> allSchools = dbc.getAllSchools();
-		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
+		String[][] univs = univDBlib.university_getUniversities();
+		int numSchools = univs.length;
+		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
 	}
 	
 
@@ -156,13 +157,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindSchoolName() {
-		fail("Not yet implemented");
-		
-		
-		
-		
-		
-		
+		fail("Not yet implemented");	
 	}
 
 	@Test
