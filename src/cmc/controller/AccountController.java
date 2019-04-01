@@ -53,7 +53,7 @@ public class AccountController{
 	      {
 	    	  throw new IllegalArgumentException("Account status is not valid");
 	      }
-	      else if(account.getStatus() != 'P')
+	      else if(account.getStatus() == 'P')
 	      {
 	    	  throw new IllegalArgumentException("You cannot log in your account is pending");  
 	      }

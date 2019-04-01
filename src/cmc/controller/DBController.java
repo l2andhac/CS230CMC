@@ -46,7 +46,7 @@ public class DBController {
    * @return boolean - true if the university has been successfully added
    */
   public boolean addSchool(University u) {
-    //check if school name exists already
+    if(this.findSchoolName(u.getSchoolName()) == true) {
     univDBlib.university_addUniversity(u.getSchoolName(), u.getState(), u.getLocation(), u.getControl(),
                                         u.getNumStudents(), u.getPercentFemales(), u.getSATVerbal(), u.getSATMath(),
                                         u.getExpenses(), u.getPercentFinancialAid(), u.getNumApplicants(),
@@ -58,6 +58,10 @@ public class DBController {
     	univDBlib.university_addUniversityEmphasis(u.getSchoolName(),list.get(i));
     }
     return true;
+    }
+    else {
+    	return false;
+    }
   }
   
   /**
@@ -405,6 +409,17 @@ public class DBController {
 	  String[][] schools = univDBlib.university_getUniversities();
 	  return schools.length; 
   }
+  
+  /**
+   * Gets the total number of schools in the database
+   * 
+   * @return int - the total number of schools currently in the database
+   */
+  public int getTotalNumberOfAccounts() {
+	  
+	  String[][] accounts = univDBlib.user_getUsers();
+	  return accounts.length; 
+}
   
   
   /**
