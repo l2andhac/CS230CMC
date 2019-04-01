@@ -31,4 +31,13 @@ public class User extends Account{
 	public List<SavedSchool> getSavedSchools(){
 		return this.savedSchools;
     }
+	
+	/**
+	 * A mutator method that sets a list of saved schools.
+	 * 
+	 * @param list - the list of saved schools
+	 */
+	public void setSavedSchools(List<SavedSchool> list){
+		this.savedSchools = list;
+    }
 }

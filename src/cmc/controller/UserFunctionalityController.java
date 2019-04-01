@@ -203,8 +203,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @param school - String that is the schoolName of the University to find related schools
    */
   public void showRecSchools(String school) {
-	  dbController.findRecSchools(school);
-	  
+	  dbController.findRecSchools(school);  
   }
 
 

@@ -79,8 +79,7 @@ public class UserFunctionalityControllerTest {
 	@Test
 	public void testSearchForFriendsUserFound() {
 		List<SavedSchool> s = ufc.searchForFriends("dummyUser");
-		assertTrue("The two lists should contain the same schools", s == dbc.getSavedSchools(u));
-		
+		assertTrue("The two lists should contain the same schools", s.equals(dbc.getSavedSchools(u)));		
 	}
 	
 	@Test

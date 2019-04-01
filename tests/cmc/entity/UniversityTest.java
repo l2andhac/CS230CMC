@@ -22,87 +22,87 @@ public class UniversityTest {
 	}
 
 	@Test
-	public void testGetSchoolName() {
+	public void testSetSchoolName() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetState() {
+	public void testSetState() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetLocation() {
+	public void testSetLocation() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetControl() {
+	public void testSetControl() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetNumStudents() {
+	public void testSetNumStudents() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetPercentFemales() {
+	public void testSetPercentFemales() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetSATVerbal() {
+	public void testSetSATVerbal() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetSATMath() {
+	public void testSetSATMath() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetExpenses() {
+	public void testSetExpenses() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetPercentFinancialAid() {
+	public void testSetPercentFinancialAid() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetNumApplicants() {
+	public void testSetNumApplicants() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetPercentAdmitted() {
+	public void testSetPercentAdmitted() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetPercentEnrolled() {
+	public void testSetPercentEnrolled() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetAcademicScale() {
+	public void testSetAcademicScale() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetSocialScale() {
+	public void testSetSocialScale() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetQualityOfLifeScale() {
+	public void testSetQualityOfLifeScale() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testGetEmphases() {
+	public void testSetEmphases() {
 		fail("Not yet implemented");
 	}
 
