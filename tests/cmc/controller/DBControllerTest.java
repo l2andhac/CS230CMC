@@ -16,7 +16,8 @@ import cmc.entity.University;
 import cmc.entity.User;
 import cmc.entity.Admin;
 import cmc.entity.Account;
-import cmc.controller.*;
+import cmc.controller.DBController;
+import cmc.controller.SearchController;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
@@ -29,7 +30,6 @@ public class DBControllerTest {
 	University u, u2;
 	SavedSchool s;
 	User dummy;
-	UserFunctionalityController ufc;
 	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
@@ -50,16 +50,10 @@ public class DBControllerTest {
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(u2);
 		
-		//make SavedSchool
-		s = new SavedSchool(u2, "time");
-		
 		//makes new User
 		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
 		dbc.addAccount(dummy);
 		
-		//adds savedSchool to the new User
-		UserFunctionalityController ufc = new UserFunctionalityController();
-		ufc.saveSchool(s, dummy);
 		
 	}
 
@@ -92,23 +86,10 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testRemoveSchoolWithoutFocus() {
-		dbc.removeSchool(u);
-		assertFalse("University should be removed", dbc.findSchoolName("UNIVERSITE DE OUAGADOUGOU"));
-	}
-	
-	@Test
-	public void testRemoveSchoolWithFocus() {
-		dbc.removeSchool(u2);
-		assertTrue("University should not be removed", dbc.findSchoolName("BETHEL UNIVERSITY"));
+	public void testRemoveSchool() {
+		fail("Not yet implemented");
 	}
 
-	@Test
-	public void testRemoveSchoolWithSavedSchool() {
-		dbc.removeSchool(s);
-		assertTrue("University should not be removed", dbc.findSchoolName("BETHEL UNIVERSITY"));
-	}
-	
 	@Test
 	public void testIsSchoolSaved() {
 		fail("Not yet implemented");
@@ -120,19 +101,11 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testGetAllSchoolsNumberOfSchools() {
-		Set<University> allSchools = dbc.getAllSchools();
-		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
-	}
-	
-
-	
-	@Test
 	public void testGetAllSchools() {
 		AdminFunctionalityController afc = new AdminFunctionalityController();
 		Set<University> allSchools = dbc.getAllSchools();
 		University univ = afc.viewSchoolDetails("AUBURN");
-		assertTrue("AUBURN should be one of the Unviersities in the set", allSchools.contains(univ));
+        assertTrue("AUBURN should be one of the Unviersities in the set", allSchools.contains(univ));
 	}
 
 	@Test
