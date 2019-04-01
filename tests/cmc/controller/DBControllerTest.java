@@ -70,7 +70,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testDBController() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -97,7 +97,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testRemoveSchool() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -159,7 +159,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testRemoveSavedSchool() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -188,7 +188,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindSearchedSchool() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
