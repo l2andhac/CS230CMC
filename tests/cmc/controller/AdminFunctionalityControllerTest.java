@@ -83,7 +83,10 @@ public class AdminFunctionalityControllerTest {
 
 	@Test
 	public void testEditSchoolInfo() {
-		//fail("Not yet implemented");
+		int oldNumOfStudents = univ1.getNumStudents();
+		University modifiedUniversity = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 20000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		afc.editSchoolInfo(modifiedUniversity);
+		assertFalse("The school has been edited and the sumber of students has changed", modifiedUniversity.getNumStudents()==oldNumOfStudents);
 	}
 
 	@Test
