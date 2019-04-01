@@ -64,6 +64,7 @@ public class AccountFunctionalityControllerTest {
 		char newStatus = aUser.getStatus();
 		assertFalse("The initial status of the user should be different to the "
 				+ "status after request", initStatus == newStatus);
+		dbc.removeAccount("wtapsoba");
 		
 	}
 	
