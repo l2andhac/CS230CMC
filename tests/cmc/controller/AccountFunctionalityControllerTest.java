@@ -32,7 +32,7 @@ public class AccountFunctionalityControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		this.user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
-		dbc.addAccount(this.u);
+		dbc.addAccount(this.user);
 		dbc.addSchool(this.u);
 	}
 
@@ -72,11 +72,7 @@ public class AccountFunctionalityControllerTest {
 	@Test
 	public void testForgotPassword() {
 		fail("Not yet implemented");
-		
-		
-		
-		
-		
+			
 	}
 
 	@Test
