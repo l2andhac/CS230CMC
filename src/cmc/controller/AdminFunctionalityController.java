@@ -114,11 +114,16 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * Allows the Admin to add a new Account into the Database
    * 
    * @param newAccount - Account to be added into the Database
+   * 
+   * @throws IllegalArgumentException
    */
   public void addAccount(Account newAccount){
     boolean duplicate = dbController.findUsername(newAccount.getUsername());
     if(duplicate == false){
       dbController.addAccount(newAccount);
+    }
+    else {
+    	throw new IllegalArgumentException("Duplicate username");
     }
     
     
