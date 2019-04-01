@@ -20,6 +20,8 @@ public class AdminFunctionalityControllerTest {
 	private static AdminFunctionalityController afc;
 	private static DBController dbc;
 	private static UniversityDBLibrary univDBlib;
+	private static User u;
+	private static Admin a;
 	
 	@BeforeClass
 	public static void beforeTest() throws Exception{
@@ -30,9 +32,9 @@ public class AdminFunctionalityControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		dbc.addAccount(u);
-		Admin a = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
+		a = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
 		dbc.addAccount(a);
 		//.......
 	}
@@ -89,13 +91,24 @@ public class AdminFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testAddAccount() {
-		fail("Not yet implemented");
+	public void testAddAccountAdmin() {
+		assertTrue("the admin account was added", dbc.viewAllAccounts().contains("dummyAdmin"));	
+	}
+	
+	@Test
+	public void testAddAccountUser() {
+		assertTrue("the user account was added", dbc.viewAllAccounts().contains("dummyUser"));	
 		
-		
-		
-		
-		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddExistingUserAccount() {
+		dbc.addAccount(u);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddExistingAdminAccount() {
+		dbc.addAccount(a);
 	}
 
 }
