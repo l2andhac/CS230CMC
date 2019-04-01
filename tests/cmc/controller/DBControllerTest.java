@@ -96,8 +96,9 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testRemoveSchool() {
-		//fail("Not yet implemented");
+	public void testRemoveSchoolWithEmphasis() {
+		dbc.removeSchool(u2);
+		assertTrue("University should not be removed", dbc.findSchoolName("BETHEL UNIVERSITY"));
 	}
 
 	@Test
@@ -105,8 +106,14 @@ public class DBControllerTest {
 		s = new SavedSchool(u, "time");
 		dbc.addSavedSchool(dummy, s);
 		dbc.removeSchool(u);
-		assertTrue("University should not be removed", dbc.findSchoolName("UNIVERSITE DE OUAGADOUGOU"));
-		dbc.removeSavedSchool(dummy, "UNIVERSITE DE OUAGADOUGOU");
+		assertTrue("University should not be removed", dbc.findSchoolName("Carleton College"));
+		dbc.removeSavedSchool(dummy, "Carleton College");
+	}
+	
+	@Test
+	public void testRemoveSchoolWithoutSavedSchool() {
+		dbc.removeSchool(u);
+		assertFalse("University should be removed", dbc.findSchoolName("Carleton College"));
 	}
 	
 	@Test

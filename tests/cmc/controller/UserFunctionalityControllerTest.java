@@ -83,9 +83,10 @@ public class UserFunctionalityControllerTest {
 		
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testSearchForFriendsUserNotFound() {
 		List<SavedSchool> s = ufc.searchForFriends(null);
+		assertTrue("The user is not found so it returns null", s == null);
 		
 		
 	}
