@@ -46,7 +46,7 @@ public class DBController {
    * @return boolean - true if the university has been successfully added
    */
   public boolean addSchool(University u) {
-    if(this.findSchoolName(u.getSchoolName()) == true) {
+    if(this.findSchoolName(u.getSchoolName()) == false) {
     univDBlib.university_addUniversity(u.getSchoolName(), u.getState(), u.getLocation(), u.getControl(),
                                         u.getNumStudents(), u.getPercentFemales(), u.getSATVerbal(), u.getSATMath(),
                                         u.getExpenses(), u.getPercentFinancialAid(), u.getNumApplicants(),

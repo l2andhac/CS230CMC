@@ -11,13 +11,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import cmc.entity.SavedSchool;
-import cmc.entity.University;
-import cmc.entity.User;
-import cmc.entity.Admin;
-import cmc.entity.Account;
-import cmc.controller.DBController;
-import cmc.controller.SearchController;
+import cmc.entity.*;
+import cmc.controller.*;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
@@ -62,6 +57,9 @@ public class DBControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
+		dbc.removeSavedSchool(user, u.getSchoolName());
+		dbc.removeSavedSchool(user, u2.getSchoolName());
+		
 		dbc.removeSchool(u);
 		dbc.removeAccount("dummyAdmin");
 		dbc.removeAccount("dummyUser");
@@ -123,9 +121,9 @@ public class DBControllerTest {
 	@Test
 	public void testGetAllSchoolsNumberOfSchools() {
 		Set<University> allSchools = dbc.getAllSchools();
-		String[][] univs = univDBlib.university_getUniversities();
-		int numSchools = univs.length;
+		int numSchools = dbc.getTotalNumberOfSchools();
 		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
+	}
 
 	public void testFindAccountAdminFound() {
 		dbc.addAccount(admin);
