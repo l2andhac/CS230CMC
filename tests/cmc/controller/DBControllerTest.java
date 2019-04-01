@@ -126,6 +126,7 @@ public class DBControllerTest {
 		String[][] univs = univDBlib.university_getUniversities();
 		int numSchools = univs.length;
 		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
+	}
 
 	public void testFindAccountAdminFound() {
 		dbc.addAccount(admin);
@@ -179,7 +180,12 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindSchoolName() {
-		fail("Not yet implemented");	
+		assertTrue("School name is correctly found", dbc.findSchoolName("AUBURN"));	
+	}
+	
+	@Test
+	public void testFindSchoolNameNotFound() {
+		assertFalse("School name is NOT correctly found", dbc.findSchoolName("AUBURNX"));	
 	}
 
 	@Test
