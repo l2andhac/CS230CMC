@@ -10,7 +10,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.Account;
+import cmc.entity.Admin;
 import cmc.entity.University;
+import cmc.entity.User;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
@@ -21,6 +24,8 @@ public class DBControllerTest {
 	private static DBController dbc;
 	List<String> foci2;
 	University u;
+	Admin admin;
+	User user;
 	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
@@ -33,11 +38,15 @@ public class DBControllerTest {
 		foci2 = new ArrayList<String>();
 		u = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		boolean added = dbc.addSchool(u);
+		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeSchool(u);
+		dbc.removeAccount("dummyAdmin");
+		dbc.removeAccount("dummyUser");
 	}
 
 	@Test
@@ -72,8 +81,26 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testFindAccount() {
-		fail("Not yet implemented");
+	public void testFindAccountAdminFound() {
+		dbc.addAccount(admin);
+		Admin actual = (Admin)dbc.findAccount("dummyAdmin");
+		assertTrue("The account found is the correct admin,", 
+				actual.equals(admin));
+	}
+	
+	@Test
+	public void testFindAccountUserFound() {
+		dbc.addAccount(user);
+		Account actual = dbc.findAccount("dummyUser");
+		assertTrue("The account found is the correct user,", 
+				actual.equals(user));
+	}
+	
+	@Test
+	public void testFindAccountFails() {
+		Account actual = dbc.findAccount("kate");
+		assertTrue("The account does not exist, so a null account"
+				+ "is returned", actual == null);
 	}
 
 	@Test
@@ -117,8 +144,39 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testChangeAccount() {
-		fail("Not yet implemented");
+	public void testChangeAccountFirstName() {
+		dbc.addAccount(user);
+		user.setFirstName("newDummy");
+		dbc.changeAccount(user);
+		assertTrue("The first name is now changed for the user",
+				user.getFirstName().equals("newDummy"));
+	}
+	
+	@Test
+	public void testChangeAccountLastName() {
+		dbc.addAccount(user);
+		user.setLastName("Rothstein");
+		dbc.changeAccount(user);
+		assertTrue("The last name is now changed for the user",
+				user.getLastName().equals("Rothstein"));
+	}
+	
+	@Test
+	public void testChangeAccountPassword() {
+		dbc.addAccount(admin);
+		admin.setPassword("123455");
+		dbc.changeAccount(admin);
+		assertTrue("The password is now changed for the admin",
+				admin.getPassword().equals("123455"));
+	}
+	
+	@Test
+	public void testChangeAccountStatus() {
+		dbc.addAccount(admin);
+		admin.setStatus('N');
+		dbc.changeAccount(admin);
+		//assertTrue("The status is now changed for the admin",
+				//admin.getSatus().equals('N'));
 	}
 
 	@Test
