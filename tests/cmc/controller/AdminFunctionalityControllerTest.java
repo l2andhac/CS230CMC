@@ -78,13 +78,22 @@ public class AdminFunctionalityControllerTest {
 
 	@Test
 	public void testAddSchool() {
-		//fail("Not yet implemented");
+		List<String>foci3 = new ArrayList<String>();
+		University univ4 = new University("ADDED UNIVERSITY", "MINNESOTA", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci3);
+		afc.addSchool(univ4);
+		assertTrue("The school with a name that was not previously in the database is now in the database", dbc.findSchoolName("ADDED UNIVERSITY"));
+		dbc.removeSchool(univ4);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddSchoolForExistingSchool() {
+		afc.addSchool(univ2);
 	}
 
 	@Test
 	public void testEditSchoolInfo() {
 		int oldNumOfStudents = univ1.getNumStudents();
-		University modifiedUniversity = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 20000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		University modifiedUniversity = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 20000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, null);
 		afc.editSchoolInfo(modifiedUniversity);
 		assertFalse("The school has been edited and the sumber of students has changed", modifiedUniversity.getNumStudents()==oldNumOfStudents);
 	}
