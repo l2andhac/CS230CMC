@@ -45,8 +45,7 @@ public class DBControllerTest {
 		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
 		
-		//makes University with a focus
-		foci2.add("ENGINEERING");
+	
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(u2);
 		s = new SavedSchool(u2, "time");
@@ -179,15 +178,15 @@ public class DBControllerTest {
 	@Test
 	public void testGetSavedSchools() {
 
-		//tests user with 1 or more SavedSchool with emphases
+		//tests user with 1 or more SavedSchool
 		//makes u2 a SavedSchool
-	    SavedSchool s = new SavedSchool(u2, "time");	
+	    SavedSchool s = new SavedSchool(u, "time");	
 		//add u2to dummy's list
 		dbc.addSavedSchool(dummy, s);
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
 		saved.add(s);
-		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).contains(s));
-		dbc.removeSavedSchool(dummy, "BETHEL UNIVERSITY");
+		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).toString().equals(s.toString()));
+		dbc.removeSavedSchool(dummy, "UNIVERSITE DE OUAGADOUGOU");
 	}
 
 	@Test
