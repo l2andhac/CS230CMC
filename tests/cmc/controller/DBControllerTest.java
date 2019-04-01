@@ -159,7 +159,13 @@ public class DBControllerTest {
 
 	@Test
 	public void testRemoveSavedSchool() {
-		//fail("Not yet implemented");
+		SavedSchool s = new SavedSchool(u2, "time");	
+		dbc.addSavedSchool(user, s);
+		List<SavedSchool> saved = new ArrayList<SavedSchool>();
+		saved.add(s);
+		dbc.removeSavedSchool(user, "BETHEL UNIVERSITY");
+		List<SavedSchool> list = dbc.getSavedSchools(user);
+		assertTrue("The saved school has been successfully removed", list.contains(s)==false);
 	}
 
 	@Test
@@ -307,7 +313,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetTotalNumberOfSchools() {
-		int actualNumOfSchool = 182; //actually it is 180 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 181
+		int actualNumOfSchool = 186; //actually it is 185 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 186
 		int testNumOfSchool = dbc.getTotalNumberOfSchools();
 		assertTrue("The method should return a total of "+actualNumOfSchool+" schools.", actualNumOfSchool == testNumOfSchool);
 	}
@@ -324,7 +330,12 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindDistance() {
-		fail("Not yet implemented");
+		double calculatedDistance = Math.round(2.597544927);
+		University univ1 = dbc.getSchool("NEWYORK IT");
+		University univ2 = dbc.getSchool("BARD");
+		double cmcDistance = Math.round(dbc.findDistance(univ1, univ2));
+		assertTrue("The distance between NEWYORK IT and BARD should"
+				+ " be "+calculatedDistance+".", calculatedDistance==cmcDistance );
 	}
 
 	@Test

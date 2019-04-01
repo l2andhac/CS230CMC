@@ -16,6 +16,7 @@ public class AccountFunctionalityControllerTest {
 	
 	private static AccountFunctionalityController afc;
 	private static DBController dbc;
+	private User user;
 	private static University u;
 	private static ArrayList<String> foci2;
 	
@@ -30,8 +31,8 @@ public class AccountFunctionalityControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
-		dbc.addAccount(u);
+		this.user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		dbc.addAccount(this.user);
 		dbc.addSchool(this.u);
 	}
 
@@ -52,18 +53,26 @@ public class AccountFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testRequestNewAccount() {
-		fail("Not yet implemented");
+	public void testRequestNewAccountForNonExistingAccount() {
+		User aUser = new User("Winnie", "Tapsoba", "wtapsoba", "password",'Y');
+		char initStatus = aUser.getStatus();
+		afc.requestNewAccount(aUser);
+		char newStatus = aUser.getStatus();
+		assertFalse("The initial status of the user should be different to the "
+				+ "status after request", initStatus == newStatus);
+		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testRequestNewAccountForExistingAccount() {
+		afc.requestNewAccount(this.user);
+				
 	}
 
 	@Test
 	public void testForgotPassword() {
 		fail("Not yet implemented");
-		
-		
-		
-		
-		
+			
 	}
 
 	@Test

@@ -20,7 +20,8 @@ public class ForgotPasswordControllerTest {
 
 	@Test
 	public void testGenerateRandomPassword() {
-		fail("Not yet implemented");
+		String actual = fpc.generateRandomPassword();
+		assertTrue("The random password is a string with a length of 6", actual.length() == 6);
 	}
 
 	@Test

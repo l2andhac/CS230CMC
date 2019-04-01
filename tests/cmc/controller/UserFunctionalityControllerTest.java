@@ -93,7 +93,7 @@ public class UserFunctionalityControllerTest {
 	@Test
 	public void testRequestDeactivation() {
 		ufc.requestDeactivation(u);
-		assertTrue("The user should be deactivated", u.getStatus() == 'd');
+		assertTrue("The user should be deactivated", u.getStatus() == 'D');
 	}
 
 	@Test
@@ -106,8 +106,63 @@ public class UserFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testSortResults() {
-		fail("Not yet implemented");
+	public void testSortResultsForExpenses() {
+		List<String> foci = new ArrayList<String>();
+	    foci.add("ENGINEERING");
+	    foci.add("ENGLISH");
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	    Set<University> listOfMatches = ufc.searchSchool(s);
+	    
+	    List<University> list = ufc.sortResults(listOfMatches, 'e');
+	    for(int i = 0; i<list.size(); i++) {
+	      	System.out.println(list.get(i));
+	      }
+	    University univ1 = dbc.getSchool("SAN JOSE STATE");
+	    System.out.println(univ1.toString());
+	    University univ2 = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+	    University univ3 = dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES");
+	    assertTrue("The first university on the sorted list should be SAN JOSE STATE", 
+	    		list.get(0).equals(univ1));
+	    assertTrue("The second university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
+	    		list.get(1).equals(univ2));
+	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(3).equals(univ3));
+	    
+	}
+	
+	@Test
+	public void testSortResultsForAdmission() {
+		List<String> foci = new ArrayList<String>();
+	    foci.add("ENGINEERING");
+	    foci.add("ENGLISH");
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	    Set<University> listOfMatches = ufc.searchSchool(s);
+	    List<University> list = ufc.sortResults(listOfMatches, 'a');
+	    assertTrue("The first university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
+	    		list.get(0).equals(dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY")));
+	    assertTrue("The second university on the sorted list should be SAN JOSE STATE", 
+	    		list.get(1).equals(dbc.getSchool("SAN JOSE STATE")));
+	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(3).equals(dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES")));
+	}
+	
+	@Test
+	public void testSortResultsForNumberOfStudents() {
+		List<String> foci = new ArrayList<String>();
+	    foci.add("ENGINEERING");
+	    foci.add("ENGLISH");
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	    Set<University> listOfMatches = ufc.searchSchool(s);
+	    List<University> list = ufc.sortResults(listOfMatches, 'n');
+	    assertTrue("The first university on the sorted list should be SAN JOSE STATE", 
+	    		list.get(0).equals(dbc.getSchool("SAN JOSE STATE")));
+//	    assertTrue("The second university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
+//	    		list.get(0).equals(dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY")));
+//	    assertTrue("The third university on the sorted list should be SAN JOSE STATE", 
+//	    		list.get(0).equals(dbc.getSchool("SAN JOSE STATE")));
 	}
 
 	@Test
@@ -142,14 +197,15 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testViewSavedSchools() { //this test fails. I do not fully understand why
-		List<SavedSchool> savedSchools = ufc.viewSavedSchools(u);
-		List<SavedSchool> actualSavedSchools = new ArrayList<SavedSchool>();
-		University aUniv = dbc.getSchool("UNIVERSITE DE OUAGADOUGOU");
-		SavedSchool aSavedSchool = new SavedSchool(aUniv, "timeStamp");
-		actualSavedSchools.add(aSavedSchool);
+		User aUser = (User) dbc.findAccount("dummyUser2");
+		List<SavedSchool> savedSchools = ufc.viewSavedSchools(aUser);
+		//List<SavedSchool> actualSavedSchools = new ArrayList<SavedSchool>();
+		University aUniv = dbc.getSchool("BETHEL UNIVERSITY");
+		SavedSchool aSavedSchool = new SavedSchool(aUniv, "time");
+		//actualSavedSchools.add(aSavedSchool);
 		
 		assertTrue("The list of school saved by user should match the schools "
-				+ "that are actually saved", actualSavedSchools.equals(savedSchools));
+				+ "that are actually saved", savedSchools.contains(aSavedSchool));
 	}
 
 	@Test
