@@ -31,26 +31,26 @@ public class CMCDriverUser {
 	      //uInteraction = new UserInteraction();
 	      accountInteraction = new AccountInteraction();
 	      
-	      System.out.println("-------------------------------------------------------");
-	      System.out.println("Non user requests a new account\n");
-	      accountInteraction.requestNewAccount("Dolen", "Jordre", "djordre", "password");
-	      
-	      
-	      System.out.println("-------------------------------------------------------");
-	      System.out.println("Attempted LogIn for invalid password credentials\n");
-	      
-	      logOnInteraction = accountInteraction.logOn("jordre3@gmail.com","password2");
-	      
-	      
-	      System.out.println("-------------------------------------------------------");
-	      System.out.println("Attempted LogIn for invalid username credentials\n");
-	      
-	      logOnInteraction = accountInteraction.logOn("jordre@gmail.com","password");
-	      
-	      System.out.println("\n-------------------------------------------------------");
-	      System.out.println("Attempted LogIn for deactivated Account\n");
-	      
-	      logOnInteraction = accountInteraction.logOn("luser","user");
+//	      System.out.println("-------------------------------------------------------");
+//	      System.out.println("Non user requests a new account\n");
+//	      accountInteraction.requestNewAccount("Dolen", "Jordre", "djordre", "password");
+//	      
+//	      
+//	      System.out.println("-------------------------------------------------------");
+//	      System.out.println("Attempted LogIn for invalid password credentials\n");
+//	      
+//	      logOnInteraction = accountInteraction.logOn("jordre3@gmail.com","password2");
+//	      
+//	      
+//	      System.out.println("-------------------------------------------------------");
+//	      System.out.println("Attempted LogIn for invalid username credentials\n");
+//	      
+//	      logOnInteraction = accountInteraction.logOn("jordre@gmail.com","password");
+//	      
+//	      System.out.println("\n-------------------------------------------------------");
+//	      System.out.println("Attempted LogIn for deactivated Account\n");
+//	      
+//	      logOnInteraction = accountInteraction.logOn("luser","user");
 	      
 	      
 	      System.out.println("\n-------------------------------------------------------");
@@ -85,7 +85,8 @@ public class CMCDriverUser {
 	      University univ1 = null;
 	      List<String> foci = new ArrayList<String>();
 	      foci.add("ENGINEERING");
-	      foci.add("LIBERAL-ARTS");
+	      foci.add("ENGLISH");
+	      //foci.add("LIBERAL-ARTS");
 	      Set<University> listOfMatches = uInteraction.searchSchool("", "CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	      if (listOfMatches != null) {
 	      System.out.println("----------------------------------------------------------");

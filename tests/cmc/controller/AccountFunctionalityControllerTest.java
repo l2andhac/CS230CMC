@@ -11,19 +11,20 @@ import cmc.entity.User;
 
 public class AccountFunctionalityControllerTest {
 	
-	private AccountFunctionalityController afc;
-	private DBController dbc;
+	private static AccountFunctionalityController afc;
+	private static DBController dbc;
+	private User u;
 	
 	@BeforeClass
-	public void beforeTest() throws Exception{
+	public static void beforeTest() throws Exception{
 		afc = new AccountFunctionalityController();
 		dbc = new DBController();
 	}
 	
 	@Before
 	public void setUp() throws Exception {
-		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
-		dbc.addAccount(u);
+		this.u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		dbc.addAccount(this.u);
 		//.......
 	}
 
@@ -44,8 +45,20 @@ public class AccountFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testRequestNewAccount() {
-		fail("Not yet implemented");
+	public void testRequestNewAccountForNonExistingAccount() {
+		User aUser = new User("Winnie", "Tapsoba", "wtapsoba", "password",'Y');
+		char initStatus = aUser.getStatus();
+		afc.requestNewAccount(aUser);
+		char newStatus = aUser.getStatus();
+		assertFalse("The initial status of the user should be different to the "
+				+ "status after request", initStatus == newStatus);
+		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testRequestNewAccountForExistingAccount() {
+		afc.requestNewAccount(this.u);
+				
 	}
 
 	@Test
