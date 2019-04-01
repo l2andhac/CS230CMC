@@ -117,6 +117,21 @@ public class UserFunctionalityControllerTest {
 		ufc.saveSchool(univ, u);
 		assertTrue("saved school is in the list", dbc.getSavedSchools(u).contains(univ));
 	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveSchoolListIsNull() {
+		User u2 = new User("Dummy", "Hoeschen", "dummyHoeschen", "password", 'Y');
+		dbc.addAccount(u);
+		ufc.saveSchool(univ, u2);
+		dbc.removeAccount("dummyHoeschen");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveSchoolAlreadySaved() {
+		
+		ufc.saveSchool(univ, u);
+		
+	}
 
 	@Test
 	public void testRemoveSavedSchool() {
