@@ -15,12 +15,15 @@ import cmc.entity.SavedSchool;
 import cmc.entity.Search;
 import cmc.entity.University;
 import cmc.entity.User;
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class UserFunctionalityControllerTest {
 
 	private static UserFunctionalityController ufc;
 	private static DBController dbc;
 	private User u;
+	private University univ;
+	private SavedSchool s;
 	List<String> foci2;
 	
 	@BeforeClass
@@ -35,8 +38,8 @@ public class UserFunctionalityControllerTest {
 		dbc.addAccount(u);
 		foci2 = new ArrayList<String>();
 		foci2.add("BUSINESS-ADMINISTRATION");
-		University univ = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
-		SavedSchool s = new SavedSchool(univ, "time");
+		univ = new University("A Dummy School", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		s = new SavedSchool(univ, "time");
 		dbc.addSavedSchool(u, s);
 		//.......
 	}
@@ -44,12 +47,23 @@ public class UserFunctionalityControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("dummyUser");
+		dbc.removeSavedSchool(u, s.getSchoolName());
 		//......
 	}
 
 	@Test
-	public void testViewSchoolDetails() {
-		fail("Not yet implemented");
+	public void testViewSchoolDetailsSchoolNotFound() {
+		assertTrue(ufc.viewSchoolDetails("laksdjflaksj") == null);
+	}
+	
+	@Test
+	public void testViewSchoolDetailsSchoolFound() {
+		Boolean t = dbc.addSchool(univ);
+		System.out.println(t);
+		System.out.println(ufc.viewSchoolDetails(univ.getSchoolName()).toString());
+		System.out.println(univ.toString());
+		assertTrue(ufc.viewSchoolDetails(univ.getSchoolName()).toString().equals(univ.toString()));	
+		dbc.removeSchool(univ);
 	}
 
 	@Test
@@ -63,8 +77,17 @@ public class UserFunctionalityControllerTest {
 	}
 
 	@Test
-	public void testSearchForFriends() {
-		fail("Not yet implemented");
+	public void testSearchForFriendsUserFound() {
+		List<SavedSchool> s = ufc.searchForFriends("dummyUser");
+		assertTrue("The two lists should contain the same schools", s == dbc.getSavedSchools(u));
+		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSearchForFriendsUserNotFound() {
+		List<SavedSchool> s = ufc.searchForFriends(null);
+		
+		
 	}
 
 	@Test
@@ -75,7 +98,11 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testSearchSchool() {
-		fail("Not yet implemented");
+		Search so = new Search("", "CALI", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
+		Set<University> matches = ufc.searchSchool(so);
+		//University expected = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+		//assertTrue("The results should contain Berkeley", matches.contains(expected));
+		assertTrue("There should be 12 schools in matches", matches.size() == 12);
 	}
 
 	@Test
@@ -140,12 +167,32 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testSaveSchool() {
-		fail("Not yet implemented");
+		dbc.removeSavedSchool(u, s.getSchoolName());
+		assertFalse("saved school is no longer in the list", dbc.getSavedSchools(u).contains(univ));
+		ufc.saveSchool(univ, u);
+		assertTrue("saved school is in the list", dbc.getSavedSchools(u).contains(univ));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveSchoolListIsNull() {
+		User u2 = new User("Dummy", "Hoeschen", "dummyHoeschen", "password", 'Y');
+		dbc.addAccount(u);
+		ufc.saveSchool(univ, u2);
+		dbc.removeAccount("dummyHoeschen");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveSchoolAlreadySaved() {
+		
+		ufc.saveSchool(univ, u);
+		
 	}
 
 	@Test
 	public void testRemoveSavedSchool() {
-		fail("Not yet implemented");
+		assertTrue("saved school is in the list", dbc.getSavedSchools(u).contains(univ));
+		ufc.removeSavedSchool(univ.getSchoolName(), u);
+		assertFalse("saved school is no longer in the list", dbc.getSavedSchools(u).contains(dbc.getSchool(univ.getSchoolName())));
 	}
 
 	@Test

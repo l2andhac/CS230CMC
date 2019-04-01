@@ -86,10 +86,15 @@ private DBController dbcontroller;
 
   	int matches = 0;
   	List<String> emphases = dbcontroller.getEmphases(u);
+  	if(searchCriteria.getEmphasis() != null) {
   	for(String em : emphases) {
   		if(searchCriteria.getEmphasis().contains(em)) {
   			matches += 1;
   		}
+  	}
+  	}
+  	else {
+  		return true;
   	}
   	if(matches >= 1 || dbcontroller.getEmphases(u).size() == 0) {
   		return true;

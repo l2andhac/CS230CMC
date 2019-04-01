@@ -89,7 +89,14 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * @return Set<University> - A set of all the Schools in the database
    */
   public Set<University> viewAllSchools(){
-    return dbController.getAllSchools();
+	  
+    Set<University> schools = dbController.getAllSchools();
+    if(schools != null) {
+    	return schools;
+    }
+    else {
+    	throw new IllegalArgumentException();
+    }
   }
   
   

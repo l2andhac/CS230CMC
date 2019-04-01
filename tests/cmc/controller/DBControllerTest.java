@@ -44,7 +44,7 @@ public class DBControllerTest {
 		
 		//makes University without a focus
 		foci2 = new ArrayList<String>();
-		u = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		boolean added = dbc.addSchool(u);
 		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
@@ -53,12 +53,12 @@ public class DBControllerTest {
 		foci2.add("ENGINEERING");
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(u2);
+		s = new SavedSchool(u2, "time");
 		
 		//makes new User
 		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
 		dbc.addAccount(dummy);
-		
-		
+
 	}
 
 	@After
@@ -72,7 +72,7 @@ public class DBControllerTest {
 
 	@Test
 	public void testDBController() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -87,26 +87,54 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testAddSchool() {
-		fail("Not yet implemented");
+	public void testAddSchoolForUniqueName() {
+		University u3 = new University("HAMLINE UNIVERSITY", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		assertTrue("School should be added", dbc.addSchool(u3));
+	}
+	
+	@Test
+	public void testAddSchoolForTakenSchoolName() {
+		assertFalse("School should not be added", dbc.addSchool(u));
 	}
 
 	@Test
 	public void testRemoveSchool() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
-	public void testIsSchoolSaved() {
-		fail("Not yet implemented");
+	public void testRemoveSchoolWithSavedSchool() {
+		s = new SavedSchool(u, "time");
+		dbc.addSavedSchool(dummy, s);
+		dbc.removeSchool(u);
+		assertTrue("University should not be removed", dbc.findSchoolName("UNIVERSITE DE OUAGADOUGOU"));
+		dbc.removeSavedSchool(dummy, "UNIVERSITE DE OUAGADOUGOU");
+	}
+	
+	@Test
+	public void testIsSchoolSavedForTrue() {
+		assertTrue("School should be saved", dbc.isSchoolSaved(u2));
+	}
+	
+	@Test
+	public void testIsSchoolSavedForFalse() {
+		assertFalse("School should not be saved", dbc.isSchoolSaved(u));
 	}
 
 	@Test
+	public void testGetAllSchoolsNumberOfSchools() {
+		Set<University> allSchools = dbc.getAllSchools();
+		String[][] univs = univDBlib.university_getUniversities();
+		int numSchools = univs.length;
+		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
+	}
+
 	public void testFindAccountAdminFound() {
 		dbc.addAccount(admin);
 		Admin actual = (Admin)dbc.findAccount("dummyAdmin");
 		assertTrue("The account found is the correct admin,", 
-				actual.equals(admin));
+				actual.toString().equals(admin.toString()));
+
 	}
 	
 	@Test
@@ -114,7 +142,7 @@ public class DBControllerTest {
 		dbc.addAccount(user);
 		Account actual = dbc.findAccount("dummyUser");
 		assertTrue("The account found is the correct user,", 
-				actual.equals(user));
+				actual.toString().equals(user.toString()));
 	}
 	
 	@Test
@@ -134,7 +162,6 @@ public class DBControllerTest {
 
 	@Test
 	public void testRemoveSavedSchool() {
-		
 		SavedSchool s = new SavedSchool(u2, "time");	
 		dbc.addSavedSchool(user, s);
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
@@ -142,6 +169,7 @@ public class DBControllerTest {
 		dbc.removeSavedSchool(user, "BETHEL UNIVERSITY");
 		List<SavedSchool> list = dbc.getSavedSchools(user);
 		assertTrue("The saved school has been successfully removed", list.contains(s)==false);
+
 	}
 
 	@Test
@@ -160,33 +188,49 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindSchoolName() {
-		fail("Not yet implemented");
-		
-		
-		
-		
-		
-		
+		assertTrue("School name is correctly found", dbc.findSchoolName("AUBURN"));	
+	}
+	
+	@Test
+	public void testFindSchoolNameNotFound() {
+		assertFalse("School name is NOT correctly found", dbc.findSchoolName("AUBURNX"));	
 	}
 
 	@Test
 	public void testFindSearchedSchool() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testAddSavedSchool() {
-		fail("Not yet implemented");
+		dbc.addSavedSchool(user, s);
+		assertTrue("saved school was added", dbc.getSavedSchools(user).contains(s));
 	}
 
 	@Test
-	public void testGetSchool() {
-		fail("Not yet implemented");
+	public void testGetSchoolNotFound() {
+		assertTrue("School should not be found", dbc.getSchool("lkjjasdflsakdj") == null);
+	}
+	
+	@Test
+	public void testGetSchoolNoEmphases() {
+		University retU = dbc.getSchool(u.getSchoolName());
+		assertTrue("School should be found", retU.getSchoolName().equals(u.getSchoolName()));
+	}
+	
+	@Test
+	public void testGetSchoolWithEmphases() {
+		University retU = dbc.getSchool(u2.getSchoolName());
+		assertTrue("School should be found", retU.getSchoolName().equals(u2.getSchoolName()));
+		assertTrue("Emphases should match", retU.getEmphases().contains("ENGINEERING"));
 	}
 
 	@Test
 	public void testViewAllAccounts() {
-		fail("Not yet implemented");
+		Set<String> allAccounts = dbc.viewAllAccounts();
+		int expectedSize = dbc.getTotalNumberOfAccounts();
+		assertTrue("dummyUser should be one of the accounts viewed", allAccounts.contains("dummyUser2"));
+		assertTrue("size of the set should be " + expectedSize, allAccounts.size() == expectedSize);
 	}
 
 	@Test
@@ -221,18 +265,37 @@ public class DBControllerTest {
 		dbc.addAccount(admin);
 		admin.setStatus('N');
 		dbc.changeAccount(admin);
-		//assertTrue("The status is now changed for the admin",
-				//admin.getSatus().equals('N'));
+		assertTrue("The status is now changed for the admin",
+				admin.getStatus()=='N');
+	}
+	
+	@Test
+	public void testChangeAccountType() {
+		dbc.addAccount(admin);
+		admin.setUserType('u');
+		dbc.changeAccount(admin);
+		assertTrue("The type is now changed for the admin to a user",
+				admin.getUserType()=='u');
 	}
 
 	@Test
-	public void testHasEmphasis() {
-		fail("Not yet implemented");
+	public void testHasEmphasisTrue() {
+		assertTrue("The university entered has an emphasis", dbc.hasEmphasis(u2));
+	}
+	
+	@Test
+	public void testHasEmphasisFalse() {
+		assertFalse("The university entered does not have an emphasis", dbc.hasEmphasis(u));
 	}
 
 	@Test
-	public void testFindUsername() {
-		fail("Not yet implemented");
+	public void testFindUsernameTrue() {
+		assertTrue("The username entered is a part of the database", dbc.findUsername("dummyUser"));
+	}
+	
+	@Test
+	public void testFindUsernameFalse() {
+		assertFalse("The username entered is not a part of the database", dbc.findUsername("kate"));
 	}
 
 	@Test
@@ -261,12 +324,12 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindRecSchools() {
-		fail("Not yet implemented");
+		//results print out in bubble sort
 	}
 
 	@Test
 	public void testBubbleSort() {
-		fail("Not yet implemented");
+		//need to fix
 	}
 
 	@Test

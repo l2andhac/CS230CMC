@@ -11,9 +11,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.Account;
 import cmc.entity.Admin;
 import cmc.entity.University;
 import cmc.entity.User;
+import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class AdminFunctionalityControllerTest {
 
@@ -21,18 +23,20 @@ public class AdminFunctionalityControllerTest {
 	private static DBController dbc;
 	private University univ1, univ2;
 	List<String> foci1, foci2;
+	private static UniversityDBLibrary univDBlib;
+	private static User u;
+	private static Admin a;
 	
 	@BeforeClass
 	public static void beforeTest() throws Exception{
 		afc = new AdminFunctionalityController();
 		dbc = new DBController();
+		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
 	}
 	
 	@Before
 	public void setUp() throws Exception {
-		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
-		dbc.addAccount(u);
-		Admin a = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
+		u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		dbc.addAccount(u);
 		
 		foci1 = new ArrayList<String>();
@@ -44,6 +48,8 @@ public class AdminFunctionalityControllerTest {
 		this.univ2 = new University("UNIVERSITE I2E", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(univ2);
 		
+		a = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
+		dbc.addAccount(a);
 		//.......
 	}
 
@@ -88,9 +94,12 @@ public class AdminFunctionalityControllerTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
 	public void testViewAllSchoolsNumberOfSchools() {
 		Set<University> allSchools = afc.viewAllSchools();
-		assertTrue("The number of schools in the databse should be: " + dbc.getTotalNumberOfSchools(),allSchools.size() == dbc.getTotalNumberOfSchools());
+		String[][] univs = univDBlib.university_getUniversities();
+		int numSchools = univs.length;
+		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
 	}
 	
 	@Test
@@ -102,17 +111,32 @@ public class AdminFunctionalityControllerTest {
 
 	@Test
 	public void testViewAllAccounts() {
-		fail("Not yet implemented");
+		Set<String> allAccounts = afc.viewAllAccounts();
+		int expectedSize = dbc.getTotalNumberOfAccounts();
+		assertTrue("dummyUser should be one of the accounts viewed", allAccounts.contains("dummyUser"));
+		assertTrue("dummyAdmin should be one of the accounts viewed", allAccounts.contains("dummyAdmin"));
+		assertTrue("size of the set should be " + expectedSize, allAccounts.size() == expectedSize);
 	}
 
 	@Test
-	public void testAddAccount() {
-		fail("Not yet implemented");
+	public void testAddAccountAdmin() {
+		assertTrue("the admin account was added", dbc.viewAllAccounts().contains("dummyAdmin"));	
+	}
+	
+	@Test
+	public void testAddAccountUser() {
+		assertTrue("the user account was added", dbc.viewAllAccounts().contains("dummyUser"));	
 		
-		
-		
-		
-		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddExistingUserAccount() {
+		dbc.addAccount(u);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddExistingAdminAccount() {
+		dbc.addAccount(a);
 	}
 
 }
