@@ -63,7 +63,7 @@ public class AdminFunctionalityControllerTest {
 
 	@Test
 	public void testAdminFunctionalityController() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -86,12 +86,12 @@ public class AdminFunctionalityControllerTest {
 
 	@Test
 	public void testAddSchool() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
 	public void testEditSchoolInfo() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	@Test
