@@ -8,8 +8,10 @@ import org.junit.Test;
 
 public class ForgotPasswordControllerTest {
 
+	ForgotPasswordController fpc; 
 	@Before
 	public void setUp() throws Exception {
+		fpc = new ForgotPasswordController();
 	}
 
 	@After
@@ -23,7 +25,8 @@ public class ForgotPasswordControllerTest {
 
 	@Test
 	public void testCheckIfEmail() {
-		fail("Not yet implemented");
+		assertTrue("This should be an email ie contains @", fpc.checkIfEmail("fakeEmail@fake.com"));
+		assertFalse("This should not be an email ie does not contain @", fpc.checkIfEmail("notEmail"));
 	}
 
 	@Test

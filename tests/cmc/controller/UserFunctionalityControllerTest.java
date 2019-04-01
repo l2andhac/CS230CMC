@@ -67,7 +67,8 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testRequestDeactivation() {
-		fail("Not yet implemented");
+		ufc.requestDeactivation(u);
+		assertTrue("The user should be deactivated", u.getStatus() == 'd');
 	}
 
 	@Test
@@ -83,6 +84,11 @@ public class UserFunctionalityControllerTest {
 	@Test
 	public void testSaveSchool() {
 		fail("Not yet implemented");
+		
+		
+		
+		
+		
 	}
 
 	@Test

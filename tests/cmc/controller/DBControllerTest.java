@@ -4,16 +4,20 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import cmc.entity.Account;
-import cmc.entity.Admin;
+import cmc.entity.SavedSchool;
 import cmc.entity.University;
 import cmc.entity.User;
+import cmc.entity.Admin;
+import cmc.entity.Account;
+import cmc.controller.DBController;
+import cmc.controller.SearchController;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class DBControllerTest {
@@ -23,9 +27,11 @@ public class DBControllerTest {
 	private SearchController searchController;
 	private static DBController dbc;
 	List<String> foci2;
-	University u;
 	Admin admin;
 	User user;
+	University u, u2;
+	SavedSchool s;
+	User dummy;
 	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
@@ -35,11 +41,24 @@ public class DBControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		
+		//makes University without a focus
 		foci2 = new ArrayList<String>();
 		u = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		boolean added = dbc.addSchool(u);
 		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
+		
+		//makes University with a focus
+		foci2.add("ENGINEERING");
+		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		dbc.addSchool(u2);
+		
+		//makes new User
+		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
+		dbc.addAccount(dummy);
+		
+		
 	}
 
 	@After
@@ -47,6 +66,8 @@ public class DBControllerTest {
 		dbc.removeSchool(u);
 		dbc.removeAccount("dummyAdmin");
 		dbc.removeAccount("dummyUser");
+		dbc.removeSchool(u2);
+		dbc.removeAccount("dummyUser2");
 	}
 
 	@Test
@@ -105,7 +126,10 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetAllSchools() {
-		fail("Not yet implemented");
+		AdminFunctionalityController afc = new AdminFunctionalityController();
+		Set<University> allSchools = dbc.getAllSchools();
+		University univ = afc.viewSchoolDetails("AUBURN");
+        assertTrue("AUBURN should be one of the Unviersities in the set", allSchools.contains(univ));
 	}
 
 	@Test
@@ -115,12 +139,27 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetSavedSchools() {
-		fail("Not yet implemented");
+
+		//tests user with 1 or more SavedSchool with emphases
+		//makes u2 a SavedSchool
+	    SavedSchool s = new SavedSchool(u2, "time");	
+		//add u2to dummy's list
+		dbc.addSavedSchool(dummy, s);
+		List<SavedSchool> saved = new ArrayList<SavedSchool>();
+		saved.add(s);
+		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).contains(s));
+		dbc.removeSavedSchool(dummy, "BETHEL UNIVERSITY");
 	}
 
 	@Test
 	public void testFindSchoolName() {
 		fail("Not yet implemented");
+		
+		
+		
+		
+		
+		
 	}
 
 	@Test
@@ -191,17 +230,24 @@ public class DBControllerTest {
 
 	@Test
 	public void testAddAccount() {
-		fail("Not yet implemented");
+	    Account account = new Account ("Dummy", "WillAgain", "anotherDummy", "password", 'a','Y');
+	    dbc.addAccount(account);
+	    assertTrue("account is in the database", dbc.viewAllAccounts().contains(account.getUsername()));
+	    dbc.removeAccount("anotherDummy");
 	}
 
 	@Test
 	public void testRequestNewAccount() {
-		fail("Not yet implemented");
+		User user = new User ("Dummy", "WillAgain", "anotherDummy", "password", 'p');
+	    dbc.addAccount(user);
+	    assertTrue("account is in the database", dbc.viewAllAccounts().contains(user.getUsername()));
+	    dbc.removeAccount("anotherDummy");
+
 	}
 
 	@Test
 	public void testGetTotalNumberOfSchools() {
-		int actualNumOfSchool = 181; //actually it is 180 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 181
+		int actualNumOfSchool = 182; //actually it is 180 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 181
 		int testNumOfSchool = dbc.getTotalNumberOfSchools();
 		assertTrue("The method should return a total of "+actualNumOfSchool+" schools.", actualNumOfSchool == testNumOfSchool);
 	}
@@ -223,7 +269,8 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetEmphases() {
-		fail("Not yet implemented");
+		assertTrue("BETHEL UNIVERSITY contains the emphasis ENGINEERING", dbc.getEmphases(u2).contains("ENGINEERING"));
+		//fail("Not yet implemented");
 	}
 
 }

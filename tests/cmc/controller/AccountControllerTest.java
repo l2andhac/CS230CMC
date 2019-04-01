@@ -7,40 +7,68 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.Admin;
 import cmc.entity.User;
 
 public class AccountControllerTest {
 
-	private AccountController ac;
-	private DBController dbc;
+	private static AccountController ac;
+	private static DBController dbc;
 	
 	@BeforeClass
-	public void beforeTest() throws Exception{
+	public static void beforeTest() throws Exception{
 		ac = new AccountController();
 		dbc = new DBController();
 	}
 	
 	@Before
 	public void setUp() throws Exception {
-		User u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
-		dbc.addAccount(u);
-		//.......
+		User ud = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		dbc.addAccount(ud);
+		User pd = new User("PendingDummy", "Jordre", "pendingDummyUser", "password", 'P');
+		dbc.addAccount(pd);
+		User dd = new User("DeactivatedDummy", "Jordre", "deactivatedDummyUser", "password", 'N');
+		dbc.addAccount(dd);
+		Admin ad = new Admin("DummyAdmin", "Jordre", "dummyAdmin", "password", 'Y');
+		dbc.addAccount(ad);		
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("dummyUser");
-		//......
+		dbc.removeAccount("pendingDummyUser");
+		dbc.removeAccount("deactivatedDummyUser");
+		dbc.removeAccount("dummyAdmin");
 	}
 
-	@Test
-	public void testAccountController() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testAccountController() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testLogOn() {
-		fail("Not yet implemented");
+		assertTrue("user is logged in", ac.logOn("dummyUser","password").isLoggedOn());
 	}
-
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnWrongPassword() {
+		ac.logOn("dummyUser","password2");
+	}
+	
+	@Test
+	public void testLogOnAdmin() {
+		assertTrue("admin is logged in", ac.logOn("dummyAdmin","password").isLoggedOn());
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnPending() {
+		ac.logOn("pendingDummyUser","password");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnDeactivated() {
+		ac.logOn("deactivatedDummyUser","password");
+	}
+	
 }
