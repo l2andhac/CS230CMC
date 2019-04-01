@@ -115,19 +115,15 @@ public class UserFunctionalityControllerTest {
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    
 	    List<University> list = ufc.sortResults(listOfMatches, 'e');
-	    for(int i = 0; i<list.size(); i++) {
-	      	System.out.println(list.get(i));
-	      }
 	    University univ1 = dbc.getSchool("SAN JOSE STATE");
-	    System.out.println(univ1.toString());
 	    University univ2 = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
 	    University univ3 = dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES");
 	    assertTrue("The first university on the sorted list should be SAN JOSE STATE", 
-	    		list.get(0).equals(univ1));
+	    		list.get(0).getSchoolName().equals(univ1.getSchoolName()));
 	    assertTrue("The second university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
-	    		list.get(1).equals(univ2));
+	    		list.get(1).getSchoolName().equals(univ2.getSchoolName()));
 	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA LOS ANGELES", 
-	    		list.get(3).equals(univ3));
+	    		list.get(2).getSchoolName().equals(univ3.getSchoolName()));
 	    
 	}
 	
@@ -205,7 +201,7 @@ public class UserFunctionalityControllerTest {
 		//actualSavedSchools.add(aSavedSchool);
 		
 		assertTrue("The list of school saved by user should match the schools "
-				+ "that are actually saved", savedSchools.contains(aSavedSchool));
+				+ "that are actually saved", savedSchools.get(0).getSchoolName().equals((aSavedSchool.getSchoolName())));
 	}
 
 	@Test
