@@ -193,8 +193,21 @@ public class DBControllerTest {
 	}
 
 	@Test
-	public void testGetSchool() {
-		fail("Not yet implemented");
+	public void testGetSchoolNotFound() {
+		assertTrue("School should not be found", dbc.getSchool("lkjjasdflsakdj") == null);
+	}
+	
+	@Test
+	public void testGetSchoolNoEmphases() {
+		University retU = dbc.getSchool(u.getSchoolName());
+		assertTrue("School should be found", retU.getSchoolName().equals(u.getSchoolName()));
+	}
+	
+	@Test
+	public void testGetSchoolWithEmphases() {
+		University retU = dbc.getSchool(u2.getSchoolName());
+		assertTrue("School should be found", retU.getSchoolName().equals(u2.getSchoolName()));
+		assertTrue("Emphases should match", retU.getEmphases().contains("ENGINEERING"));
 	}
 
 	@Test
