@@ -2,19 +2,11 @@ package cmc.controller;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
-import cmc.entity.Account;
-import cmc.entity.Admin;
-import cmc.entity.University;
-import cmc.entity.User;
+import cmc.entity.*;
 import dblibrary.project.csci230.UniversityDBLibrary;
 
 public class AdminFunctionalityControllerTest {
@@ -37,7 +29,7 @@ public class AdminFunctionalityControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
-		dbc.addAccount(u);
+		afc.addAccount(u);
 		
 		foci1 = new ArrayList<String>();
 		//foci2.add("BUSINESS-ADMINISTRATION");
@@ -49,7 +41,7 @@ public class AdminFunctionalityControllerTest {
 		dbc.addSchool(univ2);
 		
 		a = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
-		dbc.addAccount(a);
+		afc.addAccount(a);
 		//.......
 	}
 
@@ -97,9 +89,8 @@ public class AdminFunctionalityControllerTest {
 	@Test
 	public void testViewAllSchoolsNumberOfSchools() {
 		Set<University> allSchools = afc.viewAllSchools();
-		String[][] univs = univDBlib.university_getUniversities();
-		int numSchools = univs.length;
-		assertTrue("The number of schools in the databse should be: " + numSchools,allSchools.size() == numSchools);
+		int numSchools = dbc.getTotalNumberOfSchools();
+		assertTrue("The number of schools in the databse should be: " + numSchools, allSchools.size() == numSchools);
 	}
 	
 	@Test
@@ -131,12 +122,12 @@ public class AdminFunctionalityControllerTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testAddExistingUserAccount() {
-		dbc.addAccount(u);
+		afc.addAccount(u);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testAddExistingAdminAccount() {
-		dbc.addAccount(a);
+		afc.addAccount(a);
 	}
 
 }
