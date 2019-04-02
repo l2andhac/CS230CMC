@@ -73,7 +73,8 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testViewUserInfo() {
-		fail("Not yet implemented");
+		//???
+		assertTrue("the correct information is viewed", ufc.viewUserInfo(u).equals(u.toString()));
 	}
 
 	@Test
