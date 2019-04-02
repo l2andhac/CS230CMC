@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.Account;
 import cmc.entity.Admin;
 import cmc.entity.University;
 import cmc.entity.User;
@@ -100,8 +101,9 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testViewAccountInfoString() {
-		String actual = afc.viewAccountInfo("dummyadmin");
-		//assertTrue("The account info is correctly output", admin2.toString().equals())
+		String actual = afc.viewAccountInfo("dummyuser");
+		Account a = dbc.findAccount("dummyuser");
+		assertTrue("The account info is correctly output", admin2.toString().equals(a.toString()));
 		//How to do this without the account to use the toString
 	}
 
@@ -156,9 +158,10 @@ public class AccountFunctionalityControllerTest {
 	}
 	
 	@Test 
-	public void testEditAccountInfoChangeFirstName() {
-		afc.editAccountInfo("dummyAdmin", "Kate", "Dempsey", "123456",  'a', 'Y');
-		assertTrue("The First Name of the account was changed to Kate", user2.getFirstName() == "Kate");
+	public void testEditAccountInfoChangeFirstName() { //The actual object isnt getting changed maybe??
+		afc.editAccountInfo("dummyadmin", "Kate", "Dempsey", "123456",  'a', 'Y');
+		Account a = dbc.findAccount("dummyadmin");
+		assertTrue("The First Name of the account was changed to Kate", a.getFirstName() == "Kate");
 	}
 
 }
