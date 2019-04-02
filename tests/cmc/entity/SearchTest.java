@@ -11,13 +11,14 @@ import org.junit.Test;
 
 public class SearchTest {
 	Search s;
-
+	List<String> foci = new ArrayList<String>();
+	
 	@Before
 	public void setUp() throws Exception {
-		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
 	    foci.add("ENGLISH");
 		s = new Search("Un", "CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+		foci.add("MATHEMATICS");
 	}
 
 	@After
@@ -144,8 +145,8 @@ public class SearchTest {
 
 	@Test
 	public void testSetAcademicScaleUp() {
-		s.setAcademicScaleUp(4);
-		assertTrue("PAcademic Scale is now 4", s.getAcademicScaleUp() == 4);
+		s.setAcademicScaleUp(3);
+		assertTrue("PAcademic Scale is now 4", s.getAcademicScaleUp() == 3);
 	}
 
 	@Test
@@ -156,28 +157,33 @@ public class SearchTest {
 
 	@Test
 	public void testSetSocialScaleUp() {
-		s.setSocialScaleUp(4);
-		assertTrue("Social Scale is now 4", s.getSocialScaleLo() == 4);
+		s.setSocialScaleUp(1);
+		assertTrue("Social Scale Up is now 4", s.getSocialScaleUp() == 1);
 	}
 
 	@Test
 	public void testSetSocialScaleLo() {
-		fail("Not yet implemented");
+		s.setSocialScaleLo(5);
+		assertTrue("Social Scale Low is now 5", s.getSocialScaleLo() == 5);
 	}
 
 	@Test
 	public void testSetQualOfLifeScaleUp() {
-		fail("Not yet implemented");
+		s.setQualOfLifeScaleUp(2);
+		assertTrue("Quality of Life Scale Up is now 2", s.getQualOfLifeScaleUp() == 2);
 	}
 
 	@Test
 	public void testSetQualOfLifeScaleLo() {
-		fail("Not yet implemented");
+		s.setQualOfLifeScaleLo(3);
+		assertTrue("Quality of Life Scale Low is now 2", s.getQualOfLifeScaleLo() == 3);
 	}
 
 	@Test
 	public void testSetEmphasis() {
-		fail("Not yet implemented");
+		s.setEmphasis(foci);
+		assertTrue("Focus now has MATHEMATICS added", s.getEmphasis().equals(foci));
+		
 	}
 
 }
