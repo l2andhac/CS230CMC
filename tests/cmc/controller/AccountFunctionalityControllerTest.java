@@ -98,7 +98,7 @@ public class AccountFunctionalityControllerTest {
 	public void testViewSchoolDetailsValidInput() {	////?
 		University actual = afc.viewSchoolDetails("UNIVERSITE DE OUAGADOUGOU");
 		assertTrue("The school name input is in the database, and returns a correct University",
-				actual.toString().equals(u.toString()));
+				actual.equals(u));
 	}
 	
 	@Test
