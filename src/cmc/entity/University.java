@@ -260,11 +260,11 @@ public class University{
   {
     return this.emphases;
   }
-  
+
   public boolean equals(University u) {
-	  if(!this.schoolName.equals(u.getSchoolName()))
+	  if(!this.schoolName.equals(u.getSchoolName())) 
 			  return false;
-	  else if(!(this.state.equals(u.getState())))
+	  else if(!(this.state.equals(u.getState()))) 
 		  return false;
 	  else if(!(this.location.equals(u.getLocation())))
 		  return false;
@@ -294,8 +294,18 @@ public class University{
 		  return false;
 	  else if(!(this.qualityScale == u.getQualityOfLifeScale()))
 		  return false;
-	  else if(!(this.emphases.equals(u.getEmphases())))
+	  else if(this.emphases.size() != u.getEmphases().size()) 
 		  return false;
+	  else if(this.emphases.size() == 0 && u.getEmphases().size() == 0)
+		  return true;
+	  
+	  for(int i = 0; i < this.emphases.size(); i++) {
+		  System.out.println(this.emphases.get(i));
+		  System.out.println(u.getEmphases().get(i));
+		  if(!(this.emphases.get(i).equals(u.getEmphases().get(i)))) {
+			  return false;
+		  }	  
+	  }
 	  return true;  
 	  
   }

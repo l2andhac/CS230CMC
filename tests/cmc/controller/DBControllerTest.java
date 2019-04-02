@@ -45,7 +45,7 @@ public class DBControllerTest {
 		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
 		
-	
+		foci2.add("ENGINEERING");
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(u2);
 		s = new SavedSchool(u2, "time");
@@ -146,7 +146,7 @@ public class DBControllerTest {
 		dbc.addAccount(user);
 		Account actual = dbc.findAccount("dummyUser");
 		assertTrue("The account found is the correct user,", 
-				actual.toString().equals(user.toString()));
+				actual.equals(user));
 	}
 	
 	@Test
@@ -160,7 +160,7 @@ public class DBControllerTest {
 	public void testGetAllSchools() {
 		AdminFunctionalityController afc = new AdminFunctionalityController();
 		Set<University> allSchools = dbc.getAllSchools();
-		University univ = afc.viewSchoolDetails("AUBURN");
+		University univ = dbc.getSchool("AUBURN");
         assertTrue("AUBURN should be one of the Unviersities in the set", allSchools.contains(univ));
 	}
 
@@ -185,7 +185,7 @@ public class DBControllerTest {
 		dbc.addSavedSchool(dummy, s);
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
 		saved.add(s);
-		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).toString().equals(s.toString()));
+		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).equals(s));
 		dbc.removeSavedSchool(dummy, "UNIVERSITE DE OUAGADOUGOU");
 	}
 
@@ -228,13 +228,13 @@ public class DBControllerTest {
 	@Test
 	public void testGetSchoolNoEmphases() {
 		University retU = dbc.getSchool(u.getSchoolName());
-		assertTrue("School should be found", retU.getSchoolName().equals(u.getSchoolName()));
+		assertTrue("School should be found", retU.equals(u));
 	}
 	
 	@Test
 	public void testGetSchoolWithEmphases() {
 		University retU = dbc.getSchool(u2.getSchoolName());
-		assertTrue("School should be found", retU.getSchoolName().equals(u2.getSchoolName()));
+		assertTrue("School should be found", retU.equals(u2));
 		assertTrue("Emphases should match", retU.getEmphases().contains("ENGINEERING"));
 	}
 
