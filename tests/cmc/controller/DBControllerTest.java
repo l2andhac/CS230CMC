@@ -23,8 +23,8 @@ public class DBControllerTest {
 	private static DBController dbc;
 	private Search search;
 	List<String> foci2;
-	private Admin admin;
-	private User user;
+	private Admin admin, admin2;
+	private User user, user2;
 	private University u, u2;
 	private SavedSchool s;
 	private User dummy;
@@ -44,6 +44,7 @@ public class DBControllerTest {
 		boolean added = dbc.addSchool(u);
 		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
+		
 		
 		foci2.add("ENGINEERING");
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
