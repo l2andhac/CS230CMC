@@ -192,7 +192,7 @@ public class DBControllerTest {
 		dbc.addSavedSchool(dummy, s);
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
 		saved.add(s);
-		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).equals(s));
+		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).equals(saved));
 		dbc.removeSavedSchool(dummy, "UNIVERSITE DE OUAGADOUGOU");
 	}
 
