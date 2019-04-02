@@ -2,6 +2,9 @@ package cmc.entity;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +20,7 @@ public class UniversityTest {
 
 	@After
 	public void tearDown() throws Exception {
+		u = null;
 	}
 
 
@@ -67,47 +71,64 @@ public class UniversityTest {
 
 	@Test
 	public void testSetPercentFinancialAid() {
-		fail("Not yet implemented");
+		u.setPercentFinancialAid(20.0);
+		assertTrue("Correctly sets percent financial aid", 20.0==(u.getPercentFinancialAid()));
 	}
 
 	@Test
-	public void testSetNumApplicants() {
-		fail("Not yet implemented");
+	public void testSetNumberOfApplicants() {
+		u.setNumberOfApplicants(23000);
+		assertTrue("Correctly sets number of applicants", 23000==(u.getNumApplicants()));
 	}
 
 	@Test
 	public void testSetPercentAdmitted() {
-		fail("Not yet implemented");
+		u.setPercentAdmitted(30.0);
+		assertTrue("Correctly sets percent admitted", 30.0==(u.getPercentAdmitted()));
 	}
 
 	@Test
 	public void testSetPercentEnrolled() {
-		fail("Not yet implemented");
+		u.setPercentEnrolled(30.0);
+		assertTrue("Correctly sets percent enrolled", 30.0==(u.getPercentEnrolled()));
 	}
 
 	@Test
 	public void testSetAcademicScale() {
-		fail("Not yet implemented");
+		u.setAcademicsScale(4);
+		assertTrue("Correctly sets academic scale", 4==(u.getAcademicScale()));
 	}
 
 	@Test
 	public void testSetSocialScale() {
-		fail("Not yet implemented");
+		u.setSocialScale(4);
+		assertTrue("Correctly sets social scale", 4==(u.getSocialScale()));
 	}
 
 	@Test
 	public void testSetQualityOfLifeScale() {
-		fail("Not yet implemented");
+		u.setSocialScale(4);
+		assertTrue("Correctly sets quality of life scale", 4==(u.getSocialScale()));
 	}
 
 	@Test
 	public void testSetEmphases() {
-		fail("Not yet implemented");
+		List<String> foci = new ArrayList<String>();
+		foci.add("ENGINEERING");
+		u.setEmphases(foci);
+		assertTrue("Correctly sets emphases", u.getEmphases().contains("ENGINEERING"));
+		u.setEmphases(null);
 	}
 
 	@Test
 	public void testToString() {
-		fail("Not yet implemented");
+		assertTrue("Correctly converts University object to a String", u.toString().equals("University [schoolName=" + u.getSchoolName() + ", state=" + u.getState() + ", location=" + u.getLocation() + ", control="
+				+ u.getControl() + ", numberOfStudents=" + u.getNumStudents() + ", percentFemale=" + u.getPercentFemales()
+				+ ", satVerbal=" + u.getSATVerbal() + ", satMath=" + u.getSATMath() + ", expenses=" + u.getExpenses()
+				+ ", percentFinancialAid=" + u.getPercentFinancialAid() + ", numberOfApplicants=" + u.getNumApplicants()
+				+ ", percentAdmitted=" + u.getPercentAdmitted() + ", percentEnrolled=" + u.getPercentEnrolled() + ", academicsScale="
+				+ u.getAcademicScale() + ", socialScale=" + u.getSocialScale()+ ", qualityScale=" + u.getQualityOfLifeScale() + ", emphases="
+				+ u.getEmphases() + "]"));
 	}
 
 }

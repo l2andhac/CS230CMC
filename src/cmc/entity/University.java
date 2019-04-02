@@ -374,4 +374,84 @@ public class University{
 				+ academicsScale + ", socialScale=" + socialScale + ", qualityScale=" + qualityScale + ", emphases="
 				+ emphases + "]";
 	}
+
+public void setSchoolName(String schoolName) {
+	this.schoolName = schoolName;
+}
+
+public void setState(String state) {
+	this.state = state;
+}
+
+public void setLocation(String location) {
+	this.location = location;
+}
+
+public void setControl(String control) {
+	this.control = control;
+}
+
+public void setNumberOfStudents(int numberOfStudents) {
+	this.numberOfStudents = numberOfStudents;
+}
+
+public void setPercentFemale(double percentFemale) {
+	this.percentFemale = percentFemale;
+}
+
+public void setSatVerbal(double satVerbal) {
+	this.satVerbal = satVerbal;
+}
+
+public void setSatMath(double satMath) {
+	this.satMath = satMath;
+}
+
+public void setExpenses(double expenses) {
+	this.expenses = expenses;
+}
+
+public void setPercentFinancialAid(double percentFinancialAid) {
+	this.percentFinancialAid = percentFinancialAid;
+}
+
+public void setNumberOfApplicants(int numberOfApplicants) {
+	this.numberOfApplicants = numberOfApplicants;
+}
+
+public void setPercentAdmitted(double percentAdmitted) {
+	this.percentAdmitted = percentAdmitted;
+}
+
+public void setPercentEnrolled(double percentEnrolled) {
+	this.percentEnrolled = percentEnrolled;
+}
+
+public void setAcademicsScale(int academicsScale) {
+	this.academicsScale = academicsScale;
+}
+
+public void setSocialScale(int socialScale) {
+	this.socialScale = socialScale;
+}
+
+public void setQualityScale(int qualityScale) {
+	this.qualityScale = qualityScale;
+}
+
+public void setEmphases(List<String> emphases) {
+	this.emphases = emphases;
+}
+
+public static void setCompareByExpenses(Comparator<University> compareByExpenses) {
+	University.compareByExpenses = compareByExpenses;
+}
+
+public static void setCompareByAdmission(Comparator<University> compareByAdmission) {
+	University.compareByAdmission = compareByAdmission;
+}
+
+public static void setCompareByNumberStudents(Comparator<University> compareByNumberStudents) {
+	University.compareByNumberStudents = compareByNumberStudents;
+}
 }
