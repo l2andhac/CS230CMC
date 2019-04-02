@@ -294,18 +294,9 @@ public class University{
 		  return false;
 	  else if(!(this.qualityScale == u.getQualityOfLifeScale()))
 		  return false;
-	  else if(this.emphases.size() != u.getEmphases().size()) 
+	  else if(!(this.emphases.equals(u.getEmphases())))
 		  return false;
-	  else if(this.emphases.size() == 0 && u.getEmphases().size() == 0)
-		  return true;
-	  
-	  for(int i = 0; i < this.emphases.size(); i++) {
-		  System.out.println(this.emphases.get(i));
-		  System.out.println(u.getEmphases().get(i));
-		  if(!(this.emphases.get(i).equals(u.getEmphases().get(i)))) {
-			  return false;
-		  }	  
-	  }
+	 
 	  return true;  
 	  
   }
