@@ -8,8 +8,11 @@ import org.junit.Test;
 
 public class UniversityTest {
 
+	University u;
+	
 	@Before
 	public void setUp() throws Exception {
+		u = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, null);
 	}
 
 	@After
@@ -23,47 +26,47 @@ public class UniversityTest {
 
 	@Test
 	public void testSetSchoolName() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets school name", "BETHEL UNIVERSITY".equals(u.getSchoolName()));
 	}
 
 	@Test
 	public void testSetState() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets state", "MINNESOTA".equals(u.getState()));
 	}
 
 	@Test
 	public void testSetLocation() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets location", "SUBURBAN".equals(u.getLocation()));
 	}
 
 	@Test
 	public void testSetControl() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets control", "PRIVATE".equals(u.getControl()));
 	}
 
 	@Test
 	public void testSetNumStudents() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets number of students", 8000==(u.getNumStudents()));
 	}
 
 	@Test
 	public void testSetPercentFemales() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets percent female", 30.0==(u.getPercentFemales()));
 	}
 
 	@Test
 	public void testSetSATVerbal() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets SATVerbal", -1==(u.getSATVerbal()));
 	}
 
 	@Test
 	public void testSetSATMath() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets SATMath", -1==(u.getSATMath()));
 	}
 
 	@Test
 	public void testSetExpenses() {
-		fail("Not yet implemented");
+		assertTrue("Correctly sets expenses", 5000==(u.getExpenses()));
 	}
 
 	@Test
