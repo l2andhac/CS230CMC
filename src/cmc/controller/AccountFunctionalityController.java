@@ -128,9 +128,17 @@ public class AccountFunctionalityController {
 	   * @param p - String that is the password of the Account
 	   * @param t - Character that represents the type of the Account
 	   * @param s - Character that represents the status of the Account
+	   * @throws IllegalArgumentException
 	   */
 	  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
+		  if(t != 'u' || t != 'a')
+			  throw new IllegalArgumentException("The type entered is invalid");
+		  else if(s != 'D' || s != 'P' || s != 'Y' || s != 'N')
+			  throw new IllegalArgumentException("The status entered is invalid");
 		  Account account = dbc.findAccount(un);
+		  if(account == null) {
+			  throw new IllegalArgumentException("The username entered was not found");
+		  }
 		  account.setFirstName(fn);
 		    account.setLastName(ln);
 		    account.setPassword(p);
