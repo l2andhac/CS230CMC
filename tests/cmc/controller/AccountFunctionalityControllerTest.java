@@ -94,12 +94,15 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testViewAccountInfoAccount() {
-		//fail("Not yet implemented");
+		String actual = afc.viewAccountInfo(user2);
+		assertTrue("The account information is correctly output", user2.toString().equals(actual));
 	}
 
 	@Test
 	public void testViewAccountInfoString() {
-		//fail("Not yet implemented");
+		String actual = afc.viewAccountInfo("dummyadmin");
+		//assertTrue("The account info is correctly output", admin2.toString().equals())
+		//How to do this without the account to use the toString
 	}
 
 	@Test
