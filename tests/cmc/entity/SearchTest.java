@@ -26,109 +26,129 @@ public class SearchTest {
 		s = null;
 	}
 
-	@Test
-	public void testSearch() {
-		fail("Not yet implemented");
-	}
+	//@Test
+	//public void testSearch() {
+	//	fail("Not yet implemented");
+	//}
 
 	@Test
 	public void testSetName() {
-		fail("Not yet implemented");
+		s.setName("College");
+		assertTrue("The school name has been set to College", s.getName().equals("College"));
 	}
 
 	@Test
 	public void testSetState() {
-		fail("Not yet implemented");
+		s.setState("Minn");
+		assertTrue("The state has been set to Minn", s.getState().equals("Minn"));
 	}
 
 	@Test
 	public void testSetLocation() {
-		fail("Not yet implemented");
+		s.setLocation("Rural");
+		assertTrue("The location has been set to Rural", s.getLocation().equals("Rural"));
 	}
 
 	@Test
 	public void testSetControl() {
-		fail("Not yet implemented");
+		s.setControl("Private");
+		assertTrue("The control type has been set to Private", s.getControl().equals("Private"));
 	}
 
 	@Test
 	public void testSetEnrollmentUp() {
-		fail("Not yet implemented");
+		s.setEnrollmentUp(8000);
+		assertTrue("Enrollment Up is now 8000", s.getEnrollmentUp() == 8000);
 	}
 
 	@Test
 	public void testSetEnrollmentLo() {
-		fail("Not yet implemented");
+		s.setEnrollmentLo(3000);
+		assertTrue("Enrollment Low is now 3000", s.getEnrollmentLo() == 3000);
 	}
 
 	@Test
 	public void testSetPercentFemaleUp() {
-		fail("Not yet implemented");
+		s.setPercentFemaleUp(63);
+		assertTrue("Percent Female Up is now 63", s.getPercentFemaleUp() == 63);
 	}
 
 	@Test
 	public void testSetPercentFemaleLo() {
-		fail("Not yet implemented");
+		s.setPercentFemaleLo(43);
+		assertTrue("Percent Female Low is now 43", s.getPercentFemaleLo() == 43);
 	}
 
 	@Test
 	public void testSetSatVerbUp() {
-		fail("Not yet implemented");
+		s.setSatVerbUp(630);
+		assertTrue("SAT Verbal Up is now 630", s.getSatVerbUp() == 630);
 	}
 
 	@Test
 	public void testSetSatVerbLo() {
-		fail("Not yet implemented");
+		s.setSatVerbLo(430);
+		assertTrue("SAT Verbal Low is now 430", s.getSatVerbLo() == 430);
 	}
 
 	@Test
 	public void testSetSatMathUp() {
-		fail("Not yet implemented");
+		s.setSatMathUp(630);
+		assertTrue("SAT Math Up is now 630", s.getSatMathUp() == 630);
 	}
 
 	@Test
 	public void testSetSatMathLo() {
-		fail("Not yet implemented");
+		s.setSatMathLo(430);
+		assertTrue("SAT Math Low is now 430", s.getSatMathLo() == 430);
 	}
 
 	@Test
 	public void testSetExpensesUp() {
-		fail("Not yet implemented");
+		s.setExpensesUp(63000);
+		assertTrue("Expenses Up is now 63000", s.getExpensesUp() == 63000);
 	}
 
 	@Test
 	public void testSetExpensesLo() {
-		fail("Not yet implemented");
+		s.setExpensesLo(13000);
+		assertTrue("Expenses Low is now 13000", s.getExpensesLo() == 13000);
 	}
 
 	@Test
 	public void testSetPercentFinancialAidUp() {
-		fail("Not yet implemented");
+		s.setPercentFinancialAidUp(82);
+		assertTrue("Percent Financial Aid Up is now 82", s.getPercentFinancialAidUp() == 82);
 	}
 
 	@Test
 	public void testSetPercentFinancialAidLo() {
-		fail("Not yet implemented");
+		s.setPercentFinancialAidLo(22);
+		assertTrue("Percent Financial Aid Low is now 22", s.getPercentFinancialAidLo() == 22);
 	}
 
 	@Test
 	public void testSetApplicantsUp() {
-		fail("Not yet implemented");
+		s.setApplicantsUp(100000);
+		assertTrue("Applicants Up is now 100000", s.getApplicantsUp() == 100000);
 	}
 
 	@Test
 	public void testSetApplicantsLo() {
-		fail("Not yet implemented");
+		s.setApplicantsLo(1000);
+		assertTrue("Applicants Low is now 1000", s.getApplicantsLo() == 1000);
 	}
 
 	@Test
 	public void testSetPercentAdmittedUp() {
-		fail("Not yet implemented");
+		s.setPercentAdmittedUp(99);
+		assertTrue("Percent Admitted Up is now 99", s.getPercentAdmittedUp() == 99);
 	}
 
 	@Test
 	public void testSetPercentAdmittedLo() {
-		fail("Not yet implemented");
+		s.setPercentAdmittedLo(19);
+		assertTrue("Percent Admitted Low is now 19", s.getPercentAdmittedLo() == 19);
 	}
 
 	@Test
