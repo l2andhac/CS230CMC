@@ -22,7 +22,9 @@ public class DBControllerTest {
 	private SearchController searchController;
 	private static DBController dbc;
 	private Search search;
-	List<String> foci2;
+
+	List<String> foci, foci2;
+
 	private Admin admin, admin2;
 	private User user, user2;
 	private University u, u2;
@@ -39,13 +41,14 @@ public class DBControllerTest {
 	public void setUp() throws Exception {
 		
 		//makes University without a focus
-		foci2 = new ArrayList<String>();
-		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		foci = new ArrayList<String>();
+		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 		boolean added = dbc.addSchool(u);
 		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
 		
-		
+		foci2 = new ArrayList<String>();
+
 		foci2.add("ENGINEERING");
 		u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(u2);
@@ -54,6 +57,7 @@ public class DBControllerTest {
 		//makes new User
 		dummy = new User("Dummy", "Will", "dummyUser2", "password", 'Y');
 		dbc.addAccount(dummy);
+		
 
 	}
 
@@ -61,6 +65,8 @@ public class DBControllerTest {
 	public void tearDown() throws Exception {
 		dbc.removeSavedSchool(user, u.getSchoolName());
 		dbc.removeSavedSchool(user, u2.getSchoolName());
+		
+		foci2 = null;
 		
 		dbc.removeSchool(u);
 		dbc.removeAccount("dummyAdmin");
@@ -228,7 +234,7 @@ public class DBControllerTest {
 	
 	@Test
 	public void testGetSchoolNoEmphases() {
-		University retU = dbc.getSchool(u.getSchoolName());
+		University retU = dbc.getSchool(u.getSchoolName());		
 		assertTrue("School should be found", retU.equals(u));
 	}
 	
