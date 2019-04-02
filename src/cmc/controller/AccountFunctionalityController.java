@@ -131,9 +131,9 @@ public class AccountFunctionalityController {
 	   * @throws IllegalArgumentException
 	   */
 	  public void editAccountInfo(String un, String fn, String ln, String p, char t, char s){
-		  if(t != 'u' || t != 'a')
+		  if(!(t == 'u' || t == 'a'))
 			  throw new IllegalArgumentException("The type entered is invalid");
-		  else if(s != 'D' || s != 'P' || s != 'Y' || s != 'N')
+		  else if(!(s == 'D' || s == 'P' || s == 'Y' || s == 'N'))
 			  throw new IllegalArgumentException("The status entered is invalid");
 		  Account account = dbc.findAccount(un);
 		  if(account == null) {

@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import cmc.entity.Account;
+import cmc.entity.Admin;
 import cmc.entity.University;
 import cmc.entity.User;
 
@@ -16,7 +18,8 @@ public class AccountFunctionalityControllerTest {
 	
 	private static AccountFunctionalityController afc;
 	private static DBController dbc;
-	private User user, emailUser;
+	private User user, emailUser, user2;
+	private Admin admin2;
 	private static University u;
 	private static ArrayList<String> foci2;
 	
@@ -34,6 +37,10 @@ public class AccountFunctionalityControllerTest {
 		this.user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		dbc.addAccount(this.user);
 		dbc.addSchool(this.u);
+		user2 = new User("dummy", "Dempsey", "dummyuser", "password", 'P');
+		admin2 = new Admin("dummy", "Dempsey", "dummyadmin", "123456", 'D');
+		dbc.addAccount(user2);
+		dbc.addAccount(admin2);
 		
 		this.emailUser = new User("Dummy", "Email", "dummyUser@email.com", "password", 'Y');
 		dbc.addAccount(emailUser);
@@ -44,6 +51,8 @@ public class AccountFunctionalityControllerTest {
 		dbc.removeAccount("dummyUser");
 		dbc.removeSchool(u);
 		dbc.removeAccount("dummyUser@email.com");
+		dbc.removeAccount("dummyuser");
+		dbc.removeAccount("dummyadmin");
 	}
 
 	@Test
@@ -86,16 +95,20 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testViewAccountInfoAccount() {
-		//fail("Not yet implemented");
+		String actual = afc.viewAccountInfo(user2);
+		assertTrue("The account information is correctly output", user2.toString().equals(actual));
 	}
 
 	@Test
 	public void testViewAccountInfoString() {
-		//fail("Not yet implemented");
+		String actual = afc.viewAccountInfo("dummyuser");
+		Account a = dbc.findAccount("dummyuser");
+		assertTrue("The account info is correctly output", admin2.toString().equals(a.toString()));
+		//How to do this without the account to use the toString
 	}
 
 	@Test
-	public void testViewSchoolDetailsValidInput() {	////?
+	public void testViewSchoolDetailsValidInput() {	
 		University actual = afc.viewSchoolDetails("UNIVERSITE DE OUAGADOUGOU");
 		assertTrue("The school name input is in the database, and returns a correct University",
 				actual.equals(u));
@@ -108,9 +121,47 @@ public class AccountFunctionalityControllerTest {
 				actual == null);
 	}
 
-	@Test
-	public void testEditAccountInfo() {
-		//fail("Not yet implemented");
+	@Test (expected = IllegalArgumentException.class)
+	public void testEditAccountInfoFailsForInvalidUsername() {
+		afc.editAccountInfo("Kate", "Kate", "Dempsey", "password", 'a', 'Y');
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testEditAccountInfoFailsForInvalidUsername2() {
+		afc.editAccountInfo("Steffi", "Steffi", "Tapsoba", "password", 'u', 'N');
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testEditAccountInfoFailsForInvalidType() {
+		afc.editAccountInfo("dummyuser", "dummy", "Dempsey", "password", 'q', 'P');
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testEditAccountInfoFailsForInvalidType2() {
+		afc.editAccountInfo("dummyadmin", "dummy", "Dempsey", "123456", 'p', 'D');
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testEditAccountInfoFailsForInvalidStatus() {
+		afc.editAccountInfo("dummyadmin", "dummy", "Dempsey", "123456", 'a', 'O');
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testEditAccountInfoFailsForInvalidStatus2() {
+		afc.editAccountInfo("dummyuser", "dummy", "Dempsey", "password", 'u', 'y');
+	}
+	
+	@Test 
+	public void testEditAccountInfoChangeStatus() {
+		afc.editAccountInfo("dummyuser", "dummy", "Dempsey", "password", 'u', 'D');
+		assertTrue("The status of the account was changed to D", user2.getStatus() == 'D');
+	}
+	
+	@Test 
+	public void testEditAccountInfoChangeFirstName() { //The actual object isnt getting changed maybe??
+		afc.editAccountInfo("dummyadmin", "Kate", "Dempsey", "123456",  'a', 'Y');
+		Account a = dbc.findAccount("dummyadmin");
+		assertTrue("The First Name of the account was changed to Kate", a.getFirstName() == "Kate");
 	}
 
 }
