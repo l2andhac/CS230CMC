@@ -12,39 +12,39 @@ import java.util.*;
 public class University{
   
   // name of school
-  private String schoolName;
+  protected String schoolName;
   //state of school
-  private String state;
+  protected String state;
   //location of school: suburban, urban, small-city, or -1 if unknown
-  private String location;
-  //control of the school: private, state, city, or -1 if unknown 
-  private String control;
+  protected String location;
+  //control of the school: protected, state, city, or -1 if unknown 
+  protected String control;
   //number of students of a school
-  private int numberOfStudents;
+  protected int numberOfStudents;
   //percentage of students that are female
-  private double percentFemale;
+  protected double percentFemale;
   //average SAT verbal score for enrolled students (between 0 and 800)
-  private double satVerbal;
+  protected double satVerbal;
   //average SAT math score for enrolled students (between 0 and 800)
-  private double satMath;
+  protected double satMath;
   //annual expenses
-  private double expenses;
+  protected double expenses;
   //percent of enrolled students recieving financial aid
-  private double percentFinancialAid;
+  protected double percentFinancialAid;
   //number of applicants for school
-  private int numberOfApplicants;
+  protected int numberOfApplicants;
   //percent of applicants that get admitted
-  private double percentAdmitted;
+  protected double percentAdmitted;
   //percent of applicants that decide to enroll
-  private double percentEnrolled;
+  protected double percentEnrolled;
   //academic scale of school (1-5)
-  private int academicsScale;
+  protected int academicsScale;
   //social scale of school (1-5)
-  private int socialScale;
+  protected int socialScale;
   //quality scale of school (1-5)
-  private int qualityScale;
+  protected int qualityScale;
   //list of up to 5 areas of study in which the school excels
-  private List<String> emphases;
+  protected List<String> emphases;
   
   /** Constructor for a University object
    *

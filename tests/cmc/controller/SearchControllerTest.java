@@ -31,14 +31,15 @@ public class SearchControllerTest {
 	public void setUp() throws Exception {
 		foci = new ArrayList<String>();
 		foci.add("BUSINESS");
-		searchCriteria = new Search("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 11, 10, 10500, 10500, 95, 95, 70, 70, 2,2, 1, 1, 1, 1,foci);
+		searchCriteria = new Search("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 7999, 8001, 29, 31, -1, -1, -1, -1, 4999, 5001, 9, 11, 10000, 10600, 94, 96, 69, 71, 1,3, -1, -1, -1, -1,foci);
 		u = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 	    dbcontroller.addSchool(u);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		foci = null;
+		foci = new ArrayList<String>();
+		foci.add("BUSINESS");;
 		dbcontroller.removeSchool(u);
 	}
 
@@ -184,8 +185,6 @@ public class SearchControllerTest {
 	public void testTestForMatchIsMatch() {
 		searchController = new SearchController(searchCriteria);
 		assertTrue("School matches criteria", searchController.testForMatch(u));
-	    foci = null;
-		searchCriteria.setEmphasis(foci);
 	}
 
 }

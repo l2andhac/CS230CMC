@@ -9,7 +9,11 @@ public class DBControllerTestDriver{
   
   public static void main(String[] args)
   {
-    t = new DBController();
+	  t = new DBController();
+	  User a = (User) t.findAccount("jordre3@gmail.com");
+	  List<SavedSchool> l = t.getSavedSchools(a);
+	  System.out.println(l);
+    /*t = new DBController();
     Set<String> usernames = t.viewAllAccounts();
     for(String u : usernames)
     {
@@ -62,11 +66,11 @@ public class DBControllerTestDriver{
     for(University uni : listOfMatches) {
     	System.out.println(uni.getSchoolName());
     }
-/*    User nateTheUser = new User("Nate", "Jordre", "jordre3@gmail.com", "password", 'u'); /////Should be a status?
+    User nateTheUser = new User("Nate", "Jordre", "jordre3@gmail.com", "password", 'u'); /////Should be a status?
     
-    t.addAccount(nateTheUser);*/
+    t.addAccount(nateTheUser);
     
     System.out.println(t.getTotalNumberOfSchools());
-    
+    */
   }
 }

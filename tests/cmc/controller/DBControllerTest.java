@@ -187,13 +187,13 @@ public class DBControllerTest {
 
 		//tests user with 1 or more SavedSchool
 		//makes u2 a SavedSchool
-	    SavedSchool s = new SavedSchool(u, "time");	
+	    SavedSchool s = new SavedSchool(u, "");	
 		//add u2to dummy's list
 		dbc.addSavedSchool(dummy, s);
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
 		saved.add(s);
 		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).equals(saved));
-		dbc.removeSavedSchool(dummy, "UNIVERSITE DE OUAGADOUGOU");
+		dbc.removeSavedSchool(dummy, s.getSchoolName());
 	}
 
 	@Test
@@ -224,7 +224,16 @@ public class DBControllerTest {
 	@Test
 	public void testAddSavedSchool() {
 		dbc.addSavedSchool(user, s);
-		assertTrue("saved school was added", dbc.getSavedSchools(user).contains(s));
+		List<SavedSchool> savedList = dbc.getSavedSchools(user);
+		//System.out.println(savedList);
+		//System.out.println(s);
+		boolean found = false;
+		for(SavedSchool school:savedList) {
+			if (school.equals(s)) {
+				found = true;
+			}
+		}
+		assertTrue("saved school was added", found);
 	}
 
 	@Test
