@@ -34,24 +34,24 @@ public class AccountFunctionalityControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		this.user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		this.user = new User("Dummy", "Jordre", "dummyuser7", "password", 'Y');
 		dbc.addAccount(this.user);
 		dbc.addSchool(this.u);
-		user2 = new User("dummy", "Dempsey", "dummyuser", "password", 'P');
+		user2 = new User("dummy", "Dempsey", "dummyuser77", "password", 'P');
 		admin2 = new Admin("dummy", "Dempsey", "dummyadmin", "123456", 'D');
 		dbc.addAccount(user2);
 		dbc.addAccount(admin2);
 		
-		this.emailUser = new User("Dummy", "Email", "dummyUser@email.com", "password", 'Y');
+		this.emailUser = new User("Dummy", "Email", "dummyuser7@email.com", "password", 'Y');
 		dbc.addAccount(emailUser);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		dbc.removeAccount("dummyUser");
+		dbc.removeAccount("dummyuser7");
 		dbc.removeSchool(u);
-		dbc.removeAccount("dummyUser@email.com");
-		dbc.removeAccount("dummyuser");
+		dbc.removeAccount("dummyuser7@email.com");
+		dbc.removeAccount("dummyuser77");
 		dbc.removeAccount("dummyadmin");
 	}
 
@@ -79,7 +79,7 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testForgotPassword() {
-		assertTrue("A new password was correctly emailed", afc.forgotPassword("dummyUser@email.com"));
+		assertTrue("A new password was correctly emailed", afc.forgotPassword("dummyuser7@email.com"));
 			
 	}
 	
@@ -90,7 +90,7 @@ public class AccountFunctionalityControllerTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testForgotPasswordUsernameNotEmail() {
-		afc.forgotPassword("dummyUser");
+		afc.forgotPassword("dummyuser7");
 	}
 
 	@Test
@@ -101,9 +101,9 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testViewAccountInfoString() {
-		String actual = afc.viewAccountInfo("dummyuser");
-		Account a = dbc.findAccount("dummyuser");
-		assertTrue("The account info is correctly output", admin2.toString().equals(a.toString()));
+		String actual = afc.viewAccountInfo("dummyuser7");
+		Account a = dbc.findAccount("dummyuser7");
+		assertTrue("The account info is correctly output", user.equals(a));
 		//How to do this without the account to use the toString
 	}
 
@@ -133,7 +133,7 @@ public class AccountFunctionalityControllerTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testEditAccountInfoFailsForInvalidType() {
-		afc.editAccountInfo("dummyuser", "dummy", "Dempsey", "password", 'q', 'P');
+		afc.editAccountInfo("dummyuser7", "dummy", "Dempsey", "password", 'q', 'P');
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -148,12 +148,12 @@ public class AccountFunctionalityControllerTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testEditAccountInfoFailsForInvalidStatus2() {
-		afc.editAccountInfo("dummyuser", "dummy", "Dempsey", "password", 'u', 'y');
+		afc.editAccountInfo("dummyuser7", "dummy", "Dempsey", "password", 'u', 'y');
 	}
 	
 	@Test 
 	public void testEditAccountInfoChangeStatus() {
-		afc.editAccountInfo("dummyuser", "dummy", "Dempsey", "password", 'u', 'D');
+		afc.editAccountInfo("dummyuser7", "dummy", "Dempsey", "password", 'u', 'D');
 		assertTrue("The status of the account was changed to D", user2.getStatus() == 'D');
 	}
 	

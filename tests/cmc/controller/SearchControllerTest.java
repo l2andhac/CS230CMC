@@ -43,10 +43,6 @@ public class SearchControllerTest {
 		dbcontroller.removeSchool(u);
 	}
 
-	@Test
-	public void testSearchController() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testTestForMatchSchoolNameIsNotAMatch() {

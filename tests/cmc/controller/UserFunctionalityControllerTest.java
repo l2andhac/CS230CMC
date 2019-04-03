@@ -46,8 +46,9 @@ public class UserFunctionalityControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		dbc.removeAccount("dummyUser");
 		dbc.removeSavedSchool(u, s.getSchoolName());
+		dbc.removeAccount("dummyUser");
+
 		//......
 	}
 
@@ -66,10 +67,6 @@ public class UserFunctionalityControllerTest {
 		dbc.removeSchool(univ);
 	}
 
-	@Test
-	public void testUserFunctionalityController() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testViewUserInfo() {

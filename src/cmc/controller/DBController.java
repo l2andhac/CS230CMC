@@ -387,6 +387,10 @@ public class DBController {
    */
   public void addAccount(Account a){
     univDBlib.user_addUser(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType());
+    char status = a.getStatus();
+    if(status == 'D' || status == 'P' || status == 'N') {
+    	this.changeAccount(a);
+    }
   }
   
   /**

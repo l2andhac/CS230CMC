@@ -10,7 +10,7 @@ public class SavedSchoolTest {
 
 	@Test
 	public void testSetTimeStamp() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 }
