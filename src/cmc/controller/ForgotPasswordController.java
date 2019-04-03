@@ -57,7 +57,7 @@ public class ForgotPasswordController{
    * @param username is an email to send the password to, account is the Account which the username belongs
    * @param account - Account that is requesting a new password
    */
-	public void emailNewPassword(String username, Account account) {
+	public boolean emailNewPassword(String username, Account account) {
 		String to = username;
 		String from = "l2hackstreet@gmail.com";
 		String host = "LocalHost";
@@ -71,11 +71,11 @@ public class ForgotPasswordController{
 			message.setSubject("Your new password");
 			message.setText("Your password is " + account.getPassword());
 			Transport.send(message);
-			System.out.println("Message sent");
+			return true;
 		}
 
 		catch (MessagingException mex) {
-			mex.printStackTrace();
+			return false;
 		}
 	}
 }
