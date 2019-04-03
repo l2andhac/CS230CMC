@@ -3,6 +3,7 @@ package cmc.controller;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -33,7 +34,7 @@ public class DBControllerTest {
 	
 	@BeforeClass
 	public static void beforeClass() throws Exception {
-		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
+		univDBlib = new UniversityDBLibrary("l2andhac", "csci230");
 		dbc = new DBController();
 	}
 	
@@ -46,7 +47,8 @@ public class DBControllerTest {
 		boolean added = dbc.addSchool(u);
 		user = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
 		admin = new Admin("Dummy", "Jordre", "dummyAdmin", "password", 'Y');
-		
+		dbc.addAccount(user);
+		dbc.addAccount(admin);
 		foci2 = new ArrayList<String>();
 
 		foci2.add("ENGINEERING");
@@ -75,26 +77,26 @@ public class DBControllerTest {
 		dbc.removeAccount("dummyUser2");
 	}
 
-	@Test
-	public void testDBController() {
-		//fail("Not yet implemented");
-	}
 
 	@Test
 	public void testEditSchool() {
 		foci2.add("BUSINESS-ADMINISTRATION");
-		University originalUniversity = dbc.getSchool("UNIVERSITE DE OUAGADOUGOU");
-		University modifiedUniversity = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		University originalUniversity = dbc.getSchool("UNIVERSITE DE BOBO");
+		University modifiedUniversity = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.editSchool(modifiedUniversity); //modified number of students from 8000 to 10000, with foci2 BUSINESS-ADMINISTRATION
-		University newUniversity = dbc.getSchool("UNIVERSITE DE OUAGADOUGOU");
+		University newUniversity = dbc.getSchool("UNIVERSITE DE BOBO");
 		assertFalse("the original school AUGSBURG is different from the modified school AUGSBURG which "
 				+ "now have 8000 students instead of 10000", originalUniversity.equals(newUniversity));
+		modifiedUniversity = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 1000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		dbc.editSchool(modifiedUniversity);
 	}
 
 	@Test
 	public void testAddSchoolForUniqueName() {
-		University u3 = new University("HAMLINE UNIVERSITY", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		List<String> l = new ArrayList<String>(); 
+		University u3 = new University("HAMLINE UNIVERSITY", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, l);
 		assertTrue("School should be added", dbc.addSchool(u3));
+		dbc.removeSchool(u3);
 	}
 	
 	@Test
@@ -125,7 +127,8 @@ public class DBControllerTest {
 	
 	@Test
 	public void testIsSchoolSavedForTrue() {
-		assertTrue("School should be saved", dbc.isSchoolSaved(u2));
+		dbc.addSavedSchool(user,  s);
+		assertTrue("School should be saved", dbc.isSchoolSaved(s));
 	}
 	
 	@Test
@@ -168,7 +171,13 @@ public class DBControllerTest {
 		AdminFunctionalityController afc = new AdminFunctionalityController();
 		Set<University> allSchools = dbc.getAllSchools();
 		University univ = dbc.getSchool("AUBURN");
-        assertTrue("AUBURN should be one of the Unviersities in the set", allSchools.contains(univ));
+		boolean found = false;
+		for (University u:allSchools) {
+			if(u.equals(univ)) {
+				found = true;
+			}
+		}
+        assertTrue("AUBURN should be one of the Unviersities in the set", found);
 	}
 
 	@Test
@@ -192,7 +201,7 @@ public class DBControllerTest {
 		dbc.addSavedSchool(dummy, s);
 		List<SavedSchool> saved = new ArrayList<SavedSchool>();
 		saved.add(s);
-		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).equals(saved));
+		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).toString().equals(saved.toString()));
 		dbc.removeSavedSchool(dummy, s.getSchoolName());
 	}
 
@@ -208,10 +217,13 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindSearchedSchoolFound() {
-		search = new Search("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 11, 10, 10500, 10500, 95, 95, 70, 70, 2,2, 1, 1, 1, 1,foci2);
-
+		search = new Search("BETHEL", "MINNESOTA", "SUBURBAN", "PRIVATE", -1, -1, -1, 30, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1,foci2);
+		Set<University> s = new HashSet<University>();
+		s.add(u2);
+		//System.out.println(s);
 		Set<University> searchedSchools = dbc.findSearchedSchool(search);
-		assertTrue("School matches the search criteria", searchedSchools.contains(u) && searchedSchools.size() == 1);
+		//System.out.println(searchedSchools);
+		assertTrue("School matches the search criteria", searchedSchools.toString().equals(s.toString()) && searchedSchools.size() == 1);
 	}
 	
 	@Test
@@ -229,7 +241,7 @@ public class DBControllerTest {
 		//System.out.println(s);
 		boolean found = false;
 		for(SavedSchool school:savedList) {
-			if (school.equals(s)) {
+			if (school.toString().equals(s.toString())) {
 				found = true;
 			}
 		}
@@ -346,9 +358,10 @@ public class DBControllerTest {
 
 	@Test
 	public void testGetTotalNumberOfSchools() {
-		int actualNumOfSchool = 186; //actually it is 185 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 186
+		String [][] list = univDBlib.university_getUniversities(); //actually it is 185 but since I added "UNIVERSITE OF OUAGADOUGOU" in the test class it is 186
+		int actual = list.length;
 		int testNumOfSchool = dbc.getTotalNumberOfSchools();
-		assertTrue("The method should return a total of "+actualNumOfSchool+" schools.", actualNumOfSchool == testNumOfSchool);
+		assertTrue("The method should return a total of "+actual+" schools.", actual == testNumOfSchool);
 	}
 
 	@Test
