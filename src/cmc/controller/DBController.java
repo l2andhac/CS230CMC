@@ -159,7 +159,7 @@ public class DBController {
                                     Double.parseDouble(schools[i][8]), Double.parseDouble(schools[i][9]),
                                     Integer.parseInt(schools[i][10]), Double.parseDouble(schools[i][11]), 
                                     Double.parseDouble(schools[i][12]), Integer.parseInt(schools[i][13]),
-                                    Integer.parseInt(schools[i][14]), Integer.parseInt(schools[i][15]), null);
+                                    Integer.parseInt(schools[i][14]), Integer.parseInt(schools[i][15]), emphasesList);
       retList.add(u);
     }
     return retList;

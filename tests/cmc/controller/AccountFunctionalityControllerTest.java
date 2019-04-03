@@ -158,10 +158,10 @@ public class AccountFunctionalityControllerTest {
 	}
 	
 	@Test 
-	public void testEditAccountInfoChangeFirstName() { //The actual object isnt getting changed maybe??
+	public void testEditAccountInfoChangeFirstName() { 
 		afc.editAccountInfo("dummyadmin", "Kate", "Dempsey", "123456",  'a', 'Y');
 		Account a = dbc.findAccount("dummyadmin");
-		assertTrue("The First Name of the account was changed to Kate", a.getFirstName() == "Kate");
+		assertTrue("The First Name of the account was changed to Kate", a.getFirstName().equals("Kate"));
 	}
 
 }

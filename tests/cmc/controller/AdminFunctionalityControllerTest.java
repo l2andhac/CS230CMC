@@ -109,7 +109,13 @@ public class AdminFunctionalityControllerTest {
 	public void testViewAllSchools() {
 		Set<University> allSchools = afc.viewAllSchools();
 		University univ = dbc.getSchool("AUBURN");
-		assertTrue("AUBURN should be one of the Unviersities viewed", allSchools.contains(univ));
+		boolean found = false;
+		for(University u: allSchools) {
+			if(u.equals(univ)) {
+				found = true;
+			}
+		}
+		assertTrue("AUBURN should be one of the Unviersities viewed", found);
 	}
 
 	@Test

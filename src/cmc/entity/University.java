@@ -294,6 +294,8 @@ public class University{
 		  return false;
 	  else if(!(this.qualityScale == u.getQualityOfLifeScale()))
 		  return false;
+	  if (this.emphases.size() == 0 && u.getEmphases().size() == 0)
+		  return true;
 	  else if(!(this.emphases.equals(u.getEmphases())))
 		  return false;
 	 
