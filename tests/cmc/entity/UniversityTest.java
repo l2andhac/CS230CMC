@@ -15,7 +15,7 @@ public class UniversityTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		u = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, null);
+		u = new University("BETHEL UNIVERSITY", "WISCONSIN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, null);
 	}
 
 	@After
@@ -26,47 +26,56 @@ public class UniversityTest {
 
 	@Test
 	public void testSetSchoolName() {
-		assertTrue("Correctly sets school name", "BETHEL UNIVERSITY".equals(u.getSchoolName()));
+		u.setSchoolName("BETHEL COLLEGE");
+		assertTrue("Correctly sets school name", "BETHEL COLLEGE".equals(u.getSchoolName()));
 	}
 
 	@Test
 	public void testSetState() {
+		u.setState("MINNESOTA");
 		assertTrue("Correctly sets state", "MINNESOTA".equals(u.getState()));
 	}
 
 	@Test
 	public void testSetLocation() {
+		u.setLocation("SUBURBAN");
 		assertTrue("Correctly sets location", "SUBURBAN".equals(u.getLocation()));
 	}
 
 	@Test
 	public void testSetControl() {
+		u.setControl("PRIVATE");
 		assertTrue("Correctly sets control", "PRIVATE".equals(u.getControl()));
 	}
 
 	@Test
 	public void testSetNumStudents() {
-		assertTrue("Correctly sets number of students", 8000==(u.getNumStudents()));
+		u.setNumberOfStudents(8001);
+		assertTrue("Correctly sets number of students", 8001==(u.getNumStudents()));
 	}
 
 	@Test
 	public void testSetPercentFemales() {
-		assertTrue("Correctly sets percent female", 30.0==(u.getPercentFemales()));
+		u.setPercentFemale(40.0);
+		assertTrue("Correctly sets percent female", 40.0==(u.getPercentFemales()));
 	}
 
 	@Test
 	public void testSetSATVerbal() {
-		assertTrue("Correctly sets SATVerbal", -1==(u.getSATVerbal()));
+		u.setSatVerbal(400);
+		assertTrue("Correctly sets SATVerbal", 400==(u.getSATVerbal()));
 	}
 
 	@Test
 	public void testSetSATMath() {
-		assertTrue("Correctly sets SATMath", -1==(u.getSATMath()));
+		u.setSatMath(450);
+		assertTrue("Correctly sets SATMath", 450==(u.getSATMath()));
 	}
 
 	@Test
 	public void testSetExpenses() {
-		assertTrue("Correctly sets expenses", 5000==(u.getExpenses()));
+		u.setExpenses(2600);
+		assertTrue("Correctly sets expenses", 2600==(u.getExpenses()));
 	}
 
 	@Test
