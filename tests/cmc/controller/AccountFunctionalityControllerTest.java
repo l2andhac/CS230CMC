@@ -133,7 +133,7 @@ public class AccountFunctionalityControllerTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testEditAccountInfoFailsForInvalidType() {
-		afc.editAccountInfo("dummyuser7", "dummy", "Dempsey", "password", 'q', 'P');
+		afc.editAccountInfo("dummyuser77", "dummy", "Dempsey", "password", 'q', 'P');
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -148,13 +148,15 @@ public class AccountFunctionalityControllerTest {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testEditAccountInfoFailsForInvalidStatus2() {
-		afc.editAccountInfo("dummyuser7", "dummy", "Dempsey", "password", 'u', 'y');
+		afc.editAccountInfo("dummyuser77", "dummy", "Dempsey", "password", 'u', 'y');
 	}
 	
 	@Test 
 	public void testEditAccountInfoChangeStatus() {
-		afc.editAccountInfo("dummyuser7", "dummy", "Dempsey", "password", 'u', 'D');
-		assertTrue("The status of the account was changed to D", user2.getStatus() == 'D');
+		afc.editAccountInfo("dummyuser77", "dummy", "Dempsey", "password", 'u', 'D');
+		//had to add this line to make it work
+		Account a = dbc.findAccount("dummyuser77");
+		assertTrue("The status of the account was changed to D", a.getStatus() == 'D');
 	}
 	
 	@Test 
@@ -162,6 +164,27 @@ public class AccountFunctionalityControllerTest {
 		afc.editAccountInfo("dummyadmin", "Kate", "Dempsey", "123456",  'a', 'Y');
 		Account a = dbc.findAccount("dummyadmin");
 		assertTrue("The First Name of the account was changed to Kate", a.getFirstName().equals("Kate"));
+	}
+	
+	@Test 
+	public void testEditAccountInfoChangeLastName() { 
+		afc.editAccountInfo("dummyuser77", "dummy", "Will", "password",  'u', 'Y');
+		Account a = dbc.findAccount("dummyuser77");
+		assertTrue("The Last Name of the account was changed to Will", a.getLastName().equals("Will"));
+	}
+	
+	@Test 
+	public void testEditAccountInfoChangePassword() { 
+		afc.editAccountInfo("dummyadmin", "dummy", "Dempsey", "password",  'a', 'Y');
+		Account a = dbc.findAccount("dummyadmin");
+		assertTrue("The Password of the account was changed to password", a.getPassword().equals("password"));
+	}
+	
+	@Test 
+	public void testEditAccountInfoChangeType() { 
+		afc.editAccountInfo("dummyuser77", "dummy", "Dempsey", "password",  'a', 'P');
+		Account a = dbc.findAccount("dummyuser77");
+		assertTrue("The Type of the account was changed to a", a.getUserType() == 'a');
 	}
 
 }
