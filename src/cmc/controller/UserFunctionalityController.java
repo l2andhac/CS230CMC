@@ -133,10 +133,21 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * @throws IllegalArgumentException
    */
   public void saveSchool(University univ, User user){
-	  List<SavedSchool> list = user.getSavedSchools();
+	  List<SavedSchool> list = dbController.getSavedSchools(user);
 	  
 	  SavedSchool schoolToSave = new SavedSchool(univ, "time");
-	  if(list == null || !list.contains(schoolToSave)) {
+	  
+	  if(list.size() == 0) {
+		  dbController.addSavedSchool(user,  schoolToSave);
+	  }
+	  
+	  boolean found = false;
+		for (SavedSchool saved: list) {
+			if(univ.equals(saved)) {
+				found = true;
+			}
+		}
+	  if(!found) {
 		  dbController.addSavedSchool(user, schoolToSave);
 		  //user.addSavedSchool(schoolToSave);
       }

@@ -53,6 +53,11 @@ public class AccountControllerTest {
 		ac.logOn("dummyUser","password2");
 	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnWrongUsername() {
+		ac.logOn("dummyUserxxxx","password");
+	}
+	
 	@Test
 	public void testLogOnAdmin() {
 		assertTrue("admin is logged in", ac.logOn("dummyAdmin","password").isLoggedOn());

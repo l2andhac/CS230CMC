@@ -47,45 +47,4 @@ public class SavedSchool extends University {
     this.timeStamp = time;
   }
   
-  public boolean equals(University u) {
-	  if(!this.schoolName.equals(u.getSchoolName())) 
-			  return false;
-	  else if(!(this.state.equals(u.getState()))) 
-		  return false;
-	  else if(!(this.location.equals(u.getLocation())))
-		  return false;
-	  else if(!(this.control.equals(u.getControl())))
-		  return false;
-	  else if(!(this.numberOfStudents == u.getNumStudents()))
-		  return false;
-	  else if(!(this.percentFemale == u.getPercentFemales()))
-		  return false;
-	  else if(!(this.satVerbal == u.getSATVerbal()))
-		  return false;
-	  else if(!(this.satMath == u.getSATMath()))
-		  return false;
-	  else if(!(this.expenses == u.getExpenses()))
-		  return false;
-	  else if(!(this.percentFinancialAid == u.getPercentFinancialAid()))
-		  return false;
-	  else if(!(this.numberOfApplicants == u.getNumApplicants()))
-		  return false;
-	  else if(!(this.percentEnrolled == u.getPercentEnrolled()))
-		  return false;
-	  else if(!(this.percentAdmitted == u.getPercentAdmitted()))
-		  return   false;
-	  else if(!(this.academicsScale == u.getAcademicScale()))
-		  return false;
-	  else if (!(this.socialScale == u.getSocialScale()))
-		  return false;
-	  else if(!(this.qualityScale == u.getQualityOfLifeScale()))
-		  return false;
-	  if (this.emphases.size() == 0 && u.getEmphases().size() == 0)
-		  return true;
-	  else if(!(this.emphases.equals(u.getEmphases())))
-		  return false;
-	 
-	  return true;  
-	  
-  }
 }
