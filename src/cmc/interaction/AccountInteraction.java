@@ -58,10 +58,9 @@ public class AccountInteraction{
 	   * @param u - String that is the username of the account
 	   * @param p - String that is the password for the account
 	   */
-	  public void requestNewAccount(String fn, String ln, String u, String p){
-	    User user = new User(fn, ln, u, p, 'p');
-	    AccountFunctionalityController afc = new AccountFunctionalityController();
-	    afc.requestNewAccount(user);
+	  public boolean requestNewAccount(String fn, String ln, String u, String p){
+	    User user = new User(fn, ln, u, p, 'P');
+	    return accountFunctCont.requestNewAccount(user);
 	  }
 	  
 	  /**
@@ -69,8 +68,8 @@ public class AccountInteraction{
 	   * 
 	   * @param u - String with the username
 	   */
-	  public void forgotPassword(String u){
-	    accountFunctCont.forgotPassword(u);
+	  public boolean forgotPassword(String u){
+	    return accountFunctCont.forgotPassword(u);
 	  }
 	
 }

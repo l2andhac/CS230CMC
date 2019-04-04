@@ -38,12 +38,13 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * 
    * @throws IllegalArgumentException
    */
-  public void removeSchool(String schoolName){
+  public boolean removeSchool(String schoolName){
 	University univ = dbController.getSchool(schoolName);
     boolean saved = dbController.isSchoolSaved(univ);
     boolean hasEmphasis = dbController.hasEmphasis(univ);
       if(saved == false && hasEmphasis == false){     
       dbController.removeSchool(univ);
+      return true;
       //System.out.println("\nThe school was removed.");
       }
       else if(saved == true) {
@@ -52,6 +53,7 @@ public class AdminFunctionalityController extends AccountFunctionalityController
       else if(hasEmphasis == true) {
     	  throw new IllegalArgumentException("This school has at least one emphasis, so it cannot be removed");
       }
+      return false;
     }
   
   
@@ -61,10 +63,11 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * 
    * @param univ - University to be added to Database
    */
-  public void addSchool(University univ){
+  public boolean addSchool(University univ){
     boolean found = dbController.findSchoolName(univ.getSchoolName());
     if (!found){
       dbController.addSchool(univ);
+      return true;
       //System.out.println("\nThe school was added to the database");
     }
     else {
@@ -117,10 +120,14 @@ public class AdminFunctionalityController extends AccountFunctionalityController
    * 
    * @throws IllegalArgumentException
    */
-  public void addAccount(Account newAccount){
+  public boolean addAccount(Account newAccount){
+	 if(newAccount == null) {
+		  throw new IllegalArgumentException("Incorrect information was given");
+	 }
     boolean duplicate = dbController.findUsername(newAccount.getUsername());
     if(duplicate == false){
       dbController.addAccount(newAccount);
+      return true;
     }
     else {
     	throw new IllegalArgumentException("Duplicate username");

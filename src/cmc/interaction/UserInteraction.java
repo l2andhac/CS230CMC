@@ -41,16 +41,10 @@ public class UserInteraction extends AccountInteraction{
    * 
    * @param u - String which is the username to search by
    */
-  public void searchForFriends(String u){
+  public List<SavedSchool> searchForFriends(String u){
     
     List<SavedSchool> savedSchools = userFunctCont.searchForFriends(u);
-    if(savedSchools != null) {
-    	for(SavedSchool school : savedSchools) {
-    		System.out.println(""+school);
-    	}
-    }else {
-    	System.out.println("No saved schools to display");
-    }
+    return savedSchools;
   }
   
   /**
@@ -160,15 +154,9 @@ public class UserInteraction extends AccountInteraction{
    * Allows a user to view their list of saved schools
    * 
    */
-  public void viewSavedSchools(){
+  public List<SavedSchool> viewSavedSchools(){
     List<SavedSchool> savedSchools = userFunctCont.viewSavedSchools(this.user);
-    if(savedSchools != null) {
-    	for(SavedSchool school : savedSchools) {
-    		System.out.println(""+school);
-    	}
-    }else {
-    	System.out.println("No saved schools to display");
-    }
+    return savedSchools;
   }
   
   
@@ -231,13 +219,9 @@ public class UserInteraction extends AccountInteraction{
    * 
    * @param schoolName - String of the University's name
    */
-  public void viewSchoolDetails(String schoolName){
+  public University viewSchoolDetails(String schoolName){
     University univ = userFunctCont.viewSchoolDetails(schoolName);
-    if(univ != null) {
-    	System.out.println(univ.toString());
-    }else {
-    	System.out.println("The school was not found");
-    }
+    return univ;
   }
   
   /**
