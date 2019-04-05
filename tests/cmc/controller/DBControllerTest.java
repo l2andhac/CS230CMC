@@ -204,6 +204,11 @@ public class DBControllerTest {
 		assertTrue("The list of dummy's SavedSchools should match list 'saved'", dbc.getSavedSchools(dummy).toString().equals(saved.toString()));
 		dbc.removeSavedSchool(dummy, s.getSchoolName());
 	}
+	
+	@Test
+	public void testGetSavedSchoolsEmptyList() {
+		assertFalse("The dummy has no SavedSchools", dbc.getSavedSchools(dummy).toString().equals(""));
+	}
 
 	@Test
 	public void testFindSchoolName() {
