@@ -30,7 +30,7 @@ public class UserFunctionalTests {
 
 	@Before
 	public void setUp() throws Exception {
-		User u = new User("Dummy", "Jordre", "DummyUser", "Password", 'Y');
+		u = new User("Dummy", "Jordre", "DummyUser", "Password", 'Y');
 		ui = new UserInteraction(u);
 		dbc.addAccount(u);
 	}
@@ -45,7 +45,10 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testRequestDeactivation() {
-		fail("Not yet implemented");
+		ui.requestDeactivation();
+		User foundUser = (User) dbc.findAccount("DummyUser");
+		assertTrue("The user's status in the database should be /'D/'", foundUser.getStatus() == 'D');
+		assertTrue("The user objects status should be /'D/'", u.getStatus() == 'D');
 	}
 
 	@Test

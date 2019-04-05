@@ -30,7 +30,7 @@ public class AdminFunctionalTests {
 
 	@Before
 	public void setUp() throws Exception {
-		Admin a = new Admin("Dummy", "Jordre", "DummyAdmin", "Password", 'Y');
+		a = new Admin("Dummy", "Jordre", "DummyAdmin", "Password", 'Y');
 		ai = new AdminInteraction(a);
 		dbc.addAccount(a);
 	}
