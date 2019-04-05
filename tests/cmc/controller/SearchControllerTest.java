@@ -30,16 +30,16 @@ public class SearchControllerTest {
 	@Before
 	public void setUp() throws Exception {
 		foci = new ArrayList<String>();
-		foci.add("BUSINESS");
-		searchCriteria = new Search("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 7999, 8001, 29, 31, -1, -1, -1, -1, 4999, 5001, 9, 11, 10000, 10600, 94, 96, 69, 71, 1,3, -1, -1, -1, -1,foci);
-		u = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		foci.add("ENGINEERING");
+		searchCriteria = new Search("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8001, 7999, 31, 29, -1, -1, -1, -1, 5001, 4999, 11, 9, 11000, 10000, 96, 94, 71, 69, -1, -1, -1, -1, -1, -1,foci);
+		u = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, 650, 650, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 	    dbcontroller.addSchool(u);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		foci = new ArrayList<String>();
-		foci.add("BUSINESS");;
+		foci.add("BUSINESS");
 		dbcontroller.removeSchool(u);
 	}
 
@@ -146,35 +146,35 @@ public class SearchControllerTest {
 	
 	@Test
 	public void testTestForMatchAcademicScaleIsNotAMatch() {
-		searchCriteria.setAcademicScaleUp(1);
-		searchCriteria.setAcademicScaleLo(0);
+		searchCriteria.setAcademicScaleUp(5);
+		searchCriteria.setAcademicScaleLo(3);
 		searchController = new SearchController(searchCriteria);
 		assertFalse("School should not match search criteria", searchController.testForMatch(u));
 	}
 	
 	@Test
 	public void testTestForMatchSocialScaleIsNotAMatch() {
-		searchCriteria.setSocialScaleUp(1);
-		searchCriteria.setSocialScaleLo(0);
+		searchCriteria.setSocialScaleUp(5);
+		searchCriteria.setSocialScaleLo(3);
 		searchController = new SearchController(searchCriteria);
 		assertFalse("School should not match search criteria", searchController.testForMatch(u));
 	}
 	
 	@Test
 	public void testTestForMatchQualityOfLifeScaleIsNotAMatch() {
-		searchCriteria.setQualOfLifeScaleUp(1);
-		searchCriteria.setQualOfLifeScaleLo(0);
+		searchCriteria.setQualOfLifeScaleUp(5);
+		searchCriteria.setQualOfLifeScaleLo(3);
 		searchController = new SearchController(searchCriteria);
 		assertFalse("School should not match search criteria", searchController.testForMatch(u));
 	}
 	
 	@Test
 	public void testTestForMatchWrongEmphasis() {
-		foci.add("CHEMISTRY");
-		searchCriteria.setEmphasis(foci);
+		List<String>foci2 = new ArrayList<String>();
+		foci2.add("CHEMISTRY");
+		searchCriteria.setEmphasis(foci2);
 		searchController = new SearchController(searchCriteria);
 		assertFalse("School should not match search criteria", searchController.testForMatch(u));
-		searchCriteria.setEmphasis(foci);
 	}
 	
 	@Test

@@ -2,6 +2,10 @@ package cmc.functionalTesting;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -11,6 +15,7 @@ import org.junit.Test;
 import cmc.controller.AdminFunctionalityController;
 import cmc.controller.DBController;
 import cmc.entity.Admin;
+import cmc.entity.University;
 import cmc.interaction.AdminInteraction;
 
 public class AdminFunctionalTests {
@@ -57,7 +62,22 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testViewAllSchools() {
-		fail("Not yet implemented");
+		Set<University> allSchools = ai.viewAllSchools();
+		int expectedSize = dbc.getTotalNumberOfSchools();
+		assertTrue("There should be " + expectedSize + " schools in the database", allSchools.size() == expectedSize);
+		List<String> foci = new ArrayList<String>();
+		University u = new University("DummySchool", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.addSchool(u);
+		allSchools = ai.viewAllSchools();
+		assertTrue("There should be " + (expectedSize + 1) + " schools in the database", allSchools.size() == expectedSize + 1);
+		boolean found = false;
+		for (University uni:allSchools) {
+			if (uni.equals(u)) {
+				found = true;
+			}
+		}
+		assertTrue("DummySchool should be found", found == true);
+		dbc.removeSchool(u);
 	}
 
 	@Test
@@ -82,7 +102,12 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testViewSchoolDetails() {
-		fail("Not yet implemented");
+		List<String> foci = new ArrayList<String>();
+		University u = new University("DummySchool", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.addSchool(u);
+		University retU = ai.viewSchoolDetails(u.getSchoolName());
+		assertTrue("Schools should be equal", u.equals(retU));
+		dbc.removeSchool(u);
 	}
 
 	@Test
