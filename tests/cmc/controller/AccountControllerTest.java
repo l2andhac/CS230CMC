@@ -18,7 +18,7 @@ public class AccountControllerTest {
 	User dd;
 	
 	@BeforeClass
-	public static void beforeTest() throws Exception{
+	public static void beforeClass() throws Exception{
 		ac = new AccountController();
 		dbc = new DBController();
 	}

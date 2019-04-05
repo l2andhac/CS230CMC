@@ -27,7 +27,7 @@ public class UserFunctionalityControllerTest {
 	List<String> foci2;
 	
 	@BeforeClass
-	public static void beforeTest() throws Exception{
+	public static void beforeClass() throws Exception{
 		ufc = new UserFunctionalityController();
 		dbc = new DBController();
 	}

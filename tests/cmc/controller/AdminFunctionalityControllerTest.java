@@ -20,7 +20,7 @@ public class AdminFunctionalityControllerTest {
 	private static Admin a;
 	
 	@BeforeClass
-	public static void beforeTest() throws Exception{
+	public static void beforeClass() throws Exception{
 		afc = new AdminFunctionalityController();
 		dbc = new DBController();
 		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
