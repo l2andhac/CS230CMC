@@ -431,52 +431,22 @@ public class DBController {
    * 
    * @param school - String that is the schoolname of the University to find recommended schools for
    */
-public void findRecSchools(String school) {
+public Map<Double, String> findRecSchools(String school) {
 	
 	University univ = this.getSchool(school);
 	
 	Set<University> allUniversities = this.getAllSchools();
 	
 	double distance = 0;
-	int total = getTotalNumberOfSchools();
-	double[] distances = new double[total];
-	String[] schools = new String[total];
-	int i = 0;
+	Map<Double, String> distanceMap = new TreeMap<Double, String>();
 	for(University s : allUniversities)
     {
 		distance = this.findDistance(univ, s);
-		distances[i] = distance;
-		schools[i] = s.getSchoolName();
-		i++;
+		distanceMap.put(distance, s.getSchoolName());
     }
-	bubbleSort(distances, schools);
+	return distanceMap;
 }
- /**
-  * method to sort the arrays based on distance of the related schools
-  * @param arr - double[] for distances of related schools
-  * @param arr2 - String[] for the schools connected to the distances
-  */
-public static void bubbleSort(double arr[], String arr2[]) 
-{ 
-    int n = arr.length; 
-    for (int i = 0; i < n-1; i++) { 
-        for (int j = 0; j < n-i-1; j++) { 
-            if (arr[j] > arr[j+1]) 
-            { 
-                // swap arr[j+1] and arr[i] 
-                double temp = arr[j]; 
-                arr[j] = arr[j+1]; 
-                arr[j+1] = temp; 
-                
-                String temp2 = arr2[j]; 
-                arr2[j] = arr2[j+1]; 
-                arr2[j+1] = temp2; 
-            } 
-        }
-    }
-    System.out.println("The top most related schools are: \n" + arr2[1] + "\n" + arr2[2] + "\n" +arr2[3] + "\n" + arr2[4] + "\n" + arr2[5]);
-    System.out.println("\n\nwith distances of: \n" + arr2[1] + ": " + arr[1] + "\n" + arr2[2] + ": " + arr[2] + "\n" +arr2[3] + ": " +arr[3] + "\n" + arr2[4] + ": " + arr[4] + "\n" + arr2[5] + ": " + arr[5]);
-} 
+
 
 /**
  * finds the distance between two universities

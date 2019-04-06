@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import org.junit.After;
 import org.junit.Before;
@@ -244,17 +246,21 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testCompareSavedSchools() {
-		ufc.compareSavedSchools(s.getSchoolName());
+		List<University> list = ufc.compareSavedSchools(s.getSchoolName());
+		assertTrue("The list should contain both schools", list.get(0).equals(s));
+		assertTrue("The list should contain both schools", list.get(1).getSchoolName().equals("AUBURN"));
 	}
 
-	@Test
-	public void testRequestForSecondSchool() {
-		ufc.requestForSecondSchool();
-	}
 
 	@Test
 	public void testShowRecSchools() {
-		ufc.showRecSchools(univ.getSchoolName());
+		TreeMap<Double, String> distanceMap = (TreeMap<Double, String>)ufc.showRecSchools(univ.getSchoolName());
+		for(int i = 0; i < 5; i++) {
+			  Entry<Double, String> entry = distanceMap.pollFirstEntry();
+			  System.out.println(entry.getValue());
+			  System.out.println(entry.getKey());
+		  }
+		assertTrue("Map should now be empty", distanceMap.pollFirstEntry() == null);
 	}
 
 }

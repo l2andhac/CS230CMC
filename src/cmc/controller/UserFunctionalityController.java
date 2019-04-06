@@ -1,6 +1,8 @@
 package cmc.controller;
 import cmc.entity.*;
 import java.util.*;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Map.Entry;
 
 /** 
  * UserFunctionalityCOntroller.java
@@ -184,11 +186,12 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param s1 - String that is the name of the first school to compare
    */
-  public void compareSavedSchools(String s1){
+  public List<University> compareSavedSchools(String s1){
 	  University s2 = this.requestForSecondSchool();
-	  
-	  System.out.println("University 1: "+dbController.getSchool(s1));
-	  System.out.println("University 2: "+dbController.getSchool(s2.getSchoolName()).toString());
+	  List<University> retList = new ArrayList<University>();
+	  retList.add(dbController.getSchool(s1));
+	  retList.add(s2);
+	  return retList;
   }
   
   /**
@@ -196,7 +199,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
 
    * @return SavedSchool to compare
    */
-  public University requestForSecondSchool(){
+  private University requestForSecondSchool(){
 	  /*    Scanner sc = new Scanner(System.in);
 	    System.out.println("Enter the name of a school to compare to the first one: ");
 	    String schoolName = sc.next();*/
@@ -213,8 +216,15 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param school - String that is the schoolName of the University to find related schools
    */
-  public void showRecSchools(String school) {
-	  dbController.findRecSchools(school);  
+  public Map<Double, String> showRecSchools(String school) {
+	  TreeMap<Double, String> distanceMap = (TreeMap<Double, String>) dbController.findRecSchools(school);
+	  Map<Double, String> top5Map = new TreeMap<Double, String>();
+	  distanceMap.pollFirstEntry();
+	  for(int i = 0; i < 5; i++) {
+		  Entry<Double, String> entry = distanceMap.pollFirstEntry();
+		  top5Map.put(entry.getKey(), entry.getValue());
+	  }
+	  return top5Map;
   }
 
 

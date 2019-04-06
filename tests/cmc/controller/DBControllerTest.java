@@ -374,10 +374,6 @@ public class DBControllerTest {
 		//results print out in bubble sort
 	}
 
-	@Test
-	public void testBubbleSort() {
-		//need to fix
-	}
 
 	@Test
 	public void testFindDistance() {
