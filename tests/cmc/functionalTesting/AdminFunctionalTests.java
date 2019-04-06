@@ -53,13 +53,11 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testAddSchool() {
-		fail("Not yet implemented");
-		//List<String> foci = new ArrayList<String>();
-		//ai.addSchool("AA DUMMY SCHOOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
-		//assertTrue("The school AA DUMMY SCHOOL has been added to the database", dbc.findSchoolName("AA DUMMY SCHOOL"));
-		//there is no way to get the school to remove so removeSchool in dbc either needs to take a string,
-		//or addSchool has to return the school it adds
-		//dbc.removeSchool();
+		List<String> foci = new ArrayList<String>();
+		ai.addSchool("AA DUMMY SCHOOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		University u = new University("AA DUMMY SCHOOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		assertTrue("The school AA DUMMY SCHOOL has been added to the database", dbc.findSchoolName("AA DUMMY SCHOOL"));
+		dbc.removeSchool(u);
 	}
 		
 

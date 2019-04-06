@@ -50,10 +50,9 @@ public class AdminFunctionalityController extends AccountFunctionalityController
       else if(saved == true) {
     	  throw new IllegalArgumentException("This school is saved by at least one user, so it cannot be removed from the database");
       }
-      else if(hasEmphasis == true) {
+      else {
     	  throw new IllegalArgumentException("This school has at least one emphasis, so it cannot be removed");
       }
-      return false;
     }
   
   
@@ -94,12 +93,8 @@ public class AdminFunctionalityController extends AccountFunctionalityController
   public Set<University> viewAllSchools(){
 	  
     Set<University> schools = dbController.getAllSchools();
-    if(schools != null) {
-    	return schools;
-    }
-    else {
-    	throw new IllegalArgumentException();
-    }
+    return schools;
+
   }
   
   

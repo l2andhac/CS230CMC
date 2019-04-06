@@ -135,6 +135,12 @@ public class AdminFunctionalityControllerTest {
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
+	public void testAddNullUserAccount() {
+		u = null;
+		afc.addAccount(u);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
 	public void testAddExistingUserAccount() {
 		afc.addAccount(u);
 	}

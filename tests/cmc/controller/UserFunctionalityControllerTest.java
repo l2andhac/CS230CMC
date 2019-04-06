@@ -60,9 +60,6 @@ public class UserFunctionalityControllerTest {
 	@Test
 	public void testViewSchoolDetailsSchoolFound() {
 		Boolean t = dbc.addSchool(univ);
-		System.out.println(t);
-		System.out.println(ufc.viewSchoolDetails(univ.getSchoolName()).toString());
-		System.out.println(univ.toString());
 		assertTrue(ufc.viewSchoolDetails(univ.getSchoolName()).toString().equals(univ.toString()));	
 		dbc.removeSchool(univ);
 	}
@@ -70,7 +67,6 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testViewUserInfo() {
-		//???
 		assertTrue("the correct information is viewed", ufc.viewUserInfo(u).equals(u.toString()));
 	}
 
@@ -97,11 +93,16 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testSearchSchool() {
-		Search so = new Search("", "CALI", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
+		Search so = new Search("BER", "CALI", "URBAN", "STATE", 50000, 35000, -1, -1, 600, 525, 605, 595, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
 		Set<University> matches = ufc.searchSchool(so);
-		//University expected = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
-		//assertTrue("The results should contain Berkeley", matches.contains(expected));
-		assertTrue("There should be 12 schools in matches", matches.size() == 12);
+		University expected = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+		boolean found = false;
+		for(University u: matches) {
+			if(u.equals(expected))
+				found = true;
+		}
+		assertTrue("The results should contain Berkeley", found == true);
+		assertTrue("There should be only 1 school in matches", matches.size() == 1);
 	}
 
 	@Test
@@ -109,7 +110,7 @@ public class UserFunctionalityControllerTest {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
 	    foci.add("ENGLISH");
-	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    
@@ -131,7 +132,7 @@ public class UserFunctionalityControllerTest {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
 	    foci.add("ENGLISH");
-	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    List<University> list = ufc.sortResults(listOfMatches, 'a');
@@ -151,7 +152,7 @@ public class UserFunctionalityControllerTest {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
 	    foci.add("ENGLISH");
-	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    List<University> list = ufc.sortResults(listOfMatches, 'n');
