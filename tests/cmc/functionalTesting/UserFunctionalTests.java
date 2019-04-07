@@ -33,7 +33,6 @@ public class UserFunctionalTests {
 	private ArrayList<String> foci;
 	private static AccountInteraction accInt;
 	private User deactUser;
-	private University univ;
 	private ArrayList<String> foci2;
 	
 	@BeforeClass
@@ -124,6 +123,7 @@ public class UserFunctionalTests {
 	public void testSearchSchoolNoMatch() {
 		Set<University> matches = ui.searchSchool("BETHELLLLLLLLL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8001, 7999, 31, 29, 700, 600, 700, 600, 5001, 4999, 11, 9, 11000, 10000, 96, 94, 71, 69, 3, 1, 5, 1, 5, 1,foci);
 		assertTrue("No school should match the search criteria", matches.size() == 0);
+	}
 	public void testSearchSchoolSuccess() {
 		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
 		boolean found = false;
