@@ -59,8 +59,8 @@ public class UserFunctionalTests {
 		dbc.addAccount(deactUser);
 		foci2 = new ArrayList<String>();
 		foci2.add("ENGINEERING");
-		univ = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
-		dbc.addSchool(univ);
+		//univ = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		//dbc.addSchool(univ);
 	}
 	
 	@After
@@ -124,7 +124,8 @@ public class UserFunctionalTests {
 		Set<University> matches = ui.searchSchool("BETHELLLLLLLLL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8001, 7999, 31, 29, 700, 600, 700, 600, 5001, 4999, 11, 9, 11000, 10000, 96, 94, 71, 69, 3, 1, 5, 1, 5, 1,foci);
 		assertTrue("No school should match the search criteria", matches.size() == 0);
 	}
-	public void testSearchSchoolSuccess() {
+	
+	/*public void testSearchSchoolSuccess() {
 		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
 		boolean found = false;
 		for(University university: actual) {
@@ -133,6 +134,7 @@ public class UserFunctionalTests {
 		}
 		assertTrue("The searched for school was found", found);
 	}
+	*/
 	
 	@Test
 	public void testSearchSchoolNoFieldsFilledOut() {
@@ -167,6 +169,21 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testCompareSavedSchools() {
+		SavedSchool ss = new SavedSchool(univ, "dummyUser");
+		dbc.addSavedSchool(u, ss);
+		List<University> schoolsToCompare = ui.compareSavedSchools(univ.getSchoolName());
+		System.out.println(schoolsToCompare.toString());
+		int count = 0;
+		for(University s: schoolsToCompare) {
+			if(s.getSchoolName().equals("BETHEL UNIVERSITY") || s.getSchoolName().equals("AUBURN")) {
+				count++;
+			}
+		}
+		assertTrue("The list should contain Bethel University and Auburn", count == 2);
+		dbc.removeSavedSchool(u, "BETHEL UNIVERSITY");
+	}
+
+	public void testCompareSavedSchoolsUserOnlyHasOneSavedSchool() {
 		List<University> schoolsToCompare = ui.compareSavedSchools(univ.getSchoolName());
 		boolean contains = false;
 		for(University s: schoolsToCompare) {
@@ -179,7 +196,7 @@ public class UserFunctionalTests {
 		}
 		assertTrue("The list should contain Bethel University and Auburn", contains);
 	}
-
+	
 	@Test
 	public void testShowRecSchools() {
 		fail("Not yet implemented");
