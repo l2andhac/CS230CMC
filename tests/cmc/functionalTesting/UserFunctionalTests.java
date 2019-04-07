@@ -3,6 +3,7 @@ package cmc.functionalTesting;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.After;
@@ -54,9 +55,14 @@ public class UserFunctionalTests {
 	public void tearDown() throws Exception {
 		dbc.removeAccount("DummyUser");
 		dbc.removeAccount("deactUser");
-		univ.setEmphases(null);
-		dbc.editSchool(univ);
-		dbc.removeSchool(univ);
+		List<String> foci = new ArrayList<String>();
+
+		if (dbc.findSchoolName(univ.getSchoolName()) == true) {
+			univ = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500,
+					95.0, 70.0, 2, 1, 1, foci);
+			dbc.editSchool(univ);
+			dbc.removeSchool(univ);
+		}
 	}
 
 	@Test
