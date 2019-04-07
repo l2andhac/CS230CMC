@@ -152,7 +152,29 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testSaveSchool() {
-		fail("Not yet implemented");
+		ui.logOn("DummyUser", "password");
+		ui.saveSchool(univ);
+		List<SavedSchool> list = ui.viewSavedSchools();
+		boolean isMatch = false;
+		for(SavedSchool s: list) {
+			if(s.getSchoolName().equals(univ.getSchoolName())) {
+				isMatch = true;
+			}
+			
+		}
+		assertTrue("the school was added",isMatch);
+		ui.removeSavedSchool(univ.getSchoolName());
+		ui.logOff();
+		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testSaveSchoolAlreadySaved() {
+		ui.logOn("DummyUser", "password");
+		ui.saveSchool(univ);
+		ui.saveSchool(univ);
+		ui.logOff();
+		ui.removeSavedSchool(univ.getSchoolName());
 	}
 
 	@Test
