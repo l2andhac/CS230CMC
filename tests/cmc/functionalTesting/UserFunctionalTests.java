@@ -152,7 +152,7 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testSaveSchool() {
-		ui.logOn("DummyUser", "password");
+		ui.logOn("DummyUser", "Password");
 		ui.saveSchool(univ);
 		List<SavedSchool> list = ui.viewSavedSchools();
 		boolean isMatch = false;
@@ -170,7 +170,7 @@ public class UserFunctionalTests {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testSaveSchoolAlreadySaved() {
-		ui.logOn("DummyUser", "password");
+		ui.logOn("DummyUser", "Password");
 		ui.saveSchool(univ);
 		ui.saveSchool(univ);
 		ui.logOff();
@@ -222,7 +222,7 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testViewAccountInfo() {
-		ui.logOn("DummyUser", "password");
+		ui.logOn("DummyUser", "Password");
 		assertTrue("user can view their info",ui.viewAccountInfo().equals(u.toString()));
 		ui.logOff();
 	}
@@ -271,7 +271,7 @@ public class UserFunctionalTests {
 		dbc.removeAccount("dummyHoeschen");
 	}
 	
-	@Test
+	@Test  (expected = IllegalArgumentException.class)
 	public void testRequestNewAccountAlreadyTaken() {
 		assertFalse("user cannnot request new account",accInt.requestNewAccount("Dummy", "Jordre", "DummyUser", "Password"));
 	}
