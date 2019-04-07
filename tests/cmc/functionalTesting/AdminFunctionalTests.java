@@ -17,17 +17,21 @@ import cmc.controller.AdminFunctionalityController;
 import cmc.controller.DBController;
 import cmc.entity.Admin;
 import cmc.entity.University;
+import cmc.interaction.AccountInteraction;
 import cmc.interaction.AdminInteraction;
 
 public class AdminFunctionalTests {
 
 	private AdminInteraction ai;
 	private static DBController dbc;
-	private Admin a;
+	private static AccountInteraction accInt;
+	private Admin deactivatedAdmin;
+	private Admin a, ae;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		dbc = new DBController();
+		accInt = new AccountInteraction();
 	}
 
 	@AfterClass
@@ -39,11 +43,18 @@ public class AdminFunctionalTests {
 		a = new Admin("Dummy", "Jordre", "DummyAdmin", "Password", 'Y');
 		ai = new AdminInteraction(a);
 		dbc.addAccount(a);
+		deactivatedAdmin = new Admin("Dummy", "Dempsey", "deactAdmin", "password", 'N');
+		dbc.addAccount(deactivatedAdmin);		
+		ae = new Admin("Dummy", "Worm", "DummyAdmin@email.com", "Password", 'Y');
+		ai = new AdminInteraction(ae);
+		dbc.addAccount(ae);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("DummyAdmin");
+		dbc.removeAccount("deactAdmin");
+		dbc.removeAccount("DummyAdmin@email.com");
 	}
 
 	@Test
@@ -58,6 +69,12 @@ public class AdminFunctionalTests {
 		University u = new University("AA DUMMY SCHOOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 		assertTrue("The school AA DUMMY SCHOOL has been added to the database", dbc.findSchoolName("AA DUMMY SCHOOL"));
 		dbc.removeSchool(u);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddSchoolWithDuplicateName() {
+		List<String> foci = new ArrayList<String>();
+		ai.addSchool("ADELPHI", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 	}
 		
 
@@ -124,13 +141,34 @@ public class AdminFunctionalTests {
 	}
 
 	@Test
-	public void testLogOn() {
-		fail("Not yet implemented");
+	public void testLogOnSuccess() {
+		AdminInteraction actual = (AdminInteraction)accInt.logOn("DummyAdmin", "Password");
+		assertTrue("Admin has successfully logged on", actual.getUsername().equals("DummyAdmin"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnIncorrectUsername() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("Kate", "Password");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnIncorrectPassword() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("DummyAdmin", "kate");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnDeactivedAdmin() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("deactAdmin", "password");
 	}
 
 	@Test
 	public void testForgotPassword() {
-		fail("Not yet implemented");
+		assertTrue("An admin with an email can correctly receive a new password if they forgot theirs", ai.forgotPassword("DummyAdmin@email.com"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testForgotPasswordNoEmail() {
+		ai.forgotPassword("DummyAdmin");
 	}
 
 }

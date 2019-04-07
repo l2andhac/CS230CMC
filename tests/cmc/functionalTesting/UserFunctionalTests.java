@@ -3,6 +3,9 @@ package cmc.functionalTesting;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+
+import java.util.List;
+
 import java.util.Set;
 
 import org.junit.After;
@@ -16,6 +19,7 @@ import cmc.entity.Admin;
 import cmc.entity.Search;
 import cmc.entity.University;
 import cmc.entity.User;
+import cmc.interaction.AccountInteraction;
 import cmc.interaction.AdminInteraction;
 import cmc.interaction.UserInteraction;
 
@@ -25,10 +29,15 @@ public class UserFunctionalTests {
 	private User u;
 	private University univ;
 	private ArrayList<String> foci;
+	private static AccountInteraction accInt;
+	private User deactUser;
+	private University univ;
+	private ArrayList<String> foci2;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		dbc = new DBController();
+		accInt = new AccountInteraction();
 	}
 
 	@AfterClass
@@ -40,9 +49,17 @@ public class UserFunctionalTests {
 		u = new User("Dummy", "Jordre", "DummyUser", "Password", 'Y');
 		ui = new UserInteraction(u);
 		dbc.addAccount(u);
+
 		foci = new ArrayList<String>();
 		univ = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, 650, 650, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 	    dbc.addSchool(univ);
+
+		deactUser = new User("Dummy", "Dempsey", "deactUser", "password", 'N');
+		dbc.addAccount(deactUser);
+		foci2 = new ArrayList<String>();
+		foci2.add("ENGINEERING");
+		univ = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		dbc.addSchool(univ);
 	}
 	
 	@After
@@ -50,6 +67,16 @@ public class UserFunctionalTests {
 		foci = new ArrayList<String>();
 		dbc.removeSchool(univ);
 		dbc.removeAccount("DummyUser");
+		dbc.removeAccount("DummyUser");
+		dbc.removeAccount("deactUser");
+		List<String> foci = new ArrayList<String>();
+
+		if (dbc.findSchoolName(univ.getSchoolName()) == true) {
+			univ = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500,
+					95.0, 70.0, 2, 1, 1, foci);
+			dbc.editSchool(univ);
+			dbc.removeSchool(univ);
+		}
 	}
 
 	@Test
@@ -82,6 +109,19 @@ public class UserFunctionalTests {
 	public void testSearchSchoolNoMatch() {
 		Set<University> matches = ui.searchSchool("BETHELLLLLLLLL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8001, 7999, 31, 29, 700, 600, 700, 600, 5001, 4999, 11, 9, 11000, 10000, 96, 94, 71, 69, 3, 1, 5, 1, 5, 1,foci);
 		assertTrue("No school should match the search criteria", matches.size() == 0);
+	public void testSearchSchoolSuccess() {
+		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
+		assertTrue("The searched for school was found", actual.contains(univ));
+	}
+	
+	@Test
+	public void testSearchSchoolNoFieldsFilledOut() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testSearchSchoolNoMatches() {
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -137,8 +177,24 @@ public class UserFunctionalTests {
 	}
 
 	@Test
-	public void testLogOn() {
-		fail("Not yet implemented");
+	public void testLogOnSuccess() {
+		UserInteraction actual = (UserInteraction) accInt.logOn("DummyUser", "Password");
+		assertTrue("Admin has successfully logged on", actual.getUsername().equals("DummyUser"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnInvalidUsername() {
+		UserInteraction actual = (UserInteraction) accInt.logOn("Kate", "password");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnInvalidPassword() {
+		UserInteraction actual = (UserInteraction) accInt.logOn("DummyUser", "kate");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnDeactivatedUser() {
+		UserInteraction actual = (UserInteraction) accInt.logOn("deactUser", "password");
 	}
 
 	@Test

@@ -37,6 +37,27 @@ public class DBController {
                                         u.getExpenses(), u.getPercentFinancialAid(), u.getNumApplicants(),
                                         u.getPercentAdmitted(), u.getPercentEnrolled(), u.getAcademicScale(),
                                         u.getSocialScale(), u.getQualityOfLifeScale());
+    List<String> dbEmphases = this.getSchool(u.getSchoolName()).getEmphases();
+    List<String> entityEmphases = u.getEmphases();
+    if(entityEmphases == null || entityEmphases.size() == 0) {
+    	for(String em: dbEmphases) {
+    		univDBlib.university_removeUniversityEmphasis(u.getSchoolName(), em);
+    	}
+    }
+    
+    else {
+    for(String em: entityEmphases){
+    	if(!dbEmphases.contains(em)) {
+    		univDBlib.university_addUniversityEmphasis(u.getSchoolName(), em);
+    	}
+    }
+    
+    for(String em: dbEmphases){
+    	if(!entityEmphases.contains(em)) {
+    		univDBlib.university_removeUniversityEmphasis(u.getSchoolName(), em);
+    	}
+    }
+    }
   }
   
   /**
