@@ -243,7 +243,13 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testRequestNewAccount() {
-		fail("Not yet implemented");
+		assertTrue("user can request new account",accInt.requestNewAccount("Dummy", "Hoeschen", "dummyHoeschen", "password"));
+		dbc.removeAccount("dummyHoeschen");
+	}
+	
+	@Test
+	public void testRequestNewAccountAlreadyTaken() {
+		assertFalse("user cannnot request new account",accInt.requestNewAccount("Dummy", "Jordre", "DummyUser", "Password"));
 	}
 
 	@Test
