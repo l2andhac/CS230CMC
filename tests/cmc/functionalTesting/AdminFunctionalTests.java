@@ -118,7 +118,9 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testLogOff() {
-		fail("Not yet implemented");
+		ai.logOn("DummyAdmin", "Password");
+		ai.logOff();
+		assertFalse("Admin should be logged off", a.isLoggedOn());
 	}
 
 	@Test
