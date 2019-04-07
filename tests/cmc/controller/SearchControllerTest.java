@@ -39,7 +39,8 @@ public class SearchControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		foci = new ArrayList<String>();
-		foci.add("BUSINESS");
+		u = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, 650, 650, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbcontroller.editSchool(u);
 		dbcontroller.removeSchool(u);
 	}
 
