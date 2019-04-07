@@ -17,17 +17,21 @@ import cmc.controller.AdminFunctionalityController;
 import cmc.controller.DBController;
 import cmc.entity.Admin;
 import cmc.entity.University;
+import cmc.interaction.AccountInteraction;
 import cmc.interaction.AdminInteraction;
 
 public class AdminFunctionalTests {
 
 	private AdminInteraction ai;
 	private static DBController dbc;
+	private static AccountInteraction accInt;
+	private Admin deactivatedAdmin;
 	private Admin a, ae;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		dbc = new DBController();
+		accInt = new AccountInteraction();
 	}
 
 	@AfterClass
@@ -39,7 +43,8 @@ public class AdminFunctionalTests {
 		a = new Admin("Dummy", "Jordre", "DummyAdmin", "Password", 'Y');
 		ai = new AdminInteraction(a);
 		dbc.addAccount(a);
-		
+		deactivatedAdmin = new Admin("Dummy", "Dempsey", "deactAdmin", "password", 'N');
+		dbc.addAccount(deactivatedAdmin);		
 		ae = new Admin("Dummy", "Worm", "DummyAdmin@email.com", "Password", 'Y');
 		ai = new AdminInteraction(ae);
 		dbc.addAccount(ae);
@@ -48,6 +53,7 @@ public class AdminFunctionalTests {
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("DummyAdmin");
+		dbc.removeAccount("deactAdmin");
 		dbc.removeAccount("DummyAdmin@email.com");
 	}
 
@@ -133,8 +139,24 @@ public class AdminFunctionalTests {
 	}
 
 	@Test
-	public void testLogOn() {
-		fail("Not yet implemented");
+	public void testLogOnSuccess() {
+		AdminInteraction actual = (AdminInteraction)accInt.logOn("DummyAdmin", "Password");
+		assertTrue("Admin has successfully logged on", actual.getUsername().equals("DummyAdmin"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnIncorrectUsername() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("Kate", "Password");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnIncorrectPassword() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("DummyAdmin", "kate");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnDeactivedAdmin() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("deactAdmin", "password");
 	}
 
 	@Test
