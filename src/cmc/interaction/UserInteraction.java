@@ -104,6 +104,9 @@ public class UserInteraction extends AccountInteraction{
                           percentAdmittedLo, percentEnrollUp, percentEnrollLo, academicScaleUp, 
                           academicScaleLo, socialScaleUp, socialScaleLo, qualOfLifeScaleUp,
                           qualOfLifeScaleLo, emphasis);
+    if(s.getName().equals("") && s.getState().equals("") && s.getLocation().equals("") && s.getControl().equals("") && s.getEnrollmentUp() == -1) {
+    	
+    }
     return userFunctCont.searchSchool(s);
   }
  

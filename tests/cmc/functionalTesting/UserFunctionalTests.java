@@ -101,9 +101,8 @@ public class UserFunctionalTests {
 		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
 		boolean found = false;
 		for(University university: actual) {
-			if(university.getSchoolName().equals("Carleton College")){
+			if(university.getSchoolName().equals(univ.getSchoolName()))
 				found = true;
-			}
 		}
 		assertTrue("The searched for school was found", found);
 	}
