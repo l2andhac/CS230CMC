@@ -59,7 +59,21 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testRemoveSchool() {
-		fail("Not yet implemented");
+		ArrayList<String>foci = new ArrayList<String>();
+		University univ3 = new University("DUMMY BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, 650, 650, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+	    dbc.addSchool(univ3);
+
+		assertTrue("school is able to be removed",ai.removeSchool(univ3.getSchoolName()));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testCannotRemoveSchool() {
+		ArrayList<String> foci2 = new ArrayList<String>();
+		foci2.add("ENGINEERING");
+		University univ4 = new University("COLBY SAWYER", "NEW HAMPSHIRE", "RURAL", "PRIVATE", 2000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		dbc.addSchool(univ4);
+		ai.removeSchool(univ4.getSchoolName());
+		//need to actually remove school either here or in the after
 	}
 
 	@Test
