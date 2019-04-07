@@ -35,7 +35,6 @@ public class UserFunctionalTests {
 	private static AccountInteraction accInt;
 	private User deactUser;
 	private ArrayList<String> foci2;
-	private SavedSchool ss;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -56,8 +55,6 @@ public class UserFunctionalTests {
 		foci = new ArrayList<String>();
 		univ = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, 650, 650, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 	    dbc.addSchool(univ);
-	    ss = new SavedSchool(univ, null);
-	    dbc.addSavedSchool(u, ss);
 
 		deactUser = new User("Dummy", "Dempsey", "deactUser", "password", 'N');
 		dbc.addAccount(deactUser);
@@ -74,8 +71,6 @@ public class UserFunctionalTests {
 		dbc.removeAccount("DummyUser");
 		dbc.removeAccount("DummyUser");
 		dbc.removeAccount("deactUser");
-		dbc.removeSavedSchool(u, "DummyUser");
-		dbc.removeSchool(univ);
 		List<String> foci = new ArrayList<String>();
 
 		if (dbc.findSchoolName(univ.getSchoolName()) == true) {
@@ -131,8 +126,18 @@ public class UserFunctionalTests {
 		assertTrue("No school should match the search criteria", matches.size() == 0);
 	}
 	
-	//added logic into the UserInteraction? Not too sure if this changes
-	//our tests (like we need to add another - also logic is not working... im so sorry
+	@Test
+	 public void testSearchSchoolSuccess() {
+		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
+		boolean found = false;
+		for(University university: actual) {
+			if(university.getSchoolName().equals(univ1.getSchoolName()))
+				found = true;
+		}
+		assertTrue("The searched for school was found", found);
+	}
+	
+	
 	@Test
 	public void testSearchSchoolNoFieldsFilledOut() {
 		Set<University> actual = ui.searchSchool("", "", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
@@ -157,13 +162,7 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testViewSavedSchools() {
-		List<SavedSchool> actual = ui.viewSavedSchools();
-		boolean found = false;
-		for(SavedSchool savedSchool: actual) {
-			if(savedSchool.getSchoolName().equals("BETHEL UNIVERSITY"))
-				found = true;
-		}
-		assertTrue("The saved school list is correct", found);
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -201,7 +200,9 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testViewAccountInfo() {
-		fail("Not yet implemented");
+		ui.logOn("DummyUser", "password");
+		assertTrue("user can view their info",ui.viewAccountInfo().equals(this.toString()));
+		ui.logOff();
 	}
 
 	@Test
