@@ -105,7 +105,10 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testViewAllAccounts() {
-		fail("Not yet implemented");
+		Set<String> allAccounts = ai.viewAllAccounts();
+		int expectedSize = dbc.getTotalNumberOfAccounts();
+		assertTrue("deactAdmin is in the Set", allAccounts.contains("deactAdmin"));
+		assertTrue("The size of the set is the correct size", expectedSize == allAccounts.size());
 	}
 
 	@Test

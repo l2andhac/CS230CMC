@@ -104,8 +104,14 @@ public class UserInteraction extends AccountInteraction{
                           percentAdmittedLo, percentEnrollUp, percentEnrollLo, academicScaleUp, 
                           academicScaleLo, socialScaleUp, socialScaleLo, qualOfLifeScaleUp,
                           qualOfLifeScaleLo, emphasis);
-    if(s.getName().equals("") && s.getState().equals("") && s.getLocation().equals("") && s.getControl().equals("") && s.getEnrollmentUp() == -1) {
-    	
+    if(s.getName().equals("") && s.getState().equals("") && s.getLocation().equals("") && s.getControl().equals("") && s.getEnrollmentUp() == -1
+    		&& s.getEnrollmentLo()== -1 && s.getPercentFemaleUp()== -1 && s.getPercentFemaleLo()== -1 && s.getSatVerbUp()== -1 &&
+    		s.getSatVerbLo()== -1 && s.getSatMathUp() == -1 && s.getSatMathLo()== -1 && s.getExpensesUp() == -1 && s.getExpensesLo() == -1 &&
+    		s.getPercentFinancialAidUp()== -1 && s.getPercentFinancialAidLo() == -1 && s.getApplicantsUp() == -1 && s.getApplicantsLo() == -1 &&
+    		s.getPercentAdmittedUp() == -1 && s.getPercentAdmittedLo() == -1 && s.getPercentEnrollUp() == -1 && s.getPercentEnrollLo() == -1 && 
+    		s.getAcademicScaleUp() == -1 && s.getAcademicScaleLo() == -1 && s.getSocialScaleUp()== -1 && s.getSocialScaleLo()== -1 && s.getQualOfLifeScaleUp() == -1
+    		&& s.getQualOfLifeScaleLo() == -1 && s.getEmphasis() == null) {
+    	return null;
     }
     return userFunctCont.searchSchool(s);
   }
