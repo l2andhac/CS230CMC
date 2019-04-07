@@ -30,6 +30,7 @@ public class UserFunctionalTests {
 	private static DBController dbc;
 	private User u;
 	private University univ;
+	private University univ1;
 	private ArrayList<String> foci;
 	private static AccountInteraction accInt;
 	private User deactUser;
@@ -59,8 +60,8 @@ public class UserFunctionalTests {
 		dbc.addAccount(deactUser);
 		foci2 = new ArrayList<String>();
 		foci2.add("ENGINEERING");
-		//univ = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
-		//dbc.addSchool(univ);
+		univ1 = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		dbc.addSchool(univ1);
 	}
 	
 	@After
@@ -73,10 +74,10 @@ public class UserFunctionalTests {
 		List<String> foci = new ArrayList<String>();
 
 		if (dbc.findSchoolName(univ.getSchoolName()) == true) {
-			univ = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500,
+			univ1 = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500,
 					95.0, 70.0, 2, 1, 1, foci);
-			dbc.editSchool(univ);
-			dbc.removeSchool(univ);
+			dbc.editSchool(univ1);
+			dbc.removeSchool(univ1);
 		}
 	}
 
@@ -125,16 +126,17 @@ public class UserFunctionalTests {
 		assertTrue("No school should match the search criteria", matches.size() == 0);
 	}
 	
-	/*public void testSearchSchoolSuccess() {
+	@Test
+	 public void testSearchSchoolSuccess() {
 		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
 		boolean found = false;
 		for(University university: actual) {
-			if(university.getSchoolName().equals(univ.getSchoolName()))
+			if(university.getSchoolName().equals(univ1.getSchoolName()))
 				found = true;
 		}
 		assertTrue("The searched for school was found", found);
 	}
-	*/
+	
 	
 	@Test
 	public void testSearchSchoolNoFieldsFilledOut() {
@@ -142,10 +144,6 @@ public class UserFunctionalTests {
 		assertTrue("No fields were filled out so the search returns a null list", actual == null);
 	}
 	
-	@Test
-	public void testSearchSchoolNoMatches() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testSortResults() {
@@ -183,18 +181,16 @@ public class UserFunctionalTests {
 		dbc.removeSavedSchool(u, "BETHEL UNIVERSITY");
 	}
 
+	@Test
 	public void testCompareSavedSchoolsUserOnlyHasOneSavedSchool() {
-		List<University> schoolsToCompare = ui.compareSavedSchools(univ.getSchoolName());
-		boolean contains = false;
+		List<University> schoolsToCompare = ui.compareSavedSchools(null);
+		boolean found = false;
 		for(University s: schoolsToCompare) {
-			if(s.getSchoolName().equals("BETHEL UNIVERSITY") || s.getSchoolName().equals("AUBURN")) {
-				contains = true;
-			}
-			else {
-				contains = false;
-			}
+			if(s.getSchoolName().equals("AUBURN")) {
+				found = true;
 		}
-		assertTrue("The list should contain Bethel University and Auburn", contains);
+		}
+		assertTrue("The list should contain only Auburn", schoolsToCompare.size() == 1 && found);
 	}
 	
 	@Test
