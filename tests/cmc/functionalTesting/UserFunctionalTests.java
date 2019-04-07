@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import cmc.controller.DBController;
 import cmc.entity.Admin;
+import cmc.entity.SavedSchool;
+import cmc.entity.University;
 import cmc.entity.User;
 import cmc.interaction.AdminInteraction;
 import cmc.interaction.UserInteraction;
@@ -68,7 +70,32 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testRemoveSavedSchool() {
-		fail("Not yet implemented");
+		University u1 = dbc.getSchool("NOTRE DAME");
+		University u2 = dbc.getSchool("UNIVERSITE SAINT JOSEPH");
+		University u3 = dbc.getSchool("BARD");
+		SavedSchool s1 = new SavedSchool(u1, "time");
+		SavedSchool s2= new SavedSchool(u2, "time");
+		SavedSchool s3 = new SavedSchool(u3, "time");
+		dbc.addSavedSchool(u, s1);
+		dbc.addSavedSchool(u, s2);
+		dbc.addSavedSchool(u, s3);
+		
+		boolean found = false;
+		for (SavedSchool saved: dbc.getSavedSchools(u)) {
+			if(s2.equals(saved)) {
+				found = true;
+			}
+		}
+		assertTrue("UNIVERSITE SAINT JOSEPH is in the list of saved schools by the user DummyUser", found==true);
+		ui.removeSavedSchool("UNIVERSITE SAINT JOSEPH");
+		boolean removed = true;
+		for (SavedSchool saved: dbc.getSavedSchools(u)) {
+			if(s2.equals(saved)) {
+				removed = false;
+			}
+		}
+	
+		assertTrue("The university UNIVERSITE SAINT JOSEPH has been removed from the list of saved school of the user DummyUser", removed == true);
 	}
 
 	@Test

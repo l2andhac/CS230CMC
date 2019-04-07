@@ -377,10 +377,14 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindDistance() {
-		double calculatedDistance = Math.round(2.597544927);
+		//double calculatedDistance = Math.round(2.597544927);
+		double calculatedDistance = 2.597544927;
+		System.out.println("calculated distance: "+calculatedDistance);
 		University univ1 = dbc.getSchool("NEWYORK IT");
 		University univ2 = dbc.getSchool("BARD");
-		double cmcDistance = Math.round(dbc.findDistance(univ1, univ2));
+		//double cmcDistance = Math.round(dbc.findDistance(univ1, univ2));
+		double cmcDistance = dbc.findDistance(univ1, univ2);
+		System.out.println("cmc distance: "+cmcDistance);
 		assertTrue("The distance between NEWYORK IT and BARD should"
 				+ " be "+calculatedDistance+".", calculatedDistance==cmcDistance );
 	}
