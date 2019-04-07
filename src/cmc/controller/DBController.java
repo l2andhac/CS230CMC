@@ -39,12 +39,13 @@ public class DBController {
                                         u.getSocialScale(), u.getQualityOfLifeScale());
     List<String> dbEmphases = this.getSchool(u.getSchoolName()).getEmphases();
     List<String> entityEmphases = u.getEmphases();
-    if(entityEmphases.size() == 0) {
+    if(entityEmphases == null || entityEmphases.size() == 0) {
     	for(String em: dbEmphases) {
     		univDBlib.university_removeUniversityEmphasis(u.getSchoolName(), em);
     	}
     }
     
+    else {
     for(String em: entityEmphases){
     	if(!dbEmphases.contains(em)) {
     		univDBlib.university_addUniversityEmphasis(u.getSchoolName(), em);
@@ -55,6 +56,7 @@ public class DBController {
     	if(!entityEmphases.contains(em)) {
     		univDBlib.university_removeUniversityEmphasis(u.getSchoolName(), em);
     	}
+    }
     }
   }
   
