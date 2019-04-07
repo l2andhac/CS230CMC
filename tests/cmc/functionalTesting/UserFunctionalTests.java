@@ -106,6 +106,7 @@ public class UserFunctionalTests {
 		assertTrue("The user objects status should be /'D/'", u.getStatus() == 'D');
 	}
 
+	//Come back to this one :)
 	@Test
 	public void testSearchSchool() {
 		Set<University> matches = ui.searchSchool("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8001, 7999, 31, 29, 700, 600, 700, 600, 5001, 4999, 11, 9, 11000, 10000, 96, 94, 71, 69, 3, 1, 5, 1, 5, 1,foci);
@@ -125,12 +126,19 @@ public class UserFunctionalTests {
 		assertTrue("No school should match the search criteria", matches.size() == 0);
 	public void testSearchSchoolSuccess() {
 		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
-		assertTrue("The searched for school was found", actual.contains(univ));
+		boolean found = false;
+		for(University university: actual) {
+			if(university.getSchoolName().equals("Carleton College")){
+				found = true;
+			}
+		}
+		assertTrue("The searched for school was found", found);
 	}
 	
 	@Test
 	public void testSearchSchoolNoFieldsFilledOut() {
-		fail("Not yet implemented");
+		Set<University> actual = ui.searchSchool("", "", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
+		assertTrue("No fields were filled out so the search returns a null list", actual == null);
 	}
 	
 	@Test
