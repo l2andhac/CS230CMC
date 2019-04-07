@@ -57,7 +57,17 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testLogOn() {
-		//fail("Not yet implemented");
+		assertTrue("user is logged in", afc.logOn("dummyuser7","password").isLoggedOn());
+	}
+	
+	@Test
+	public void testLogOnAdmin() {
+		assertTrue("admin is logged in", afc.logOn("dummyadmin","123456").isLoggedOn());
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnWrongPassword() {
+		afc.logOn("dummyuser7","password2");
 	}
 
 	@Test

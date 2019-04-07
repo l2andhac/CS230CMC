@@ -5,7 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import org.junit.After;
 import org.junit.Before;
@@ -371,7 +374,12 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindRecSchools() {
-		//results print out in bubble sort
+		//TreeMap<Double, String> distanceMap = (TreeMap<Double, String>) dbc.findRecSchools("BARD");
+		//  
+		//assertTrue("the top reccomended school is correct", distanceMap.firstKey().equals());
+		//
+		//
+		//
 	}
 
 
