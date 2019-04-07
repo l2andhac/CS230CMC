@@ -5,7 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import org.junit.After;
 import org.junit.Before;
@@ -67,13 +70,23 @@ public class DBControllerTest {
 	public void tearDown() throws Exception {
 		dbc.removeSavedSchool(user, u.getSchoolName());
 		dbc.removeSavedSchool(user, u2.getSchoolName());
-		
-		foci2 = null;
-		
-		dbc.removeSchool(u);
+
+		foci = new ArrayList<String>();
+
+		if (dbc.findSchoolName(u.getSchoolName()) == true) {
+			u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500,
+					95.0, 70.0, 2, 1, 1, foci);
+			dbc.editSchool(u);
+			dbc.removeSchool(u);
+		}
 		dbc.removeAccount("dummyAdmin");
 		dbc.removeAccount("dummyUser");
-		dbc.removeSchool(u2);
+		if (dbc.findSchoolName(u2.getSchoolName()) == true) {
+			u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5,
+					10500, 95.0, 70.0, 2, 1, 1, foci);
+			dbc.editSchool(u2);
+			dbc.removeSchool(u2);
+		}
 		dbc.removeAccount("dummyUser2");
 	}
 
@@ -88,7 +101,26 @@ public class DBControllerTest {
 		assertFalse("the original school AUGSBURG is different from the modified school AUGSBURG which "
 				+ "now have 8000 students instead of 10000", originalUniversity.equals(newUniversity));
 		modifiedUniversity = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 1000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		foci2.remove("BUSINESS-ADMINISTRATION");
 		dbc.editSchool(modifiedUniversity);
+	}
+	
+	@Test
+	public void testEditSchoolToAddAndRemoveEmphases() {
+		foci.add("ENGINEERING");
+		foci.add("LIBERAL ARTS");
+		foci.add("COMPUTER SCIENCE");
+		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.editSchool(u);
+		University retU = dbc.getSchool(u.getSchoolName());
+		assertTrue("Emphases should include engineering", retU.getEmphases().contains("ENGINEERING"));
+		assertTrue("Emphases should include liberal arts", retU.getEmphases().contains("LIBERAL ARTS"));
+		assertTrue("Emphases should include computer science", retU.getEmphases().contains("COMPUTER SCIENCE"));
+		foci = new ArrayList<String>();
+		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.editSchool(u);
+		retU = dbc.getSchool(u.getSchoolName());
+		assertTrue("Emphases should be empty", retU.getEmphases().size() == 0);
 	}
 
 	@Test
@@ -369,9 +401,15 @@ public class DBControllerTest {
 		assertTrue("The method should return a total of "+actual+" schools.", actual == testNumOfSchool);
 	}
 
-	@Test
+        @Test
 	public void testFindRecSchools() {
-		//results print out in bubble sort
+		TreeMap<Double, String> distanceMap = (TreeMap<Double, String>) dbc.findRecSchools("BARD");
+		  
+		assertTrue("the 1st top reccomended school is correct", distanceMap.get(0.9187483974528865).equals("CLARKSON UNIVERSITY"));
+		assertTrue("the 2nd top reccomended school is correct", distanceMap.get(1.6593616556037012).equals("VASSAR"));
+		assertTrue("the 3rd top reccomended school is correct", distanceMap.get(2.0355617927803262).equals("COLLEGE OF NEWROCHELLE"));
+		assertTrue("the 4th top reccomended school is correct", distanceMap.get(2.15830527289677).equals("HAMPSHIRE COLLEGE"));
+		assertTrue("the 5th top reccomended school is correct", distanceMap.get(2.1765192224298806).equals("TOURO"));
 	}
 
 

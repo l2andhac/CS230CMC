@@ -49,7 +49,11 @@ public class AccountFunctionalityControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("dummyuser7");
-		dbc.removeSchool(u);
+		if (dbc.findSchoolName(u.getSchoolName()) == true) {
+			u = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+			dbc.editSchool(u);
+			dbc.removeSchool(u);
+		}
 		dbc.removeAccount("dummyuser7@email.com");
 		dbc.removeAccount("dummyuser77");
 		dbc.removeAccount("dummyadmin");
@@ -57,7 +61,17 @@ public class AccountFunctionalityControllerTest {
 
 	@Test
 	public void testLogOn() {
-		//fail("Not yet implemented");
+		assertTrue("user is logged in", afc.logOn("dummyuser7","password").isLoggedOn());
+	}
+	
+	@Test
+	public void testLogOnAdmin() {
+		assertTrue("admin is logged in", afc.logOn("dummyadmin","123456").isLoggedOn());
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnWrongPassword() {
+		afc.logOn("dummyuser7","password2");
 	}
 
 	@Test

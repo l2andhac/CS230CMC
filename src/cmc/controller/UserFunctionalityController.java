@@ -181,7 +181,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
   }
   
   /**
-   * Compare two SavedSchools in the User's list of SavedSchools askingthe user for 
+   * Compare two SavedSchools in the User's list of SavedSchools asking the user for 
    * the second school to compare.
    * 
    * @param s1 - String that is the name of the first school to compare

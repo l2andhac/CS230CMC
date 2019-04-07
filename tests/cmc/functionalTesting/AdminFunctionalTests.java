@@ -18,17 +18,21 @@ import cmc.controller.DBController;
 import cmc.entity.Admin;
 import cmc.entity.University;
 import cmc.entity.User;
+import cmc.interaction.AccountInteraction;
 import cmc.interaction.AdminInteraction;
 
 public class AdminFunctionalTests {
 
 	private AdminInteraction ai;
 	private static DBController dbc;
-	private Admin a;
+	private static AccountInteraction accInt;
+	private Admin deactivatedAdmin;
+	private Admin a, ae;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		dbc = new DBController();
+		accInt = new AccountInteraction();
 	}
 
 	@AfterClass
@@ -40,16 +44,37 @@ public class AdminFunctionalTests {
 		a = new Admin("Dummy", "Jordre", "DummyAdmin", "Password", 'Y');
 		ai = new AdminInteraction(a);
 		dbc.addAccount(a);
+		deactivatedAdmin = new Admin("Dummy", "Dempsey", "deactAdmin", "password", 'N');
+		dbc.addAccount(deactivatedAdmin);		
+		ae = new Admin("Dummy", "Worm", "DummyAdmin@email.com", "Password", 'Y');
+		ai = new AdminInteraction(ae);
+		dbc.addAccount(ae);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("DummyAdmin");
+		dbc.removeAccount("deactAdmin");
+		dbc.removeAccount("DummyAdmin@email.com");
 	}
 
 	@Test
 	public void testRemoveSchool() {
-		fail("Not yet implemented");
+		ArrayList<String>foci = new ArrayList<String>();
+		University univ3 = new University("DUMMY BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, 650, 650, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+	    dbc.addSchool(univ3);
+
+		assertTrue("school is able to be removed",ai.removeSchool(univ3.getSchoolName()));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testCannotRemoveSchool() {
+		ArrayList<String> foci2 = new ArrayList<String>();
+		foci2.add("ENGINEERING");
+		University univ4 = new University("COLBY SAWYER", "NEW HAMPSHIRE", "RURAL", "PRIVATE", 2000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		dbc.addSchool(univ4);
+		ai.removeSchool(univ4.getSchoolName());
+		//need to actually remove school either here or in the after
 	}
 
 	@Test
@@ -59,6 +84,12 @@ public class AdminFunctionalTests {
 		University u = new University("AA DUMMY SCHOOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 		assertTrue("The school AA DUMMY SCHOOL has been added to the database", dbc.findSchoolName("AA DUMMY SCHOOL"));
 		dbc.removeSchool(u);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddSchoolWithDuplicateName() {
+		List<String> foci = new ArrayList<String>();
+		ai.addSchool("ADELPHI", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 	}
 		
 
@@ -101,17 +132,30 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testViewAllAccounts() {
-		fail("Not yet implemented");
+		Set<String> allAccounts = ai.viewAllAccounts();
+		int expectedSize = dbc.getTotalNumberOfAccounts();
+		assertTrue("deactAdmin is in the Set", allAccounts.contains("deactAdmin"));
+		assertTrue("The size of the set is the correct size", expectedSize == allAccounts.size());
 	}
 
 	@Test
 	public void testAddAccount() {
-		fail("Not yet implemented");
+		boolean inDB = dbc.findUsername("DummyUser9999");
+		ai.addAccount("Dummy", "Rothstein", "DummyUser9999", "password", 'u', 'Y');
+		assertTrue("The account has been added to the database", dbc.findUsername("DummyUser9999") && inDB == false);
+		dbc.removeAccount("DummyUser9999");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddAccountWithRepeatUsername() {
+		ai.addAccount("Dummy", "Rothstein", "AndytheUser", "password", 'u', 'Y');
 	}
 
 	@Test
 	public void testViewAccountInfo() {
-		fail("Not yet implemented");
+		ai.logOn("DummyAdmin", "Password");
+		assertTrue("admin can view their info",ai.viewAccountInfo().equals(a.toString()));
+		ai.logOff();
 	}
 
 	@Test 
@@ -174,17 +218,40 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testLogOff() {
-		fail("Not yet implemented");
+		ai.logOn("DummyAdmin", "Password");
+		ai.logOff();
+		assertFalse("Admin should be logged off", a.isLoggedOn());
 	}
 
 	@Test
-	public void testLogOn() {
-		fail("Not yet implemented");
+	public void testLogOnSuccess() {
+		AdminInteraction actual = (AdminInteraction)accInt.logOn("DummyAdmin", "Password");
+		assertTrue("Admin has successfully logged on", actual.getUsername().equals("DummyAdmin"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnIncorrectUsername() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("Kate", "Password");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnIncorrectPassword() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("DummyAdmin", "kate");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnDeactivedAdmin() {
+		AdminInteraction actual = (AdminInteraction) accInt.logOn("deactAdmin", "password");
 	}
 
 	@Test
 	public void testForgotPassword() {
-		fail("Not yet implemented");
+		assertTrue("An admin with an email can correctly receive a new password if they forgot theirs", ai.forgotPassword("DummyAdmin@email.com"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testForgotPasswordNoEmail() {
+		ai.forgotPassword("DummyAdmin");
 	}
 
 }

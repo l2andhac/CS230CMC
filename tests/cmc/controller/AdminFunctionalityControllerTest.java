@@ -49,7 +49,17 @@ public class AdminFunctionalityControllerTest {
 	public void tearDown() throws Exception {
 		dbc.removeAccount("dummyUser");
 		dbc.removeAccount("dummyAdmin");
-		dbc.removeSchool(this.univ2);
+		foci1 = new ArrayList<String>();
+		if (dbc.findSchoolName(univ2.getSchoolName()) == true) {
+			univ2 = new University("UNIVERSITE I2E", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci1);
+			dbc.editSchool(univ2);
+			dbc.removeSchool(univ2);
+		}
+		if (dbc.findSchoolName(univ1.getSchoolName()) == true) {
+			univ2 = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 10000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci1);
+			dbc.editSchool(univ2);
+			dbc.removeSchool(univ2);
+		}
 		//......
 	}
 
@@ -89,7 +99,7 @@ public class AdminFunctionalityControllerTest {
 	@Test
 	public void testEditSchoolInfo() {
 		int oldNumOfStudents = univ1.getNumStudents();
-		University modifiedUniversity = new University("UNIVERSITE DE OUAGADOUGOU", "FOREIGN", "URBAN", "STATE", 20000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, null);
+		University modifiedUniversity = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 20000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, null);
 		afc.editSchoolInfo(modifiedUniversity);
 		assertFalse("The school has been edited and the sumber of students has changed", modifiedUniversity.getNumStudents()==oldNumOfStudents);
 	}
