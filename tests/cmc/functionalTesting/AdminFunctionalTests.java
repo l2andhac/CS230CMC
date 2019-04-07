@@ -24,9 +24,9 @@ public class AdminFunctionalTests {
 
 	private AdminInteraction ai;
 	private static DBController dbc;
-	private Admin a;
 	private static AccountInteraction accInt;
 	private Admin deactivatedAdmin;
+	private Admin a, ae;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -44,13 +44,17 @@ public class AdminFunctionalTests {
 		ai = new AdminInteraction(a);
 		dbc.addAccount(a);
 		deactivatedAdmin = new Admin("Dummy", "Dempsey", "deactAdmin", "password", 'N');
-		dbc.addAccount(deactivatedAdmin);
+		dbc.addAccount(deactivatedAdmin);		
+		ae = new Admin("Dummy", "Worm", "DummyAdmin@email.com", "Password", 'Y');
+		ai = new AdminInteraction(ae);
+		dbc.addAccount(ae);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeAccount("DummyAdmin");
 		dbc.removeAccount("deactAdmin");
+		dbc.removeAccount("DummyAdmin@email.com");
 	}
 
 	@Test
@@ -65,6 +69,12 @@ public class AdminFunctionalTests {
 		University u = new University("AA DUMMY SCHOOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 		assertTrue("The school AA DUMMY SCHOOL has been added to the database", dbc.findSchoolName("AA DUMMY SCHOOL"));
 		dbc.removeSchool(u);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddSchoolWithDuplicateName() {
+		List<String> foci = new ArrayList<String>();
+		ai.addSchool("ADELPHI", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
 	}
 		
 
@@ -151,7 +161,12 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testForgotPassword() {
-		fail("Not yet implemented");
+		assertTrue("An admin with an email can correctly receive a new password if they forgot theirs", ai.forgotPassword("DummyAdmin@email.com"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testForgotPasswordNoEmail() {
+		ai.forgotPassword("DummyAdmin");
 	}
 
 }
