@@ -70,13 +70,23 @@ public class DBControllerTest {
 	public void tearDown() throws Exception {
 		dbc.removeSavedSchool(user, u.getSchoolName());
 		dbc.removeSavedSchool(user, u2.getSchoolName());
-		
-		foci2 = null;
-		
-		dbc.removeSchool(u);
+
+		foci = new ArrayList<String>();
+
+		if (dbc.findSchoolName(u.getSchoolName()) == true) {
+			u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500,
+					95.0, 70.0, 2, 1, 1, foci);
+			dbc.editSchool(u);
+			dbc.removeSchool(u);
+		}
 		dbc.removeAccount("dummyAdmin");
 		dbc.removeAccount("dummyUser");
-		dbc.removeSchool(u2);
+		if (dbc.findSchoolName(u2.getSchoolName()) == true) {
+			u2 = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5,
+					10500, 95.0, 70.0, 2, 1, 1, foci);
+			dbc.editSchool(u2);
+			dbc.removeSchool(u2);
+		}
 		dbc.removeAccount("dummyUser2");
 	}
 
@@ -91,7 +101,26 @@ public class DBControllerTest {
 		assertFalse("the original school AUGSBURG is different from the modified school AUGSBURG which "
 				+ "now have 8000 students instead of 10000", originalUniversity.equals(newUniversity));
 		modifiedUniversity = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 1000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		foci2.remove("BUSINESS-ADMINISTRATION");
 		dbc.editSchool(modifiedUniversity);
+	}
+	
+	@Test
+	public void testEditSchoolToAddAndRemoveEmphases() {
+		foci.add("ENGINEERING");
+		foci.add("LIBERAL ARTS");
+		foci.add("COMPUTER SCIENCE");
+		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.editSchool(u);
+		University retU = dbc.getSchool(u.getSchoolName());
+		assertTrue("Emphases should include engineering", retU.getEmphases().contains("ENGINEERING"));
+		assertTrue("Emphases should include liberal arts", retU.getEmphases().contains("LIBERAL ARTS"));
+		assertTrue("Emphases should include computer science", retU.getEmphases().contains("COMPUTER SCIENCE"));
+		foci = new ArrayList<String>();
+		u = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.editSchool(u);
+		retU = dbc.getSchool(u.getSchoolName());
+		assertTrue("Emphases should be empty", retU.getEmphases().size() == 0);
 	}
 
 	@Test
