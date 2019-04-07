@@ -110,7 +110,17 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testAddAccount() {
-		fail("Not yet implemented");
+		boolean inDB = dbc.findUsername("DummyUser9999");
+		ai.addAccount("Dummy", "Rothstein", "DummyUser9999", "password", 'u', 'Y');
+		assertTrue("The account has been added to the database", dbc.findUsername("DummyUser9999") && inDB == false);
+		dbc.removeAccount("DummyUser9999");
+	}
+	
+	@Test
+	public void testAddAccountWithRepeatUsername() {
+		boolean inDB = dbc.findUsername("AndytheUser");
+		ai.addAccount("Dummy", "Rothstein", "AndytheUser", "password", 'u', 'Y');
+		assertTrue("The username is already in the database so the account was not added",dbc.findAccount("AndytheUser").getFirstName() == "Andy"  && inDB);
 	}
 
 	@Test
