@@ -2,6 +2,9 @@ package cmc.functionalTesting;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -10,6 +13,8 @@ import org.junit.Test;
 
 import cmc.controller.DBController;
 import cmc.entity.Admin;
+import cmc.entity.SavedSchool;
+import cmc.entity.University;
 import cmc.entity.User;
 import cmc.interaction.AdminInteraction;
 import cmc.interaction.UserInteraction;
@@ -40,7 +45,19 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testSearchForFriends() {
-		fail("Not yet implemented");
+		User u2 = new User("Dummy", "Worm", "DummyUserSS", "Password", 'Y');
+		dbc.addAccount(u2);
+		List<String> foci = new ArrayList<String>();
+		University univ = new University("AA DUMMY SCHOOL", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.addSchool(univ);
+		SavedSchool s = new SavedSchool(univ, "");	
+		dbc.addSavedSchool(u2, s);
+		List<SavedSchool> saved = ui.searchForFriends("DummyUserSS");
+		List<SavedSchool> list = dbc.getSavedSchools(u2);
+		assertTrue("The two lists should contain the same schools", saved.get(0).equals(list.get(0)));
+		dbc.removeSavedSchool(u2, "AA DUMMY SCHOOL");
+		dbc.removeSchool(univ);
+		dbc.removeAccount("DummyUserSS");
 	}
 
 	@Test
