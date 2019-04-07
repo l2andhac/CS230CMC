@@ -201,7 +201,7 @@ public class UserFunctionalTests {
 	@Test
 	public void testViewAccountInfo() {
 		ui.logOn("DummyUser", "password");
-		assertTrue("user can view their info",ui.viewAccountInfo().equals(this.toString()));
+		assertTrue("user can view their info",ui.viewAccountInfo().equals(u.toString()));
 		ui.logOff();
 	}
 
