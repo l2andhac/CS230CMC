@@ -126,7 +126,9 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testViewAccountInfo() {
-		fail("Not yet implemented");
+		ai.logOn("DummyAdmin", "password");
+		assertTrue("admin can view their info",ai.viewAccountInfo().equals(a.toString()));
+		ai.logOff();
 	}
 
 	@Test
