@@ -116,11 +116,9 @@ public class AdminFunctionalTests {
 		dbc.removeAccount("DummyUser9999");
 	}
 	
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testAddAccountWithRepeatUsername() {
-		boolean inDB = dbc.findUsername("AndytheUser");
 		ai.addAccount("Dummy", "Rothstein", "AndytheUser", "password", 'u', 'Y');
-		assertTrue("The username is already in the database so the account was not added",dbc.findAccount("AndytheUser").getFirstName() == "Andy"  && inDB);
 	}
 
 	@Test
