@@ -20,7 +20,7 @@ public class AdminFunctionalityControllerTest {
 	private static Admin a;
 	
 	@BeforeClass
-	public static void beforeTest() throws Exception{
+	public static void beforeClass() throws Exception{
 		afc = new AdminFunctionalityController();
 		dbc = new DBController();
 		univDBlib = new UniversityDBLibrary("l2andhac", "CSCI230");
@@ -132,6 +132,12 @@ public class AdminFunctionalityControllerTest {
 	public void testAddAccountUser() {
 		assertTrue("the user account was added", dbc.viewAllAccounts().contains("dummyUser"));	
 		
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testAddNullUserAccount() {
+		u = null;
+		afc.addAccount(u);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)

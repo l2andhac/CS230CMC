@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeMap;
+import java.util.Map.Entry;
 
 import org.junit.After;
 import org.junit.Before;
@@ -27,7 +29,7 @@ public class UserFunctionalityControllerTest {
 	List<String> foci2;
 	
 	@BeforeClass
-	public static void beforeTest() throws Exception{
+	public static void beforeClass() throws Exception{
 		ufc = new UserFunctionalityController();
 		dbc = new DBController();
 	}
@@ -60,9 +62,6 @@ public class UserFunctionalityControllerTest {
 	@Test
 	public void testViewSchoolDetailsSchoolFound() {
 		Boolean t = dbc.addSchool(univ);
-		System.out.println(t);
-		System.out.println(ufc.viewSchoolDetails(univ.getSchoolName()).toString());
-		System.out.println(univ.toString());
 		assertTrue(ufc.viewSchoolDetails(univ.getSchoolName()).toString().equals(univ.toString()));	
 		dbc.removeSchool(univ);
 	}
@@ -70,14 +69,14 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testViewUserInfo() {
-		//???
 		assertTrue("the correct information is viewed", ufc.viewUserInfo(u).equals(u.toString()));
 	}
 
 	@Test
 	public void testSearchForFriendsUserFound() {
 		List<SavedSchool> s = ufc.searchForFriends("dummyUser");
-		assertTrue("The two lists should contain the same schools", s.equals(dbc.getSavedSchools(u)));		
+		List<SavedSchool> list = dbc.getSavedSchools(u);
+		assertTrue("The two lists should contain the same schools", s.get(0).equals(list.get(0)));		
 	}
 	
 	@Test
@@ -96,11 +95,16 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testSearchSchool() {
-		Search so = new Search("", "CALI", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
+		Search so = new Search("BER", "CALI", "URBAN", "STATE", 50000, 35000, -1, -1, 600, 525, 605, 595, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, null);
 		Set<University> matches = ufc.searchSchool(so);
-		//University expected = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
-		//assertTrue("The results should contain Berkeley", matches.contains(expected));
-		assertTrue("There should be 12 schools in matches", matches.size() == 12);
+		University expected = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+		boolean found = false;
+		for(University u: matches) {
+			if(u.equals(expected))
+				found = true;
+		}
+		assertTrue("The results should contain Berkeley", found == true);
+		assertTrue("There should be only 1 school in matches", matches.size() == 1);
 	}
 
 	@Test
@@ -108,7 +112,7 @@ public class UserFunctionalityControllerTest {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
 	    foci.add("ENGLISH");
-	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    
@@ -130,7 +134,7 @@ public class UserFunctionalityControllerTest {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
 	    foci.add("ENGLISH");
-	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    List<University> list = ufc.sortResults(listOfMatches, 'a');
@@ -150,7 +154,7 @@ public class UserFunctionalityControllerTest {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
 	    foci.add("ENGLISH");
-	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 25, 60, -1, -1, -1, 
+	    Search s = new Search("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
 	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
 	    Set<University> listOfMatches = ufc.searchSchool(s);
 	    List<University> list = ufc.sortResults(listOfMatches, 'n');
@@ -171,16 +175,36 @@ public class UserFunctionalityControllerTest {
 	@Test
 	public void testSaveSchool() {
 		dbc.removeSavedSchool(u, s.getSchoolName());
-		assertFalse("saved school is no longer in the list", dbc.getSavedSchools(u).contains(univ));
+		boolean found = false;
+		for (SavedSchool saved: dbc.getSavedSchools(u)) {
+			if(univ.equals(saved)) {
+				found = true;
+			}
+		}
+		assertFalse("saved school is no longer in the list", found);
 		ufc.saveSchool(univ, u);
-		assertTrue("saved school is in the list", dbc.getSavedSchools(u).contains(univ));
+		found = false;
+		for (SavedSchool saved: dbc.getSavedSchools(u)) {
+			if(univ.equals(saved)) {
+				found = true;
+			}
+		}
+		assertTrue("saved school is in the list", found);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testSaveSchoolListIsNull() {
 		User u2 = new User("Dummy", "Hoeschen", "dummyHoeschen", "password", 'Y');
-		dbc.addAccount(u);
+		dbc.addAccount(u2);
 		ufc.saveSchool(univ, u2);
+		boolean found = false;
+		for (SavedSchool saved: dbc.getSavedSchools(u2)) {
+			if(univ.equals(saved)) {
+				found = true;
+			}
+		}
+		assertTrue("saved school is in the list", found);
+		dbc.removeSavedSchool(u2,  univ.getSchoolName());
 		dbc.removeAccount("dummyHoeschen");
 	}
 	
@@ -193,37 +217,50 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testRemoveSavedSchool() {
-		assertTrue("saved school is in the list", dbc.getSavedSchools(u).contains(univ));
+		boolean found = false;
+		for (SavedSchool saved: dbc.getSavedSchools(u)) {
+			if(s.equals(saved)) {
+				found = true;
+			}
+		}
+		assertTrue("saved school is in the list", found);
 		ufc.removeSavedSchool(univ.getSchoolName(), u);
-		assertFalse("saved school is no longer in the list", dbc.getSavedSchools(u).contains(dbc.getSchool(univ.getSchoolName())));
+		found = false;
+		for (SavedSchool saved: dbc.getSavedSchools(u)) {
+			if(s.equals(saved)) {
+				found = true;
+			}
+		}
+		assertFalse("saved school is no longer in the list", found);
 	}
 
 	@Test
-	public void testViewSavedSchools() { //this test fails. I do not fully understand why
-		User aUser = (User) dbc.findAccount("dummyUser2");
+	public void testViewSavedSchools() {
+		User aUser = (User) dbc.findAccount("dummyUser");
 		List<SavedSchool> savedSchools = ufc.viewSavedSchools(aUser);
-		//List<SavedSchool> actualSavedSchools = new ArrayList<SavedSchool>();
-		University aUniv = dbc.getSchool("BETHEL UNIVERSITY");
+		University aUniv = dbc.getSchool("A Dummy School");
 		SavedSchool aSavedSchool = new SavedSchool(aUniv, "time");
-		//actualSavedSchools.add(aSavedSchool);
-		
 		assertTrue("The list of school saved by user should match the schools "
-				+ "that are actually saved", savedSchools.get(0).getSchoolName().equals((aSavedSchool.getSchoolName())));
+				+ "that are actually saved", savedSchools.get(0).equals((aSavedSchool)));
 	}
 
 	@Test
 	public void testCompareSavedSchools() {
-		fail("Not yet implemented");
+		List<University> list = ufc.compareSavedSchools(s.getSchoolName());
+		assertTrue("The list should contain both schools", list.get(0).equals(s));
+		assertTrue("The list should contain both schools", list.get(1).getSchoolName().equals("AUBURN"));
 	}
 
-	@Test
-	public void testRequestForSecondSchool() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testShowRecSchools() {
-		fail("Not yet implemented");
+		TreeMap<Double, String> distanceMap = (TreeMap<Double, String>)ufc.showRecSchools(univ.getSchoolName());
+		for(int i = 0; i < 5; i++) {
+			  Entry<Double, String> entry = distanceMap.pollFirstEntry();
+			  System.out.println(entry.getValue());
+			  System.out.println(entry.getKey());
+		  }
+		assertTrue("Map should now be empty", distanceMap.pollFirstEntry() == null);
 	}
 
 }

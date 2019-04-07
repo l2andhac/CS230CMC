@@ -44,8 +44,8 @@ public class AdminInteraction extends AccountInteraction{
    * 
    * @param schoolName - String of university to be removed
    */
-  public void removeSchool(String schoolName){
-    adminFunctCont.removeSchool(schoolName);
+  public boolean removeSchool(String schoolName){
+    return adminFunctCont.removeSchool(schoolName);
   }
   
   
@@ -71,7 +71,7 @@ public class AdminInteraction extends AccountInteraction{
    * @param qualityScale - int rating the quality of the school
    * @param emphases - List<String> that are academic emphases of the schools
    */
-  public void addSchool(String schoolName, String state, String location,
+  public boolean addSchool(String schoolName, String state, String location,
                         String control, int numberOfStudents, double percentFemale,
                          double satVerbal, double satMath,
                         double expenses, double percentFinancialAid, int numberOfApplicants,
@@ -84,7 +84,7 @@ public class AdminInteraction extends AccountInteraction{
                                        percentEnrolled, academicScale, socialScale, qualityScale,
                                        emphases
                                        );
-    adminFunctCont.addSchool(school);
+    return adminFunctCont.addSchool(school);
   }
   
   
@@ -158,7 +158,7 @@ public class AdminInteraction extends AccountInteraction{
    * @param t - Character that is the type of the Account
    * @param s - Character that is the status of the Account
    */
-  public void addAccount(String fn, String ln, String u, String p, char t, char s){
+  public boolean addAccount(String fn, String ln, String u, String p, char t, char s){
     Account a;
     if(t == 'u'){
       a = new User(fn, ln, u, p, s);
@@ -166,9 +166,9 @@ public class AdminInteraction extends AccountInteraction{
       a = new Admin(fn, ln, u, p, s);
     }
     else {
-      a = null;
+      return false;
     }
-    adminFunctCont.addAccount(a); // this method takes a Account as param
+    return adminFunctCont.addAccount(a); // this method takes a Account as param
   }
   
   
@@ -177,8 +177,8 @@ public class AdminInteraction extends AccountInteraction{
   /**
    * Allows the admin to see their own information
    */
-  public void viewAccountInfo(){
-    adminFunctCont.viewAccountInfo(this.admin.getUsername()); 
+  public String viewAccountInfo(){
+    return adminFunctCont.viewAccountInfo(this.admin.getUsername()); 
   }
   
   /**
@@ -212,12 +212,12 @@ public class AdminInteraction extends AccountInteraction{
    * 
    * @param schoolName - String of the University's name
    */
-  public void viewSchoolDetails(String schoolName){
+  public University viewSchoolDetails(String schoolName){
     University univ = adminFunctCont.viewSchoolDetails(schoolName);
     if(univ != null) {
-    	System.out.println(univ.toString());
+    	return univ;
     }else {
-    	System.out.println("The school was not found");
+    	return null;
     }
   }
 
@@ -227,7 +227,6 @@ public class AdminInteraction extends AccountInteraction{
    */
   public void logOff(){
     this.admin.logOff();
-    System.out.println(this.admin.toString());
   }
     
 }

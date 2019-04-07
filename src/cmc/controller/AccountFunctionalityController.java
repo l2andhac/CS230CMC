@@ -47,18 +47,20 @@ public class AccountFunctionalityController {
 	   * @param newUser - User to request a new account
 	   * @throws IllegalArgumentException
 	   */
-	  public void requestNewAccount(User newUser) {
+	  public boolean requestNewAccount(User newUser) {
 	    String username = newUser.getUsername();
 	    boolean duplicate = dbc.findUsername(username);
 	    if(duplicate == false) {
 	      dbc.addAccount(newUser);
 	      newUser.setStatus('P');
 	      dbc.changeAccount(newUser);
+	      return true;
 	    }
 	    
 	    else {
 	    	throw new IllegalArgumentException("Username is already taken by another account");
 	    }
+	    
 	  }
 
 	/**

@@ -24,7 +24,7 @@ public class AccountFunctionalityControllerTest {
 	private static ArrayList<String> foci2;
 	
 	@BeforeClass
-	public static void beforeTest() throws Exception{
+	public static void beforeClass() throws Exception{
 		afc = new AccountFunctionalityController();
 		dbc = new DBController();
 		//makes a university without emphasis

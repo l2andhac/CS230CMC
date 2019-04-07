@@ -18,7 +18,7 @@ public class AccountControllerTest {
 	User dd;
 	
 	@BeforeClass
-	public static void beforeTest() throws Exception{
+	public static void beforeClass() throws Exception{
 		ac = new AccountController();
 		dbc = new DBController();
 	}
@@ -51,6 +51,11 @@ public class AccountControllerTest {
 	@Test (expected = IllegalArgumentException.class)
 	public void testLogOnWrongPassword() {
 		ac.logOn("dummyUser","password2");
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testLogOnWrongUsername() {
+		ac.logOn("dummyUserxxxx","password");
 	}
 	
 	@Test

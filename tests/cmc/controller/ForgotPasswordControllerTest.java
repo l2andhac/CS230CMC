@@ -6,16 +6,28 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cmc.entity.User;
+
+
 public class ForgotPasswordControllerTest {
 
 	ForgotPasswordController fpc; 
+	
+	DBController dbc;
+	
+	User emailDummy; 
+	
 	@Before
 	public void setUp() throws Exception {
 		fpc = new ForgotPasswordController();
+		dbc = new DBController();
+		emailDummy = new User("Email", "Dummy", "emailDummy@email.com", "password", 'Y');
+		dbc.addAccount(emailDummy);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		dbc.removeAccount("emailDummy");
 	}
 
 	@Test
@@ -32,7 +44,7 @@ public class ForgotPasswordControllerTest {
 
 	@Test
 	public void testEmailNewPassword() {
-		fail("Not yet implemented");
+		assertTrue("The User with the username emailDummy@email.com is emailed", fpc.emailNewPassword("emailDummy@email.com", emailDummy));
 	}
 
 }
