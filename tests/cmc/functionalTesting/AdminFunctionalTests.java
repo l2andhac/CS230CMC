@@ -140,7 +140,7 @@ public class AdminFunctionalTests {
 
 	@Test
 	public void testViewAccountInfo() {
-		ai.logOn("DummyAdmin", "password");
+		ai.logOn("DummyAdmin", "Password");
 		assertTrue("admin can view their info",ai.viewAccountInfo().equals(a.toString()));
 		ai.logOff();
 	}
