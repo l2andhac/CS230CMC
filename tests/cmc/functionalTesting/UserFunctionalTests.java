@@ -167,7 +167,17 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testCompareSavedSchools() {
-		fail("Not yet implemented");
+		List<University> schoolsToCompare = ui.compareSavedSchools(univ.getSchoolName());
+		boolean contains = false;
+		for(University s: schoolsToCompare) {
+			if(s.getSchoolName().equals("BETHEL UNIVERSITY") || s.getSchoolName().equals("AUBURN")) {
+				contains = true;
+			}
+			else {
+				contains = false;
+			}
+		}
+		assertTrue("The list should contain Bethel University and Auburn", contains);
 	}
 
 	@Test
