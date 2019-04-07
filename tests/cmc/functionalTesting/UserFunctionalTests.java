@@ -171,7 +171,6 @@ public class UserFunctionalTests {
 		SavedSchool ss = new SavedSchool(univ, "dummyUser");
 		dbc.addSavedSchool(u, ss);
 		List<University> schoolsToCompare = ui.compareSavedSchools(univ.getSchoolName());
-		System.out.println(schoolsToCompare.toString());
 		int count = 0;
 		for(University s: schoolsToCompare) {
 			if(s.getSchoolName().equals("BETHEL UNIVERSITY") || s.getSchoolName().equals("AUBURN")) {
@@ -182,6 +181,7 @@ public class UserFunctionalTests {
 		dbc.removeSavedSchool(u, "BETHEL UNIVERSITY");
 	}
 
+	//Do we still want Auburn hard-coded in?
 	@Test
 	public void testCompareSavedSchoolsUserOnlyHasOneSavedSchool() {
 		List<University> schoolsToCompare = ui.compareSavedSchools(null);
@@ -244,7 +244,13 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testRequestNewAccount() {
-		fail("Not yet implemented");
+		assertTrue("user can request new account",accInt.requestNewAccount("Dummy", "Hoeschen", "dummyHoeschen", "password"));
+		dbc.removeAccount("dummyHoeschen");
+	}
+	
+	@Test
+	public void testRequestNewAccountAlreadyTaken() {
+		assertFalse("user cannnot request new account",accInt.requestNewAccount("Dummy", "Jordre", "DummyUser", "Password"));
 	}
 
 	@Test
