@@ -26,9 +26,9 @@ import cmc.interaction.AdminInteraction;
 import cmc.interaction.UserInteraction;
 
 public class UserFunctionalTests {
-	private UserInteraction ui;
+	private UserInteraction ui, uie;
 	private static DBController dbc;
-	private User u;
+	private User u, ue;
 	private University univ;
 	private University univ1;
 	private ArrayList<String> foci;
@@ -51,6 +51,9 @@ public class UserFunctionalTests {
 		u = new User("Dummy", "Jordre", "DummyUser", "Password", 'Y');
 		ui = new UserInteraction(u);
 		dbc.addAccount(u);
+		
+		ue = new User("Dummy", "Bear", "DummyUser@email.com", "Password", 'Y');
+		dbc.addAccount(ue);
 
 		foci = new ArrayList<String>();
 		univ = new University("BETHEL UNIVERSITY", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, 650, 650, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
@@ -69,8 +72,8 @@ public class UserFunctionalTests {
 		foci = new ArrayList<String>();
 		dbc.removeSchool(univ);
 		dbc.removeAccount("DummyUser");
-		dbc.removeAccount("DummyUser");
 		dbc.removeAccount("deactUser");
+		dbc.removeAccount("DummyUser@email.com");
 		List<String> foci = new ArrayList<String>();
 
 		if (dbc.findSchoolName(univ.getSchoolName()) == true) {
@@ -96,6 +99,11 @@ public class UserFunctionalTests {
 		dbc.removeSavedSchool(u2, "AA DUMMY SCHOOL");
 		dbc.removeSchool(univ);
 		dbc.removeAccount("DummyUserSS");
+	}
+	
+	@Test
+	public void testSearchForFriendsFriendDoesNotExist() {
+		assertTrue("When a User tries to search for a friend that doesn't exist, return null", ui.searchForFriends("nothing")==null);
 	}
 
 	@Test
@@ -146,8 +154,64 @@ public class UserFunctionalTests {
 	
 
 	@Test
-	public void testSortResults() {
-		fail("Not yet implemented");
+	public void testSortResultsExpenses() {
+		List<String> foci = new ArrayList<String>();
+	    foci.add("ENGINEERING");
+	    foci.add("ENGLISH");
+	    Set<University> listOfMatches = ui.searchSchool("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
+	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	    
+	    List<University> list = ui.sortResults(listOfMatches, 'e');
+	    University univ1 = dbc.getSchool("SAN JOSE STATE");
+	    University univ2 = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+	    University univ3 = dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES");
+	    assertTrue("The first university on the sorted list should be SAN JOSE STATE", 
+	    		list.get(0).getSchoolName().equals(univ1.getSchoolName()));
+	    assertTrue("The second university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
+	    		list.get(1).getSchoolName().equals(univ2.getSchoolName()));
+	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(2).getSchoolName().equals(univ3.getSchoolName()));
+	}
+	
+	public void testSortResultsAdmission() {
+		List<String> foci = new ArrayList<String>();
+	    foci.add("ENGINEERING");
+	    foci.add("ENGLISH");
+	    Set<University> listOfMatches = ui.searchSchool("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
+	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	    
+	    List<University> list = ui.sortResults(listOfMatches, 'a');
+	    University univ1 = dbc.getSchool("SAN JOSE STATE");
+	    University univ2 = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+	    University univ3 = dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES");
+	    assertTrue("The first university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY", 
+	    		list.get(0).getSchoolName().equals(univ2.getSchoolName()));
+	    assertTrue("The second university on the sorted list should be SAN JOSE STATE", 
+	    		list.get(1).getSchoolName().equals(univ1.getSchoolName()));
+	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(2).getSchoolName().equals(univ3.getSchoolName()));
+	}
+	
+	public void testSortResultsNumberOfStudents() {
+		List<String> foci = new ArrayList<String>();
+	    foci.add("ENGINEERING");
+	    foci.add("ENGLISH");
+	    Set<University> listOfMatches = ui.searchSchool("","CALI", "URBAN", "STATE", 60000, 5000, 60, 25, -1, -1, -1, 
+	    		  -1, -1, -1, -1, -1, -1, -1, -1, -1,-1, -1, -1, -1, -1, -1, -1, -1, foci);
+	    
+	    List<University> list = ui.sortResults(listOfMatches, 'n');
+	    University univ1 = dbc.getSchool("SAN JOSE STATE");
+	    University univ2 = dbc.getSchool("UNIVERSITY OF CALIFORNIA BERKELEY");
+	    University univ3 = dbc.getSchool("UNIVERSITY OF CALIFORNIA LOS ANGELES");
+	    assertTrue("The first university on the sorted list should be SAN JOSE STATE", 
+	    		list.get(0).getSchoolName().equals(univ1.getSchoolName()));
+	    //UNIVERSITY OF CALIFORNIA BERKELEY and UNIVERSITY OF CALIFORNIA LOS ANGELES have the same number of students (40000)
+	    assertTrue("The second university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY "
+	    		+ "or UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(1).getSchoolName().equals(univ2.getSchoolName()) || list.get(1).getSchoolName().equals(univ3.getSchoolName()));
+	    assertTrue("The third university on the sorted list should be UNIVERSITY OF CALIFORNIA BERKELEY"
+	    		+ " or UNIVERSITY OF CALIFORNIA LOS ANGELES", 
+	    		list.get(2).getSchoolName().equals(univ2.getSchoolName()) || list.get(2).getSchoolName().equals(univ3.getSchoolName()));
 	}
 
 	@Test
@@ -303,7 +367,12 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testForgotPassword() {
-		fail("Not yet implemented");
+		assertTrue("A user with an email can correctly receive a new password if they forgot theirs", ui.forgotPassword("DummyUser@email.com"));
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void testForgotPasswordNoEmail() {
+		ui.forgotPassword("DummyUser");
 	}
 
 }

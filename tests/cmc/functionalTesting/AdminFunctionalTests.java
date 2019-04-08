@@ -23,7 +23,7 @@ import cmc.interaction.AdminInteraction;
 
 public class AdminFunctionalTests {
 
-	private AdminInteraction ai;
+	private AdminInteraction ai, aie;
 	private static DBController dbc;
 	private static AccountInteraction accInt;
 	private Admin deactivatedAdmin;
@@ -47,7 +47,7 @@ public class AdminFunctionalTests {
 		deactivatedAdmin = new Admin("Dummy", "Dempsey", "deactAdmin", "password", 'N');
 		dbc.addAccount(deactivatedAdmin);		
 		ae = new Admin("Dummy", "Worm", "DummyAdmin@email.com", "Password", 'Y');
-		ai = new AdminInteraction(ae);
+		aie = new AdminInteraction(ae);
 		dbc.addAccount(ae);
 	}
 

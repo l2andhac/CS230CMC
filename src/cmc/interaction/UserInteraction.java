@@ -123,15 +123,17 @@ public class UserInteraction extends AccountInteraction{
     * @param list - Set<University> Universities to be sorted
     * @param c -character denoting what to sort by
     */
-   public void sortResults(Set<University> list, char c){
+   public List<University> sortResults(Set<University> list, char c){
      if(list != null) {
    List<University> aList = userFunctCont.sortResults(list, c);
    for(University uni : aList) {
-   System.out.println(uni.getSchoolName());
-   }
+	   System.out.println(uni.getSchoolName());
+	   }
+   return aList;
+   
      }
      else {
-     System.out.println("The list to sort is empty");
+     return null;
      }
    }
 
