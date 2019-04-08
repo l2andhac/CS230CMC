@@ -136,7 +136,7 @@ public class UserFunctionalTests {
 	
 	@Test
 	 public void testSearchSchoolSuccess() {
-		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8000,8000, 30, 30, -1, -1, -1, -1, 5000, 5000, 10, 11, 10500, 10500, 95, 95, 70, 70, 2, 2, 1, 1, 1, 1, foci2);
+		Set<University> actual = ui.searchSchool("Carleton College", "FOREIGN", "URBAN", "STATE", 8001, 7999, 31, 29, 700, 600, 700, 600, 5001, 4999, 11, 9, 11000, 10000, 96, 94, 71, 69, 3, 1, 5, 1, 5, 1,foci2);
 		boolean found = false;
 		for(University university: actual) {
 			if(university.getSchoolName().equals(univ1.getSchoolName()))
@@ -292,16 +292,16 @@ public class UserFunctionalTests {
 	}
 
 	//Do we still want Auburn hard-coded in?
-	@Test
+	@Test (expected = IllegalArgumentException.class)
 	public void testCompareSavedSchoolsUserOnlyHasOneSavedSchool() {
 		List<University> schoolsToCompare = ui.compareSavedSchools(null);
-		boolean found = false;
+		/*boolean found = false;
 		for(University s: schoolsToCompare) {
 			if(s.getSchoolName().equals("AUBURN")) {
 				found = true;
 		}
 		}
-		assertTrue("The list should contain only Auburn", schoolsToCompare.size() == 1 && found);
+		assertTrue("The list should contain only Auburn", schoolsToCompare.size() == 1 && found);*/
 	}
 	
 	@Test

@@ -37,49 +37,49 @@ private DBController dbcontroller;
   	if(!u.getSchoolName().contains(searchCriteria.getName())) {
   		return false;
   	}
-  	if(!u.getState().contains(searchCriteria.getState())) {
+  	if(!u.getState().equals("") && !u.getState().contains(searchCriteria.getState())) {
   		return false;
   	}
-  	if(!u.getLocation().equals(searchCriteria.getLocation()) && !searchCriteria.getLocation().equals("")) {
+  	if(!u.getLocation().equals("") && !u.getLocation().equals(searchCriteria.getLocation()) && !searchCriteria.getLocation().equals("")) {
   		return false;
   	}
-  	if(!u.getControl().equals(searchCriteria.getControl()) && !searchCriteria.getControl().equals("")) {
+  	if(!u.getControl().equals("") && !u.getControl().equals(searchCriteria.getControl()) && !searchCriteria.getControl().equals("")) {
   		return false;
   	}
-  	if(u.getNumStudents() > searchCriteria.getEnrollmentUp() && !(searchCriteria.getEnrollmentUp() == -1) || u.getNumStudents() < searchCriteria.getEnrollmentLo()) {
+  	if(u.getNumStudents() != -1 && (u.getNumStudents() > searchCriteria.getEnrollmentUp() && !(searchCriteria.getEnrollmentUp() == -1) || u.getNumStudents() < searchCriteria.getEnrollmentLo())) {
   		return false;
   	}
-  	if(u.getPercentFemales() > searchCriteria.getPercentFemaleUp() && !(searchCriteria.getPercentFemaleUp() == -1) || u.getPercentFemales() < searchCriteria.getPercentFemaleLo()) {
+  	if(u.getPercentFemales() != -1 && (u.getPercentFemales() > searchCriteria.getPercentFemaleUp() && !(searchCriteria.getPercentFemaleUp() == -1) || u.getPercentFemales() < searchCriteria.getPercentFemaleLo())) {
   		return false;
   	}
-  	if(u.getSATVerbal() > searchCriteria.getSatVerbUp() && !(searchCriteria.getSatVerbUp() == -1) || u.getSATVerbal() < searchCriteria.getSatVerbLo()) {
+  	if(u.getSATVerbal() != -1 && (u.getSATVerbal() > searchCriteria.getSatVerbUp() && !(searchCriteria.getSatVerbUp() == -1) || u.getSATVerbal() < searchCriteria.getSatVerbLo())) {
   		return false;
   	}
-  	if(u.getSATMath() > searchCriteria.getSatMathUp() && !(searchCriteria.getSatMathUp() == -1) || u.getSATMath() < searchCriteria.getSatMathLo()) {
+  	if(u.getSATMath() != -1 && (u.getSATMath() > searchCriteria.getSatMathUp() && !(searchCriteria.getSatMathUp() == -1) || u.getSATMath() < searchCriteria.getSatMathLo())) {
   		return false;
   	}
-  	if(u.getExpenses() > searchCriteria.getExpensesUp() && !(searchCriteria.getExpensesUp() == -1) || u.getExpenses() < searchCriteria.getExpensesLo()) {
+  	if(u.getExpenses() != -1 && (u.getExpenses() > searchCriteria.getExpensesUp() && !(searchCriteria.getExpensesUp() == -1) || u.getExpenses() < searchCriteria.getExpensesLo())) {
   		return false;
   	}
-  	if(u.getPercentFinancialAid() > searchCriteria.getPercentFinancialAidUp() && !(searchCriteria.getPercentFinancialAidUp() == -1) || u.getPercentFinancialAid() < searchCriteria.getPercentFinancialAidLo()) {
+  	if(u.getPercentFinancialAid() != -1 && (u.getPercentFinancialAid() > searchCriteria.getPercentFinancialAidUp() && !(searchCriteria.getPercentFinancialAidUp() == -1) || u.getPercentFinancialAid() < searchCriteria.getPercentFinancialAidLo())) {
   		return false;
   	}
-  	if(u.getNumApplicants() > searchCriteria.getApplicantsUp() && !(searchCriteria.getApplicantsUp() == -1) || u.getNumApplicants() < searchCriteria.getApplicantsLo()) {
+  	if(u.getNumApplicants() != -1 && (u.getNumApplicants() > searchCriteria.getApplicantsUp() && !(searchCriteria.getApplicantsUp() == -1) || u.getNumApplicants() < searchCriteria.getApplicantsLo())) {
   		return false;
   	}
-  	if(u.getPercentAdmitted() > searchCriteria.getPercentAdmittedUp() && !(searchCriteria.getPercentAdmittedUp() == -1) || u.getPercentAdmitted() < searchCriteria.getPercentAdmittedLo()) {
+  	if(u.getPercentAdmitted() != -1 && (u.getPercentAdmitted() > searchCriteria.getPercentAdmittedUp() && !(searchCriteria.getPercentAdmittedUp() == -1) || u.getPercentAdmitted() < searchCriteria.getPercentAdmittedLo())) {
   		return false;
   	}
-  	if(u.getPercentEnrolled() > searchCriteria.getPercentEnrollUp() && !(searchCriteria.getPercentEnrollUp() == -1) || u.getPercentEnrolled() < searchCriteria.getPercentEnrollLo()) {
+  	if(u.getPercentEnrolled() != -1 && (u.getPercentEnrolled() > searchCriteria.getPercentEnrollUp() && !(searchCriteria.getPercentEnrollUp() == -1) || u.getPercentEnrolled() < searchCriteria.getPercentEnrollLo())) {
   		return false;
   	}
-  	if(u.getAcademicScale() > searchCriteria.getAcademicScaleUp() && !(searchCriteria.getAcademicScaleUp() == -1) || u.getAcademicScale() < searchCriteria.getAcademicScaleLo()) {
+  	if(u.getAcademicScale() != -1 && (u.getAcademicScale() > searchCriteria.getAcademicScaleUp() && !(searchCriteria.getAcademicScaleUp() == -1) || u.getAcademicScale() < searchCriteria.getAcademicScaleLo())) {
   		return false;
   	}
-  	if(u.getSocialScale() > searchCriteria.getSocialScaleUp() && !(searchCriteria.getSocialScaleUp() == -1) || u.getSocialScale() < searchCriteria.getSocialScaleLo()) {
+  	if(u.getSocialScale() != -1 && (u.getSocialScale() > searchCriteria.getSocialScaleUp() && !(searchCriteria.getSocialScaleUp() == -1) || u.getSocialScale() < searchCriteria.getSocialScaleLo())) {
   		return false;
   	}
-  	if(u.getQualityOfLifeScale() > searchCriteria.getQualOfLifeScaleUp() && !(searchCriteria.getQualOfLifeScaleUp() == -1) || u.getQualityOfLifeScale() < searchCriteria.getQualOfLifeScaleLo()) {
+  	if(u.getQualityOfLifeScale() != -1 && (u.getQualityOfLifeScale() > searchCriteria.getQualOfLifeScaleUp() && !(searchCriteria.getQualOfLifeScaleUp() == -1) || u.getQualityOfLifeScale() < searchCriteria.getQualOfLifeScaleLo())) {
   		return false;
   	}  
 

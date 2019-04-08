@@ -185,8 +185,13 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * the second school to compare.
    * 
    * @param s1 - String that is the name of the first school to compare
+   * 
+   * @throws IllegalArgumentException
    */
   public List<University> compareSavedSchools(String s1){
+	  if(s1 == null) {
+		  throw new IllegalArgumentException();
+	  }
 	  University s2 = this.requestForSecondSchool();
 	  List<University> retList = new ArrayList<University>();
 	  retList.add(dbController.getSchool(s1));

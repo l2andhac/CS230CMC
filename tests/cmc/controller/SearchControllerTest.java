@@ -398,5 +398,15 @@ public class SearchControllerTest {
 		searchController = new SearchController(searchCriteria);
 		assertTrue("School matches criteria", searchController.testForMatch(u));
 	}
+	
+	@Test
+	public void testForMatchSchoolOnlyHasName() throws Exception {
+		foci = new ArrayList<String>();
+		University testSchool = new University("NOTHING SCHOOL", "", "", "", -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, foci);
+		searchCriteria.setName("NOTHING SCHOOL");
+		searchCriteria.setEmphasis(foci);
+		searchController = new SearchController(searchCriteria);
+		assertTrue("School matches criteria", searchController.testForMatch(testSchool));
+	}
 
 }
