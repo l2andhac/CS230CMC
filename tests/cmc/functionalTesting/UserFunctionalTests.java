@@ -336,7 +336,12 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testEditAccountInfo() {
-		fail("Not yet implemented");
+
+		String fn = u.getFirstName();
+		String pwd = u.getPassword();
+		ui.editAccountInfo("Isabelle", "Jordre", "pwrd");
+		assertFalse("The first name of the user fuser has been edited", fn.equals(u.getFirstName()));
+		assertFalse("The password of the user fuser has been edited", pwd.equals(u.getPassword()));
 	}
 
 	@Test
