@@ -251,13 +251,13 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testShowRecSchools() {
-		TreeMap<Double, String> distanceMap = (TreeMap<Double, String>)ufc.showRecSchools(univ.getSchoolName());
-		for(int i = 0; i < 5; i++) {
-			  Entry<Double, String> entry = distanceMap.pollFirstEntry();
-			  System.out.println(entry.getValue());
-			  System.out.println(entry.getKey());
-		  }
-		assertTrue("Map should now be empty", distanceMap.pollFirstEntry() == null);
+		TreeMap<Double, String> distanceMap = (TreeMap<Double, String>)ufc.showRecSchools("BARD");
+		assertTrue("the 1st top reccomended school is correct", distanceMap.get(0.9187483974528865).equals("CLARKSON UNIVERSITY"));
+		assertTrue("the 2nd top reccomended school is correct", distanceMap.get(1.6593616556037012).equals("VASSAR"));
+		assertTrue("the 3rd top reccomended school is correct", distanceMap.get(2.0355617927803262).equals("COLLEGE OF NEWROCHELLE"));
+		assertTrue("the 4th top reccomended school is correct", distanceMap.get(2.15830527289677).equals("HAMPSHIRE COLLEGE"));
+		assertTrue("the 5th top reccomended school is correct", distanceMap.get(2.1765192224298806).equals("TOURO"));
+		assertTrue("the size of the map should be 5", distanceMap.keySet().size() == 5);
 	}
 
 }

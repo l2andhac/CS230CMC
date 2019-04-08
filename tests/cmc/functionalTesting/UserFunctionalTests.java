@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Set;
-
+import java.util.TreeMap;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -306,7 +306,13 @@ public class UserFunctionalTests {
 	
 	@Test
 	public void testShowRecSchools() {
-		fail("Not yet implemented");
+		TreeMap<Double, String> distanceMap = (TreeMap<Double, String>) ui.showRecSchools("BARD");
+		assertTrue("the 1st top reccomended school is correct", distanceMap.get(0.9187483974528865).equals("CLARKSON UNIVERSITY"));
+		assertTrue("the 2nd top reccomended school is correct", distanceMap.get(1.6593616556037012).equals("VASSAR"));
+		assertTrue("the 3rd top reccomended school is correct", distanceMap.get(2.0355617927803262).equals("COLLEGE OF NEWROCHELLE"));
+		assertTrue("the 4th top reccomended school is correct", distanceMap.get(2.15830527289677).equals("HAMPSHIRE COLLEGE"));
+		assertTrue("the 5th top reccomended school is correct", distanceMap.get(2.1765192224298806).equals("TOURO"));
+		assertTrue("the size of the map should be 5", distanceMap.keySet().size() == 5);
 	}
 
 	@Test
@@ -323,7 +329,12 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testViewSchoolDetails() {
-		fail("Not yet implemented");
+		List<String> foci = new ArrayList<String>();
+		University u = new University("DummySchool", "MINNESOTA", "SUBURBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci);
+		dbc.addSchool(u);
+		University retU = ui.viewSchoolDetails(u.getSchoolName());
+		assertTrue("Schools should be equal", u.equals(retU));
+		dbc.removeSchool(u);
 	}
 
 	@Test

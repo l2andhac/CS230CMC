@@ -190,8 +190,8 @@ public class UserInteraction extends AccountInteraction{
    * 
    * @param school - String that is a school to find the 5 closest ones to
    */
-  public void showRecSchools(String school){
-    userFunctCont.showRecSchools(school);
+  public Map<Double, String> showRecSchools(String school){
+    return userFunctCont.showRecSchools(school);
   }
   
   
