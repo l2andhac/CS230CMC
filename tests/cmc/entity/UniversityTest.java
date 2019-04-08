@@ -117,7 +117,7 @@ public class UniversityTest {
 	@Test
 	public void testSetQualityOfLifeScale() {
 		u.setSocialScale(4);
-		assertTrue("Correctly sets quality of life scale", 4==(u.getSocialScale()));
+		assertTrue("Correctly sets quality of life scale", 4==(u.getQualityOfLifeScale()));
 	}
 
 	@Test
