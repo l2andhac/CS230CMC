@@ -72,7 +72,6 @@ public class UserFunctionalTests {
 		foci = new ArrayList<String>();
 		dbc.removeSchool(univ);
 		List<SavedSchool> savedSchools = dbc.getSavedSchools(u);
-		System.out.println(savedSchools.size());
 		if(savedSchools.size() > 0) {
 			for(SavedSchool s : savedSchools) {
 				dbc.removeSavedSchool(u, s.getSchoolName());
