@@ -279,7 +279,13 @@ public class UserFunctionalTests {
 
 	@Test
 	public void testViewSavedSchools() {
-		fail("Not yet implemented");
+		List<SavedSchool> actual = ui.viewSavedSchools();
+		boolean found = false;
+		for(SavedSchool savedSchool: actual) {
+			if(savedSchool.getSchoolName().equals("BETHEL UNIVERSITY"))
+				found = true;
+		}
+		assertTrue("The saved school list is correct", found);
 	}
 
 	@Test
