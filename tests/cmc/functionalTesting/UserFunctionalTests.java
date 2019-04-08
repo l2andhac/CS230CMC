@@ -65,6 +65,8 @@ public class UserFunctionalTests {
 		foci2.add("ENGINEERING");
 		univ1 = new University("Carleton College", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.addSchool(univ1);
+		SavedSchool s = new SavedSchool(univ, "time");
+		dbc.addSavedSchool(u, s);
 	}
 	
 	@After
