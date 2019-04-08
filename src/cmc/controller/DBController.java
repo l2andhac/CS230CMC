@@ -60,30 +60,31 @@ public class DBController {
     }
   }
   
-  /**
-   * Adds a university to the database.
-   * 
-   * @param u - University to add
-   * @return boolean - true if the university has been successfully added
-   */
-  public boolean addSchool(University u) {
-    if(this.findSchoolName(u.getSchoolName()) == false) {
-    univDBlib.university_addUniversity(u.getSchoolName(), u.getState(), u.getLocation(), u.getControl(),
-                                        u.getNumStudents(), u.getPercentFemales(), u.getSATVerbal(), u.getSATMath(),
-                                        u.getExpenses(), u.getPercentFinancialAid(), u.getNumApplicants(),
-                                        u.getPercentAdmitted(), u.getPercentEnrolled(), u.getAcademicScale(),
-                                        u.getSocialScale(), u.getQualityOfLifeScale());
-    
-    List<String> list = u.getEmphases();
-    for(int i = 0; i< list.size();i++) {
-    	univDBlib.university_addUniversityEmphasis(u.getSchoolName(),list.get(i));
-    }
-    return true;
-    }
-    else {
-    	return false;
-    }
-  }
+	/**
+	 * Adds a university to the database.
+	 * 
+	 * @param u
+	 *            - University to add
+	 * @return boolean - true if the university has been successfully added
+	 */
+	public boolean addSchool(University u) {
+		if (this.findSchoolName(u.getSchoolName()) == false) {
+			univDBlib.university_addUniversity(u.getSchoolName(), u.getState(), u.getLocation(), u.getControl(),
+					u.getNumStudents(), u.getPercentFemales(), u.getSATVerbal(), u.getSATMath(), u.getExpenses(),
+					u.getPercentFinancialAid(), u.getNumApplicants(), u.getPercentAdmitted(), u.getPercentEnrolled(),
+					u.getAcademicScale(), u.getSocialScale(), u.getQualityOfLifeScale());
+
+			List<String> list = u.getEmphases();
+			if (list != null) {
+				for (int i = 0; i < list.size(); i++) {
+					univDBlib.university_addUniversityEmphasis(u.getSchoolName(), list.get(i));
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
   
   /**
    * Removes a university from the database.
@@ -276,7 +277,6 @@ public class DBController {
    * @return Set<University> - the set of all the matching universities
    */
   public Set<University> findSearchedSchool(Search s) {
-    //
 	this.searchController = new SearchController(s);
     Set<University> allSchools = getAllSchools();
     Set<University> matches = new HashSet<University>();
@@ -286,7 +286,8 @@ public class DBController {
     	}  	
     }
     return matches;
-  }
+	}
+  
   
   /**
    * Adds a saved school to the database.

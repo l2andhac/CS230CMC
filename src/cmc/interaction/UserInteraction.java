@@ -98,21 +98,22 @@ public class UserInteraction extends AccountInteraction{
                 int percentAdmittedLo, int percentEnrollUp, int percentEnrollLo, int academicScaleUp, 
                 int academicScaleLo, int socialScaleUp, int socialScaleLo, int qualOfLifeScaleUp,
                 int qualOfLifeScaleLo, List<String> emphasis){
+	  if(name.equals("") && state.equals("") && location.equals("") && control.equals("") && enrollmentUp == -1
+	    		&& enrollmentLo == -1 && percentFemaleUp == -1 && percentFemaleLo == -1 && satVerbUp == -1 &&
+	    		enrollmentLo == -1 && satMathUp == -1 && satMathLo == -1 && expensesUp == -1 && expensesLo == -1 &&
+	    		percentFinancialAidUp == -1 && percentFinancialAidLo == -1 && applicantsUp == -1 && applicantsLo == -1 &&
+	    		percentAdmittedUp == -1 && percentAdmittedLo == -1 && percentEnrollUp == -1 && percentEnrollLo == -1 && 
+	    		academicScaleUp == -1 && academicScaleLo == -1 && socialScaleUp == -1 && socialScaleLo == -1 && qualOfLifeScaleUp == -1
+	    		&& qualOfLifeScaleLo == -1 && (emphasis == null || emphasis.equals(new ArrayList<String>()))) {
+	    	return null;
+	    }
     Search s = new Search( name,state, location, control,enrollmentUp, enrollmentLo, percentFemaleUp, 
                           percentFemaleLo, satVerbUp, satVerbLo, satMathUp, satMathLo, expensesUp, expensesLo, percentFinancialAidUp, 
                           percentFinancialAidLo, applicantsUp, applicantsLo, percentAdmittedUp,
                           percentAdmittedLo, percentEnrollUp, percentEnrollLo, academicScaleUp, 
                           academicScaleLo, socialScaleUp, socialScaleLo, qualOfLifeScaleUp,
                           qualOfLifeScaleLo, emphasis);
-    if(s.getName().equals("") && s.getState().equals("") && s.getLocation().equals("") && s.getControl().equals("") && s.getEnrollmentUp() == -1
-    		&& s.getEnrollmentLo()== -1 && s.getPercentFemaleUp()== -1 && s.getPercentFemaleLo()== -1 && s.getSatVerbUp()== -1 &&
-    		s.getSatVerbLo()== -1 && s.getSatMathUp() == -1 && s.getSatMathLo()== -1 && s.getExpensesUp() == -1 && s.getExpensesLo() == -1 &&
-    		s.getPercentFinancialAidUp()== -1 && s.getPercentFinancialAidLo() == -1 && s.getApplicantsUp() == -1 && s.getApplicantsLo() == -1 &&
-    		s.getPercentAdmittedUp() == -1 && s.getPercentAdmittedLo() == -1 && s.getPercentEnrollUp() == -1 && s.getPercentEnrollLo() == -1 && 
-    		s.getAcademicScaleUp() == -1 && s.getAcademicScaleLo() == -1 && s.getSocialScaleUp()== -1 && s.getSocialScaleLo()== -1 && s.getQualOfLifeScaleUp() == -1
-    		&& s.getQualOfLifeScaleLo() == -1 && s.getEmphasis() == null) {
-    	return null;
-    }
+    
     return userFunctCont.searchSchool(s);
   }
  

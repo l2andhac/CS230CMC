@@ -690,4 +690,5 @@ public class Search {
 	public void setEmphasis(List<String> emphasis) {
 		this.emphasis = emphasis;
 	}
+	
 }
