@@ -236,12 +236,9 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testViewSavedSchools() {
-		User aUser = (User) dbc.findAccount("dummyUser");
-		List<SavedSchool> savedSchools = ufc.viewSavedSchools(aUser);
-		University aUniv = dbc.getSchool("A Dummy School");
-		SavedSchool aSavedSchool = new SavedSchool(aUniv, "time");
+		List<SavedSchool> savedSchools = ufc.viewSavedSchools(u);
 		assertTrue("The list of school saved by user should match the schools "
-				+ "that are actually saved", savedSchools.get(0).equals((aSavedSchool)));
+				+ "that are actually saved", savedSchools.get(0).equals((univ)));
 	}
 
 	@Test
