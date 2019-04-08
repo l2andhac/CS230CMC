@@ -36,7 +36,7 @@ public class UserFunctionalityControllerTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		u = new User("Dummy", "Jordre", "dummyUser", "password", 'Y');
+		u = new User("Dummy", "Jordre", "dummyUser3", "password", 'Y');
 		dbc.addAccount(u);
 		foci2 = new ArrayList<String>();
 		foci2.add("BUSINESS-ADMINISTRATION");
@@ -49,7 +49,7 @@ public class UserFunctionalityControllerTest {
 	@After
 	public void tearDown() throws Exception {
 		dbc.removeSavedSchool(u, s.getSchoolName());
-		dbc.removeAccount("dummyUser");
+		dbc.removeAccount(u.getUsername());
 
 		//......
 	}
@@ -74,7 +74,7 @@ public class UserFunctionalityControllerTest {
 
 	@Test
 	public void testSearchForFriendsUserFound() {
-		List<SavedSchool> s = ufc.searchForFriends("dummyUser");
+		List<SavedSchool> s = ufc.searchForFriends(u.getUsername());
 		List<SavedSchool> list = dbc.getSavedSchools(u);
 		assertTrue("The two lists should contain the same schools", s.get(0).equals(list.get(0)));		
 	}

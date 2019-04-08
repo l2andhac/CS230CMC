@@ -71,6 +71,13 @@ public class UserFunctionalTests {
 	public void tearDown() throws Exception {
 		foci = new ArrayList<String>();
 		dbc.removeSchool(univ);
+		List<SavedSchool> savedSchools = dbc.getSavedSchools(u);
+		System.out.println(savedSchools.size());
+		if(savedSchools.size() > 0) {
+			for(SavedSchool s : savedSchools) {
+				dbc.removeSavedSchool(u, s.getSchoolName());
+			}
+		}
 		dbc.removeAccount("DummyUser");
 		dbc.removeAccount("deactUser");
 		dbc.removeAccount("DummyUser@email.com");

@@ -94,15 +94,14 @@ public class DBControllerTest {
 	@Test
 	public void testEditSchool() {
 		foci2.add("BUSINESS-ADMINISTRATION");
-		University originalUniversity = dbc.getSchool("UNIVERSITE DE BOBO");
-		University modifiedUniversity = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
+		University originalUniversity = dbc.getSchool(u.getSchoolName());
+		University modifiedUniversity = new University(u.getSchoolName(), "MINNESOTA", "URBAN", "PRIVATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
 		dbc.editSchool(modifiedUniversity); //modified number of students from 8000 to 10000, with foci2 BUSINESS-ADMINISTRATION
-		University newUniversity = dbc.getSchool("UNIVERSITE DE BOBO");
-		assertFalse("the original school AUGSBURG is different from the modified school AUGSBURG which "
+		University newUniversity = dbc.getSchool(u.getSchoolName());
+		assertFalse("the original school is different from the modified school which "
 				+ "now have 8000 students instead of 10000", originalUniversity.equals(newUniversity));
-		modifiedUniversity = new University("UNIVERSITE DE BOBO", "FOREIGN", "URBAN", "STATE", 1000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
-		foci2.remove("BUSINESS-ADMINISTRATION");
-		dbc.editSchool(modifiedUniversity);
+		assertTrue("the new school should be in minnesota", newUniversity.getState().equals("MINNESOTA"));
+		assertTrue("the original school should be foreign", newUniversity.getState().equals("MINNESOTA"));
 	}
 	
 	@Test
@@ -186,7 +185,7 @@ public class DBControllerTest {
 	@Test
 	public void testFindAccountUserFound() {
 		dbc.addAccount(user);
-		Account actual = dbc.findAccount("dummyUser");
+		Account actual = dbc.findAccount(user.getUsername());
 		assertTrue("The account found is the correct user,", 
 				actual.equals(user));
 	}
@@ -415,14 +414,10 @@ public class DBControllerTest {
 
 	@Test
 	public void testFindDistance() {
-		//double calculatedDistance = Math.round(2.597544927);
-		double calculatedDistance = 2.597544927;
-		System.out.println("calculated distance: "+calculatedDistance);
+		double calculatedDistance = 2.5975449265179846;
 		University univ1 = dbc.getSchool("NEWYORK IT");
 		University univ2 = dbc.getSchool("BARD");
-		//double cmcDistance = Math.round(dbc.findDistance(univ1, univ2));
 		double cmcDistance = dbc.findDistance(univ1, univ2);
-		System.out.println("cmc distance: "+cmcDistance);
 		assertTrue("The distance between NEWYORK IT and BARD should"
 				+ " be "+calculatedDistance+".", calculatedDistance==cmcDistance );
 	}

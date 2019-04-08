@@ -104,7 +104,7 @@ public class AccountFunctionalityController {
 	   * @param u - String of the username to view the information for
 	   */
 	  public String viewAccountInfo(String u){
-	    Account a = dbc.findAccount(u); 
+	    Account a = dbc.findAccount(u);
 	    return this.viewAccountInfo(a);
 	  }
 

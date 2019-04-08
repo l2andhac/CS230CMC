@@ -27,7 +27,7 @@ public class ForgotPasswordControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		dbc.removeAccount("emailDummy");
+		dbc.removeAccount(emailDummy.getUsername());
 	}
 
 	@Test
