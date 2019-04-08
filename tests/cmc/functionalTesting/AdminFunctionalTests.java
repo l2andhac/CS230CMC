@@ -69,11 +69,7 @@ public class AdminFunctionalTests {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void testCannotRemoveSchool() {
-		ArrayList<String> foci2 = new ArrayList<String>();
-		foci2.add("ENGINEERING");
-		University univ4 = new University("COLBY SAWYER", "NEW HAMPSHIRE", "RURAL", "PRIVATE", 2000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, foci2);
-		dbc.addSchool(univ4);
-		ai.removeSchool(univ4.getSchoolName());
+		ai.removeSchool("AUBURN");
 		//need to actually remove school either here or in the after
 	}
 

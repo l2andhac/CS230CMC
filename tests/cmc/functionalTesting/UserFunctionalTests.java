@@ -225,7 +225,6 @@ public class UserFunctionalTests {
 	@Test
 	public void testSaveSchool() {
 		ui.logOn("DummyUser", "Password");
-		ui.saveSchool(univ);
 		List<SavedSchool> list = ui.viewSavedSchools();
 		boolean isMatch = false;
 		for(SavedSchool s: list) {

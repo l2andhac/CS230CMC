@@ -242,7 +242,6 @@ public class UserInteraction extends AccountInteraction{
    */
   public void logOff(){
     this.user.logOff();
-    System.out.println(this.user.toString());
   }
   
   
