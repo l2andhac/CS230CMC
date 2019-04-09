@@ -182,7 +182,11 @@ public String toString() {
 	return "firstName= " + firstName + "\nlastName= " + lastName + "\nusername= " + username + "\npassword= "
 			+ password + "\nuserType= " + userType + "\nstatus= " + status  + "\nisLoggedOn= " + loggedOn;
 }
-	
+
+/**
+ * equals method for account
+ * @return - True if the two accounts are equal
+ */
 public boolean equals(Account a) {
 	if(!this.firstName.equals(a.firstName)) {
 		return false;
