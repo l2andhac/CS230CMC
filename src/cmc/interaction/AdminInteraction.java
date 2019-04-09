@@ -182,7 +182,7 @@ public class AdminInteraction extends AccountInteraction{
   }
   
   /**
-   * Allows the admin to see their own information
+   * Allows the admin to see a user's information
    * 
    * @param u - String of the username to view the information for
    */

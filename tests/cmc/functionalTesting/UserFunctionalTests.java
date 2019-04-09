@@ -181,6 +181,7 @@ public class UserFunctionalTests {
 	    		list.get(2).getSchoolName().equals(univ3.getSchoolName()));
 	}
 	
+	@Test
 	public void testSortResultsAdmission() {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
@@ -200,6 +201,7 @@ public class UserFunctionalTests {
 	    		list.get(2).getSchoolName().equals(univ3.getSchoolName()));
 	}
 	
+	@Test
 	public void testSortResultsNumberOfStudents() {
 		List<String> foci = new ArrayList<String>();
 	    foci.add("ENGINEERING");
@@ -225,16 +227,17 @@ public class UserFunctionalTests {
 	@Test
 	public void testSaveSchool() {
 		ui.logOn("DummyUser", "Password");
+		ui.saveSchool(dbc.getSchool("AUBURN"));
 		List<SavedSchool> list = ui.viewSavedSchools();
 		boolean isMatch = false;
 		for(SavedSchool s: list) {
-			if(s.getSchoolName().equals(univ.getSchoolName())) {
+			if(s.getSchoolName().equals("AUBURN")) {
 				isMatch = true;
 			}
 			
 		}
 		assertTrue("the school was added",isMatch);
-		ui.removeSavedSchool(univ.getSchoolName());
+		ui.removeSavedSchool("AUBURN");
 		ui.logOff();
 		
 	}
@@ -244,8 +247,6 @@ public class UserFunctionalTests {
 		ui.logOn("DummyUser", "Password");
 		ui.saveSchool(univ);
 		ui.saveSchool(univ);
-		ui.logOff();
-		ui.removeSavedSchool(univ.getSchoolName());
 	}
 
 	@Test
@@ -304,17 +305,9 @@ public class UserFunctionalTests {
 		dbc.removeSavedSchool(u, "BETHEL UNIVERSITY");
 	}
 
-	//Do we still want Auburn hard-coded in?
 	@Test (expected = IllegalArgumentException.class)
 	public void testCompareSavedSchoolsUserOnlyHasOneSavedSchool() {
 		List<University> schoolsToCompare = ui.compareSavedSchools(null);
-		/*boolean found = false;
-		for(University s: schoolsToCompare) {
-			if(s.getSchoolName().equals("AUBURN")) {
-				found = true;
-		}
-		}
-		assertTrue("The list should contain only Auburn", schoolsToCompare.size() == 1 && found);*/
 	}
 	
 	@Test

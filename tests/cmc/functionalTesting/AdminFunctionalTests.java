@@ -56,6 +56,7 @@ public class AdminFunctionalTests {
 		dbc.removeAccount("DummyAdmin");
 		dbc.removeAccount("deactAdmin");
 		dbc.removeAccount("DummyAdmin@email.com");
+		dbc.removeAccount("wuser");
 	}
 
 	@Test
@@ -70,7 +71,6 @@ public class AdminFunctionalTests {
 	@Test (expected = IllegalArgumentException.class)
 	public void testCannotRemoveSchool() {
 		ai.removeSchool("AUBURN");
-		//need to actually remove school either here or in the after
 	}
 
 	@Test
@@ -135,11 +135,25 @@ public class AdminFunctionalTests {
 	}
 
 	@Test
-	public void testAddAccount() {
+	public void testAddUserAccount() {
 		boolean inDB = dbc.findUsername("DummyUser9999");
 		ai.addAccount("Dummy", "Rothstein", "DummyUser9999", "password", 'u', 'Y');
 		assertTrue("The account has been added to the database", dbc.findUsername("DummyUser9999") && inDB == false);
 		dbc.removeAccount("DummyUser9999");
+	}
+	
+	@Test
+	public void testAddAdminAccount() {
+		boolean inDB = dbc.findUsername("DummyAdmin9999");
+		ai.addAccount("Dummy", "Rothstein", "DummyAdmin9999", "password", 'a', 'Y');
+		assertTrue("The account has been added to the database", dbc.findUsername("DummyAdmin9999") && inDB == false);
+		dbc.removeAccount("DummyAdmin9999");
+	}
+	
+	@Test
+	public void testAddAccountInvalidType() {
+		boolean b = ai.addAccount("Dummy", "Rothstein", "DummyAdmin9999", "password", 'x', 'Y');
+		assertTrue("The account has been added to the database",b == false);
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
@@ -153,7 +167,17 @@ public class AdminFunctionalTests {
 		assertTrue("admin can view their info",ai.viewAccountInfo().equals(a.toString()));
 		ai.logOff();
 	}
-
+	
+	@Test
+	public void testViewAccountInfoOfUser() {
+		ai.logOn("DummyAdmin", "Password");
+		User u = new User("Steffi", "Tapsoba", "suser", "password", 'Y');
+		dbc.addAccount((User) u);
+		assertTrue("admin can view their info",ai.viewAccountInfo("suser").equals(u.toString()));
+		dbc.removeAccount("suser");
+		ai.logOff();
+	}
+	
 	@Test 
 	public void testEditAccountInfoForUser() {
 		User u = new User("Steffi", "Tapsoba", "suser", "password", 'Y');
@@ -197,7 +221,6 @@ public class AdminFunctionalTests {
 		dbc.addAccount((User) u);
 		ai.editAccountInfo("wuser", "Winnie", "Tapsoba", "password", 'u', 'X');
 
-		dbc.removeAccount("wuser");
 
 	}
 	

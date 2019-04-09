@@ -116,7 +116,7 @@ public class UniversityTest {
 
 	@Test
 	public void testSetQualityOfLifeScale() {
-		u.setSocialScale(4);
+		u.setQualityScale(4);
 		assertTrue("Correctly sets quality of life scale", 4==(u.getQualityOfLifeScale()));
 	}
 
@@ -138,6 +138,29 @@ public class UniversityTest {
 				+ ", percentAdmitted=" + u.getPercentAdmitted() + ", percentEnrolled=" + u.getPercentEnrolled() + ", academicsScale="
 				+ u.getAcademicScale() + ", socialScale=" + u.getSocialScale()+ ", qualityScale=" + u.getQualityOfLifeScale() + ", emphases="
 				+ u.getEmphases() + "]"));
+	}
+	
+	@Test
+	public void testEquals() {
+		University u2 = new University("BETHEL UNIVERSITY", "WISCONSIN", "URBAN", "STATE", 8000, 30.0, -1, -1, 5000, 10.5, 10500, 95.0, 70.0, 2, 1, 1, null);
+		assertTrue("The universities should be equal", u2.equals(u));
+		u2.setState("sldkf");
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setState(u.getState());
+		u2.setControl("lsdkfj");
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setControl(u.getControl());
+		u2.setLocation("lsdkfjas");
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setLocation(u.getLocation());
+		u2.setNumberOfStudents(932487);
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setNumberOfStudents(u.getNumStudents());
+		u2.setPercentFemale(1298.0);
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setPercentFemale(u.getPercentFemales());
+		u2.setSatMath(9182.4);
+		assertFalse("The universities should not be equal", u2.equals(u));
 	}
 
 }

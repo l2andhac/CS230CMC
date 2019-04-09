@@ -127,9 +127,6 @@ public class UserInteraction extends AccountInteraction{
    public List<University> sortResults(Set<University> list, char c){
      if(list != null) {
    List<University> aList = userFunctCont.sortResults(list, c);
-   for(University uni : aList) {
-	   System.out.println(uni.getSchoolName());
-	   }
    return aList;
    
      }

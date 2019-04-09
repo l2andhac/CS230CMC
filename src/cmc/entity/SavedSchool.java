@@ -26,7 +26,7 @@ public class SavedSchool extends University {
                                         u.getExpenses(), u.getPercentFinancialAid(), u.getNumApplicants(),
                                         u.getPercentAdmitted(), u.getPercentEnrolled(), u.getAcademicScale(),
                                         u.getSocialScale(), u.getQualityOfLifeScale(), u.getEmphases());
-    this.timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    this.timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm");
   }
   
   /**

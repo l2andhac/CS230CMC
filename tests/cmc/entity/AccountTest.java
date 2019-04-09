@@ -77,5 +77,28 @@ public class AccountTest {
 				+ "Password\nuserType= u\nstatus= Y\nisLoggedOn= false";
 		assertTrue("ToString should be " + expected, a.toString().equals(expected));
 	}
+	
+	@Test
+	public void testEquals() {
+		Account a2 = new Account(a.getFirstName(), a.getLastName(), a.getUsername(), a.getPassword(), a.getUserType(), a.getStatus());
+		assertTrue("accounts should be equal", a2.equals(a));
+		a2.setFirstName("laskjdf");
+		assertFalse("accounts should be different", a2.equals(a));
+		a2.setFirstName(a.getFirstName());
+		a2.setLastName("lskdfj");
+		assertFalse("accounts should be different", a2.equals(a));
+		a2.setLastName(a.getLastName());
+		a2.setUsername("slkfjs");
+		assertFalse("accounts should be different", a2.equals(a));
+		a2.setUsername(a.getUsername());
+		a2.setPassword("laskjf");
+		assertFalse("accounts should be different", a2.equals(a));
+		a2.setPassword(a.getUsername());
+		a2.setUserType('x');
+		assertFalse("accounts should be different", a2.equals(a));
+		a2.setUserType(a.getUserType());
+		a2.setStatus('x');
+		assertFalse("accounts should be different", a2.equals(a));
+	}
 
 }
