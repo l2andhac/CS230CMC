@@ -24,7 +24,6 @@ public class SearchControllerTest {
 	@BeforeClass
 	public static void beforeClass() throws Exception {
 		dbcontroller = new DBController();
-		
 	}
 	
 	@Before

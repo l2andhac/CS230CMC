@@ -47,6 +47,10 @@ public class AdminFunctionalityControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
+		if(u != null) {
+		dbc.removeSavedSchool(u, univ1.getSchoolName());
+		dbc.removeSavedSchool(u, univ1.getSchoolName());
+		}
 		dbc.removeAccount("dummyUser");
 		dbc.removeAccount("dummyAdmin");
 		foci1 = new ArrayList<String>();

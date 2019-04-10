@@ -413,7 +413,7 @@ public class DBControllerTest {
 
 
 	@Test
-	public void testFindDistance() {
+	public void testFindDistanceSameState() {
 		double calculatedDistance = 2.5975449265179846;
 		University univ1 = dbc.getSchool("NEWYORK IT");
 		University univ2 = dbc.getSchool("BARD");
@@ -421,11 +421,35 @@ public class DBControllerTest {
 		assertTrue("The distance between NEWYORK IT and BARD should"
 				+ " be "+calculatedDistance+".", calculatedDistance==cmcDistance );
 	}
+	
+	@Test
+	public void testFindDistanceSameLocation() {
+		double calculatedDistance = 4.671318140553719;
+		University univ1 = dbc.getSchool("BUTLER");
+		University univ2 = dbc.getSchool("BROWN");
+		double cmcDistance = dbc.findDistance(univ1, univ2);
+		assertTrue("The distance between NEWYORK IT and BARD should"
+				+ " be "+calculatedDistance+".", calculatedDistance==cmcDistance );
+	}
 
+	@Test
+	public void testFindDistanceSameControl() {
+		double calculatedDistance = 4.7146381296864135;
+		University univ1 = dbc.getSchool("AUBURN");
+		University univ2 = dbc.getSchool("BARUCH");
+		double cmcDistance = dbc.findDistance(univ1, univ2);
+		assertTrue("The distance between NEWYORK IT and BARD should"
+				+ " be "+calculatedDistance+".", calculatedDistance==cmcDistance );
+	}
+	
 	@Test
 	public void testGetEmphases() {
 		assertTrue("BETHEL UNIVERSITY contains the emphasis ENGINEERING", dbc.getEmphases(u2).contains("ENGINEERING"));
-		//fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testGetEmphasesSchoolHasNone() {
+		assertTrue("Carleton has no emphases", dbc.getEmphases(u).size() == 0);
 	}
 
 }
