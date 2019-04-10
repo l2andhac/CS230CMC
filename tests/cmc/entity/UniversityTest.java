@@ -161,6 +161,18 @@ public class UniversityTest {
 		u2.setPercentFemale(u.getPercentFemales());
 		u2.setSatMath(9182.4);
 		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setSatMath(u.getSATMath());
+		u2.setAcademicsScale(23);
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setAcademicsScale(u.getAcademicScale());
+		u2.setPercentAdmitted(687.5);
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setPercentAdmitted(u.getPercentAdmitted());
+		u2.setPercentFinancialAid(232.8);
+		assertFalse("The universities should not be equal", u2.equals(u));
+		u2.setPercentFinancialAid(u.getPercentFinancialAid());
+		u2.setQualityScale(43);
+		assertFalse("The universities should not be equal", u2.equals(u));
 	}
 
 }
