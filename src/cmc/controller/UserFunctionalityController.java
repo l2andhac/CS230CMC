@@ -33,7 +33,7 @@ public class UserFunctionalityController extends AccountFunctionalityController{
    * 
    * @param u - the User to be view information for
    */
-  public String viewUserInfo(User u){
+  public Account viewUserInfo(User u){
     return super.viewAccountInfo(u.getUsername());
   }
 

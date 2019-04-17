@@ -48,7 +48,6 @@ public class AccountInteraction{
 	    return null;
 	    
 	  }
-	  
 	
 	  /**
 	   * User can request to make a new account

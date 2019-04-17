@@ -93,8 +93,8 @@ public class AccountFunctionalityController {
 	 * 
 	 * @param a - Account that is the account to be viewed
 	 */
-	public String viewAccountInfo(Account a) {
-		return a.toString(); 
+	public Account viewAccountInfo(Account a) {
+		return a; 
 	}
 	
 	  
@@ -103,9 +103,9 @@ public class AccountFunctionalityController {
 	   * 
 	   * @param u - String of the username to view the information for
 	   */
-	  public String viewAccountInfo(String u){
+	  public Account viewAccountInfo(String u){
 	    Account a = dbc.findAccount(u);
-	    return this.viewAccountInfo(a);
+	    return a;
 	  }
 
 
